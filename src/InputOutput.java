@@ -16,12 +16,14 @@ public class InputOutput {
             System.out.println();
             System.out.println("Wybierz jedną z opcji: ");
             System.out.println();
+            //wczytywanie plików bedzie jako parametr programu (nazwa programu + sciezka jako parametr)
             System.out.println("1. Wczytaj dane funduszy z plików");
-            System.out.println("2. Wyszukaj ekstrema globalne z wczytanych danych");
-            System.out.println("3. Wyszukaj ekstrema lokalne z wczytanych danych");
-            System.out.println("4. Wczytaj kursy danych z plków");
-            System.out.println("5. Zoptymalizuj dane w celu eksportu");
-            System.out.println("6. Wyjdź z programu");
+            System.out.println("1. Wyszukaj ekstrema globalne z wczytanych danych");
+            System.out.println("2. Wyszukaj ekstrema lokalne z wczytanych danych");
+            // tak jak numer 1 będzie jako parametr programu z konsoli
+            System.out.println("3. Wczytaj kursy walut danych z plków");
+            System.out.println("4. Zoptymalizuj dane w celu eksportu");
+            System.out.println("5. Wyjdź z programu");
             userChoice = input.nextInt();
 
             switch (userChoice) {
