@@ -42,7 +42,10 @@ public class InputOutput {
                     break;
                 case 6:
                     exitCondition = false;
-                    ;
+                    break;
+                default:
+                    System.out.println("Wybrałeś błędny numer, wybierz ponownie.");
+                    System.out.println();
                     break;
             }
 
