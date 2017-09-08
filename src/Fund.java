@@ -2,70 +2,108 @@ import java.time.LocalDate;
 
 public class Fund {
 
-    private String Name;
-    private LocalDate Date;
-    private double Open;
-    private double High;
-    private double Low;
+    private String name;
+    private LocalDate date;
+    private Double open;
+    private Double high;
+    private Double low;
+    private Double close;
+    private Double volume;
+
+    public Fund(String name, LocalDate date, Double open, Double high, Double low, Double close, Double volume) {
+        this.name = name;
+        this.date = date;
+        this.open = open;
+        this.high = high;
+        this.low = low;
+        this.close = close;
+        this.volume = volume;
+    }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public LocalDate getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(LocalDate date) {
-        Date = date;
+        this.date = date;
     }
 
-    public double getOpen() {
-        return Open;
+    public Double getOpen() {
+        return open;
     }
 
-    public void setOpen(double open) {
-        Open = open;
+    public void setOpen(Double open) {
+        this.open = open;
     }
 
-    public double getHigh() {
-        return High;
+    public Double getHigh() {
+        return high;
     }
 
-    public void setHigh(double high) {
-        High = high;
+    public void setHigh(Double high) {
+        this.high = high;
     }
 
-    public double getLow() {
-        return Low;
+    public Double getLow() {
+        return low;
     }
 
-    public void setLow(double low) {
-        Low = low;
+    public void setLow(Double low) {
+        this.low = low;
     }
 
-    public double getClose() {
-        return Close;
+    public Double getClose() {
+        return close;
     }
 
-    public void setClose(double close) {
-        Close = close;
+    public void setClose(Double close) {
+        this.close = close;
     }
 
-    public double getVolume() {
-        return Volume;
+    public Double getVolume() {
+        return volume;
     }
 
-    public void setVolume(double volume) {
-        Volume = volume;
+    public void setVolume(Double volume) {
+        this.volume = volume;
     }
 
-    private double Close;
-    private double Volume;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Fund fund = (Fund) o;
 
+        if (Double.compare(fund.open, open) != 0) return false;
+        if (Double.compare(fund.high, high) != 0) return false;
+        if (Double.compare(fund.low, low) != 0) return false;
+        if (Double.compare(fund.close, close) != 0) return false;
+        return Double.compare(fund.volume, volume) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(open);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(high);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(low);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(close);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(volume);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 }
