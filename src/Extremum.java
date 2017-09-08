@@ -5,10 +5,12 @@ import java.util.Comparator;
 
 public class Extremum implements Comparator<Fund> {
 
-        Fund max;
-        Fund min;
+
 
         public void testLista(){
+
+            Fund max = fund1;
+            Fund min;
 
         Fund fund1 = new Fund("Fund1", LocalDate.of(2017,9,8), 100, 500, 50, 200, 0);
         Fund fund2 = new Fund("Fund2", LocalDate.of(2017,9,8), 102, 508, 52, 205, 0);
@@ -23,6 +25,11 @@ public class Extremum implements Comparator<Fund> {
         test.add(fund4);
         test.add(fund5);
 
+
+            for (int i=0; i < test.size(); i++){
+                int wynik = compare(max, fund1);
+    }
+
       }
 
 
@@ -30,11 +37,7 @@ public class Extremum implements Comparator<Fund> {
 
     @Override
     public int compare(Fund o1, Fund o2) {
-
-            for (i)
         return o1.getClose().compareTo(o2.getClose());
-
-
     }
 }
 
