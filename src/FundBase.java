@@ -10,15 +10,10 @@ import java.util.Date;
 
 public class FundBase {
 
-    //read only: nazwa, data, close
-
-
     public boolean readFoundIntoList(String pathToFile, ArrayList<Fund> myFundList) {//to call the readFoundIntoList method you should give the path do the file
 
         FileReader fr = null;//FileReader to read from the file
         BufferedReader br = null;//BufferedReader to buffer the values
-        //ArrayList<Fund> myFundList = new ArrayList<Fund>();
-
 
         try {
             fr = new FileReader(pathToFile);//set the path to the FileReader
@@ -87,7 +82,8 @@ public class FundBase {
                 ex.printStackTrace();
             }
         }
-        return false;//this method should end after checking the corrent structure or after exiting the while loop,
+        return false;//you should write return statement in this method
+        //this method should end after checking the corrent structure or after exiting the while loop,
         // if program gets here then probably something is wrong
     }
 
