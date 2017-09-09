@@ -56,11 +56,11 @@ public class FundBase {
                 LocalDate dateDate = LocalDate.parse(stringDate, dateTimeFormatter);
                 temporaryFund.setDate(dateDate);*/
 
-                temporaryFund.setOpen(Double.parseDouble(sCurrentLine.split(",")[2]));//[2] entry is the Open value
-                temporaryFund.setHigh(Double.parseDouble(sCurrentLine.split(",")[3]));//[3] entry is the High value
-                temporaryFund.setLow(Double.parseDouble(sCurrentLine.split(",")[4]));//[4] entry is the Low value
+                //temporaryFund.setOpen(Double.parseDouble(sCurrentLine.split(",")[2]));//[2] entry is the Open value
+                //temporaryFund.setHigh(Double.parseDouble(sCurrentLine.split(",")[3]));//[3] entry is the High value
+                //temporaryFund.setLow(Double.parseDouble(sCurrentLine.split(",")[4]));//[4] entry is the Low value
                 temporaryFund.setClose(Double.parseDouble(sCurrentLine.split(",")[5]));//[5] entry is the Close value
-                temporaryFund.setVolume(Double.parseDouble(sCurrentLine.split(",")[6]));//[6] entry is the Volume value
+                //temporaryFund.setVolume(Double.parseDouble(sCurrentLine.split(",")[6]));//[6] entry is the Volume value
                 /*
                 sCurrentLine.split(",")[x] returns String but Fund.setXXX() expects Double
                 to change String do Double you can use Double.parseDouble(String) method
