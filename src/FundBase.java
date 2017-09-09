@@ -28,9 +28,8 @@ public class FundBase {
 
             //checking if file structure is the same as the program expects
             if(!sCurrentLine.equals("Name,Date,Open,High,Low,Close,Volume")){
-                System.out.println("different");
-            } else {
-                System.out.println("identical");
+                //System.out.println("different");
+                return false;
             }
 
 
