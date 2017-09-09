@@ -10,56 +10,70 @@ import java.util.Date;
 
 public class FundBase {
 
+    //read only: nazwa, data, close
 
-    public void readFoundIntoList() {
 
-        BufferedReader br = null;
-        FileReader fr = null;
-        ArrayList<Fund> myFundList = new ArrayList<Fund>();
+    public boolean readFoundIntoList(String pathToFile, ArrayList<Fund> myFundList) {//to call the readFoundIntoList method you should give the path do the file
+
+        FileReader fr = null;//FileReader to read from the file
+        BufferedReader br = null;//BufferedReader to buffer the values
+        //ArrayList<Fund> myFundList = new ArrayList<Fund>();
 
 
         try {
-            fr = new FileReader("AIG002.txt");
-            br = new BufferedReader(fr);
-            String sCurrentLine;
-            sCurrentLine = br.readLine();
+            fr = new FileReader(pathToFile);//set the path to the FileReader
+            br = new BufferedReader(fr);//set the FileReader to BufferedReader
+            String sCurrentLine;//String variable that you use to take 1 line from the file
+            sCurrentLine = br.readLine();//writing first line to the variable
 
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+            //checking if file structure is the same as the program expects
+            if(!sCurrentLine.equals("Name,Date,Open,High,Low,Close,Volume")){
+                System.out.println("different");
+            } else {
+                System.out.println("identical");
+            }
 
-            while ((sCurrentLine = br.readLine()) != null) {
 
-                //read only: nazwa, data, close
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");//DateTimeFormatter that will be used
+            // inside the while loop
 
-                System.out.println("----");
-                System.out.println(sCurrentLine);
-                System.out.println("Name: " + sCurrentLine.split(",")[0] + " Date: " + sCurrentLine.split(",")[1]);
-                Fund temporaryFund = new Fund();
-                temporaryFund.setName(sCurrentLine.split(",")[0]);
+            while ((sCurrentLine = br.readLine()) != null) {//repeating the readind from file while BufferedReader contains any value
+                // (if there is any value then sCurrentLine = br.readLine() method will return value that is different than null
 
+
+
+                Fund temporaryFund = new Fund();//creating Fund object that is used to contain 1 line from the file,
+                // then it will be added to the List
+
+                temporaryFund.setName(sCurrentLine.split(",")[0]);//[0] entry is the Name value
+
+                temporaryFund.setDate(LocalDate.parse(sCurrentLine.split(",")[1], dateTimeFormatter));//[1] entry is the Date value
+                /*
+                sCurrentLine.split(",")[x] returns String but Fund.setDate() expects LocalDate
+                to change String to LocalDate you can use LocalDate.parse(String, formatter) method
+                DateTimeFormatter is created befor entering the while loop
+                below is 3 lines version of the above command
                 String stringDate = sCurrentLine.split(",")[1];
-                LocalDate date = LocalDate.parse(stringDate, dateTimeFormatter);
-                temporaryFund.setDate(date);
+                LocalDate dateDate = LocalDate.parse(stringDate, dateTimeFormatter);
+                temporaryFund.setDate(dateDate);*/
 
-                //temporaryFund.setOpen(sCurrentLine.split(",")[2]);
+                temporaryFund.setOpen(Double.parseDouble(sCurrentLine.split(",")[2]));//[2] entry is the Open value
+                temporaryFund.setHigh(Double.parseDouble(sCurrentLine.split(",")[3]));//[3] entry is the High value
+                temporaryFund.setLow(Double.parseDouble(sCurrentLine.split(",")[4]));//[4] entry is the Low value
+                temporaryFund.setClose(Double.parseDouble(sCurrentLine.split(",")[5]));//[5] entry is the Close value
+                temporaryFund.setVolume(Double.parseDouble(sCurrentLine.split(",")[6]));//[6] entry is the Volume value
+                /*
+                sCurrentLine.split(",")[x] returns String but Fund.setXXX() expects Double
+                to change String do Double you can use Double.parseDouble(String) method
+                */
 
-                //double liczbaDouble = Integer.parseInt(sCurrentLine.split(",")[2]);
-                //temporaryFund.setOpen(liczbaDouble);
-                temporaryFund.setOpen(Double.parseDouble(sCurrentLine.split(",")[2]));
+                myFundList.add(temporaryFund);//add the temporaryFund object to the myFundList List
 
 
-                //temporaryFund.getHigh(sCurrentLine.split(",")[3]);
-                temporaryFund.setHigh(Double.parseDouble(sCurrentLine.split(",")[3]));
-
-                //temporaryFund.setLow(sCurrentLine.split(",")[4]);
-                temporaryFund.setLow(Double.parseDouble(sCurrentLine.split(",")[4]));
-                temporaryFund.setClose(Double.parseDouble(sCurrentLine.split(",")[5]));
-
-                Double transformStringDouble = new Double(sCurrentLine.split(",")[6]);
-                temporaryFund.setVolume(transformStringDouble);
-
-                myFundList.add(temporaryFund);
 
             }
+            return true;
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -74,5 +88,9 @@ public class FundBase {
                 ex.printStackTrace();
             }
         }
+        return false;//this method should end after checking the corrent structure or after exiting the while loop,
+        // if program gets here then probably something is wrong
     }
+
+
 }
