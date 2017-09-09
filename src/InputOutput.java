@@ -1,36 +1,34 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class InputOutput {
     int userChoice;
     Scanner input;
-    boolean exitCondition = true;
+    boolean exitCondition;
 
     public InputOutput() {
+
         input = new Scanner(System.in);
+        exitCondition = true;
     }
 
     public void menu() {
-        while (exitCondition) {
-
-            System.out.println("WITAJ W PROGRAMIE ANALIZATOR FINANSOWY");
-            System.out.println();
-            System.out.println("Wybierz jedną z opcji: ");
-            System.out.println();
-            //wczytywanie plików bedzie jako parametr programu (nazwa programu + sciezka jako parametr)
-            System.out.println("1. Wczytaj dane funduszy z plików");
-            System.out.println("1. Wyszukaj ekstrema globalne z wczytanych danych");
-            System.out.println("2. Wyszukaj ekstrema lokalne z wczytanych danych");
-            // tak jak numer 1 będzie jako parametr programu z konsoli
-            System.out.println("3. Wczytaj kursy walut danych z plków");
-            System.out.println("4. Zoptymalizuj dane w celu eksportu");
-            System.out.println("5. Wyjdź z programu");
-            userChoice = input.nextInt();
-
+        //Menu menu;
+        printOptions();
+        while ((Menu.createFromInt(userChoice = input.nextInt())) != Menu.EXIT) {
             switch (userChoice) {
                 case 1:
-                    ;
+                    try {
+                        Runtime.getRuntime().exec("clear");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //tu wstawimy poprzez metody get wartości max i min
+                    System.out.println("Oto najlepszy:  i  najsłabszy fundusz: ");
                     break;
                 case 2:
+                    System.out.println("cos tam ");
+                    System.out.println();
                     ;
                     break;
                 case 3:
@@ -40,9 +38,6 @@ public class InputOutput {
                     ;
                     break;
                 case 5:
-                    ;
-                    break;
-                case 6:
                     exitCondition = false;
                     break;
                 default:
@@ -50,10 +45,13 @@ public class InputOutput {
                     System.out.println();
                     break;
             }
-
-
         }
+    }
 
-
+    private void printOptions() {
+        System.out.println("Wybierz jedną z opcji: ");
+        for(Menu m: Menu.values()) {
+            System.out.println(m);
+        }
     }
 }

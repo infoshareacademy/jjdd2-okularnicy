@@ -1,6 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        InputOutput menu = new InputOutput();
-        menu.menu();
+        final String appName = "WITAJ W PROGRAMIE ANALIZATOR FINANSOWY";
+        System.out.println(appName);
+        InputOutput start = new InputOutput();
+        start.menu();
     }
 }
