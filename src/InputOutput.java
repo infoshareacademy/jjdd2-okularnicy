@@ -13,11 +13,13 @@ public class InputOutput {
     }
 
     public void menu() {
-        //Menu menu;
+        Menu menu;
         printOptions();
-        while ((Menu.createFromInt(userChoice = input.nextInt())) != Menu.EXIT) {
-            switch (userChoice) {
-                case 1:
+        while ((menu = Menu.createFromInt(userChoice = input.nextInt())) != Menu.EXIT) {
+            switch (menu) {
+                case EXIT:
+
+                case FIND_GLOBAL_EXTREMES:
                     try {
                         Runtime.getRuntime().exec("clear");
                     } catch (IOException e) {
@@ -26,19 +28,14 @@ public class InputOutput {
                     //tu wstawimy poprzez metody get wartości max i min
                     System.out.println("Oto najlepszy:  i  najsłabszy fundusz: ");
                     break;
-                case 2:
-                    System.out.println("cos tam ");
-                    System.out.println();
+                case FND_LOCALE_EXTREMES:
                     ;
                     break;
-                case 3:
+                case FIND_EXCHANGE_RATE:
                     ;
                     break;
-                case 4:
+                case OPTIMIZE_DATA_FOR_IMPORT:
                     ;
-                    break;
-                case 5:
-                    exitCondition = false;
                     break;
                 default:
                     System.out.println("Wybrałeś błędny numer, wybierz ponownie.");
