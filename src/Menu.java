@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public enum Menu {
     EXIT(0, "Wyjście z programu"),
     FIND_GLOBAL_EXTREMES(1, "Wyszukaj ekstrema globalne"),
@@ -26,7 +28,14 @@ public enum Menu {
         return getValue() + " - " + getDiscription();
     }
 
-    public static Menu createFromInt(int option) {
-        return Menu.values()[option];
+    public static Menu createFromInt(int option) throws NoSuchElementException {
+        Menu result = null;
+        try {
+            result = Menu.values()[option];
+        } catch(ArrayIndexOutOfBoundsException e) {
+            throw new NoSuchElementException();
+        }
+
+        return result;
     }
 }
