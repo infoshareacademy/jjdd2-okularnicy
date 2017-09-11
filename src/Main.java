@@ -1,10 +1,9 @@
-import java.time.LocalDate;
-
 public class Main {
     public static void main(String[] args) {
-        InputOutput menu = new InputOutput();
-        menu.menu();
-
-
+        final String appName = "WITAJ W PROGRAMIE ANALIZATOR FINANSOWY";
+        System.out.println(appName);
+        System.out.println();
+        UserConsole start = new UserConsole();
+        start.menu();
     }
 }
