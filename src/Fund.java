@@ -50,6 +50,15 @@ public class Fund {
     public int hashCode() {
         return close.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "Fund{" +
+                "name='" + name + '\'' +
+                ", date=" + date +
+                ", close=" + close +
+                '}'+ "\n";
+    }
 }
 
 
