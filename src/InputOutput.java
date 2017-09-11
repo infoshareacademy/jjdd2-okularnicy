@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class InputOutput {
@@ -7,6 +8,7 @@ public class InputOutput {
 
     public InputOutput() {
         input = new Scanner(System.in);
+
     }
 
     public void menu() {
