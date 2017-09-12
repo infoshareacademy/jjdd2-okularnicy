@@ -3,14 +3,11 @@ import java.util.Scanner;
 import java.util.NoSuchElementException;
 
 public class UserConsole {
-    private int userChoice;
+
     private Scanner input;
-    private boolean exitCondition;
 
     public UserConsole() {
-
         input = new Scanner(System.in);
-        exitCondition = true;
     }
 
     public void menu() {
@@ -18,15 +15,18 @@ public class UserConsole {
         while (menu != Menu.EXIT) {
             try {
                 printOptions();
-                menu = Menu.createFromInt(userChoice = input.nextInt());
+                menu = Menu.createFromInt(Integer.parseInt(input.nextLine()));
                 switch (menu) {
 
+                    case SERACH_IN_BASE:
+                        clearScreen();
+                        System.out.println("Wyszukaj plik z danymi");
                     case FIND_GLOBAL_EXTREMES:
                         clearScreen();
                         //tu wstawimy poprzez metody get wartości max i min
                         System.out.println("Oto najlepszy:  i  najsłabszy fundusz: ");
                         break;
-                    case FND_LOCALE_EXTREMES:
+                    case FIND_LOCALE_EXTREMES:
                         clearScreen();
                         System.out.println("Oto najlepszy: i najsłabszy fundusz: ");
                         break;
@@ -40,7 +40,7 @@ public class UserConsole {
                         break;
 
                 }
-            } catch (NoSuchElementException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("O_O Wybrana opcja nie istnieje, wybierz ponownie !");
                 System.out.println();
             }
