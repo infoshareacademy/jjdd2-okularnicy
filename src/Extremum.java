@@ -1,6 +1,5 @@
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
-
 
 public class Extremum {
 
@@ -23,20 +22,15 @@ public class Extremum {
         this.min = min;
     }
 
-    public Fund min(ArrayList<Fund> listToSortAsc) {
+    public Fund findMin(List<Fund> listToSortAsc) {
         Collections.sort(listToSortAsc, new MyAscComparator());
         setMin(listToSortAsc.get(0));
         return min;
     }
 
-    public Fund max(ArrayList<Fund> listToSortDesc) {
+    public Fund findMax(List<Fund> listToSortDesc) {
         Collections.sort(listToSortDesc, new MyDescComparator());
         setMax(listToSortDesc.get(0));
         return max;
     }
 }
-
-
-
-
-

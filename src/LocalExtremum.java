@@ -14,7 +14,7 @@ public class LocalExtremum {
                 listInRange.add(iter);
             }
         }
-        return extremum.min(listInRange);
+        return extremum.findMin(listInRange);
     }
 
     public Fund findMaxByDate(List<Fund> operatingList, LocalDate startingDate, LocalDate endingDate) {
@@ -26,7 +26,6 @@ public class LocalExtremum {
                 listInRange.add(iter);
             }
         }
-        return extremum.max(listInRange);
+        return extremum.findMax(listInRange);
     }
 }
-
