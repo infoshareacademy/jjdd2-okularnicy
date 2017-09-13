@@ -21,6 +21,8 @@ public class UserConsole {
                     case SERACH_IN_BASE:
                         clearScreen();
                         System.out.println("Wyszukaj plik z danymi");
+                        SerachFundFile test = new SerachFundFile();
+                        test.searchEngin();
                     case FIND_GLOBAL_EXTREMES:
                         clearScreen();
                         //tu wstawimy poprzez metody get wartości max i min
