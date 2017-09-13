@@ -30,7 +30,7 @@ public class SerachFundFile {
         funds.put("UNIKorona Akcje", "UI_003.txt");
         funds.put("UNIWIBID Plus", "UI_008.txt");
 
-        String userInput = "UNIWI";
+        String userInput = "UNIKorona Akcje";
 
         //jeżeli trafia z nazwą idealnie wykonuje instrukcje z if
         if (null != funds.get(userInput)) {
@@ -40,8 +40,8 @@ public class SerachFundFile {
         } else {
             for (Map.Entry<String, String> entry : funds.entrySet()) {
                 if (entry.getKey().startsWith(userInput)) {
-                    hintsMap.add(entry.getValue());
-                    System.out.println("Twoje zpytanie pasuje do kilu wyników: ");
+                    hintsMap.add(entry.getKey());
+                    System.out.println("Twoje zpytanie pasuje do: ");
                     printHintsMap();
                     System.out.println("Doprecyzuj zapytanie.");
                 }
