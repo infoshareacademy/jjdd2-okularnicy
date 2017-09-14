@@ -7,7 +7,7 @@ public class Main {
         StartingParameters startingParameters = new StartingParameters();//class to handle program arguments,
         //reads specified files, gets names of funds and files, stores it in map
 
-        startingParameters.startingParametersIntoMap(args, filesHashMap);//this method gets names of funds and files and stores it in map
+        filesHashMap.putAll(startingParameters.startingParametersIntoMap(args));//this method gets names of funds and files, stores it in map and return this map
         startingParameters.printMap(filesHashMap);//this is only assistance method to print the content of entire map to check its correctness
     }
 }

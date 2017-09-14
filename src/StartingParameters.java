@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,7 +15,9 @@ public class StartingParameters {
         }
     }
 
-    public void startingParametersIntoMap(String[] args, Map<String, String> map){
+    public Map<String, String> startingParametersIntoMap(String[] args){
+
+        Map<String, String> resultMap = new HashMap<String, String>();
 
         for (String pathToFile : args) {
             FileReader fr = null;//FileReader to read from the file
@@ -36,7 +39,7 @@ public class StartingParameters {
                     String separatorFile2 = " ";
                     String file = sCurrentLine.split(separatorFile1)[1].split(separatorFile2)[0];
 
-                    map.put(name,file);
+                    resultMap.put(name,file);
                 }
 
             } catch(FileNotFoundException ex) {
@@ -45,5 +48,6 @@ public class StartingParameters {
                 ex2.printStackTrace();
             }
         }
+        return resultMap;
     }
 }
