@@ -2,70 +2,61 @@ import java.time.LocalDate;
 
 public class Fund {
 
-    private String Name;
-    private LocalDate Date;
-    private double Open;
-    private double High;
-    private double Low;
+    private String name;
+    private LocalDate date;
+    private Double close;
+
+    public Fund(String name, LocalDate date, Double close) {
+        this.name = name;
+        this.date = date;
+        this.close = close;
+    }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public LocalDate getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(LocalDate date) {
-        Date = date;
+        this.date = date;
     }
 
-    public double getOpen() {
-        return Open;
+    public Double getClose() {
+        return close;
     }
 
-    public void setOpen(double open) {
-        Open = open;
+    public void setClose(Double close) {
+        this.close = close;
     }
 
-    public double getHigh() {
-        return High;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Fund fund = (Fund) o;
+
+        return close.equals(fund.close);
     }
 
-    public void setHigh(double high) {
-        High = high;
+    @Override
+    public int hashCode() {
+        return close.hashCode();
     }
 
-    public double getLow() {
-        return Low;
+    @Override
+    public String toString() {
+        return "Fund{" +
+                "name='" + name + '\'' +
+                ", date=" + date +
+                ", close=" + close +
+                '}'+ "\n";
     }
-
-    public void setLow(double low) {
-        Low = low;
-    }
-
-    public double getClose() {
-        return Close;
-    }
-
-    public void setClose(double close) {
-        Close = close;
-    }
-
-    public double getVolume() {
-        return Volume;
-    }
-
-    public void setVolume(double volume) {
-        Volume = volume;
-    }
-
-    private double Close;
-    private double Volume;
-
-
 }
