@@ -67,10 +67,8 @@ public class FundBase {
             try {
                 if (br != null)
                     br.close();
-
                 if (fr != null)
                     fr.close();
-
             } catch (IOException ex){
                 ex.printStackTrace();
             }
@@ -79,6 +77,4 @@ public class FundBase {
         //this method should end after after exiting the while loop,
         // if program gets here then probably something went wrong
     }
-
-
 }
