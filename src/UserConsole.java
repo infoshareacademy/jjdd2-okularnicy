@@ -22,11 +22,11 @@ public class UserConsole {
                         clearScreen();
                         System.out.println("Wyszukaj plik z danymi");
                         SerachFundFile test = new SerachFundFile();
-                        test.searchEngin();
+                        System.out.println(test.searchEngine());
                     case FIND_GLOBAL_EXTREMES:
                         clearScreen();
                         //tu wstawimy poprzez metody get wartości max i min
-                        System.out.println("Oto najlepszy:  i  najsłabszy fundusz: ");
+
                         break;
                     case FIND_LOCALE_EXTREMES:
                         clearScreen();

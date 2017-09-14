@@ -1,13 +1,15 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Scanner;
 
 public class SerachFundFile {
 
     private String fileName;
     Map<String, String> funds = new HashMap<>();
     ArrayList<String> hintsMap = new ArrayList<>();
+    Scanner userInput = new Scanner(System.in);
+    private boolean whileRun = true;
 
     public String getFileName() {
         return fileName;
@@ -23,30 +25,30 @@ public class SerachFundFile {
         }
     }
 
-    public String searchEngin() {
+    public String searchEngine(Map<String, String> fundsMap) {
 
-        funds.put("UNIKorona Pieniezny", "UI_001.txt");
-        funds.put("UNIKorona Obligacje", "UI_002.txt");
-        funds.put("UNIKorona Akcje", "UI_003.txt");
-        funds.put("UNIWIBID Plus", "UI_008.txt");
+        while (whileRun) {
 
-        String userInput = "UNIKorona Akcje";
+           System.out.println("Podaj nazwę funduszu lub waluty:");
+           String keyWord = userInput.nextLine();
 
-        //jeżeli trafia z nazwą idealnie wykonuje instrukcje z if
-        if (null != funds.get(userInput)) {
-            hintsMap.add(funds.get(userInput));
-            setFileName(hintsMap.get(0));
-            //jeżeli wyników jest więcej:
-        } else {
-            for (Map.Entry<String, String> entry : funds.entrySet()) {
-                if (entry.getKey().startsWith(userInput)) {
-                    hintsMap.add(entry.getKey());
-                    System.out.println("Twoje zpytanie pasuje do: ");
-                    printHintsMap();
-                    System.out.println("Doprecyzuj zapytanie.");
+            if (null != fundsMap.get(keyWord)) {
+                hintsMap.add(fundsMap.get(keyWord));
+                setFileName(hintsMap.get(0));
+                whileRun = false;
+            } else {
+                for (Map.Entry<String, String> entry : fundsMap.entrySet()) {
+                    if (entry.getKey().startsWith(keyWord)) {
+                        hintsMap.add(entry.getKey());
+                    }
                 }
+                System.out.println("Twoje zpytanie pasuje do: " + "\n");
+                printHintsMap();
+                hintsMap.clear();
+                System.out.println("Doprecyzuj zapytanie." + "\n");
             }
         }
         return fileName;
     }
 }
+
