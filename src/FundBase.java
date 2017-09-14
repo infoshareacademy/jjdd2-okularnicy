@@ -1,16 +1,21 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 public class FundBase {
 
-    public boolean readFoundIntoList(String pathToFile, ArrayList<Fund> myFundList) {//to call the readFoundIntoList method you should give the path do the file
+    /**
+     * Reads from specified file and adds it to the List
+     * @param pathToFile    path to file which contain the historical data about fund
+     * @return              List<Fund> where every Fund item is another line from file
+     */
+    public List<Fund> readFoundIntoList(String pathToFile) {
+
+        ArrayList<Fund> myFundList = new ArrayList<Fund>();
 
         FileReader fr = null;//FileReader to read from the file
         BufferedReader br = null;//BufferedReader to buffer the values
@@ -19,22 +24,13 @@ public class FundBase {
             fr = new FileReader(pathToFile);//set the path to the FileReader
             br = new BufferedReader(fr);//set the FileReader to BufferedReader
             String sCurrentLine;//String variable that you use to take 1 line from the file
-            sCurrentLine = br.readLine();//writing first line to the variable
-
-            //checking if file structure is the same as the program expects
-            if(!sCurrentLine.equals("Name,Date,Open,High,Low,Close,Volume")){
-                //System.out.println("different");
-                return false;
-            }
-
+            sCurrentLine = br.readLine();//reading first line which is not used because it contain the header
 
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");//DateTimeFormatter that will be used
             // inside the while loop
 
-            while ((sCurrentLine = br.readLine()) != null) {//repeating the readind from file while BufferedReader contains any value
+            while ((sCurrentLine = br.readLine()) != null) {//repeating the reading from file while BufferedReader contains any value
                 // (if there is any value then sCurrentLine = br.readLine() method will return value that is different than null
-
-
 
                 Fund temporaryFund = new Fund();//creating Fund object that is used to contain 1 line from the file,
                 // then it will be added to the List
@@ -62,11 +58,8 @@ public class FundBase {
                 */
 
                 myFundList.add(temporaryFund);//add the temporaryFund object to the myFundList List
-
-
-
             }
-            return true;
+            return myFundList;
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,9 +75,9 @@ public class FundBase {
                 ex.printStackTrace();
             }
         }
-        return false;//you should write return statement in this method
-        //this method should end after checking the corrent structure or after exiting the while loop,
-        // if program gets here then probably something is wrong
+        return myFundList;//you should write return statement in this method
+        //this method should end after after exiting the while loop,
+        // if program gets here then probably something went wrong
     }
 
 
