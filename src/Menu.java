@@ -4,9 +4,7 @@ public enum Menu {
     EXIT(0, "Wyjście z programu"),
     SERACH_IN_BASE(1, "Wyszukaj plik z danymi"),
     FIND_GLOBAL_EXTREMES(2, "Wyszukaj ekstrema globalne"),
-    FIND_LOCALE_EXTREMES(3, "Wyszukaj ekstrema lokalne"),
-    FIND_EXCHANGE_RATE(4, "Wczytaj kursy walut danych z plków"),
-    OPTIMIZE_DATA_FOR_IMPORT(5, "Zoptymalizuj dane w celu eksportu");
+    FIND_LOCALE_EXTREMES(3, "Wyszukaj ekstrema lokalne");
 
     private int value;
     private String discription;

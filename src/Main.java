@@ -3,7 +3,8 @@ public class Main {
         final String appName = "WITAJ W PROGRAMIE ANALIZATOR FINANSOWY";
         System.out.println(appName);
         System.out.println();
+        Program program = new Program();
         UserConsole start = new UserConsole();
-        start.menu();
+        start.menu(program);
     }
 }

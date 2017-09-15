@@ -1,10 +1,30 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Program {
 
-    //tu musi powstać obiekt i mapa z plikami funduszy
+    private Map<String, String> fundsMap;
+    private String pathToFile;
 
-    //tu musi powstać obiekt i lista z notowaniami wybranego funduszu
+    public Program() {
 
-    //tu musi powstać obiekt i mapa z plikami walut
+        fundsMap = new HashMap<>();
+    }
 
-    //tu musi powstać obiekt i lista z notowaniami wybranej waluty
+    public Map<String, String> getFundsMap() {
+        return fundsMap;
+    }
+
+    public void setFundsMap(Map<String, String> fundsMap) {
+        this.fundsMap = fundsMap;
+    }
+
+    public String getPathToFile() {
+        return pathToFile;
+    }
+
+    public void setPathToFile(String pathToFile) {
+        this.pathToFile = pathToFile;
+    }
+
 }
