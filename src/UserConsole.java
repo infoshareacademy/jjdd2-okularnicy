@@ -1,6 +1,4 @@
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.NoSuchElementException;
 
 public class UserConsole {
 
@@ -34,7 +32,7 @@ public class UserConsole {
                         System.out.println("Oto najlepszy: i najsłabszy fundusz: ");
                         break;
 
-                                    }
+                }
             } catch (NumberFormatException e) {
                 System.out.println("O_O Wybrana opcja nie istnieje, wybierz ponownie !");
                 System.out.println();
