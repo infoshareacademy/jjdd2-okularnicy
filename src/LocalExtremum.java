@@ -56,7 +56,7 @@ public class LocalExtremum {
             if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
                     (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
                 listInRange.add(iter);
-               }
+            }
         }
         return extremum.findMin(listInRange);
     }

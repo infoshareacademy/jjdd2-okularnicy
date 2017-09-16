@@ -23,6 +23,4 @@ public class TestLocalExtremum {
         System.out.println(fundMin.getClose());
 
 
-
     }
-}
