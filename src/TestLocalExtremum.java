@@ -17,13 +17,10 @@ public class TestLocalExtremum {
         test.add(fund4);
         test.add(fund5);
 
-        LocalDate startingDate = LocalDate.of(2017, 9, 7);
-        LocalDate endingDate = LocalDate.of(2017, 9, 11);
-
         LocalExtremum localExtremum = new LocalExtremum();
-        localExtremum.findMinByDate(test, startingDate, endingDate);
+        Fund fund = localExtremum.findMinByDate(test);
 
-        System.out.println(localExtremum.findMinByDate(test, startingDate, endingDate).getClose());
-        System.out.println(localExtremum.findMaxByDate(test, startingDate, endingDate).getClose());
+        System.out.println(fund.getClose());
+
     }
 }

@@ -1,10 +1,22 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class LocalExtremum {
 
-    public Fund findMinByDate(List<Fund> operatingList, LocalDate startingDate, LocalDate endingDate) {
+    Scanner scanner = new Scanner (System.in);
+
+    public Fund findMinByDate(List<Fund> operatingList) {
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        System.out.println("Podaj pierwszą datę (yyyy-mm-dd)");
+        String textStartingDate = scanner.nextLine();
+        LocalDate startingDate = LocalDate.parse(textStartingDate, dateTimeFormatter);
+        System.out.println("Podaj drugą datę (yyyy-mm-dd)");
+        String textEndingDate = scanner.nextLine();
+        LocalDate endingDate = LocalDate.parse(textEndingDate, dateTimeFormatter);
 
         ArrayList<Fund> listInRange = new ArrayList<>();
         Extremum extremum = new Extremum();
