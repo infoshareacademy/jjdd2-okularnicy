@@ -23,14 +23,14 @@ public class Extremum {
     }
 
     public Fund findMin(List<Fund> listToSortAsc) {
-        Collections.sort(listToSortAsc, new MyAscComparator());
-        setMin(listToSortAsc.get(0));
+       Collections.sort(listToSortAsc, new MyAscComparator());
+           setMin(listToSortAsc.get(0));
         return min;
     }
 
     public Fund findMax(List<Fund> listToSortDesc) {
         Collections.sort(listToSortDesc, new MyDescComparator());
-        setMax(listToSortDesc.get(0));
-        return max;
+            setMax(listToSortDesc.get(0));
+            return max;
     }
 }

@@ -18,9 +18,11 @@ public class TestLocalExtremum {
         test.add(fund5);
 
         LocalExtremum localExtremum = new LocalExtremum();
+
         Fund fundMin = localExtremum.findMinByDate(test);
-
+        Fund fundMax = localExtremum.findMaxByDate(test);
         System.out.println(fundMin.getClose());
-
+        System.out.println(fundMax.getClose());
 
     }
+}

@@ -28,40 +28,51 @@ public class LocalExtremum {
 
     public Fund findMinByDate(List<Fund> operatingList) {
 
-        System.out.println("Podaj przedział czasowy");
+        ArrayList<Fund> listInRange = null;
+        Extremum extremum = null;
+        boolean done = false;
 
-        do {
-            System.out.println("Podaj pierwszą datę (yyyy-mm-dd)");
-            try {
-                setStartingDate(LocalDate.parse(scanner.nextLine()));
-            } catch (DateTimeException pe) {
-                System.out.println("Niepoprawny format daty. Spróbuj ponownie");
+        while (!done) {
+            System.out.println("Podaj przedział czasowy");
+
+            do {
+                System.out.println("Podaj pierwszą datę (yyyy-mm-dd)");
+                try {
+                    setStartingDate(LocalDate.parse(scanner.nextLine()));
+                } catch (DateTimeException de) {
+                    System.out.println("Niepoprawny format daty. Spróbuj ponownie");
+                }
+            } while (getStartingDate() == null);
+
+            do {
+                System.out.println("Podaj drugą datę (yyyy-mm-dd)");
+                try {
+                    setEndingDate(LocalDate.parse(scanner.nextLine()));
+                } catch (DateTimeException de) {
+                    System.out.println("Niepoprawny format daty. Spróbuj ponownie");
+                }
+            } while (getEndingDate() == null);
+
+            listInRange = new ArrayList<>();
+            extremum = new Extremum();
+            for (Fund iter : operatingList) {
+                    if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
+                            (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
+                        listInRange.add(iter);
+                        done = true;
+                        break;
+                    } else if ((startingDate.isBefore(iter.getDate()) && endingDate.isBefore(iter.getDate()) ||
+                            startingDate.isAfter(iter.getDate()) && endingDate.isAfter(iter.getDate()))){
+                        System.out.println("Brak danych dla podanego przedziału czasu. Spróbuj ponownie");
+                        break;
+                    }
+                }
             }
-        } while (getStartingDate() == null);
-
-        do {
-            System.out.println("Podaj drugą datę (yyyy-mm-dd)");
-            try {
-                setEndingDate(LocalDate.parse(scanner.nextLine()));
-            } catch (DateTimeException pe) {
-                System.out.println("Niepoprawny format daty. Spróbuj ponownie");
-            }
-        } while (getEndingDate() == null);
-
         scanner.close();
-
-        ArrayList<Fund> listInRange = new ArrayList<>();
-        Extremum extremum = new Extremum();
-        for (Fund iter : operatingList) {
-            if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
-                    (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
-                listInRange.add(iter);
-            }
-        }
         return extremum.findMin(listInRange);
     }
 
-    public Fund findMaxByDate(List<Fund> operatingList, LocalDate startingDate, LocalDate endingDate) {
+    public Fund findMaxByDate(List<Fund> operatingList) {
         ArrayList<Fund> listInRange = new ArrayList<>();
         Extremum extremum = new Extremum();
         for (Fund iter : operatingList) {
