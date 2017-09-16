@@ -1,6 +1,5 @@
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,7 +9,6 @@ public class LocalExtremum {
     Scanner scanner = new Scanner(System.in);
     private LocalDate startingDate;
     private LocalDate endingDate;
-
 
     public void setStartingDate(LocalDate startingDate) {
         this.startingDate = startingDate;
@@ -30,7 +28,6 @@ public class LocalExtremum {
 
     public Fund findMinByDate(List<Fund> operatingList) {
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         System.out.println("Podaj przedział czasowy");
 
         do {
@@ -39,8 +36,6 @@ public class LocalExtremum {
                 setStartingDate(LocalDate.parse(scanner.nextLine()));
             } catch (DateTimeException pe) {
                 System.out.println("Niepoprawny format daty. Spróbuj ponownie");
-            } catch (IndexOutOfBoundsException ie) {
-                if (startingDate.isBefore())
             }
         } while (getStartingDate() == null);
 
@@ -52,6 +47,7 @@ public class LocalExtremum {
                 System.out.println("Niepoprawny format daty. Spróbuj ponownie");
             }
         } while (getEndingDate() == null);
+
         scanner.close();
 
         ArrayList<Fund> listInRange = new ArrayList<>();
@@ -60,9 +56,9 @@ public class LocalExtremum {
             if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
                     (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
                 listInRange.add(iter);
-            }
+               }
         }
-                          return extremum.findMin(listInRange);
+        return extremum.findMin(listInRange);
     }
 
     public Fund findMaxByDate(List<Fund> operatingList, LocalDate startingDate, LocalDate endingDate) {
