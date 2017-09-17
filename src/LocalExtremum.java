@@ -56,18 +56,20 @@ public class LocalExtremum {
             listInRange = new ArrayList<>();
             extremum = new Extremum();
             for (Fund iter : operatingList) {
-                    if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
-                            (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
-                        listInRange.add(iter);
-                        done = true;
-                        break;
-                    } else if ((startingDate.isBefore(iter.getDate()) && endingDate.isBefore(iter.getDate()) ||
-                            startingDate.isAfter(iter.getDate()) && endingDate.isAfter(iter.getDate()))){
-                        System.out.println("Brak danych dla podanego przedziału czasu. Spróbuj ponownie");
-                        break;
-                    }
+                if (startingDate.isBefore(operatingList.get(0).getDate()) ||
+                        endingDate.isAfter(operatingList.get(operatingList.size() - 1).getDate()) ||
+                        startingDate.isAfter(operatingList.get(operatingList.size() - 1).getDate()) ||
+                        endingDate.isBefore(operatingList.get(0).getDate())) {
+                    System.out.println("Brak danych dla podanego przedziału czasu. Spróbuj ponownie");
+                    break;
+                } else if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
+                        (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
+                    listInRange.add(iter);
+                    done = true;
+                    break;
                 }
             }
+        }
         scanner.close();
         return extremum.findMin(listInRange);
     }
