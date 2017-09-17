@@ -10,6 +10,9 @@ public class TestLocalExtremum {
         Fund fund4 = new Fund("Fund4", LocalDate.of(2017, 9, 11), 103.00);
         Fund fund5 = new Fund("Fund5", LocalDate.of(2017, 9, 14), 104.00);
 
+        LocalDate start = LocalDate.of(2017,9,9);
+        LocalDate end = LocalDate.of(2017,9,9);
+
         ArrayList<Fund> test = new ArrayList<Fund>();
         test.add(fund1);
         test.add(fund2);
@@ -19,8 +22,8 @@ public class TestLocalExtremum {
 
         LocalExtremum localExtremum = new LocalExtremum();
 
-        Fund fundMin = localExtremum.findMinByDate(test);
-        Fund fundMax = localExtremum.findMaxByDate(test);
+        Fund fundMin = localExtremum.findMinByDate(test, start, end);
+        Fund fundMax = localExtremum.findMaxByDate(test, start, end);
         System.out.println("Wartość minimalna: " + fundMin.getClose());
         System.out.println("Wartość maksymalna: " + fundMax.getClose());
     }
