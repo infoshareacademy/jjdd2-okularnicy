@@ -7,50 +7,54 @@ import java.util.Scanner;
 public class LocalExtremum {
 
     public Fund findMinByDate(List<Fund> operatingList, LocalDate startDate, LocalDate endDate) {
-        ArrayList<Fund> listInRange = null;
+        ArrayList<Fund> listInRange = new ArrayList<>();
         Extremum extremum = null;
-        if (endDate.isBefore(operatingList.get(0).getDate()) ||
-                startDate.isAfter(operatingList.get(operatingList.size() - 1).getDate())) {
+        boolean anything = false;
+        for (Fund iter : operatingList) {
+            if ((iter.getDate().isAfter(startDate)) && (iter.getDate().isBefore(endDate)) ||
+                    (iter.getDate().isEqual(startDate)) || (iter.getDate().isEqual(endDate))) {
+                listInRange.add(iter);
+                anything = true;
+            }
+        }
+        if(anything){
+            extremum = new Extremum();
+            return extremum.findMin(listInRange);
+        } else {
             System.out.println("Brak danych dla podanego przedziału czasu. Spróbuj ponownie");
             Fund failureFund = new Fund();
             failureFund.setName("blad");
             failureFund.setDate(LocalDate.of(9999,12,31));
             failureFund.setClose(0.0);
             return failureFund;
-        } else {
-            listInRange = new ArrayList<>();
-            for (Fund iter : operatingList) {
-                if ((iter.getDate().isAfter(startDate)) && (iter.getDate().isBefore(endDate)) ||
-                        (iter.getDate().isEqual(startDate)) || (iter.getDate().isEqual(endDate))) {
-                    listInRange.add(iter);
-                }
-            }
         }
-        extremum = new Extremum();
-        return extremum.findMin(listInRange);
+
+
+
     }
 
     public Fund findMaxByDate(List<Fund> operatingList, LocalDate startDate, LocalDate endDate) {
-        ArrayList<Fund> listInRange = null;
+        ArrayList<Fund> listInRange = new ArrayList<>();
         Extremum extremum = null;
-        if(endDate.isBefore(operatingList.get(0).getDate()) ||
-                startDate.isAfter(operatingList.get(operatingList.size() - 1).getDate())) {
+        boolean anything = false;
+        for (Fund iter : operatingList) {
+            if ((iter.getDate().isAfter(startDate)) && (iter.getDate().isBefore(endDate)) ||
+                    (iter.getDate().isEqual(startDate)) || (iter.getDate().isEqual(endDate))) {
+                listInRange.add(iter);
+                anything = true;
+            }
+        }
+        if(anything){
+            extremum = new Extremum();
+            return extremum.findMax(listInRange);
+        } else {
             System.out.println("Brak danych dla podanego przedziału czasu. Spróbuj ponownie");
             Fund failureFund = new Fund();
             failureFund.setName("blad");
             failureFund.setDate(LocalDate.of(9999,12,31));
             failureFund.setClose(0.0);
             return failureFund;
-        } else {
-            listInRange = new ArrayList<>();
-            for (Fund iter : operatingList) {
-                if ((iter.getDate().isAfter(startDate)) && (iter.getDate().isBefore(endDate)) ||
-                        (iter.getDate().isEqual(startDate)) || (iter.getDate().isEqual(endDate))) {
-                    listInRange.add(iter);
-                }
-            }
         }
-        extremum = new Extremum();
-        return extremum.findMax(listInRange);
+
     }
 }
