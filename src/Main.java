@@ -14,6 +14,7 @@ public class Main {
         System.out.println(appName);
         System.out.println();
         Program program = new Program();
+        program.setFundsMap(filesHashMap);
         UserConsole start = new UserConsole();
         start.menu(program);
     }
