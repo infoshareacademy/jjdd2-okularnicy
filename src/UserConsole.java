@@ -43,6 +43,7 @@ public class UserConsole {
                         program.setPathToFile(serachFundFile.searchEngine(program.getFundsMap()));
                         FundBase fundBase = new FundBase();
                         program.setFundsList(fundBase.readFoundIntoList(program.getPathToFile()));
+                        break;
                     case FIND_GLOBAL_EXTREMES:
                         clearScreen();
                         Extremum extremum = new Extremum();
