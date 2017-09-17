@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FundBase {
 
@@ -13,7 +12,7 @@ public class FundBase {
      * @param pathToFile    path to file which contain the historical data about fund
      * @return              List<Fund> where every Fund item is another line from file
      */
-    public List<Fund> readFoundIntoList(String pathToFile) {
+    public ArrayList<Fund> readFoundIntoList(String pathToFile) {
 
         ArrayList<Fund> myFundList = new ArrayList<Fund>();
 

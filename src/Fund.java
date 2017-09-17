@@ -12,6 +12,9 @@ public class Fund {
         this.close = close;
     }
 
+    public Fund(){
+    }
+
     public String getName() {
         return name;
     }
