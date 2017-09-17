@@ -6,81 +6,43 @@ import java.util.Scanner;
 
 public class LocalExtremum {
 
-    Scanner scanner = new Scanner(System.in);
-    private LocalDate startingDate;
-    private LocalDate endingDate;
 
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate = startingDate;
-    }
-
-    public void setEndingDate(LocalDate endingDate) {
-        this.endingDate = endingDate;
-    }
-
-    public LocalDate getStartingDate() {
-        return startingDate;
-    }
-
-    public LocalDate getEndingDate() {
-        return endingDate;
-    }
 
     public Fund findMinByDate(List<Fund> operatingList) {
 
+        UserConsole userConsole = new UserConsole();
         ArrayList<Fund> listInRange = null;
         Extremum extremum = null;
         boolean done = false;
 
         while (!done) {
-            setStartingDate(null);
-            setEndingDate(null);
-            System.out.println("Podaj przedział czasowy");
-
-            do {
-                System.out.println("Podaj pierwszą datę (yyyy-mm-dd)");
-                try {
-                    setStartingDate(LocalDate.parse(scanner.nextLine()));
-                } catch (DateTimeException de) {
-                    System.out.println("Niepoprawny format daty. Spróbuj ponownie");
-                }
-            } while (getStartingDate() == null);
-
-            do {
-                System.out.println("Podaj drugą datę (yyyy-mm-dd)");
-                try {
-                    setEndingDate(LocalDate.parse(scanner.nextLine()));
-                } catch (DateTimeException de) {
-                    System.out.println("Niepoprawny format daty. Spróbuj ponownie");
-                }
-            } while (getEndingDate() == null);
-
+            userConsole.inputDataRange();
             listInRange = new ArrayList<>();
             extremum = new Extremum();
             for (Fund iter : operatingList) {
-                if (startingDate.isBefore(operatingList.get(0).getDate()) ||
-                        endingDate.isAfter(operatingList.get(operatingList.size() - 1).getDate()) ||
-                        startingDate.isAfter(operatingList.get(operatingList.size() - 1).getDate()) ||
-                        endingDate.isBefore(operatingList.get(0).getDate())) {
+                if (userConsole.getStartingDate().isBefore(operatingList.get(0).getDate()) ||
+                        userConsole.getEndingDate().isAfter(operatingList.get(operatingList.size() - 1).getDate()) ||
+                        userConsole.getStartingDate().isAfter(operatingList.get(operatingList.size() - 1).getDate()) ||
+                        userConsole.getEndingDate().isBefore(operatingList.get(0).getDate())) {
                     System.out.println("Brak danych dla podanego przedziału czasu. Spróbuj ponownie");
                     break;
-                } else if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
-                        (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
+                } else if ((iter.getDate().isAfter(userConsole.getStartingDate())) && (iter.getDate().isBefore(userConsole.getEndingDate())) ||
+                        (iter.getDate().isEqual(userConsole.getStartingDate())) || (iter.getDate().isEqual(userConsole.getEndingDate()))) {
                     listInRange.add(iter);
                     done = true;
                 }
             }
         }
-        scanner.close();
         return extremum.findMin(listInRange);
     }
 
     public Fund findMaxByDate(List<Fund> operatingList) {
+        UserConsole userConsole = new UserConsole();
         ArrayList<Fund> listInRange = new ArrayList<>();
         Extremum extremum = new Extremum();
         for (Fund iter : operatingList) {
-            if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
-                    (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
+            if ((iter.getDate().isAfter(userConsole.getStartingDate())) && (iter.getDate().isBefore(userConsole.getEndingDate())) ||
+                    (iter.getDate().isEqual(userConsole.getStartingDate())) || (iter.getDate().isEqual(userConsole.getEndingDate()))) {
                 listInRange.add(iter);
             }
         }

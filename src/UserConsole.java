@@ -1,10 +1,30 @@
 import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.NoSuchElementException;
 
 public class UserConsole {
 
     private Scanner input;
+    private LocalDate startingDate;
+    private LocalDate endingDate;
+
+    public void setStartingDate(LocalDate startingDate) {
+        this.startingDate = startingDate;
+    }
+
+    public void setEndingDate(LocalDate endingDate) {
+        this.endingDate = endingDate;
+    }
+
+    public LocalDate getStartingDate() {
+        return startingDate;
+    }
+
+    public LocalDate getEndingDate() {
+        return endingDate;
+    }
 
     public UserConsole() {
         input = new Scanner(System.in);
@@ -61,4 +81,29 @@ public class UserConsole {
         System.out.flush();
     }
 
+    public void inputDataRange() {
+
+        setStartingDate(null);
+        setEndingDate(null);
+
+        System.out.println("Podaj przedział czasowy");
+        do {
+            System.out.println("Podaj pierwszą datę (yyyy-mm-dd)");
+            try {
+                setStartingDate(LocalDate.parse(input.nextLine()));
+            } catch (DateTimeException de) {
+                System.out.println("Niepoprawny format daty. Spróbuj ponownie");
+            }
+        } while (getStartingDate() == null);
+
+        do {
+            System.out.println("Podaj drugą datę (yyyy-mm-dd)");
+            try {
+                setEndingDate(LocalDate.parse(input.nextLine()));
+            } catch (DateTimeException de) {
+                System.out.println("Niepoprawny format daty. Spróbuj ponownie");
+            }
+        } while (getEndingDate() == null);
+    }
 }
+
