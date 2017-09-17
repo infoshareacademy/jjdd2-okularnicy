@@ -1,8 +1,28 @@
 import java.util.Scanner;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 
 public class UserConsole {
 
     private Scanner input;
+    private LocalDate startingDate;
+    private LocalDate endingDate;
+
+    public void setStartingDate(LocalDate startingDate) {
+        this.startingDate = startingDate;
+    }
+
+    public void setEndingDate(LocalDate endingDate) {
+        this.endingDate = endingDate;
+    }
+
+    public LocalDate getStartingDate() {
+        return startingDate;
+    }
+
+    public LocalDate getEndingDate() {
+        return endingDate;
+    }
 
     public UserConsole() {
         input = new Scanner(System.in);
@@ -23,15 +43,19 @@ public class UserConsole {
                         program.setPathToFile(serachFundFile.searchEngine(program.getFundsMap()));
                     case FIND_GLOBAL_EXTREMES:
                         clearScreen();
-                        //tu wstawimy poprzez metody get wartości max i min
-
+                        Extremum extremum = new Extremum();
+                        System.out.println("Wartość minimalna: " + extremum.findMin(program.getFundsList()));
+                        System.out.println("Wartość maksymalna: " + extremum.findMax(program.getFundsList()));
                         break;
                     case FIND_LOCALE_EXTREMES:
                         clearScreen();
-
-                        System.out.println("Oto najlepszy: i najsłabszy fundusz: ");
+                        inputDataRange(program);
+                        LocalExtremum localExtremum = new LocalExtremum();
+                        System.out.println("Wartość minimalna: " + localExtremum.findMinByDate
+                                (program.getFundsList(), program.getStartDate(), program.getEndDate()));
+                        System.out.println("Wartość maksymalna: " + localExtremum.findMaxByDate
+                                (program.getFundsList(), program.getStartDate(), program.getEndDate()));
                         break;
-
                 }
             } catch (NumberFormatException e) {
                 System.out.println("O_O Wybrana opcja nie istnieje, wybierz ponownie !");
@@ -54,4 +78,28 @@ public class UserConsole {
         System.out.flush();
     }
 
+    public void inputDataRange(Program program) {
+
+        setStartingDate(null);
+        setEndingDate(null);
+
+        System.out.println("Podaj przedział czasowy");
+        do {
+            System.out.println("Podaj pierwszą datę (yyyy-mm-dd)");
+            try {
+                program.setStartDate(LocalDate.parse(input.nextLine()));
+            } catch (DateTimeException de) {
+                System.out.println("Niepoprawny format daty. Spróbuj ponownie");
+            }
+        } while (program.getStartDate() == null);
+
+        do {
+            System.out.println("Podaj drugą datę (yyyy-mm-dd)");
+            try {
+                program.setEndDate(LocalDate.parse(input.nextLine()));
+            } catch (DateTimeException de) {
+                System.out.println("Niepoprawny format daty. Spróbuj ponownie");
+            }
+        } while (program.getEndDate() == null);
+    }
 }
