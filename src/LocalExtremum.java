@@ -33,6 +33,8 @@ public class LocalExtremum {
         boolean done = false;
 
         while (!done) {
+            setStartingDate(null);
+            setEndingDate(null);
             System.out.println("Podaj przedział czasowy");
 
             do {
