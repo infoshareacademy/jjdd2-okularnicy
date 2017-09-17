@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class TestLocalExtremum {
     public static void main(String[] args) {
 
-        Fund fund1 = new Fund("Fund1", LocalDate.of(2017, 9, 8), 105.00);
+        Fund fund1 = new Fund("Fund1", LocalDate.of(2017, 9, 8), 89.00);
         Fund fund2 = new Fund("Fund2", LocalDate.of(2017, 9, 9), 106.00);
         Fund fund3 = new Fund("Fund3", LocalDate.of(2017, 9, 10), 99.00);
         Fund fund4 = new Fund("Fund4", LocalDate.of(2017, 9, 11), 103.00);
@@ -21,7 +21,7 @@ public class TestLocalExtremum {
 
         Fund fundMin = localExtremum.findMinByDate(test);
         Fund fundMax = localExtremum.findMaxByDate(test);
-        System.out.println(fundMin.getClose());
-        System.out.println(fundMax.getClose());
+        System.out.println("Wartość minimalna: " + fundMin.getClose());
+        System.out.println("Wartość maksymalna: " + fundMax.getClose());
     }
 }

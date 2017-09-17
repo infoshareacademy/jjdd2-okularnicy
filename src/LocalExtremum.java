@@ -79,7 +79,7 @@ public class LocalExtremum {
         ArrayList<Fund> listInRange = new ArrayList<>();
         Extremum extremum = new Extremum();
         for (Fund iter : operatingList) {
-                        if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
+            if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
                     (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
                 listInRange.add(iter);
             }
