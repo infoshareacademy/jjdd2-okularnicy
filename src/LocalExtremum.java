@@ -64,7 +64,8 @@ public class LocalExtremum {
                         endingDate.isBefore(operatingList.get(0).getDate())) {
                     System.out.println("Brak danych dla podanego przedziału czasu. Spróbuj ponownie");
                     break;
-                } else {
+                } else if ((startingDate.isAfter(iter.getDate())) && (iter.getDate().isBefore(endingDate)) ||
+                        (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
                     listInRange.add(iter);
                     done = true;
                     break;
@@ -79,7 +80,7 @@ public class LocalExtremum {
         ArrayList<Fund> listInRange = new ArrayList<>();
         Extremum extremum = new Extremum();
         for (Fund iter : operatingList) {
-            if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
+                        if ((iter.getDate().isAfter(startingDate)) && (iter.getDate().isBefore(endingDate)) ||
                     (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
                 listInRange.add(iter);
             }
