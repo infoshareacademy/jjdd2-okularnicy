@@ -41,6 +41,8 @@ public class UserConsole {
                         System.out.println("Wyszukaj plik z danymi");
                         SerachFundFile serachFundFile = new SerachFundFile();
                         program.setPathToFile(serachFundFile.searchEngine(program.getFundsMap()));
+                        FundBase fundBase = new FundBase();
+                        program.setFundsList(fundBase.readFoundIntoList(program.getPathToFile()));
                     case FIND_GLOBAL_EXTREMES:
                         clearScreen();
                         Extremum extremum = new Extremum();
