@@ -68,7 +68,6 @@ public class LocalExtremum {
                         (iter.getDate().isEqual(startingDate)) || (iter.getDate().isEqual(endingDate))) {
                     listInRange.add(iter);
                     done = true;
-                    break;
                 }
             }
         }
