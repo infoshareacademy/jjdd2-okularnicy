@@ -9,7 +9,7 @@ public class Program {
     private String pathToFile;
     private LocalDate startDate;
     private LocalDate endDate;
-    ArrayList<Fund> fundsList = new ArrayList<>();
+    private ArrayList<Fund> fundsList = new ArrayList<>();
 
     public Program() {
         fundsMap = new HashMap<>();

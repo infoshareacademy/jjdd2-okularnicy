@@ -44,17 +44,18 @@ public class UserConsole {
                     case FIND_GLOBAL_EXTREMES:
                         clearScreen();
                         Extremum extremum = new Extremum();
-                        extremum.findMin(program.fundsList);
-                        extremum.findMax(program.fundsList);
+                        System.out.println("Wartość minimalna: " + extremum.findMin(program.getFundsList()));
+                        System.out.println("Wartość maksymalna: " + extremum.findMax(program.getFundsList()));
                         break;
                     case FIND_LOCALE_EXTREMES:
                         clearScreen();
-                        inputDataRange();
+                        inputDataRange(program);
                         LocalExtremum localExtremum = new LocalExtremum();
-                        localExtremum.findMinByDate(program.fundsList,startDate, endDate);
-                        System.out.println("Oto najlepszy: i najsłabszy fundusz: ");
+                        System.out.println("Wartość minimalna: " + localExtremum.findMinByDate
+                                (program.getFundsList(), program.getStartDate(), program.getEndDate()));
+                        System.out.println("Wartość maksymalna: " + localExtremum.findMaxByDate
+                                (program.getFundsList(), program.getStartDate(), program.getEndDate()));
                         break;
-
                 }
             } catch (NumberFormatException e) {
                 System.out.println("O_O Wybrana opcja nie istnieje, wybierz ponownie !");
@@ -77,7 +78,7 @@ public class UserConsole {
         System.out.flush();
     }
 
-    public void inputDataRange() {
+    public void inputDataRange(Program program) {
 
         setStartingDate(null);
         setEndingDate(null);
@@ -86,19 +87,19 @@ public class UserConsole {
         do {
             System.out.println("Podaj pierwszą datę (yyyy-mm-dd)");
             try {
-                setStartingDate(LocalDate.parse(input.nextLine()));
+                program.setStartDate(LocalDate.parse(input.nextLine()));
             } catch (DateTimeException de) {
                 System.out.println("Niepoprawny format daty. Spróbuj ponownie");
             }
-        } while (getStartingDate() == null);
+        } while (program.getStartDate() == null);
 
         do {
             System.out.println("Podaj drugą datę (yyyy-mm-dd)");
             try {
-                setEndingDate(LocalDate.parse(input.nextLine()));
+                program.setEndDate(LocalDate.parse(input.nextLine()));
             } catch (DateTimeException de) {
                 System.out.println("Niepoprawny format daty. Spróbuj ponownie");
             }
-        } while (getEndingDate() == null);
+        } while (program.getEndDate() == null);
     }
 }
