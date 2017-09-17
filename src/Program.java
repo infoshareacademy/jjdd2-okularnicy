@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -5,9 +7,11 @@ public class Program {
 
     private Map<String, String> fundsMap;
     private String pathToFile;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    ArrayList<Fund> fundsList = new ArrayList<>();
 
     public Program() {
-
         fundsMap = new HashMap<>();
     }
 
@@ -27,4 +31,27 @@ public class Program {
         this.pathToFile = pathToFile;
     }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public ArrayList<Fund> getFundsList() {
+        return fundsList;
+    }
+
+    public void setFundsList(ArrayList<Fund> fundsList) {
+        this.fundsList = fundsList;
+    }
 }

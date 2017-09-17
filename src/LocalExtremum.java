@@ -6,8 +6,6 @@ import java.util.Scanner;
 
 public class LocalExtremum {
 
-
-
     public Fund findMinByDate(List<Fund> operatingList) {
 
         UserConsole userConsole = new UserConsole();

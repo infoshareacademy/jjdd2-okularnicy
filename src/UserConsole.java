@@ -43,12 +43,15 @@ public class UserConsole {
                         program.setPathToFile(serachFundFile.searchEngine(program.getFundsMap()));
                     case FIND_GLOBAL_EXTREMES:
                         clearScreen();
-                        //tu wstawimy poprzez metody get wartości max i min
-
+                        Extremum extremum = new Extremum();
+                        extremum.findMin(program.fundsList);
+                        extremum.findMax(program.fundsList);
                         break;
                     case FIND_LOCALE_EXTREMES:
                         clearScreen();
-
+                        inputDataRange();
+                        LocalExtremum localExtremum = new LocalExtremum();
+                        localExtremum.findMinByDate(program.fundsList,startDate, endDate);
                         System.out.println("Oto najlepszy: i najsłabszy fundusz: ");
                         break;
 
