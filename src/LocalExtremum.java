@@ -10,6 +10,10 @@ public class LocalExtremum {
         ArrayList<Fund> listInRange = new ArrayList<>();
         Extremum extremum = null;
         boolean anything = false;
+        if(startDate.isBefore(operatingList.get(0).getDate()) ||
+                endDate.isAfter(operatingList.get(operatingList.size() - 1).getDate())){
+            System.out.println("Warning! Podany zakres wykracza poza dostępne dane.");
+        }
         for (Fund iter : operatingList) {
             if ((iter.getDate().isAfter(startDate)) && (iter.getDate().isBefore(endDate)) ||
                     (iter.getDate().isEqual(startDate)) || (iter.getDate().isEqual(endDate))) {
