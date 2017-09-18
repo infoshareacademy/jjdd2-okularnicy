@@ -28,7 +28,7 @@ public class Program {
     }
 
     public void setPathToFile(String pathToFile) {
-        this.pathToFile = "testdata/" + pathToFile;
+        this.pathToFile = pathToFile;
     }
 
     public LocalDate getStartDate() {
