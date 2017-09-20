@@ -1,12 +1,19 @@
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Scanner;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+
 
 public class UserConsole {
 
     private Scanner input;
     private LocalDate startingDate;
     private LocalDate endingDate;
+
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     public void setStartingDate(LocalDate startingDate) {
         this.startingDate = startingDate;
@@ -34,6 +41,7 @@ public class UserConsole {
             try {
                 printOptions();
                 menu = Menu.createFromInt(Integer.parseInt(input.nextLine()));
+                logger.log(Level.INFO, "Pajac wybral: " + menu.getValue());
                 switch (menu) {
 
                     case SERACH_IN_BASE:

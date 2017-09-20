@@ -1,4 +1,5 @@
 .idea
 *.iml
 out/
+logs/
 /src/META-INF/
