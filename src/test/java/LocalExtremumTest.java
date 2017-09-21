@@ -1,11 +1,10 @@
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.cglib.core.Local;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 public class LocalExtremumTest {
 
@@ -46,8 +45,8 @@ public class LocalExtremumTest {
         Fund max = localExtremum.findMaxByDate(fundsList, START_DATE, END_DATE);
         Fund min = localExtremum.findMinByDate(fundsList, START_DATE, END_DATE);
         //then
-        assertThat(max.getClose()).isEqualTo(FUND5.getClose());
-        assertThat(min.getClose()).isEqualTo(FUND4.getClose());
+        assertThat(max.getClose(), is(FUND5.getClose()));
+        assertThat(min.getClose(), is(FUND4.getClose()));
     }
 
 

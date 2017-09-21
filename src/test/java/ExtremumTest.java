@@ -2,7 +2,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 public class ExtremumTest {
 
@@ -36,8 +38,8 @@ public class ExtremumTest {
         Fund max = extremum.findMax(fundsList);
         Fund min = extremum.findMin(fundsList);
         //then
-        assertThat(max.getClose()).isEqualTo(FUND2.getClose());
-        assertThat(min.getClose()).isEqualTo(FUND1.getClose());
+        assertThat(max.getClose(), is(FUND2.getClose()));
+        assertThat(min.getClose(), is(FUND1.getClose()));
     }
 }
 
