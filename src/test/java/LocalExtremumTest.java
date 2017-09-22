@@ -40,7 +40,6 @@ public class LocalExtremumTest {
         fundsList.add(FUND3);
         fundsList.add(FUND4);
         fundsList.add(FUND5);
-
         //when
         Fund max = localExtremum.findMaxByDate(fundsList, START_DATE, END_DATE);
         Fund min = localExtremum.findMinByDate(fundsList, START_DATE, END_DATE);
@@ -48,6 +47,4 @@ public class LocalExtremumTest {
         assertThat(max.getClose(), is(FUND5.getClose()));
         assertThat(min.getClose(), is(FUND4.getClose()));
     }
-
-
 }
