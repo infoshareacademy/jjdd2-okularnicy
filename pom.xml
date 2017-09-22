@@ -7,13 +7,13 @@
 
     <groupId>com.infoshareacademy</groupId>
     <artifactId>jjdd2-okularnicy</artifactId>
+
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>baseapp</module>
         <module>webapp</module>
     </modules>
-
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
