@@ -46,18 +46,15 @@ public class UserConsole {
                         break;
                     case FIND_GLOBAL_EXTREMES:
                         clearScreen();
-                        Extremum extremum = new Extremum();
-                        System.out.println("Wartość minimalna: " + extremum.findMin(program.getFundsList()));
-                        System.out.println("Wartość maksymalna: " + extremum.findMax(program.getFundsList()));
+                        System.out.println("Wartość minimalna: " + program.getExtremum().findMin(program.getFundsList()));
+                        System.out.println("Wartość maksymalna: " + program.getExtremum().findMax(program.getFundsList()));
                         break;
                     case FIND_LOCALE_EXTREMES:
                         clearScreen();
                         inputDataRange(program);
-                        LocalExtremum localExtremum = new LocalExtremum();
-                        System.out.println("Wartość minimalna: " + localExtremum.findMinByDate
-                                (program.getFundsList(), program.getStartDate(), program.getEndDate()));
-                        System.out.println("Wartość maksymalna: " + localExtremum.findMaxByDate
-                                (program.getFundsList(), program.getStartDate(), program.getEndDate()));
+                        ListInRange listInRange = new ListInRange(program);
+                        System.out.println("Wartość minimalna: " + program.getExtremum().findMin(listInRange.setListInRange()));
+                        System.out.println("Wartość maksymalna: " + program.getExtremum().findMax(listInRange.setListInRange()));
                         break;
                 }
             } catch (NumberFormatException e) {
