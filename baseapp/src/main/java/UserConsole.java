@@ -5,24 +5,6 @@ import java.time.LocalDate;
 public class UserConsole {
 
     private Scanner input;
-    private LocalDate startingDate;
-    private LocalDate endingDate;
-
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate = startingDate;
-    }
-
-    public void setEndingDate(LocalDate endingDate) {
-        this.endingDate = endingDate;
-    }
-
-    public LocalDate getStartingDate() {
-        return startingDate;
-    }
-
-    public LocalDate getEndingDate() {
-        return endingDate;
-    }
 
     public UserConsole() {
         input = new Scanner(System.in);
@@ -53,11 +35,9 @@ public class UserConsole {
                     case FIND_LOCALE_EXTREMES:
                         clearScreen();
                         inputDataRange(program);
-                        LocalExtremum localExtremum = new LocalExtremum();
-                        System.out.println("Wartość minimalna: " + localExtremum.findMinByDate
-                                (program.getFundsList(), program.getStartDate(), program.getEndDate()));
-                        System.out.println("Wartość maksymalna: " + localExtremum.findMaxByDate
-                                (program.getFundsList(), program.getStartDate(), program.getEndDate()));
+                        ListInRange listInRange = new ListInRange(program);
+                        System.out.println("Wartość minimalna: " + program.getExtremum().findMin(listInRange.setListInRange()));
+                        System.out.println("Wartość maksymalna: " + program.getExtremum().findMax(listInRange.setListInRange()));
                         break;
                 }
             } catch (NumberFormatException e) {
@@ -82,9 +62,6 @@ public class UserConsole {
     }
 
     public void inputDataRange(Program program) {
-
-        setStartingDate(null);
-        setEndingDate(null);
 
         System.out.println("Podaj przedział czasowy");
         do {
