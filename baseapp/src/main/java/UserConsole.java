@@ -54,6 +54,7 @@ public class UserConsole {
                         clearScreen();
                         inputDataRange(program);
                         ListInRange listInRange = new ListInRange(program);
+                        listInRange.isDateIsInRange();
                         System.out.println("Wartość minimalna: " + program.getExtremum().findMin(listInRange.setListInRange()));
                         System.out.println("Wartość maksymalna: " + program.getExtremum().findMax(listInRange.setListInRange()));
                         break;
