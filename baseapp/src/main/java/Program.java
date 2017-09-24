@@ -10,6 +10,7 @@ public class Program {
     private LocalDate startDate;
     private LocalDate endDate;
     private ArrayList<Fund> fundsList = new ArrayList<>();
+    private Extremum extremum = new Extremum();
 
     public Program() {
         fundsMap = new HashMap<>();
@@ -54,4 +55,9 @@ public class Program {
     public void setFundsList(ArrayList<Fund> fundsList) {
         this.fundsList = fundsList;
     }
+
+    public Extremum getExtremum() {
+        return extremum;
+    }
 }
+
