@@ -2,4 +2,6 @@
 *.iml
 out/
 logs/
+target/
 /src/META-INF/
+/baseapp/target/
