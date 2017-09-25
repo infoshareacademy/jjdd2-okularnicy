@@ -1,22 +1,24 @@
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ListInRange {
 
-    private final Program program;
+    private Program program;
+    private LocalDate startDate = program.getStartDate();
+    private LocalDate endDate = program.getEndDate();
+    private Fund firstFund = program.getFundsList().get(0);
+    private Fund lastFund = program.getFundsList().get(program.getFundsList().size()-1);
 
     public ListInRange(Program program) {
         this.program = program;
     }
 
     public void isDateIsInRange() {
-        if (program.getStartDate().isBefore(program.getFundsList().get(0).getDate()) ||
-                program.getEndDate().isAfter(program.getFundsList().get(program.getFundsList().size() - 1).getDate())) {
+        if (startDate.isBefore(firstFund.getDate()) || endDate.isAfter(lastFund.getDate())) {
             System.out.println("Warning! Podany zakres wykracza poza dostępne dane.");
-        } else if (program.getStartDate().isBefore(program.getFundsList().get(0).getDate()) &&
-                program.getEndDate().isBefore(program.getFundsList().get(0).getDate()) ||
-                program.getStartDate().isAfter(program.getFundsList().get(program.getFundsList().size() - 1).getDate()) &&
-                        program.getEndDate().isBefore(program.getFundsList().get(program.getFundsList().size() - 1).getDate())) {
+        } else if (startDate.isBefore(firstFund.getDate()) && endDate.isBefore(firstFund.getDate()) ||
+                startDate.isAfter(lastFund.getDate()) && endDate.isBefore(lastFund.getDate())) {
             System.out.println("Brak danych dla podanego przedziału czasu. Spróbuj ponownie");
         } else {
             System.out.println("Wczytano poprawnie dane z podanego zakresu");
@@ -26,8 +28,8 @@ public class ListInRange {
     public List<Fund> setListInRange () {
 
         List<Fund> listInRange = program.getFundsList().stream()
-                .filter(o -> o.getDate().isAfter(program.getStartDate()) || o.getDate().isEqual(program.getStartDate()))
-                .filter(o -> o.getDate().isBefore(program.getEndDate()) || o.getDate().isEqual(program.getEndDate()))
+                .filter(o -> o.getDate().isAfter(startDate) || o.getDate().isEqual(startDate))
+                .filter(o -> o.getDate().isBefore(endDate) || o.getDate().isEqual(endDate))
                 .collect(Collectors.toList());
         return listInRange;
     }
