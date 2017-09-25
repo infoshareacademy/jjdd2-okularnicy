@@ -1,5 +1,7 @@
 package com.infoshareacademy.java.web;
 
+import com.infoshareacademy.baseapp.Extremum;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -1,8 +1,8 @@
-import java.time.DateTimeException;
+package com.infoshareacademy.baseapp;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class LocalExtremum {
 

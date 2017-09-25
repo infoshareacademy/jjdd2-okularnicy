@@ -1,3 +1,5 @@
+package com.infoshareacademy.baseapp;
+
 import java.time.LocalDate;
 
 public class Fund {
@@ -56,7 +58,7 @@ public class Fund {
 
     @Override
     public String toString() {
-        return "Fund{" +
+        return "com.infoshareacademy.baseapp.Fund{" +
                 "name='" + name + '\'' +
                 ", date=" + date +
                 ", close=" + close +

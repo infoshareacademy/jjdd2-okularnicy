@@ -1,3 +1,5 @@
+package com.infoshareacademy.baseapp;
+
 import java.util.NoSuchElementException;
 
 public enum Menu {
