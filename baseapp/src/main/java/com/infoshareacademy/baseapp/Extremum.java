@@ -8,16 +8,8 @@ public class Extremum {
     private Fund max;
     private Fund min;
 
-    public Fund getMax() {
-        return max;
-    }
-
     public void setMax(Fund max) {
         this.max = max;
-    }
-
-    public Fund getMin() {
-        return min;
     }
 
     public void setMin(Fund min) {
