@@ -1,3 +1,7 @@
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -5,6 +9,8 @@ import java.util.stream.Collectors;
 public class ListInRange {
 
     private final Program program;
+
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     public ListInRange(Program program) {
         this.program = program;
@@ -17,7 +23,8 @@ public class ListInRange {
         Fund lastFund = program.getFundsList().get(program.getFundsList().size()-1);
 
         if (startDate.isBefore(firstFund.getDate()) || endDate.isAfter(lastFund.getDate())) {
-            System.out.println("Warning! Podany zakres wykracza poza dostępne dane.");
+            logger.log(Level.INFO, "Podany zakres wykracza poza dostępne dane.");
+            //System.out.println("Warning! Podany zakres wykracza poza dostępne dane.");
         } else if (startDate.isBefore(firstFund.getDate()) && endDate.isBefore(firstFund.getDate()) ||
                 startDate.isAfter(lastFund.getDate()) && endDate.isBefore(lastFund.getDate())) {
             System.out.println("Brak danych dla podanego przedziału czasu. Spróbuj ponownie");
