@@ -5,9 +5,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
 @WebServlet("/index")
@@ -42,29 +40,55 @@ public class Servlet4 extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 
-        Part fileLST = null;
-        fileLST = req.getPart("fileLST");
-        InputStream inputStreamLST = null;
-        inputStreamLST = fileLST.getInputStream();
-        Scanner scannerLST = null;
-        scannerLST = new Scanner(inputStreamLST);
-        for (int i = 0; i < 3; i++) {
-            resp.getWriter().println(scannerLST.nextLine());
-        }
-        resp.getWriter().println("== k o n i e c LST==");
 
-        Part fileZIP = null;
-        fileZIP = req.getPart("fileZIP");
-        InputStream inputStreamZIP = null;
-        inputStreamZIP = fileZIP.getInputStream();
-        Scanner scannerZIP = null;
-        scannerZIP = new Scanner(inputStreamZIP);
-        for (int i = 0; i < 3; i++) {
-            resp.getWriter().println(scannerZIP.nextLine());
+        try {
+            Part fileLST = null;
+            Part fileZIP = null;
+            fileLST = req.getPart("fileLST");
+            fileZIP = req.getPart("fileZIP");
+            InputStream inputStreamLST = null;
+            InputStream inputStreamZIP = null;
+            inputStreamLST = fileLST.getInputStream();
+            inputStreamZIP = fileZIP.getInputStream();
+            String tmpDir = System.getProperty("java.io.tmpdir");
+            String LSTDir = tmpDir + "/plik.lst.txt";
+            String ZIPDir = tmpDir + "/plik.zip.txt";
+            OutputStream outputStreamLST = null;
+            OutputStream outputStreamZIP = null;
+            outputStreamLST = new FileOutputStream(new File(LSTDir));
+            outputStreamZIP = new FileOutputStream(new File(ZIPDir));
+            int readLST = 0;
+            int readZIP = 0;
+            byte[] bytesLST = new byte[1024];
+            byte[] bytesZIP = new byte[1024];
+            while ((readLST = inputStreamLST.read(bytesLST)) != -1) {
+                outputStreamLST.write(bytesLST, 0, readLST);
+            }
+            while ((readZIP = inputStreamZIP.read(bytesZIP)) != -1) {
+                outputStreamZIP.write(bytesZIP, 0, readZIP);
+            }
+            resp.getWriter().println("done");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
         }
-        resp.getWriter().println("== k o n i e c ZIP==");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         /*try {
