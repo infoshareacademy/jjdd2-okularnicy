@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class SerachFundFile {
 
     private String fileName;
+    public static String choosedFileName;
     Map<String, String> funds = new HashMap<>();
     ArrayList<String> hintsMap = new ArrayList<>();
     Scanner userInput = new Scanner(System.in);
@@ -35,6 +36,8 @@ public class SerachFundFile {
             if (null != fundsMap.get(keyWord)) {
                 hintsMap.add(fundsMap.get(keyWord));
                 setFileName(hintsMap.get(0));
+                choosedFileName = keyWord;
+                System.out.println("Wybrałeś: " + choosedFileName);
                 whileRun = false;
             } else {
                 for (Map.Entry<String, String> entry : fundsMap.entrySet()) {

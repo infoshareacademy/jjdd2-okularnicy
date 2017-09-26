@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -46,6 +47,7 @@ public class UserConsole {
                         break;
                     case FIND_GLOBAL_EXTREMES:
                         clearScreen();
+                        System.out.println("Ekstrema globalne dla: " + SerachFundFile.choosedFileName);
                         Extremum extremum = new Extremum();
                         System.out.println("Wartość minimalna: " + extremum.findMin(program.getFundsList()));
                         System.out.println("Wartość maksymalna: " + extremum.findMax(program.getFundsList()));
@@ -55,10 +57,14 @@ public class UserConsole {
                         inputDataRange(program);
                         ListInRange listInRange = new ListInRange(program);
                         listInRange.isDateIsInRange();
+                        System.out.println("Ekstrema lokalne dla: " + SerachFundFile.choosedFileName);
                         System.out.println("Wartość minimalna: " + program.getExtremum().findMin(listInRange.setListInRange()));
                         System.out.println("Wartość maksymalna: " + program.getExtremum().findMax(listInRange.setListInRange()));
                         break;
                 }
+            } catch (NoSuchElementException e) {
+                System.out.println("O_O Wybrana opcja nie istnieje, wybierz ponownie !");
+                System.out.println();
             } catch (NumberFormatException e) {
                 System.out.println("O_O Wybrana opcja nie istnieje, wybierz ponownie !");
                 System.out.println();

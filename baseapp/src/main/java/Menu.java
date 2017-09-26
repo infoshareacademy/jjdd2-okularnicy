@@ -33,6 +33,7 @@ public enum Menu {
             result = Menu.values()[option];
         } catch(ArrayIndexOutOfBoundsException e) {
             throw new NoSuchElementException();
+
         }
         return result;
     }
