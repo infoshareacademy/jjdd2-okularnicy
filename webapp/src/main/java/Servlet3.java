@@ -8,7 +8,7 @@ import javax.servlet.http.Part;
 import java.io.*;
 import java.util.Scanner;
 
-@WebServlet("/index3")
+@WebServlet("/index3n")
 @MultipartConfig
 public class Servlet3 extends HttpServlet {
 
@@ -20,7 +20,7 @@ public class Servlet3 extends HttpServlet {
         writer.println("<html>");
         writer.println("<body>");
 
-        writer.println("<form action=\"index\" method=\"post\" enctype=\"multipart/form-data\">");
+        writer.println("<form action=\"index3n\" method=\"post\" enctype=\"multipart/form-data\">");
         writer.println("<input type=\"file\" name=\"userfile3\"/>");
         writer.println("<button type=\"submit\">Wyslij</button>");
         writer.println("</form>");
@@ -30,29 +30,28 @@ public class Servlet3 extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Part userfile3 = req.getPart("userfile3");
-        InputStream inputStream = userfile3.getInputStream();
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 
-        OutputStream outputStream = null;
-        outputStream = new FileOutputStream(new File("/home/komputer/savedFile"));
-
-        int read = 0;
-        byte[] bytes = new byte[1024];
-
-        while ((read = inputStream.read(bytes)) != -1) {
-            outputStream.write(bytes, 0, read);
+        try {
+            Part userfile3 = null;
+            userfile3 = req.getPart("userfile3");
+            InputStream inputStream = null;
+            inputStream = userfile3.getInputStream();
+            String tmpDir = System.getProperty("java.io.tmpdir");
+            tmpDir = tmpDir + "/plik";
+            OutputStream outputStream = null;
+            outputStream = new FileOutputStream(new File(tmpDir));
+            int read = 0;
+            byte[] bytes = new byte[1024];
+            while ((read = inputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+            resp.getWriter().println("done");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
         }
-
-        resp.getWriter().println("done");
-
-
-
-
-        /*Scanner scanner = new Scanner(inputStream);
-        while(scanner.hasNextLine()){
-            resp.getWriter().println(scanner.nextLine());
-        }*/
     }
 }
 

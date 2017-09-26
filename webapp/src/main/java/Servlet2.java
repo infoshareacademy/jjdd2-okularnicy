@@ -39,6 +39,9 @@ public class Servlet2 extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Part userfile = req.getPart("userfile");
         InputStream inputStream = userfile.getInputStream();
+
+
+        File uploadedfile;
         Scanner scanner = new Scanner(inputStream);
         while(scanner.hasNextLine()){
             resp.getWriter().println(scanner.nextLine());
