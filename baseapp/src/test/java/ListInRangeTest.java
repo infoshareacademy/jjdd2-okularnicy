@@ -15,21 +15,13 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class ListInRangeTest {
 
-    private static final Fund FUND1 = newFund("SEB001", LocalDate.of(1998, 6, 1), 100.00);
-    private static final Fund FUND2 = newFund("SEB001", LocalDate.of(1999, 5, 29), 103.00);
-    private static final Fund FUND3 = newFund("SEB001", LocalDate.of(2004, 6, 27), 125.00);
-    private static final Fund FUND4 = newFund("SEB001", LocalDate.of(2011, 1, 7), 212.27);
-    private static final Fund FUND5 = newFund("SEB001", LocalDate.of(2015, 8, 13), 179.02);
+    private static final Fund FUND1 = new Fund("SEB001", LocalDate.of(1998, 6, 1), 100.00);
+    private static final Fund FUND2 = new Fund("SEB001", LocalDate.of(1999, 5, 29), 103.00);
+    private static final Fund FUND3 = new Fund("SEB001", LocalDate.of(2004, 6, 27), 125.00);
+    private static final Fund FUND4 = new Fund("SEB001", LocalDate.of(2011, 1, 7), 212.27);
+    private static final Fund FUND5 = new Fund("SEB001", LocalDate.of(2015, 8, 13), 179.02);
     private static final LocalDate START_DATE = LocalDate.of(1999, 3, 12);
     private static final LocalDate END_DATE = LocalDate.of(2014, 5, 12);
-
-    private static Fund newFund(String name, LocalDate date, Double close) {
-        Fund f = new Fund();
-        f.setName(name);
-        f.setDate(date);
-        f.setClose(close);
-        return f;
-    }
 
     @Mock
     private Program program;
