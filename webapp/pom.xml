@@ -32,7 +32,7 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>libs</classpathPrefix>
                             <mainClass>
-                                App
+                                com.infoshareacademy.java.web
                             </mainClass>
                         </manifest>
                     </archive>
