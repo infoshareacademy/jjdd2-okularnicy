@@ -1,3 +1,4 @@
+/*
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -48,3 +49,4 @@ public class Servlet2 extends HttpServlet {
         }
     }
 }
+*/
