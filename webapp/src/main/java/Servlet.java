@@ -60,7 +60,12 @@ public class Servlet extends HttpServlet {
             while ((readZIP = inputStreamZIP.read(bytesZIP)) != -1) {
                 outputStreamZIP.write(bytesZIP, 0, readZIP);
             }
-            resp.getWriter().println("done");
+
+            resp.setContentType("text/html;charset=UTF-8");
+            PrintWriter writer = resp.getWriter();
+            writer.println("<p>done</p>");
+            writer.println("<p>tutaj będzie link do drugiego servletu</p>");
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ServletException e) {
