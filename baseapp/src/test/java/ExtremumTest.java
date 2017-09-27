@@ -12,6 +12,7 @@ public class ExtremumTest {
     private static final Fund FUND2 = new Fund("SEB001", LocalDate.of(2011, 1,7), 212.27);
     private static final Fund FUND3 = new Fund("SEB001", LocalDate.of(2015, 8,13), 179.02);
 
+
     @Test
     public void isFindMaxAndFindMinIsCorrect () {
         //given
