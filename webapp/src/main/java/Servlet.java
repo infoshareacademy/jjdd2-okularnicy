@@ -63,9 +63,28 @@ public class Servlet extends HttpServlet {
 
             resp.setContentType("text/html;charset=UTF-8");
             PrintWriter writer = resp.getWriter();
-            writer.println("<p>done</p>");
-            writer.println("<p>tutaj będzie link do drugiego servletu</p>");
 
+            writer.println("<p>LSTDir: ");
+            writer.println(LSTDir);
+            writer.println("</p>");
+            getServletContext().setAttribute("pathLST", LSTDir);
+            writer.println("<p>getServletContext().getAttribute(\"pathLST\"): ");
+            writer.println(getServletContext().getAttribute("pathLST"));
+            writer.println("</p>");
+
+            writer.println("<p>ZIPDir: ");
+            writer.println(ZIPDir);
+            writer.println("</p>");
+            getServletContext().setAttribute("pathZIP", ZIPDir);
+            writer.println("<p>getServletContext().getAttribute(\"pathZIP\"): ");
+            writer.println(getServletContext().getAttribute("pathZIP"));
+            writer.println("</p>");
+
+
+            writer.println("<p>tutaj będzie link do drugiego servletu</p>");
+            writer.println("<a href=\"index2\">abcd</a>");
+
+            resp.sendRedirect("index2");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ServletException e) {
