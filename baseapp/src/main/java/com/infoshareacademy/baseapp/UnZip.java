@@ -1,4 +1,4 @@
-package main.java;
+package main.java.com.infoshareacademy.baseapp;
 
 import java.io.*;
 import java.util.zip.ZipEntry;

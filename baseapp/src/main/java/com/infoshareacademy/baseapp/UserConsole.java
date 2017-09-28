@@ -1,3 +1,5 @@
+package main.java.com.infoshareacademy.baseapp;
+
 import java.util.Scanner;
 import java.time.DateTimeException;
 import java.time.LocalDate;

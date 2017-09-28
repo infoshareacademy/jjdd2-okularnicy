@@ -1,3 +1,5 @@
+package main.java.com.infoshareacademy.baseapp;
+
 import java.util.Comparator;
 
 public class MyDescComparator implements Comparator<Fund> {
