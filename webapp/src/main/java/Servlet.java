@@ -19,6 +19,7 @@ public class Servlet extends HttpServlet {
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         writer.println("<body>");
+        writer.println("<p>Servlet1, doGet</p>");
         writer.println("<form action=\"index\" method=\"post\" enctype=\"multipart/form-data\">");
         writer.println("<p>Tutaj wskaż plik LST: ");
         writer.println("<input type=\"file\" name=\"fileLST\"/>");
@@ -64,6 +65,8 @@ public class Servlet extends HttpServlet {
             resp.setContentType("text/html;charset=UTF-8");
             PrintWriter writer = resp.getWriter();
 
+            writer.println("<p>Servlet1, doPost</p>");
+
             writer.println("<p>LSTDir: ");
             writer.println(LSTDir);
             writer.println("</p>");
@@ -81,10 +84,12 @@ public class Servlet extends HttpServlet {
             writer.println("</p>");
 
 
-            writer.println("<p>tutaj będzie link do drugiego servletu</p>");
-            writer.println("<a href=\"index2\">abcd</a>");
+            writer.println("<p>link do nastepnego servletu (docelowo będzie automatyczne przejscie): ");
+            writer.println("<a href=\"index2\">next</a>");
+            writer.println("</p>");
 
-            resp.sendRedirect("index2");
+
+            //resp.sendRedirect("index2");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ServletException e) {

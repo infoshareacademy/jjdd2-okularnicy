@@ -14,6 +14,12 @@ public class Servlet2 extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
 
+        writer.println("<!DOCTYPE html>");
+        writer.println("<html>");
+        writer.println("<body>");
+
+        writer.println("<p>Servlet2, doGet</p>");
+
         writer.println("<p>getServletContext().getAttribute(\"pathLST\"): ");
         writer.println(getServletContext().getAttribute("pathLST"));
         writer.println("</p>");
@@ -21,5 +27,20 @@ public class Servlet2 extends HttpServlet {
         writer.println("<p>getServletContext().getAttribute(\"pathZIP\"): ");
         writer.println(getServletContext().getAttribute("pathZIP"));
         writer.println("</p>");
+
+
+        //--------------------------------------
+        writer.println("<form action=\"index\" method=\"post\" enctype=\"multipart/form-data\">");
+        writer.println("<button type=\"submit\">Wyslij</button>");
+        writer.println("</form>");
+        //--------------------------------------
+
+        writer.println("</body>");
+        writer.println("</html>");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
     }
 }
