@@ -47,15 +47,27 @@ public class Servlet extends HttpServlet {
             inputStreamLST = fileLST.getInputStream();
             inputStreamZIP = fileZIP.getInputStream();
             String tmpDir = System.getProperty("java.io.tmpdir");
+
             String targetDir = tmpDir + "/okularnicyFiles";
-            File folder = new File(targetDir);
-            if(!folder.exists()){
-                folder.mkdir();
+            getServletContext().setAttribute("targetDir", targetDir);
+            File targetDirFolder = new File(targetDir);
+            if(!targetDirFolder.exists()){
+                targetDirFolder.mkdir();
             }
 
+            String unZippedDir = targetDir + "/unzipped";
+            getServletContext().setAttribute("unZippedDir", unZippedDir);
+            File unZippedDirFolder = new File(unZippedDir);
+            if(!unZippedDirFolder.exists()){
+                unZippedDirFolder.mkdir();
+            }
 
-            String LSTDir = targetDir + "/plik.lst.txt";
-            String ZIPDir = targetDir + "/plik.zip.txt";
+            String LSTDir = targetDir + "/plik.lst";
+            getServletContext().setAttribute("LSTDir", LSTDir);
+
+            String ZIPDir = targetDir + "/plik.zip";
+            getServletContext().setAttribute("ZIPDir", ZIPDir);
+
             OutputStream outputStreamLST = null;
             OutputStream outputStreamZIP = null;
             outputStreamLST = new FileOutputStream(new File(LSTDir));
@@ -79,23 +91,24 @@ public class Servlet extends HttpServlet {
             writer.println("<p>LSTDir: ");
             writer.println(LSTDir);
             writer.println("</p>");
-            getServletContext().setAttribute("pathLST", LSTDir);
-            writer.println("<p>getServletContext().getAttribute(\"pathLST\"): ");
-            writer.println(getServletContext().getAttribute("pathLST"));
+
+            writer.println("<p>getServletContext().getAttribute(\"LSTDir\"): ");
+            writer.println(getServletContext().getAttribute("LSTDir"));
             writer.println("</p>");
 
             writer.println("<p>ZIPDir: ");
             writer.println(ZIPDir);
             writer.println("</p>");
-            getServletContext().setAttribute("pathZIP", ZIPDir);
-            writer.println("<p>getServletContext().getAttribute(\"pathZIP\"): ");
-            writer.println(getServletContext().getAttribute("pathZIP"));
+
+            writer.println("<p>getServletContext().getAttribute(\"ZIPDir\"): ");
+            writer.println(getServletContext().getAttribute("ZIPDir"));
             writer.println("</p>");
 
 
             writer.println("<p>link do nastepnego servletu (docelowo będzie automatyczne przejscie): ");
             writer.println("<a href=\"index2\">next</a>");
             writer.println("</p>");
+
 
 
             //resp.sendRedirect("index2");

@@ -24,12 +24,12 @@ public class Servlet2 extends HttpServlet {
 
         writer.println("<p>Servlet2, doGet</p>");
 
-        writer.println("<p>getServletContext().getAttribute(\"pathLST\"): ");
-        writer.println(getServletContext().getAttribute("pathLST"));
+        writer.println("<p>getServletContext().getAttribute(\"LSTDir\"): ");
+        writer.println(getServletContext().getAttribute("LSTDir"));
         writer.println("</p>");
 
-        writer.println("<p>getServletContext().getAttribute(\"pathZIP\"): ");
-        writer.println(getServletContext().getAttribute("pathZIP"));
+        writer.println("<p>getServletContext().getAttribute(\"ZIPDir\"): ");
+        writer.println(getServletContext().getAttribute("ZIPDir"));
         writer.println("</p>");
 
 
@@ -46,11 +46,18 @@ public class Servlet2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        UnZip unZip = new UnZip();
-        /*UnZip unZip = new UnZip();
-        unZip.unZip();*/
 
-        //UnZip unZip = new UnZip();
+        String ZIPDir = String.valueOf(getServletContext().getAttribute("ZIPDir"));
+        String unZippedDir = String.valueOf(getServletContext().getAttribute("unZippedDir"));
+
+
+        UnZip unZip = new UnZip();
+        unZip.unZip(ZIPDir,unZippedDir);
+
+
+
+
+
 
 
 
@@ -59,7 +66,9 @@ public class Servlet2 extends HttpServlet {
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         writer.println("<body>");
-        writer.println("<p>tutaj bedzie rozpakowywanie plikow</p>");
+        writer.println("<p>rozpakowano archiwum ZIP</p>");
+
+
         writer.println("</body>");
         writer.println("</html>");
     }
