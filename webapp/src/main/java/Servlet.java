@@ -45,8 +45,15 @@ public class Servlet extends HttpServlet {
             inputStreamLST = fileLST.getInputStream();
             inputStreamZIP = fileZIP.getInputStream();
             String tmpDir = System.getProperty("java.io.tmpdir");
-            String LSTDir = tmpDir + "/plik.lst.txt";
-            String ZIPDir = tmpDir + "/plik.zip.txt";
+            String targetDir = tmpDir + "/okularnicyFiles";
+            File folder = new File(targetDir);
+            if(!folder.exists()){
+                folder.mkdir();
+            }
+
+
+            String LSTDir = targetDir + "/plik.lst.txt";
+            String ZIPDir = targetDir + "/plik.zip.txt";
             OutputStream outputStreamLST = null;
             OutputStream outputStreamZIP = null;
             outputStreamLST = new FileOutputStream(new File(LSTDir));

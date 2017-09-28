@@ -30,7 +30,7 @@ public class Servlet2 extends HttpServlet {
 
 
         //--------------------------------------
-        writer.println("<form action=\"index\" method=\"post\" enctype=\"multipart/form-data\">");
+        writer.println("<form action=\"index2\" method=\"post\" enctype=\"multipart/form-data\">");
         writer.println("<button type=\"submit\">Wyslij</button>");
         writer.println("</form>");
         //--------------------------------------
@@ -41,6 +41,17 @@ public class Servlet2 extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        /*UnZip unZip = new UnZip();
+        unZip.unZip();*/
+
+
+        resp.setContentType("text/html;charset=UTF-8");
+        PrintWriter writer = resp.getWriter();
+        writer.println("<!DOCTYPE html>");
+        writer.println("<html>");
+        writer.println("<body>");
+        writer.println("<p>tutaj bedzie rozpakowywanie plikow</p>");
+        writer.println("</body>");
+        writer.println("</html>");
     }
 }
