@@ -1,4 +1,4 @@
-package main.java.com.infoshareacademy.baseapp;
+package com.infoshareacademy.baseapp;
 
 import java.time.LocalDate;
 

@@ -1,3 +1,7 @@
+package com.infoshareacademy.java.web;
+
+import com.infoshareacademy.baseapp.UnZip;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,8 +45,13 @@ public class Servlet2 extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        UnZip unZip = new UnZip();
         /*UnZip unZip = new UnZip();
         unZip.unZip();*/
+
+        //UnZip unZip = new UnZip();
+
 
 
         resp.setContentType("text/html;charset=UTF-8");

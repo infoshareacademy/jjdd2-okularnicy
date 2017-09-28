@@ -1,4 +1,4 @@
-package main.java.com.infoshareacademy.baseapp;
+package com.infoshareacademy.baseapp;
 
 import java.util.Scanner;
 import java.time.DateTimeException;
