@@ -9,8 +9,9 @@ import static org.junit.Assert.assertThat;
 public class ExtremumTest {
 
     private static final Fund FUND1 = new Fund("SEB001", LocalDate.of(1998, 6,1), 100.00);
-    private static final Fund FUND2= new Fund("SEB001", LocalDate.of(2011, 1,7), 212.27);
-    private static final Fund FUND3= new Fund("SEB001", LocalDate.of(2015, 8,13), 179.02);
+    private static final Fund FUND2 = new Fund("SEB001", LocalDate.of(2011, 1,7), 212.27);
+    private static final Fund FUND3 = new Fund("SEB001", LocalDate.of(2015, 8,13), 179.02);
+
 
     @Test
     public void isFindMaxAndFindMinIsCorrect () {

@@ -27,12 +27,11 @@ public enum Menu {
         return getValue() + " - " + getDiscription();
     }
 
-    public static Menu createFromInt(int option) throws NoSuchElementException {
+    public static Menu createFromInt(int option) {
         Menu result = null;
         try {
             result = Menu.values()[option];
         } catch(ArrayIndexOutOfBoundsException e) {
-            throw new NoSuchElementException();
         }
         return result;
     }
