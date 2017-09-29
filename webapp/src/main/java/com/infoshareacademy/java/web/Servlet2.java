@@ -23,6 +23,15 @@ public class Servlet2 extends HttpServlet {
         writer.println("<body>");
 
         writer.println("<p>Servlet2, doGet</p>");
+        writer.println("<br/>");
+
+        writer.println("<p>Pliki zostały zapisane na dysku. Do naszej dyspozycji mamy poniższe ServletContext:</p>");
+
+
+
+
+
+
 
         writer.println("<p>getServletContext().getAttribute(\"LSTDir\"): ");
         writer.println(getServletContext().getAttribute("LSTDir"));
@@ -33,9 +42,21 @@ public class Servlet2 extends HttpServlet {
         writer.println("</p>");
 
 
+        writer.println("<p>getServletContext().getAttribute(\"targetDir\"): ");
+        writer.println(getServletContext().getAttribute("targetDir"));
+        writer.println("</p>");
+
+        writer.println("<p>getServletContext().getAttribute(\"unZippedDir\"): ");
+        writer.println(getServletContext().getAttribute("unZippedDir"));
+        writer.println("</p>");
+
+
+        writer.println("<br/>");
+
         //--------------------------------------
         writer.println("<form action=\"index2\" method=\"post\" enctype=\"multipart/form-data\">");
-        writer.println("<button type=\"submit\">Wyslij</button>");
+        writer.println("<p>Aby rozpakować archiwum ZIP kliknij ponizszy przycisk</p>");
+        writer.println("<button type=\"submit\">Rozpakuj</button>");
         writer.println("</form>");
         //--------------------------------------
 
@@ -67,6 +88,11 @@ public class Servlet2 extends HttpServlet {
         writer.println("<html>");
         writer.println("<body>");
         writer.println("<p>rozpakowano archiwum ZIP</p>");
+
+        writer.println("<p>link do glownego servletu (docelowo będzie automatyczne przejscie): ");
+        writer.println("<a href=\"index3\">next</a>");
+        writer.println("</p>");
+
 
 
         writer.println("</body>");

@@ -22,6 +22,7 @@ public class Servlet extends HttpServlet {
         writer.println("<html>");
         writer.println("<body>");
         writer.println("<p>Servlet1, doGet</p>");
+        writer.println("<br/>");
         writer.println("<form action=\"index\" method=\"post\" enctype=\"multipart/form-data\">");
         writer.println("<p>Tutaj wskaż plik LST: ");
         writer.println("<input type=\"file\" name=\"fileLST\"/>");
@@ -29,6 +30,7 @@ public class Servlet extends HttpServlet {
         writer.println("<p>Tutaj wskaż archiwum ZIP: ");
         writer.println("<input type=\"file\" name=\"fileZIP\"/>");
         writer.println("</p>");
+        writer.println("<br/>");
         writer.println("<button type=\"submit\">Wyslij</button>");
         writer.println("</form>");
         writer.println("</body>");
@@ -83,7 +85,7 @@ public class Servlet extends HttpServlet {
                 outputStreamZIP.write(bytesZIP, 0, readZIP);
             }
 
-            resp.setContentType("text/html;charset=UTF-8");
+            /*resp.setContentType("text/html;charset=UTF-8");
             PrintWriter writer = resp.getWriter();
 
             writer.println("<p>Servlet1, doPost</p>");
@@ -107,11 +109,11 @@ public class Servlet extends HttpServlet {
 
             writer.println("<p>link do nastepnego servletu (docelowo będzie automatyczne przejscie): ");
             writer.println("<a href=\"index2\">next</a>");
-            writer.println("</p>");
+            writer.println("</p>");*/
 
 
 
-            //resp.sendRedirect("index2");
+            resp.sendRedirect("index2");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ServletException e) {
