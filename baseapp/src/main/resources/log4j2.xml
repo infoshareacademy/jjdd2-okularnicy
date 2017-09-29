@@ -20,7 +20,6 @@
         </Root>
         <logger name="log4j-burst-filter" level="TRACE" additivity="false">
             <AppenderRef ref="Async"/>
-            <AppenderRef ref="Console"/>
         </logger>
     </Loggers>
 </Configuration>

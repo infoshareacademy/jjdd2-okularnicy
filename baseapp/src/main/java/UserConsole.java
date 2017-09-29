@@ -39,7 +39,7 @@ public class UserConsole {
             try {
                 printOptions();
                 menu = Menu.createFromInt(Integer.parseInt(input.nextLine()));
-                logger.log(Level.INFO, "Pajac wybral: " + menu.getValue());
+                logger.log(Level.INFO, "Uzytkownik wybral: " + menu.getValue());
                 switch (menu) {
 
                     case SERACH_IN_BASE:
@@ -65,8 +65,9 @@ public class UserConsole {
                         System.out.println("Wartość maksymalna: " + program.getExtremum().findMax(listInRange.setListInRange()));
                         break;
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | NullPointerException e) {
                 System.out.println("O_O Wybrana opcja nie istnieje, wybierz ponownie !");
+                logger.log(Level.ERROR, "O_O Wybrana opcja nie istnieje, wybierz ponownie !");
                 System.out.println();
             }
         }
@@ -98,6 +99,7 @@ public class UserConsole {
                 program.setStartDate(LocalDate.parse(input.nextLine()));
             } catch (DateTimeException de) {
                 System.out.println("Niepoprawny format daty. Spróbuj ponownie");
+                logger.log(Level.ERROR, "Niepoprawny format daty. Spróbuj ponownie");
             }
         } while (program.getStartDate() == null);
 
@@ -107,6 +109,7 @@ public class UserConsole {
                 program.setEndDate(LocalDate.parse(input.nextLine()));
             } catch (DateTimeException de) {
                 System.out.println("Niepoprawny format daty. Spróbuj ponownie");
+                logger.log(Level.ERROR, "Niepoprawny format daty. Spróbuj ponownie");
             }
         } while (program.getEndDate() == null);
     }

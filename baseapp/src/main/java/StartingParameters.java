@@ -1,3 +1,7 @@
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class StartingParameters {
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     public void printMap(Map<String, String> map){
         Set<Map.Entry<String, String>> entries = map.entrySet();
@@ -44,8 +49,10 @@ public class StartingParameters {
 
             } catch(FileNotFoundException ex) {
                 ex.printStackTrace();
+                logger.log(Level.ERROR, "Wyjątek: FileNotFoundException");
             } catch(IOException ex2){
                 ex2.printStackTrace();
+                logger.log(Level.ERROR, "Wyjątek: FileNotFoundException");
             }
         }
         return resultMap;

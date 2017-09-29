@@ -23,13 +23,15 @@ public class ListInRange {
         Fund lastFund = program.getFundsList().get(program.getFundsList().size()-1);
 
         if (startDate.isBefore(firstFund.getDate()) || endDate.isAfter(lastFund.getDate())) {
-            logger.log(Level.INFO, "Podany zakres wykracza poza dostępne dane.");
-            //System.out.println("Warning! Podany zakres wykracza poza dostępne dane.");
+            System.out.println("Podany zakres wykracza poza dostępne dane.");
+            logger.log(Level.WARN, "Podany zakres wykracza poza dostępne dane." + "(" + startDate + " - " + endDate + ")");
         } else if (startDate.isBefore(firstFund.getDate()) && endDate.isBefore(firstFund.getDate()) ||
                 startDate.isAfter(lastFund.getDate()) && endDate.isBefore(lastFund.getDate())) {
-            System.out.println("Brak danych dla podanego przedziału czasu. Spróbuj ponownie");
+            System.out.println("Brak danych dla podanego przedziału czasu. Spróbuj ponownie.");
+            logger.log(Level.WARN, "Brak danych dla podanego przedziału czasu. Spróbuj ponownie." + "(" + startDate + " - " + endDate + ")");
         } else {
-            System.out.println("Wczytano poprawnie dane z podanego zakresu");
+            System.out.println("Wczytano poprawnie dane z podanego zakresu.");
+            logger.log(Level.INFO, "Wczytano poprawnie dane z podanego zakresu.");
         }
     }
 
