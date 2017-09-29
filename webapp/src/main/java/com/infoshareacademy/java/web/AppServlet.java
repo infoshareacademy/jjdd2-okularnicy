@@ -14,7 +14,7 @@ public class AppServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServerException, IOException {
 
-        resp.setContentType("text/html:charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
 
 
