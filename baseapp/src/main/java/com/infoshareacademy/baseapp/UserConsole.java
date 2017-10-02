@@ -1,3 +1,5 @@
+package com.infoshareacademy.baseapp;
+
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.time.DateTimeException;
