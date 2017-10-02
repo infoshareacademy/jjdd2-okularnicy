@@ -14,6 +14,7 @@ public class Program {
     private ArrayList<Fund> fundsList = new ArrayList<>();
     private Extremum extremum = new Extremum();
 
+
     public Program() {
         fundsMap = new HashMap<>();
     }
