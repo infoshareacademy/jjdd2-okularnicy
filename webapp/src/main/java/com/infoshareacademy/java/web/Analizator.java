@@ -12,13 +12,13 @@ import java.rmi.ServerException;
 import java.time.LocalDateTime;
 
 @WebServlet("/analizator")
-public class AppServlet extends HttpServlet {
+public class Analizator extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServerException, IOException, ServletException {
 
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/index.jsp");
+                .getRequestDispatcher ("/WEB-INF/analizator.jsp");
         req.setAttribute("date", LocalDateTime.now());
         dispatcher.forward(req, resp);
 

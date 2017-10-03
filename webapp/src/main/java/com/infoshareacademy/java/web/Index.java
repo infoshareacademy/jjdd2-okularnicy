@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 @WebServlet("/index")
 @MultipartConfig
-public class Servlet extends HttpServlet {
+public class Index extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
