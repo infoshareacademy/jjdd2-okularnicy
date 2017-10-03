@@ -23,7 +23,7 @@
 
 <p>start2DoPost.jsp</p>
 <p>rozpakowano archiwum ZIP</p>
-<p>link do glownego servletu (docelowo będzie automatyczne przejscie): <a href="index3">next</a></p>
+<p>link do glownego servletu (docelowo będzie automatyczne przejscie): <a href="analizator">next</a></p>
 
 </body>
 </html>
