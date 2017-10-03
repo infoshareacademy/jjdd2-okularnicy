@@ -1,3 +1,5 @@
+package com.infoshareacademy.baseapp;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -6,6 +8,7 @@ import java.util.Scanner;
 public class SerachFundFile {
 
     private String fileName;
+    private String choosedFileName;
     Map<String, String> funds = new HashMap<>();
     ArrayList<String> hintsMap = new ArrayList<>();
     Scanner userInput = new Scanner(System.in);
@@ -25,6 +28,14 @@ public class SerachFundFile {
         }
     }
 
+    public String getChoosedFileName() {
+        return choosedFileName;
+    }
+
+    public void setChoosedFileName(String choosedFileName) {
+        this.choosedFileName = choosedFileName;
+    }
+
     public String searchEngine(Map<String, String> fundsMap) {
 
         while (whileRun) {
@@ -35,6 +46,8 @@ public class SerachFundFile {
             if (null != fundsMap.get(keyWord)) {
                 hintsMap.add(fundsMap.get(keyWord));
                 setFileName(hintsMap.get(0));
+                setChoosedFileName(keyWord);
+                System.out.println("Wybrałeś: " + getChoosedFileName());
                 whileRun = false;
             } else {
                 for (Map.Entry<String, String> entry : fundsMap.entrySet()) {

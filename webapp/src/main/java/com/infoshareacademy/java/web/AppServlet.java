@@ -22,7 +22,7 @@ public class AppServlet extends HttpServlet {
         req.setAttribute("date", LocalDateTime.now());
         dispatcher.forward(req, resp);
 
-        resp.setContentType("text/html:charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
     }
 }

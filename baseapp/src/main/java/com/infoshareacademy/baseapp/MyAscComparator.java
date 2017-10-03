@@ -1,3 +1,5 @@
+package com.infoshareacademy.baseapp;
+
 import java.util.Comparator;
 
 public class MyAscComparator implements Comparator<Fund> {
