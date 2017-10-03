@@ -97,7 +97,7 @@ Current date is: ${requestScope.date}
             <div class="card  col-12 col-md-6 col-lg-4">
                 <div class="card-img">
                     <span class="mbr-iconfont mbri-globe" media-simple="true">
-                        <img src="${pageContext.request.contextPath}/resources/css/fotolia_80738841.png"  title="" media-simple="true" style="height: 3.8rem;">
+                        <img src="${pageContext.request.contextPath}/resources/image/fotolia_80738841.png"  title="" media-simple="true" style="height: 3.8rem;">
                     </span>
                 </div>
                 <div class="card-box align-center">
