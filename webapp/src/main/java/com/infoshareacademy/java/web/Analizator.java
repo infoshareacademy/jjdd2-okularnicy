@@ -43,9 +43,9 @@ public class Analizator extends HttpServlet {
             writer.println("<p>");
             writer.println("iteracja nr ");
             writer.println(i);
-            writer.println(" key:");
+            writer.println(" <b>key:</b>");
             writer.println( entry.getKey());
-            writer.println(" value:");
+            writer.println(" <b>value:</b>");
             writer.println(entry.getValue());
             writer.println("</p>");
 
