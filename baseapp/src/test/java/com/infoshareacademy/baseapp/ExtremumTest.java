@@ -1,3 +1,5 @@
+package com.infoshareacademy.baseapp;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import org.junit.Before;
