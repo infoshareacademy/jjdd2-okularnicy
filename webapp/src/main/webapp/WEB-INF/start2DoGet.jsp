@@ -21,9 +21,11 @@
 
 <body>
 
-<p>startDoPost.jsp</p>
-<br/>
-<p>link do nastepnego servletu (docelowo będzie automatyczne przejscie): <a href="start2">next</a></p>
+<p>start2DoGet.jsp</p>
+<form action="start2" method="post" enctype="multipart/form-data">
+    <p>Aby rozpakować archiwum ZIP kliknij ponizszy przycisk</p>
+    <button type="submit">Rozpakuj</button>
+</form>
 
 </body>
 </html>
