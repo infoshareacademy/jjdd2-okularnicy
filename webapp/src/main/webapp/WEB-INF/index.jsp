@@ -24,6 +24,11 @@ Current date is: ${requestScope.date}
     <title>ANALIZATOR FINANSOWY</title>
 
     <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
+
+    <%--no cache--%>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 </head>
 <body>
 <section class="menu cid-qwmMMeuwH" once="menu" id="menu1-g" data-rv-view="270">
