@@ -23,7 +23,7 @@
 
 <p>index4.jsp</p>
 <br/>
-<form action="index" method="post" enctype="multipart/form-data">
+<form action="index4" method="post" enctype="multipart/form-data">
     <p>Tutaj wskaż plik LST: <input type="file" name="fileLST"/></p>
     <p>Tutaj wskaż archiwum ZIP: <input type="file" name="fileZIP"/></p>
     <br/>
