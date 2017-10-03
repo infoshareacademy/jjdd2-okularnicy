@@ -23,7 +23,7 @@ Current date is: ${requestScope.date}
     <meta name="description" content="">
     <title>ANALIZATOR FINANSOWY</title>
 
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <section class="menu cid-qwmMMeuwH" once="menu" id="menu1-g" data-rv-view="270">
