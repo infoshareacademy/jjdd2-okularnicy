@@ -21,14 +21,9 @@
 
 <body>
 
-<p>index4.jsp</p>
+<p>startDoPost.jsp</p>
 <br/>
-<form action="index4" method="post" enctype="multipart/form-data">
-    <p>Tutaj wskaż plik LST: <input type="file" name="fileLST"/></p>
-    <p>Tutaj wskaż archiwum ZIP: <input type="file" name="fileZIP"/></p>
-    <br/>
-    <button type="submit">Wyslij</button>
-</form>
+<p>link do nastepnego servletu (docelowo będzie automatyczne przejscie): <a href="index2">next</a></p>
 
 </body>
 </html>
