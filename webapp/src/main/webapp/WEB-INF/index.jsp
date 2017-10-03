@@ -40,7 +40,7 @@ Current date is: ${requestScope.date}
             <div class="navbar-brand">
                 <span class="navbar-logo">
 
-                         <img src="resources/fotolia-80738841.png"  title="" media-simple="true" style="height: 3.8rem;">
+                         <img src="fotolia-80738841.png"  title="" media-simple="true" style="height: 3.8rem;">
 
                 </span>
                 <span class="navbar-caption-wrap">
@@ -91,7 +91,9 @@ Current date is: ${requestScope.date}
 
             <div class="card  col-12 col-md-6 col-lg-4">
                 <div class="card-img">
-                    <span class="mbr-iconfont mbri-globe" media-simple="true"></span>
+                    <span class="mbr-iconfont mbri-globe" media-simple="true">
+                        <img src="${pageContext.request.contextPath}/resources/css/fotolia_80738841.png"  title="" media-simple="true" style="height: 3.8rem;">
+                    </span>
                 </div>
                 <div class="card-box align-center">
                     <h4 class="card-title mbr-fonts-style display-7">EXTREMA GLOBALNE</h4>
