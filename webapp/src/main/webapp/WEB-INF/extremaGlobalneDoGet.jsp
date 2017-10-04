@@ -23,6 +23,11 @@
 <body>
 <p>extremaGlobalneDoGet.jsp</p>
 
+<p>Wartość minimalna: ${fundMinDate} => ${fundMinClose}</p>
+<p>Wartość minimalna: ${fundMaxDate} => ${fundMaxClose}</p>
+
+
+
 
 
 

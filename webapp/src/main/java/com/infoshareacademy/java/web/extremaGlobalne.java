@@ -42,12 +42,22 @@ public class extremaGlobalne extends HttpServlet {
         Extremum extremum = new Extremum();
         Fund fundMin = extremum.findMin(fundsList);
         Fund fundMax = extremum.findMax(fundsList);
+        String fundMinDate = fundMin.getDate().toString();
+        String fundMinClose = fundMin.getClose().toString();
+        String fundMaxDate = fundMax.getDate().toString();
+        String fundMaxClose = fundMax.getClose().toString();
 
         writer.println("Wartość minimalna: " + fundMin.getDate() + " => " + fundMin.getClose());
         writer.println("<br>");
         writer.println("Wartość maksymalna: " + fundMax.getDate() + " => " + fundMax.getClose());
 
-        //System.out.println("Wartość minimalna: " + extremum.findMin(fundsList));
+        req.setAttribute("fundMinDate", fundMinDate);
+        req.setAttribute("fundMinClose", fundMinClose);
+        req.setAttribute("fundMaxDate", fundMaxDate);
+        req.setAttribute("fundMaxClose", fundMaxClose);
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher ("/WEB-INF/extremaGlobalneDoGet.jsp");
+        dispatcher.forward(req, resp);
 
 
 
