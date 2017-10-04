@@ -70,11 +70,11 @@ public class Start extends HttpServlet{
                 outputStreamZIP.write(bytesZIP, 0, readZIP);
             }
 
-            RequestDispatcher dispatcher = getServletContext()
+            /*RequestDispatcher dispatcher = getServletContext()
                     .getRequestDispatcher ("/WEB-INF/startDoPost.jsp");
-            dispatcher.forward(req, resp);
+            dispatcher.forward(req, resp);*/
 
-            //resp.sendRedirect("index2");
+            resp.sendRedirect("start2");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ServletException e) {

@@ -29,13 +29,9 @@ public class Start2 extends HttpServlet {
         UnZip unZip = new UnZip();
         unZip.unZip(ZIPDir,unZippedDir);
 
-        RequestDispatcher dispatcher = getServletContext()
+        /*RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/start2DoPost.jsp");
-        dispatcher.forward(req, resp);
-
-
-
-
-
+        dispatcher.forward(req, resp);*/
+        resp.sendRedirect("analizator");
     }
 }
