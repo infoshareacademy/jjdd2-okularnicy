@@ -51,7 +51,7 @@ public class Analizator extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
         writer.println("we are here");
-        
+
         Part file2 = null;
         file2 = req.getPart("file2");
         Scanner s = new Scanner(file2.getInputStream());
