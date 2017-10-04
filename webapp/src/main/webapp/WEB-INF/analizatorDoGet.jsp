@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,10 +22,19 @@
 
 <body>
 
-<p>analizatorDoGet.jsp</p>
+<p>map: ${foods}</p>
 
-<p>${books}</p>
+<c:forEach items="${foods}" var="food">
+    <p>${food.key} => ${food.value}</p>
+</c:forEach>
 
+<%--<select id="food" name="fooditems">
+    <c:forEach items="${foods}" var="food">
+        <option value="${food.key}">
+                ${food.value}
+        </option>
+    </c:forEach>
+</select>--%>
 
 </body>
 </html>

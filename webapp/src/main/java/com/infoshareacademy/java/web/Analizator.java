@@ -14,6 +14,7 @@ import java.rmi.ServerException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -24,9 +25,9 @@ public class Analizator extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServerException, IOException, ServletException {
 
 
-        resp.setContentType("text/html;charset=UTF-8");
+        /*resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        writer.println("<p>cos</p>");
+        writer.println("<p>cos</p>");*/
 
         HashMap<String, String> filesHashMap = new HashMap<String, String>();
         StartingParameters startingParameters = new StartingParameters();
@@ -52,12 +53,17 @@ public class Analizator extends HttpServlet {
 
         }*/
 
-        ArrayList<String> list = new ArrayList<>();
+        /*ArrayList<String> list = new ArrayList<>();
         list.add("first");
         list.add("second");
+        req.setAttribute("books", list);*/
 
+        Map<String, String> foods = new HashMap<String, String>();
+        foods.put("man", "mango");
+        foods.put("app", "apple");
+        foods.put("gra", "grapes");
+        req.setAttribute("foods", foods);
 
-        req.setAttribute("books", list);
 
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
