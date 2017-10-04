@@ -21,12 +21,19 @@
 </head>
 
 <body>
+<form method="POST" action="analizator">
+    <select name="fundName" required>
+        <c:forEach items="${filesHashMap}" var="entry">
+            <option value="${entry.value}">${entry.key}</option>
+        </c:forEach>
+    </select>
+    <input type="submit" value="Wyslij">
+</form>
 
-<select>
-    <c:forEach items="${filesHashMap}" var="entry">
-        <option value="${entry.value}">${entry.key}</option>
-    </c:forEach>
-</select>
+<form action="analizator" method="post" enctype="multipart/form-data">
+    <p>Tutaj wskaż plik LST: <input type="text" name="file2"/></p>
+    <button type="submit">Wyslij</button>
+</form>
 
 <%--<p>map: ${filesHashMap}</p>--%>
 
