@@ -22,11 +22,19 @@
 
 <body>
 
-<p>map: ${filesHashMap}</p>
+<select>
+    <c:forEach items="${filesHashMap}" var="entry">
+        <option value="${entry.value}">${entry.key}</option>
+    </c:forEach>
+</select>
 
-<c:forEach items="${filesHashMap}" var="entry">
+<%--<p>map: ${filesHashMap}</p>--%>
+
+<%--<c:forEach items="${filesHashMap}" var="entry">
     <p>${entry.key} => ${entry.value}</p>
-</c:forEach>
+</c:forEach>--%>
+
+
 
 <%--<select id="food" name="fooditems">
     <c:forEach items="${foods}" var="food">
