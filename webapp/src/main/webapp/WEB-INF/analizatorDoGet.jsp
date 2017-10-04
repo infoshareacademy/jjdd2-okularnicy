@@ -23,18 +23,7 @@
 
 <p>analizatorDoGet.jsp</p>
 
-<table>
-    <tr>
-        <th>Title</th>
-        <th>something</th>
-    </tr>
-    <c:forEach var="book" items="${books}">
-        <tr>
-            <td>${books}</td>
-            <td>abcd</td>
-        </tr>
-    </c:forEach>
-</table>
+<p>${books}</p>
 
 
 </body>
