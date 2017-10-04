@@ -67,6 +67,9 @@ public class DataRange extends HttpServlet {
         LocalDate endLocalDate = LocalDate.parse(scannerEndDate.nextLine());
         getServletContext().setAttribute("startLocalDate", startLocalDate);
         getServletContext().setAttribute("endLocalDate", startLocalDate);
+        Program program = new Program();
+        program.setStartDate(startLocalDate);
+        program.setEndDate(endLocalDate);
         writer.println(startLocalDate);
         writer.println(endLocalDate);
 

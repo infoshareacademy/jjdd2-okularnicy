@@ -60,7 +60,7 @@ public class extremaLokalne extends HttpServlet {
         req.setAttribute("fundMaxClose", fundMaxClose);
 
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/localExtremumDoGet.jsp");
+                .getRequestDispatcher ("/WEB-INF/extremaLokalneDoGet.jsp");
         dispatcher.forward(req, resp);
 
 

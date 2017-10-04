@@ -23,7 +23,7 @@
 <body>
 <p>DataRangeDoGet.jsp</p>
 <p>Podaj zakres dat</p>
-<form action="extremaLokalne" method="POST" enctype="multipart/form-data">
+<form action="DataRange" method="POST" enctype="multipart/form-data">
     <p>Podaj pierwsza date</p>
     <select name="startDate" required>
         <c:forEach items="${fundsList}" var="fundsListValue">

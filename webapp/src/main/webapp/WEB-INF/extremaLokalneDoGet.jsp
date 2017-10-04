@@ -21,14 +21,9 @@
 </head>
 
 <body>
-<p>extremaGlobalneDoGet.jsp</p>
+<p>extremaLokalneDoGet.jsp</p>
 
 <p>Wartość minimalna: ${fundMinDate} => ${fundMinClose}</p>
 <p>Wartość minimalna: ${fundMaxDate} => ${fundMaxClose}</p>
-
-
-
-
-
 
 </body>
