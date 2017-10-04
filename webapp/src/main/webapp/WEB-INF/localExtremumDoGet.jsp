@@ -21,22 +21,14 @@
 </head>
 
 <body>
-<p>menuDoGet.jsp</p>
+<p>extremaGlobalneDoGet.jsp</p>
 
-<table>
-    <tr>
-        <th>========================</th>
-        <th>========================</th>
-    </tr>
-    <tr>
-        <td><a href="extremaGlobalne">extremaGlobalne</a></td>
-        <td><a href="DataRange">extremaLokalne</a></td>
-    </tr>
+<p>Wartość minimalna: ${fundMinDate} => ${fundMinClose}</p>
+<p>Wartość minimalna: ${fundMaxDate} => ${fundMaxClose}</p>
 
 
 
-</table>
+
 
 
 </body>
-</html>

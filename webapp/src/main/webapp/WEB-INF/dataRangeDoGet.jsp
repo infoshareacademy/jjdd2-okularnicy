@@ -21,22 +21,22 @@
 </head>
 
 <body>
-<p>menuDoGet.jsp</p>
-
-<table>
-    <tr>
-        <th>========================</th>
-        <th>========================</th>
-    </tr>
-    <tr>
-        <td><a href="extremaGlobalne">extremaGlobalne</a></td>
-        <td><a href="DataRange">extremaLokalne</a></td>
-    </tr>
-
-
-
-</table>
-
-
+<p>DataRangeDoGet.jsp</p>
+<p>Podaj zakres dat</p>
+<form action="extremaLokalne" method="POST" enctype="multipart/form-data">
+    <p>Podaj pierwsza date</p>
+    <select name="startDate" required>
+        <c:forEach items="${fundsList}" var="fundsListValue">
+            <option value="${fundsListValue}">${fundsListValue.getDate()}</option>
+        </c:forEach>
+    </select>
+    <p>Podaj druga date</p>
+    <select name="endDate" required>
+        <c:forEach items="${fundsList}" var="fundsListValue">
+            <option value="${fundsListValue}">${fundsListValue.getDate()}</option>
+        </c:forEach>
+    </select>
+    <input type="submit" value="Wyslij">
+</form>
 </body>
 </html>
