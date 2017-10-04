@@ -63,13 +63,10 @@ public class DataRange extends HttpServlet {
         Scanner scannerEndDate = null;
         scannerStartDate = new Scanner(startDate.getInputStream());
         scannerEndDate = new Scanner(endDate.getInputStream());
-        LocalDate startLocalDate = LocalDate.parse(scannerStartDate.nextLine());
-        LocalDate endLocalDate = LocalDate.parse(scannerEndDate.nextLine());
+        String startLocalDate = scannerStartDate.nextLine();
+        String endLocalDate = scannerEndDate.nextLine();
         getServletContext().setAttribute("startLocalDate", startLocalDate);
-        getServletContext().setAttribute("endLocalDate", startLocalDate);
-        Program program = new Program();
-        program.setStartDate(startLocalDate);
-        program.setEndDate(endLocalDate);
+        getServletContext().setAttribute("endLocalDate", endLocalDate);
         writer.println(startLocalDate);
         writer.println(endLocalDate);
 

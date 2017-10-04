@@ -24,6 +24,6 @@
 <p>extremaLokalneDoGet.jsp</p>
 
 <p>Wartość minimalna: ${fundMinDate} => ${fundMinClose}</p>
-<p>Wartość minimalna: ${fundMaxDate} => ${fundMaxClose}</p>
+<p>Wartość maksymalna: ${fundMaxDate} => ${fundMaxClose}</p>
 
 </body>

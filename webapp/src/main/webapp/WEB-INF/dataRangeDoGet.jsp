@@ -27,13 +27,13 @@
     <p>Podaj pierwsza date</p>
     <select name="startDate" required>
         <c:forEach items="${fundsList}" var="fundsListValue">
-            <option value="${fundsListValue}">${fundsListValue.getDate()}</option>
+            <option value="${fundsListValue.getDate()}">${fundsListValue.getDate()}</option>
         </c:forEach>
     </select>
     <p>Podaj druga date</p>
     <select name="endDate" required>
         <c:forEach items="${fundsList}" var="fundsListValue">
-            <option value="${fundsListValue}">${fundsListValue.getDate()}</option>
+            <option value="${fundsListValue.getDate()}">${fundsListValue.getDate()}</option>
         </c:forEach>
     </select>
     <input type="submit" value="Wyslij">

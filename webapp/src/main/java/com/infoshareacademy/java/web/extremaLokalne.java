@@ -1,9 +1,6 @@
 package com.infoshareacademy.java.web;
 
-import com.infoshareacademy.baseapp.Fund;
-import com.infoshareacademy.baseapp.FundBase;
-import com.infoshareacademy.baseapp.ListInRange;
-import com.infoshareacademy.baseapp.Program;
+import com.infoshareacademy.baseapp.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @WebServlet("/extremaLokalne")
@@ -22,6 +20,13 @@ public class extremaLokalne extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         FundBase fundBase = new FundBase();
+        Program program = new Program();
+        String startLocalDateString = getServletContext().getAttribute("startLocalDate").toString();
+        LocalDate startLocalDate = LocalDate.parse(startLocalDateString);
+        program.setStartDate(startLocalDate);
+        String endLocalDateString = getServletContext().getAttribute("endLocalDate").toString();
+        LocalDate endLocalDate = LocalDate.parse(endLocalDateString);
+        program.setEndDate(endLocalDate);
 
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
@@ -41,7 +46,8 @@ public class extremaLokalne extends HttpServlet {
         writer.println(stringToFund);
         writer.println("<br>");
 
-        Program program = new Program();
+        ArrayList<Fund> fundsList = fundBase.readFoundIntoList(stringToFund);
+        program.setFundsList(fundsList);
         ListInRange listInRange = new ListInRange(program);
         Fund fundMin = program.getExtremum().findMin(listInRange.setListInRange());
         Fund fundMax = program.getExtremum().findMax(listInRange.setListInRange());
