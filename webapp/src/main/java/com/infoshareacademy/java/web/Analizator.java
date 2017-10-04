@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.rmi.ServerException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -29,15 +30,15 @@ public class Analizator extends HttpServlet {
 
         HashMap<String, String> filesHashMap = new HashMap<String, String>();
         StartingParameters startingParameters = new StartingParameters();
-        writer.println("</p>");
+        /*writer.println("</p>");
         writer.println(getServletContext().getAttribute("LSTDir").toString());
-        writer.println("</p>");
+        writer.println("</p>");*/
 
         String path = getServletContext().getAttribute("LSTDir").toString();
         String[] pathArray = new String[] {path};
         filesHashMap.putAll(startingParameters.startingParametersIntoMap(pathArray));
 
-        int i = 1;
+        /*int i = 1;
         Set<Entry<String, String>> entries = filesHashMap.entrySet();
         for(Entry<String, String> entry : entries){
             writer.println("<p>");
@@ -49,7 +50,22 @@ public class Analizator extends HttpServlet {
             writer.println(entry.getValue());
             writer.println("</p>");
 
-        }
+        }*/
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("first");
+        list.add("second");
+
+
+        req.setAttribute("books", list);
+
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
+        dispatcher.forward(req, resp);
+
+
+
+
 
 
 
