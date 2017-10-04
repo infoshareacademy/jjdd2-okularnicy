@@ -50,13 +50,14 @@ public class Analizator extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
-        writer.println("we are here");
 
-        Part file2 = null;
-        file2 = req.getPart("file2");
-        Scanner s = new Scanner(file2.getInputStream());
-        String abcd = s.nextLine();
-        writer.println(abcd);
+        Part choseFund = null;
+        choseFund = req.getPart("choseFund");
+        Scanner scanner = new Scanner(choseFund.getInputStream());
+        String choseFundString = scanner.nextLine();
+        writer.println(choseFundString);
+
+        resp.sendRedirect("menu");
 
 
 

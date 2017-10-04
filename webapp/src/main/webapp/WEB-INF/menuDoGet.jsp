@@ -21,36 +21,8 @@
 </head>
 
 <body>
-<p>analizatorDoGet.jsp</p>
-<form action="analizator" method="POST" enctype="multipart/form-data">
-    <select name="choseFund" required>
-        <c:forEach items="${filesHashMap}" var="entry">
-            <option value="${entry.value}">${entry.key}</option>
-        </c:forEach>
-    </select>
-    <input type="submit" value="Wyslij">
-</form>
+<p>menuDoGet.jsp</p>
 
-<%--<form action="analizator" method="post" enctype="multipart/form-data">
-    <p>Tutaj wskaż plik LST: <input type="text" name="file2"/></p>
-    <button type="submit">Wyslij</button>
-</form>--%>
-
-<%--<p>map: ${filesHashMap}</p>--%>
-
-<%--<c:forEach items="${filesHashMap}" var="entry">
-    <p>${entry.key} => ${entry.value}</p>
-</c:forEach>--%>
-
-
-
-<%--<select id="food" name="fooditems">
-    <c:forEach items="${foods}" var="food">
-        <option value="${food.key}">
-                ${food.value}
-        </option>
-    </c:forEach>
-</select>--%>
 
 </body>
 </html>
