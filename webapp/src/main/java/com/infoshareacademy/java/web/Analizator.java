@@ -55,6 +55,7 @@ public class Analizator extends HttpServlet {
         choseFund = req.getPart("choseFund");
         Scanner scanner = new Scanner(choseFund.getInputStream());
         String choseFundString = scanner.nextLine();
+        getServletContext().setAttribute("choseFundString", choseFundString);
         writer.println(choseFundString);
 
         resp.sendRedirect("menu");
