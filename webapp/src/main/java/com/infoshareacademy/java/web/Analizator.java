@@ -23,62 +23,24 @@ public class Analizator extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServerException, IOException, ServletException {
-
-
-        /*resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
-        writer.println("<p>cos</p>");*/
+        String LSTDir = getServletContext().getAttribute("LSTDir").toString();
+        String[] LSTDirArray = new String[] {LSTDir};
 
         HashMap<String, String> filesHashMap = new HashMap<String, String>();
         StartingParameters startingParameters = new StartingParameters();
-        /*writer.println("</p>");
-        writer.println(getServletContext().getAttribute("LSTDir").toString());
-        writer.println("</p>");*/
+        filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
 
-        String path = getServletContext().getAttribute("LSTDir").toString();
-        String[] pathArray = new String[] {path};
-        filesHashMap.putAll(startingParameters.startingParametersIntoMap(pathArray));
-
-        /*int i = 1;
-        Set<Entry<String, String>> entries = filesHashMap.entrySet();
-        for(Entry<String, String> entry : entries){
-            writer.println("<p>");
-            writer.println("iteracja nr ");
-            writer.println(i);
-            writer.println(" <b>key:</b>");
-            writer.println( entry.getKey());
-            writer.println(" <b>value:</b>");
-            writer.println(entry.getValue());
-            writer.println("</p>");
-
-        }*/
-
-        /*ArrayList<String> list = new ArrayList<>();
-        list.add("first");
-        list.add("second");
-        req.setAttribute("books", list);*/
-
-        Map<String, String> foods = new HashMap<String, String>();
+        /*Map<String, String> foods = new HashMap<String, String>();
         foods.put("man", "mango");
         foods.put("app", "apple");
         foods.put("gra", "grapes");
-        req.setAttribute("foods", foods);
+        req.setAttribute("foods", foods);*/
 
+
+        req.setAttribute("filesHashMap", filesHashMap);
 
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
         dispatcher.forward(req, resp);
-
-
-
-
-
-
-
-
-        /*RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/analizator.jsp");
-        req.setAttribute("date", LocalDateTime.now());
-        dispatcher.forward(req, resp);*/
     }
 }

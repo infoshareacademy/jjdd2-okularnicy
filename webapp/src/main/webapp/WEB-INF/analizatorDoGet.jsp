@@ -22,10 +22,10 @@
 
 <body>
 
-<p>map: ${foods}</p>
+<p>map: ${filesHashMap}</p>
 
-<c:forEach items="${foods}" var="food">
-    <p>${food.key} => ${food.value}</p>
+<c:forEach items="${filesHashMap}" var="entry">
+    <p>${entry.key} => ${entry.value}</p>
 </c:forEach>
 
 <%--<select id="food" name="fooditems">
