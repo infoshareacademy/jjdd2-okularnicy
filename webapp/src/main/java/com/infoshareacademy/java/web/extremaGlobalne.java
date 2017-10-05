@@ -22,8 +22,7 @@ public class extremaGlobalne extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         FundBase fundBase = new FundBase();
 
-        String pathToFund = null;
-        pathToFund = getServletContext().getAttribute("unZippedDir").toString();
+        String pathToFund = getServletContext().getAttribute("unZippedDir").toString();
         pathToFund += "/";
         pathToFund += getServletContext().getAttribute("choseFundString").toString();
 

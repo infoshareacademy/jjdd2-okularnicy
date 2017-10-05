@@ -24,14 +24,10 @@ public class Start extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            Part fileLST = null;
-            Part fileZIP = null;
-            fileLST = req.getPart("fileLST");
-            fileZIP = req.getPart("fileZIP");
-            InputStream inputStreamLST = null;
-            InputStream inputStreamZIP = null;
-            inputStreamLST = fileLST.getInputStream();
-            inputStreamZIP = fileZIP.getInputStream();
+            Part fileLST = req.getPart("fileLST");
+            Part fileZIP = req.getPart("fileZIP");
+            InputStream inputStreamLST = fileLST.getInputStream();
+            InputStream inputStreamZIP = fileZIP.getInputStream();
 
             String tmpDir = System.getProperty("java.io.tmpdir");
             String targetDir = tmpDir + "/okularnicyFiles";//to properties
@@ -50,10 +46,8 @@ public class Start extends HttpServlet{
             String ZIPDir = targetDir + "/file.zip";
             getServletContext().setAttribute("ZIPDir", ZIPDir);
 
-            OutputStream outputStreamLST = null;
-            OutputStream outputStreamZIP = null;
-            outputStreamLST = new FileOutputStream(new File(LSTDir));
-            outputStreamZIP = new FileOutputStream(new File(ZIPDir));
+            OutputStream outputStreamLST = new FileOutputStream(new File(LSTDir));
+            OutputStream outputStreamZIP = new FileOutputStream(new File(ZIPDir));
             int readLST = 0;
             int readZIP = 0;
             byte[] bytesLST = new byte[1024];
