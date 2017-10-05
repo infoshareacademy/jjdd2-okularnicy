@@ -6,3 +6,4 @@ target/
 /src/META-INF/
 /baseapp/target/
 lib
+.DS_Store
