@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/extremaGlobalne")
 @MultipartConfig
@@ -21,24 +20,14 @@ public class extremaGlobalne extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         FundBase fundBase = new FundBase();
 
-        resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
-        writer.println(getServletContext().getAttribute("choseFundString"));
-        writer.println("<br>");
-        writer.println(getServletContext().getAttribute("unZippedDir"));
-        writer.println("<br>");
+        String pathToFund = null;
+        pathToFund = getServletContext().getAttribute("unZippedDir").toString();
+        pathToFund += "/";
+        pathToFund += getServletContext().getAttribute("choseFundString").toString();
 
-        String stringToFund = null;
-        stringToFund = getServletContext().getAttribute("unZippedDir").toString();
-        stringToFund += "/";
-        stringToFund += getServletContext().getAttribute("choseFundString").toString();
-        writer.println(stringToFund);
-        writer.println("<br>");
-
-        ArrayList<Fund> fundsList = fundBase.readFoundIntoList(stringToFund);
+        List<Fund> fundsList = fundBase.readFoundIntoList(pathToFund);
         Extremum extremum = new Extremum();
         Fund fundMin = extremum.findMin(fundsList);
         Fund fundMax = extremum.findMax(fundsList);
@@ -47,30 +36,13 @@ public class extremaGlobalne extends HttpServlet {
         String fundMaxDate = fundMax.getDate().toString();
         String fundMaxClose = fundMax.getClose().toString();
 
-        writer.println("Wartość minimalna: " + fundMin.getDate() + " => " + fundMin.getClose());
-        writer.println("<br>");
-        writer.println("Wartość maksymalna: " + fundMax.getDate() + " => " + fundMax.getClose());
-
         req.setAttribute("fundMinDate", fundMinDate);
         req.setAttribute("fundMinClose", fundMinClose);
         req.setAttribute("fundMaxDate", fundMaxDate);
         req.setAttribute("fundMaxClose", fundMaxClose);
+
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/extremaGlobalneDoGet.jsp");
         dispatcher.forward(req, resp);
-
-
-
-
-
-
-
-
-
-
-
-        /*RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/extremaGlobalneDoGet.jsp");
-        dispatcher.forward(req, resp);*/
     }
 }

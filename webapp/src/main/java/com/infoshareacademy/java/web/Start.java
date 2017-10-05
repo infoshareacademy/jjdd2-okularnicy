@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
-import java.time.LocalDateTime;
 
 @WebServlet("/start")
 @MultipartConfig
@@ -33,26 +32,22 @@ public class Start extends HttpServlet{
             InputStream inputStreamZIP = null;
             inputStreamLST = fileLST.getInputStream();
             inputStreamZIP = fileZIP.getInputStream();
-            String tmpDir = System.getProperty("java.io.tmpdir");
 
-            String targetDir = tmpDir + "/okularnicyFiles";
+            String tmpDir = System.getProperty("java.io.tmpdir");
+            String targetDir = tmpDir + "/okularnicyFiles";//to properties
             getServletContext().setAttribute("targetDir", targetDir);
             File targetDirFolder = new File(targetDir);
             if(!targetDirFolder.exists()){
                 targetDirFolder.mkdir();
             }
 
-            String unZippedDir = targetDir + "/unzipped";
-            getServletContext().setAttribute("unZippedDir", unZippedDir);
-            File unZippedDirFolder = new File(unZippedDir);
-            if(!unZippedDirFolder.exists()){
-                unZippedDirFolder.mkdir();
-            }
+            /*String unZippedDir = targetDir + "/unzipped";//to properties
+            getServletContext().setAttribute("unZippedDir", unZippedDir);*/
 
-            String LSTDir = targetDir + "/plik.lst";
+            String LSTDir = targetDir + "/file.lst";
             getServletContext().setAttribute("LSTDir", LSTDir);
 
-            String ZIPDir = targetDir + "/plik.zip";
+            String ZIPDir = targetDir + "/file.zip";
             getServletContext().setAttribute("ZIPDir", ZIPDir);
 
             OutputStream outputStreamLST = null;
@@ -69,10 +64,6 @@ public class Start extends HttpServlet{
             while ((readZIP = inputStreamZIP.read(bytesZIP)) != -1) {
                 outputStreamZIP.write(bytesZIP, 0, readZIP);
             }
-
-            /*RequestDispatcher dispatcher = getServletContext()
-                    .getRequestDispatcher ("/WEB-INF/startDoPost.jsp");
-            dispatcher.forward(req, resp);*/
 
             resp.sendRedirect("start2");
         } catch (IOException e) {
