@@ -32,27 +32,13 @@
             <li><a href="https://www.google.pl">WYJŚCIE</a></li>
         </ul>
     </nav>
-
 </header>
-<article class="og" id="pokoje">
 
-    <p class=" room">
-        <a class="inroom" href="extremaGlobalne"><img src="${pageContext.request.contextPath}/resources/world.png"  title="" media-simple="true" style="height: 30vh;">
-            <br>
-            EKSTREMA GLOBALNE
-        </a>
-    </p>
+<div class="og" id="loc">
+    <h1> EKSTREMA LOKALNE </h1>
 
-    <p class="room">
-
-        <a class="inroom" href="DataRange"><img src="${pageContext.request.contextPath}/resources/home.png"  title="" media-simple="true" style="height: 30vh;">
-            <br>
-            EKSTREMA LOKALNE
-        </a>
-    </p>
-
-</article>
-
-
+    <p>Wartość minimalna: ${fundMinDate} => ${fundMinClose}</p>
+    <br>
+    <p>Wartość maksymalna: ${fundMaxDate} => ${fundMaxClose}</p>
+</div>
 </body>
-</html>
