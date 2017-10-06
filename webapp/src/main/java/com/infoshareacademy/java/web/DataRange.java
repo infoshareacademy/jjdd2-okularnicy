@@ -54,21 +54,22 @@ public class DataRange extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
 
-        // tutaj powinna byc juz wyswietlona wartosc
-        Part startDate = null;
-        Part endDate = null;
-        startDate = req.getPart("startDate");
-        endDate = req.getPart("endDate");
-        Scanner scannerStartDate = null;
-        Scanner scannerEndDate = null;
-        scannerStartDate = new Scanner(startDate.getInputStream());
-        scannerEndDate = new Scanner(endDate.getInputStream());
-        String startLocalDate = scannerStartDate.nextLine();
-        String endLocalDate = scannerEndDate.nextLine();
-        getServletContext().setAttribute("startLocalDate", startLocalDate);
-        getServletContext().setAttribute("endLocalDate", endLocalDate);
-        writer.println(startLocalDate);
-        writer.println(endLocalDate);
+
+            Part startDate = null;
+            Part endDate = null;
+            startDate = req.getPart("startDate");
+            endDate = req.getPart("endDate");
+            Scanner scannerStartDate = null;
+            Scanner scannerEndDate = null;
+            scannerStartDate = new Scanner(startDate.getInputStream());
+            scannerEndDate = new Scanner(endDate.getInputStream());
+            String startLocalDate = scannerStartDate.nextLine();
+            String endLocalDate = scannerEndDate.nextLine();
+            getServletContext().setAttribute("startLocalDate", startLocalDate);
+            getServletContext().setAttribute("endLocalDate", endLocalDate);
+            writer.println(startLocalDate);
+            writer.println(endLocalDate);
+
 
         resp.sendRedirect("extremaLokalne");
     }
