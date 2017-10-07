@@ -1,10 +1,14 @@
 package com.infoshareacademy.baseapp;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class UnZip {
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     public void unZip(String zipFile, String outputFolder){
 
@@ -32,10 +36,11 @@ public class UnZip {
             zipInputStream.closeEntry();
             zipInputStream.closeEntry();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException e) 
+            logger.log(Level.ERROR, "Wyjątek: FileNotFoundException");
         } catch (IOException f) {
-            f.printStackTrace();
+            logger.log(Level.ERROR, "Wyjątek: IOException");
+
         }
     }
 }

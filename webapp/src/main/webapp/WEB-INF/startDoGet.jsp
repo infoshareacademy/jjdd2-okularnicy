@@ -5,6 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+
     <meta http-equiv="x-ua-compatibile" content="ie-edge, chrome-1">
     <meta name="keywords" content="">
     <meta name="description" content="">
@@ -22,6 +23,7 @@
 </head>
 
 <body>
+
 <header id=header1>
     <nav class=nav>
         <ul>
@@ -51,4 +53,12 @@
 </article>
 
 </body>
+=======
+<form action="start" method="post" enctype="multipart/form-data">
+    <p>Tutaj wskaż plik LST: <input type="file" name="fileLST"/></p>
+    <p>Tutaj wskaż archiwum ZIP: <input type="file" name="fileZIP"/></p>
+    <button type="submit">Wyslij</button>
+</form>
+</body>
+
 </html>

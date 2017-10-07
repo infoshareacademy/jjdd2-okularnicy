@@ -22,6 +22,7 @@
 </head>
 
 <body>
+
 <header>
     <nav class=nav>
         <ul>
@@ -42,6 +43,9 @@
     <p>Wartość maksymalna: ${fundMaxDate} => ${fundMaxClose}</p>
 </div>
 
-
+</body>
+=======
+<p>Wartość minimalna: ${fundMinDate} => ${fundMinClose}</p>
+<p>Wartość minimalna: ${fundMaxDate} => ${fundMaxClose}</p>
 </body>
 </html>

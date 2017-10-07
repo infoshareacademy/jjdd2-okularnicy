@@ -1,11 +1,16 @@
 package com.infoshareacademy.baseapp;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class SerachFundFile {
+
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     private String fileName;
     private String choosedFileName;
@@ -57,6 +62,7 @@ public class SerachFundFile {
                 }
                 System.out.println("Twoje zpytanie pasuje do: " + "\n");
                 printHintsMap();
+                logger.log(Level.INFO, "Uzytkownik wpial niedokladna nazwe.");
                 hintsMap.clear();
                 System.out.println("Doprecyzuj zapytanie." + "\n");
             }

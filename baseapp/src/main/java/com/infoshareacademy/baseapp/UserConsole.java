@@ -4,12 +4,17 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class UserConsole {
 
     private Scanner input;
     private LocalDate startingDate;
     private LocalDate endingDate;
+
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     public void setStartingDate(LocalDate startingDate) {
         this.startingDate = startingDate;
@@ -38,6 +43,7 @@ public class UserConsole {
             try {
                 printOptions();
                 menu = Menu.createFromInt(Integer.parseInt(input.nextLine()));
+                logger.log(Level.INFO, "Uzytkownik wybral: " + menu.getValue());
                 switch (menu) {
 
                     case SERACH_IN_BASE:
@@ -67,6 +73,7 @@ public class UserConsole {
                 }
             } catch (NumberFormatException | NullPointerException e) {
                 System.out.println("O_O Wybrana opcja nie istnieje, wybierz ponownie !");
+                logger.log(Level.ERROR, "O_O Wybrana opcja nie istnieje, wybierz ponownie !");
                 System.out.println();
             }
         }
@@ -98,6 +105,7 @@ public class UserConsole {
                 program.setStartDate(LocalDate.parse(input.nextLine()));
             } catch (DateTimeException de) {
                 System.out.println("Niepoprawny format daty. Spróbuj ponownie");
+                logger.log(Level.ERROR, "Niepoprawny format daty. Spróbuj ponownie");
             }
         } while (program.getStartDate() == null);
 
@@ -107,6 +115,7 @@ public class UserConsole {
                 program.setEndDate(LocalDate.parse(input.nextLine()));
             } catch (DateTimeException de) {
                 System.out.println("Niepoprawny format daty. Spróbuj ponownie");
+                logger.log(Level.ERROR, "Niepoprawny format daty. Spróbuj ponownie");
             }
         } while (program.getEndDate() == null);
     }
