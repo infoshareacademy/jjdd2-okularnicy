@@ -1,6 +1,5 @@
-import com.infoshareacademy.baseapp.Fund;
-import com.infoshareacademy.baseapp.ListInRange;
-import com.infoshareacademy.baseapp.Program;
+package com.infoshareacademy.baseapp;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,5 +1,5 @@
-import com.infoshareacademy.baseapp.Extremum;
-import com.infoshareacademy.baseapp.Fund;
+package com.infoshareacademy.baseapp;
+
 import org.junit.Test;
 
 import java.time.LocalDate;
