@@ -12,12 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.rmi.ServerException;
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.Map.Entry;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 @WebServlet("/analizator")
 @MultipartConfig
@@ -28,16 +27,9 @@ public class Analizator extends HttpServlet {
         String LSTDir = getServletContext().getAttribute("LSTDir").toString();
         String[] LSTDirArray = new String[] {LSTDir};
 
-        HashMap<String, String> filesHashMap = new HashMap<String, String>();
+        Map<String, String> filesHashMap = new HashMap<String, String>();
         StartingParameters startingParameters = new StartingParameters();
         filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
-
-        /*Map<String, String> foods = new HashMap<String, String>();
-        foods.put("man", "mango");
-        foods.put("app", "apple");
-        foods.put("gra", "grapes");
-        req.setAttribute("foods", foods);*/
-
 
         req.setAttribute("filesHashMap", filesHashMap);
 
@@ -46,24 +38,14 @@ public class Analizator extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
-
         Part choseFund = null;
         choseFund = req.getPart("choseFund");
         Scanner scanner = new Scanner(choseFund.getInputStream());
         String choseFundString = scanner.nextLine();
         getServletContext().setAttribute("choseFundString", choseFundString);
-        writer.println(choseFundString);
 
         resp.sendRedirect("menu");
-
-
-
-
-
     }
 }

@@ -54,7 +54,7 @@ public class Fund {
 
     @Override
     public String toString() {
-        return "main.java.com.infoshareacademy.baseapp.Fund{" +
+        return "com.infoshareacademy.baseapp.Fund{" +
                 "name='" + name + '\'' +
                 ", date=" + date +
                 ", close=" + close +

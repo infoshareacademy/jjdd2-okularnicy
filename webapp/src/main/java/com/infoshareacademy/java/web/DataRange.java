@@ -25,19 +25,9 @@ public class DataRange extends HttpServlet {
 
         FundBase fundBase = new FundBase();
 
-        resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
-        writer.println(getServletContext().getAttribute("choseFundString"));
-        writer.println("<br>");
-        writer.println(getServletContext().getAttribute("unZippedDir"));
-        writer.println("<br>");
-
-        String stringToFund = null;
-        stringToFund = getServletContext().getAttribute("unZippedDir").toString();
+        String stringToFund = getServletContext().getAttribute("unZippedDir").toString();
         stringToFund += "/";
         stringToFund += getServletContext().getAttribute("choseFundString").toString();
-        writer.println(stringToFund);
-        writer.println("<br>");
 
         ArrayList<Fund> fundsList = fundBase.readFoundIntoList(stringToFund);
 
@@ -46,30 +36,19 @@ public class DataRange extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/dataRangeDoGet.jsp");
         dispatcher.forward(req, resp);
-
 }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
 
-
-            Part startDate = null;
-            Part endDate = null;
-            startDate = req.getPart("startDate");
-            endDate = req.getPart("endDate");
-            Scanner scannerStartDate = null;
-            Scanner scannerEndDate = null;
-            scannerStartDate = new Scanner(startDate.getInputStream());
-            scannerEndDate = new Scanner(endDate.getInputStream());
+            Part startDate = req.getPart("startDate");
+            Part endDate = req.getPart("endDate");
+            Scanner scannerStartDate = new Scanner(startDate.getInputStream());
+            Scanner scannerEndDate = new Scanner(endDate.getInputStream());
             String startLocalDate = scannerStartDate.nextLine();
             String endLocalDate = scannerEndDate.nextLine();
             getServletContext().setAttribute("startLocalDate", startLocalDate);
             getServletContext().setAttribute("endLocalDate", endLocalDate);
-            writer.println(startLocalDate);
-            writer.println(endLocalDate);
-
 
         resp.sendRedirect("extremaLokalne");
     }
