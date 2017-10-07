@@ -1,3 +1,5 @@
+package com.infoshareacademy.baseapp;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +13,7 @@ public class Program {
     private LocalDate endDate;
     private ArrayList<Fund> fundsList = new ArrayList<>();
     private Extremum extremum = new Extremum();
+
 
     public Program() {
         fundsMap = new HashMap<>();

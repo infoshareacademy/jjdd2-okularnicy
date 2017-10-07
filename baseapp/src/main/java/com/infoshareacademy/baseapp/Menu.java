@@ -1,15 +1,14 @@
+package com.infoshareacademy.baseapp;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 
 public enum Menu {
     EXIT(0, "Wyjście z programu"),
     SERACH_IN_BASE(1, "Wyszukaj plik z danymi"),
     FIND_GLOBAL_EXTREMES(2, "Wyszukaj ekstrema globalne"),
     FIND_LOCALE_EXTREMES(3, "Wyszukaj ekstrema lokalne");
-
-
 
     private int value;
     private String discription;

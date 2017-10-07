@@ -1,6 +1,11 @@
+package com.infoshareacademy.baseapp;
+
+import com.infoshareacademy.baseapp.Fund;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,7 +19,7 @@ public class FundBase {
     /**
      * Reads from specified file and adds it to the List
      * @param pathToFile    path to file which contain the historical data about fund
-     * @return              List<Fund> where every Fund item is another line from file
+     * @return              List<com.infoshareacademy.baseapp.Fund> where every com.infoshareacademy.baseapp.Fund item is another line from file
      */
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
@@ -37,14 +42,14 @@ public class FundBase {
             while ((sCurrentLine = br.readLine()) != null) {//repeating the reading from file while BufferedReader contains any value
                 // (if there is any value then sCurrentLine = br.readLine() method will return value that is different than null
 
-                Fund temporaryFund = new Fund();//creating Fund object that is used to contain 1 line from the file,
+                Fund temporaryFund = new Fund();//creating com.infoshareacademy.baseapp.Fund object that is used to contain 1 line from the file,
                 // then it will be added to the List
 
                 temporaryFund.setName(sCurrentLine.split(",")[0]);//[0] entry is the Name value
 
                 temporaryFund.setDate(LocalDate.parse(sCurrentLine.split(",")[1], dateTimeFormatter));//[1] entry is the Date value
                 /*
-                sCurrentLine.split(",")[x] returns String but Fund.setDate() expects LocalDate
+                sCurrentLine.split(",")[x] returns String but com.infoshareacademy.baseapp.Fund.setDate() expects LocalDate
                 to change String to LocalDate you can use LocalDate.parse(String, formatter) method
                 DateTimeFormatter is created befor entering the while loop
                 below is 3 lines version of the above command

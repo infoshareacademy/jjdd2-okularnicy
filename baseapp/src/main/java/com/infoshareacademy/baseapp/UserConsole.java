@@ -1,3 +1,6 @@
+package com.infoshareacademy.baseapp;
+
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -35,6 +38,7 @@ public class UserConsole {
 
     public void menu(Program program) {
         Menu menu = null;
+        SerachFundFile serachFundFile = new SerachFundFile();
         while (menu != Menu.EXIT) {
             try {
                 printOptions();
@@ -45,13 +49,14 @@ public class UserConsole {
                     case SERACH_IN_BASE:
                         clearScreen();
                         System.out.println("Wyszukaj plik z danymi");
-                        SerachFundFile serachFundFile = new SerachFundFile();
                         program.setPathToFile(serachFundFile.searchEngine(program.getFundsMap()));
                         FundBase fundBase = new FundBase();
                         program.setFundsList(fundBase.readFoundIntoList(program.getPathToFile()));
                         break;
                     case FIND_GLOBAL_EXTREMES:
                         clearScreen();
+
+                        System.out.println("Ekstrema globalne dla: " + serachFundFile.getChoosedFileName());
                         Extremum extremum = new Extremum();
                         System.out.println("Wartość minimalna: " + extremum.findMin(program.getFundsList()));
                         System.out.println("Wartość maksymalna: " + extremum.findMax(program.getFundsList()));
@@ -61,6 +66,7 @@ public class UserConsole {
                         inputDataRange(program);
                         ListInRange listInRange = new ListInRange(program);
                         listInRange.isDateIsInRange();
+                        System.out.println("Ekstrema lokalne dla: " + serachFundFile.getChoosedFileName());
                         System.out.println("Wartość minimalna: " + program.getExtremum().findMin(listInRange.setListInRange()));
                         System.out.println("Wartość maksymalna: " + program.getExtremum().findMax(listInRange.setListInRange()));
                         break;

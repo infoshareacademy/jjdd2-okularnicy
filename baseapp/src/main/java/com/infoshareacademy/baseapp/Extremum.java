@@ -1,3 +1,5 @@
+package com.infoshareacademy.baseapp;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
