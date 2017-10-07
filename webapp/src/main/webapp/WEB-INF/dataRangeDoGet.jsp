@@ -21,7 +21,6 @@
 </head>
 
 <body>
-<p>DataRangeDoGet.jsp</p>
 <p>Podaj zakres dat</p>
 <form action="DataRange" method="POST" enctype="multipart/form-data">
     <p>Podaj pierwsza date</p>

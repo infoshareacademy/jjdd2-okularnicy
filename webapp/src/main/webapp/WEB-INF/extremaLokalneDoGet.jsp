@@ -19,11 +19,8 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 </head>
-
 <body>
-<p>extremaLokalneDoGet.jsp</p>
-
 <p>Wartość minimalna: ${fundMinDate} => ${fundMinClose}</p>
 <p>Wartość maksymalna: ${fundMaxDate} => ${fundMaxClose}</p>
-
 </body>
+</html>
