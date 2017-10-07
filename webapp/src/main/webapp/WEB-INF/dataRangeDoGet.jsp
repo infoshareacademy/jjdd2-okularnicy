@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
     <meta name="description" content="">
     <title>ANALIZATOR FINANSOWY</title>
 
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/style.css" rel="stylesheet" type="text/css">
 
     <%--no cache--%>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -21,21 +22,42 @@
 </head>
 
 <body>
-<p>Podaj zakres dat</p>
-<form action="DataRange" method="POST" enctype="multipart/form-data">
-    <p>Podaj pierwsza date</p>
-    <select name="startDate" required>
-        <c:forEach items="${fundsList}" var="fundsListValue">
-            <option value="${fundsListValue.getDate()}">${fundsListValue.getDate()}</option>
-        </c:forEach>
-    </select>
-    <p>Podaj druga date</p>
-    <select name="endDate" required>
-        <c:forEach items="${fundsList}" var="fundsListValue">
-            <option value="${fundsListValue.getDate()}">${fundsListValue.getDate()}</option>
-        </c:forEach>
-    </select>
-    <input type="submit" value="Wyslij">
-</form>
+<header>
+    <nav class=nav>
+        <ul>
+            <li><a href="start">STRONA GŁÓWNA</a></li>
+            <li><a href="analizator">FUNDUSZ</a></li>
+            <li><a href="extremaGlobalne">EKSTREMA GLOBALNE</a></li>
+            <li><a href="DataRange">EKSTREMA LOKALNE</a></li>
+            <li><a href="https://www.google.pl">WYJŚCIE</a></li>
+        </ul>
+    </nav>
+
+</header>
+<div class="og" id="data">
+    <H1>PODAJ ZAKRES DAT</H1>
+
+    <form action="DataRange" method="POST" enctype="multipart/form-data">
+        <h2> Data początkowa </h2>
+
+        <select name="startDate" required>
+            <c:forEach items="${fundsList}" var="fundsListValue">
+                <option value="${fundsListValue.getDate()}">${fundsListValue.getDate()}</option>
+            </c:forEach>
+        </select>
+
+        <h2> Data końcowa </h2>
+
+        <select name="endDate" required>
+            <c:forEach items="${fundsList}" var="fundsListValue">
+                <option value="${fundsListValue.getDate()}">${fundsListValue.getDate()}</option>
+            </c:forEach>
+        </select>
+
+        <br>
+
+        <input type="submit" value="Wyślij">
+    </form>
+</div>
 </body>
 </html>
