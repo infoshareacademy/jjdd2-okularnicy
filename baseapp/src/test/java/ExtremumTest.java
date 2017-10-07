@@ -1,7 +1,9 @@
+import com.infoshareacademy.baseapp.Extremum;
+import com.infoshareacademy.baseapp.Fund;
+import org.junit.Test;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import org.junit.Before;
-import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
