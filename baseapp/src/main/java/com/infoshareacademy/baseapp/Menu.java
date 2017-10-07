@@ -1,6 +1,8 @@
 package com.infoshareacademy.baseapp;
 
-import java.util.NoSuchElementException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public enum Menu {
     EXIT(0, "Wyjście z programu"),
@@ -30,10 +32,13 @@ public enum Menu {
     }
 
     public static Menu createFromInt(int option) {
+
+        final Logger logger = LogManager.getLogger("log4j-burst-filter");
         Menu result = null;
         try {
             result = Menu.values()[option];
         } catch(ArrayIndexOutOfBoundsException e) {
+            logger.log(Level.ERROR, "Wyjątek: ArrayIndexOutOfBoundsException");
         }
         return result;
     }
