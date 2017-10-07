@@ -30,40 +30,30 @@ public class Start extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            Part fileLST = null;
-            Part fileZIP = null;
-            fileLST = req.getPart("fileLST");
-            fileZIP = req.getPart("fileZIP");
-            InputStream inputStreamLST = null;
-            InputStream inputStreamZIP = null;
-            inputStreamLST = fileLST.getInputStream();
-            inputStreamZIP = fileZIP.getInputStream();
-            String tmpDir = System.getProperty("java.io.tmpdir");
+            Part fileLST = req.getPart("fileLST");
+            Part fileZIP = req.getPart("fileZIP");
+            InputStream inputStreamLST = fileLST.getInputStream();
+            InputStream inputStreamZIP = fileZIP.getInputStream();
 
-            String targetDir = tmpDir + "/okularnicyFiles";
+            String tmpDir = System.getProperty("java.io.tmpdir");
+            String targetDir = tmpDir + "/okularnicyFiles";//to properties
             getServletContext().setAttribute("targetDir", targetDir);
             File targetDirFolder = new File(targetDir);
             if(!targetDirFolder.exists()){
                 targetDirFolder.mkdir();
             }
 
-            String unZippedDir = targetDir + "/unzipped";
-            getServletContext().setAttribute("unZippedDir", unZippedDir);
-            File unZippedDirFolder = new File(unZippedDir);
-            if(!unZippedDirFolder.exists()){
-                unZippedDirFolder.mkdir();
-            }
+            /*String unZippedDir = targetDir + "/unzipped";//to properties
+            getServletContext().setAttribute("unZippedDir", unZippedDir);*/
 
-            String LSTDir = targetDir + "/plik.lst";
+            String LSTDir = targetDir + "/file.lst";
             getServletContext().setAttribute("LSTDir", LSTDir);
 
-            String ZIPDir = targetDir + "/plik.zip";
+            String ZIPDir = targetDir + "/file.zip";
             getServletContext().setAttribute("ZIPDir", ZIPDir);
 
-            OutputStream outputStreamLST = null;
-            OutputStream outputStreamZIP = null;
-            outputStreamLST = new FileOutputStream(new File(LSTDir));
-            outputStreamZIP = new FileOutputStream(new File(ZIPDir));
+            OutputStream outputStreamLST = new FileOutputStream(new File(LSTDir));
+            OutputStream outputStreamZIP = new FileOutputStream(new File(ZIPDir));
             int readLST = 0;
             int readZIP = 0;
             byte[] bytesLST = new byte[1024];
@@ -74,10 +64,6 @@ public class Start extends HttpServlet{
             while ((readZIP = inputStreamZIP.read(bytesZIP)) != -1) {
                 outputStreamZIP.write(bytesZIP, 0, readZIP);
             }
-
-            /*RequestDispatcher dispatcher = getServletContext()
-                    .getRequestDispatcher ("/WEB-INF/startDoPost.jsp");
-            dispatcher.forward(req, resp);*/
 
             resp.sendRedirect("start2");
         } catch (IOException e) {

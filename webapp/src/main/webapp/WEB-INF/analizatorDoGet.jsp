@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
     <meta name="description" content="">
     <title>ANALIZATOR FINANSOWY</title>
 
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/style.css" rel="stylesheet" type="text/css">
 
     <%--no cache--%>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -21,36 +22,35 @@
 </head>
 
 <body>
-<p>analizatorDoGet.jsp</p>
-<form action="analizator" method="POST" enctype="multipart/form-data">
-    <select name="choseFund" required>
-        <c:forEach items="${filesHashMap}" var="entry">
-            <option value="${entry.value}">${entry.key}</option>
-        </c:forEach>
-    </select>
-    <input type="submit" value="Wyslij">
-</form>
+<header>
+    <nav class=nav>
+        <ul>
+            <li><a href="start">STRONA GŁÓWNA</a></li>
+            <li><a href="analizator">FUNDUSZ</a></li>
+            <li><a href="extremaGlobalne">EKSTREMA GLOBALNE</a></li>
+            <li><a href="DataRange">EKSTREMA LOKALNE</a></li>
+            <li><a href="https://www.google.pl">WYJŚCIE</a></li>
+        </ul>
+    </nav>
 
-<%--<form action="analizator" method="post" enctype="multipart/form-data">
-    <p>Tutaj wskaż plik LST: <input type="text" name="file2"/></p>
-    <button type="submit">Wyslij</button>
-</form>--%>
+</header>
+<div class="og" id="boxy">
+    <H1>WYBIERZ ODPOWIEDNI FUNDUSZ</H1>
+    <div class="tooltip"> <p id="x"> ? </p>
+        <span class="tooltiptext">Pamiętaj, aby po wybraniu funduszu wcisnąć przycisk Wyślij</span>
+    </div>
 
-<%--<p>map: ${filesHashMap}</p>--%>
+    <form action="analizator" method="POST" enctype="multipart/form-data">
+        <select class=sel name="choseFund" required>
+            <c:forEach items="${filesHashMap}" var="entry">
+                <option value="${entry.value}">${entry.key}</option>
+            </c:forEach>
+        </select>
+        <input type="submit" value="Wyślij">
+    </form>
+</div>
+</body>
 
-<%--<c:forEach items="${filesHashMap}" var="entry">
-    <p>${entry.key} => ${entry.value}</p>
-</c:forEach>--%>
-
-
-
-<%--<select id="food" name="fooditems">
-    <c:forEach items="${foods}" var="food">
-        <option value="${food.key}">
-                ${food.value}
-        </option>
-    </c:forEach>
-</select>--%>
 
 </body>
 </html>
