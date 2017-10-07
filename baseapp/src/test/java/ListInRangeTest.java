@@ -1,8 +1,12 @@
+import com.infoshareacademy.baseapp.Fund;
+import com.infoshareacademy.baseapp.ListInRange;
+import com.infoshareacademy.baseapp.Program;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

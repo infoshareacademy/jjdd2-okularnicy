@@ -1,3 +1,5 @@
+package com.infoshareacademy.baseapp;
+
 import java.util.HashMap;
 
 public class Main {
