@@ -22,6 +22,7 @@ public class Start extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.log(Level.INFO, "uruchomiono aplikacje");
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
