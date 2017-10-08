@@ -26,7 +26,7 @@ public class Start2 extends HttpServlet {
         String targetDir = String.valueOf(getServletContext().getAttribute("targetDir"));
         String ZIPDir = String.valueOf(getServletContext().getAttribute("ZIPDir"));
 
-        String unZippedDir = targetDir + "/unzipped";//to properties
+        /*String unZippedDir = targetDir + "/unzipped";//to properties
         getServletContext().setAttribute("unZippedDir", unZippedDir);
         File unZippedDirFolder = new File(unZippedDir);
         if(!unZippedDirFolder.exists()){
@@ -36,6 +36,6 @@ public class Start2 extends HttpServlet {
         UnZip unZip = new UnZip();
         unZip.unZip(ZIPDir,unZippedDir);
 
-        resp.sendRedirect("analizator");
+        resp.sendRedirect("analizator");*/
     }
 }

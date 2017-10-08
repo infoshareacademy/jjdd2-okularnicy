@@ -1,5 +1,8 @@
 package com.infoshareacademy.java.web;
 
+import com.infoshareacademy.baseapp.StartingParameters;
+import com.infoshareacademy.baseapp.UnZip;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map;
+import java.util.Set;
 import java.time.LocalDateTime;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -41,14 +48,13 @@ public class Start extends HttpServlet{
 
             String tmpDir = System.getProperty("java.io.tmpdir");
             String targetDir = tmpDir + "/okularnicyFiles";//to properties
+            FileUtils.deleteDirectory(new File(targetDir));
+
             getServletContext().setAttribute("targetDir", targetDir);
             File targetDirFolder = new File(targetDir);
             if(!targetDirFolder.exists()){
                 targetDirFolder.mkdir();
             }
-
-            /*String unZippedDir = targetDir + "/unzipped";//to properties
-            getServletContext().setAttribute("unZippedDir", unZippedDir);*/
 
             String LSTDir = targetDir + "/file.lst";
             getServletContext().setAttribute("LSTDir", LSTDir);
@@ -69,7 +75,57 @@ public class Start extends HttpServlet{
                 outputStreamZIP.write(bytesZIP, 0, readZIP);
             }
 
-            resp.sendRedirect("start2");
+            String unZippedDir = targetDir + "/unzipped";//to properties
+            getServletContext().setAttribute("unZippedDir", unZippedDir);
+            File unZippedDirFolder = new File(unZippedDir);
+            if(!unZippedDirFolder.exists()){
+                unZippedDirFolder.mkdir();
+            }
+
+            UnZip unZip = new UnZip();
+            unZip.unZip(ZIPDir,unZippedDir);
+
+            String[] LSTDirArray = new String[] {LSTDir};
+            Map<String, String> filesHashMap = new HashMap<String, String>();
+            StartingParameters startingParameters = new StartingParameters();
+            filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
+
+            int mapsEntry=0;
+            int fundsFound=0;
+
+            Set<Map.Entry<String, String>> entries = filesHashMap.entrySet();
+            for(Map.Entry<String, String> entry : entries){
+                mapsEntry++;
+                String pathToFund = getServletContext().getAttribute("unZippedDir").toString();
+                pathToFund += "/";
+                pathToFund += entry.getValue();
+                File f = new File(pathToFund);
+                if(f.exists() && !f.isDirectory()) {
+                    fundsFound++;
+                }
+            }
+
+            if ((mapsEntry == fundsFound) && (fundsFound > 0)){
+                getServletContext().setAttribute("lstCorrectness", 1);
+            } else if (fundsFound > 0) {
+                getServletContext().setAttribute("lstCorrectness", 0);
+            } else {
+                getServletContext().setAttribute("lstCorrectness", -1);
+            }
+
+            getServletContext().setAttribute("mapsEntry", mapsEntry);
+            getServletContext().setAttribute("fundsFound", fundsFound);
+            getServletContext().setAttribute("filesHashMap", filesHashMap);
+
+            if (getServletContext().getAttribute("lstCorrectness").toString().equals("-1")) {
+                RequestDispatcher dispatcher = getServletContext()
+                        .getRequestDispatcher ("/WEB-INF/ErrorZIP.jsp");
+                dispatcher.forward(req, resp);
+            } else {
+                RequestDispatcher dispatcher = getServletContext()
+                        .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
+                dispatcher.forward(req, resp);
+            }
         } catch (IOException e) {
             logger.log(Level.ERROR, "Wyjątek: IOException");
         } catch (ServletException e) {

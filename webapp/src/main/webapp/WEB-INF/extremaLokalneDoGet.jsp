@@ -42,3 +42,4 @@
     <p>Wartość maksymalna: ${fundMaxDate} => ${fundMaxClose}</p>
 </div>
 </body>
+</html>

@@ -24,7 +24,6 @@
 </head>
 
 <body>
-
 <header>
     <nav class=nav>
         <ul>
@@ -39,6 +38,8 @@
 </header>
 <div class="og" id="boxy">
     <H1>WYBIERZ ODPOWIEDNI FUNDUSZ</H1>
+    <c:if test="${lstCorrectness == 0}" ><H3 class="warning">Uwaga! Archiwum zip nie zawiera wszystkich plików zapisanych na liście LST. Nadal możesz korzystać z aplikacji, ale lista wyboru została ograniczona do plików które znajdują się w archiwum</H3></c:if>
+
     <div class="tooltip"> <p id="x"> ? </p>
         <span class="tooltiptext">Pamiętaj, aby po wybraniu funduszu wcisnąć przycisk Wyślij</span>
     </div>
@@ -52,8 +53,5 @@
         <input type="submit" value="Wyślij">
     </form>
 </div>
-</body>
-
-
 </body>
 </html>

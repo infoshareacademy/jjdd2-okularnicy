@@ -45,8 +45,8 @@
     <h3>WYSZUKAJ PLIKI</h3>
     <br/>
     <form  action="start" method="post" enctype="multipart/form-data">
-        <p>Wskaż plik LST: <input class=pliki type="file" name="fileLST"/></p>
-        <p>Wskaż archiwum ZIP: <input class=pliki type="file" name="fileZIP"/></p>
+        <p>Wskaż plik LST: <input class=pliki type="file" name="fileLST" required accept=".lst"/></p>
+        <p>Wskaż archiwum ZIP: <input class=pliki type="file" name="fileZIP" required accept=".zip"/></p>
         <br/>
         <button type="submit">WYŚLIJ</button>
     </form>
