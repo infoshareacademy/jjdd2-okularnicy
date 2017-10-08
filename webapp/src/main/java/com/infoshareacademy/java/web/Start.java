@@ -90,6 +90,8 @@ public class Start extends HttpServlet{
             StartingParameters startingParameters = new StartingParameters();
             filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
 
+            Map<String, String> filesHashMapToSent = new HashMap<String, String>();
+
             int mapsEntry=0;
             int fundsFound=0;
 
@@ -102,8 +104,11 @@ public class Start extends HttpServlet{
                 File f = new File(pathToFund);
                 if(f.exists() && !f.isDirectory()) {
                     fundsFound++;
+                    filesHashMapToSent.put(entry.getKey(),entry.getValue());
                 }
             }
+
+
 
             if ((mapsEntry == fundsFound) && (fundsFound > 0)){
                 getServletContext().setAttribute("lstCorrectness", 1);
@@ -115,7 +120,7 @@ public class Start extends HttpServlet{
 
             getServletContext().setAttribute("mapsEntry", mapsEntry);
             getServletContext().setAttribute("fundsFound", fundsFound);
-            getServletContext().setAttribute("filesHashMap", filesHashMap);
+            getServletContext().setAttribute("filesHashMap", filesHashMapToSent);
 
             if (getServletContext().getAttribute("lstCorrectness").toString().equals("-1")) {
                 RequestDispatcher dispatcher = getServletContext()
