@@ -22,7 +22,6 @@
 </head>
 
 <body>
-
 <header>
     <nav class=nav>
         <ul>
@@ -35,38 +34,30 @@
     </nav>
 
 </header>
-<article class="og" id="pokoje">
+<div class="og" id="data">
+    <H1>PODAJ ZAKRES DAT</H1>
 
-    <p class=" room">
-        <a class="inroom" href="extremaGlobalne"><img src="${pageContext.request.contextPath}/resources/world.png"  title="" media-simple="true" style="height: 30vh;">
-            <br>
-            EKSTREMA GLOBALNE
-        </a>
-    </p>
+    <form action="DataRange" method="POST" enctype="multipart/form-data">
+        <h2> Data początkowa </h2>
 
-    <p class="room">
+        <select name="startDate" required>
+            <c:forEach items="${fundsList}" var="fundsListValue">
+                <option value="${fundsListValue.getDate()}">${fundsListValue.getDate()}</option>
+            </c:forEach>
+        </select>
 
-        <a class="inroom" href="DataRange"><img src="${pageContext.request.contextPath}/resources/home.png"  title="" media-simple="true" style="height: 30vh;">
-            <br>
-            EKSTREMA LOKALNE
-        </a>
-    </p>
+        <h2> Data końcowa </h2>
 
-</article>
+        <select name="endDate" required>
+            <c:forEach items="${fundsList}" var="fundsListValue">
+                <option value="${fundsListValue.getDate()}">${fundsListValue.getDate()}</option>
+            </c:forEach>
+        </select>
 
+        <br>
 
+        <input type="submit" value="Wyślij">
+    </form>
+</div>
 </body>
-=======
-<table>
-    <tr>
-        <th>========================</th>
-        <th>========================</th>
-    </tr>
-    <tr>
-        <td><a href="extremaGlobalne">extremaGlobalne</a></td>
-        <td><a href="extremaLokalne">extremaLokalne</a></td>
-    </tr>
-</table>
-</body>
-
 </html>

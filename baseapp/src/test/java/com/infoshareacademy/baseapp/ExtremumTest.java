@@ -1,10 +1,10 @@
 package com.infoshareacademy.baseapp;
 
+import org.junit.Before;
 import org.junit.Test;
-
+import org.junit.Test;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
