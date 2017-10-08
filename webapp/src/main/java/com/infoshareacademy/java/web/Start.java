@@ -43,9 +43,6 @@ public class Start extends HttpServlet{
                 targetDirFolder.mkdir();
             }
 
-            /*String unZippedDir = targetDir + "/unzipped";//to properties
-            getServletContext().setAttribute("unZippedDir", unZippedDir);*/
-
             String LSTDir = targetDir + "/file.lst";
             getServletContext().setAttribute("LSTDir", LSTDir);
 
