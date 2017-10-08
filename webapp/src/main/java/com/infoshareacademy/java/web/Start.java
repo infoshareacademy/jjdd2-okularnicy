@@ -2,9 +2,11 @@ package com.infoshareacademy.java.web;
 
 import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.UnZip;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,11 +18,12 @@ import javax.servlet.http.Part;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map;
+import java.util.Set;
 
 @WebServlet("/start")
 @MultipartConfig
 public class Start extends HttpServlet{
-
 
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
@@ -41,6 +44,8 @@ public class Start extends HttpServlet{
 
             String tmpDir = System.getProperty("java.io.tmpdir");
             String targetDir = tmpDir + "/okularnicyFiles";//to properties
+            FileUtils.deleteDirectory(new File(targetDir));
+
             getServletContext().setAttribute("targetDir", targetDir);
             File targetDirFolder = new File(targetDir);
             if(!targetDirFolder.exists()){
@@ -81,13 +86,42 @@ public class Start extends HttpServlet{
             StartingParameters startingParameters = new StartingParameters();
             filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
 
-            req.setAttribute("filesHashMap", filesHashMap);
+            int mapsEntry=0;
+            int fundsFound=0;
 
-            //resp.sendRedirect("analizator");
+            Set<Map.Entry<String, String>> entries = filesHashMap.entrySet();
+            for(Map.Entry<String, String> entry : entries){
+                mapsEntry++;
+                String pathToFund = getServletContext().getAttribute("unZippedDir").toString();
+                pathToFund += "/";
+                pathToFund += entry.getValue();
+                File f = new File(pathToFund);
+                if(f.exists() && !f.isDirectory()) {
+                    fundsFound++;
+                }
+            }
 
-            RequestDispatcher dispatcher = getServletContext()
-                    .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
-            dispatcher.forward(req, resp);
+            if ((mapsEntry == fundsFound) && (fundsFound > 0)){
+                getServletContext().setAttribute("lstCorrectness", 1);
+            } else if (fundsFound > 0) {
+                getServletContext().setAttribute("lstCorrectness", 0);
+            } else {
+                getServletContext().setAttribute("lstCorrectness", -1);
+            }
+
+            getServletContext().setAttribute("mapsEntry", mapsEntry);
+            getServletContext().setAttribute("fundsFound", fundsFound);
+            getServletContext().setAttribute("filesHashMap", filesHashMap);
+
+            if (getServletContext().getAttribute("lstCorrectness").toString().equals("-1")) {
+                RequestDispatcher dispatcher = getServletContext()
+                        .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
+                dispatcher.forward(req, resp);
+            } else {
+                RequestDispatcher dispatcher = getServletContext()
+                        .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
+                dispatcher.forward(req, resp);
+            }
         } catch (IOException e) {
 
             logger.log(Level.ERROR, "Wyjątek: IOException");

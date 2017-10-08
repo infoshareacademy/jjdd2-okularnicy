@@ -24,7 +24,6 @@
 </head>
 
 <body>
-
 <header>
     <nav class=nav>
         <ul>
@@ -39,6 +38,9 @@
 </header>
 <div class="og" id="boxy">
     <H1>WYBIERZ ODPOWIEDNI FUNDUSZ</H1>
+    <H1>${mapsEntry}</H1>
+    <H1>${fundsFound}</H1>
+    <H1>${lstCorrectness}</H1>
     <div class="tooltip"> <p id="x"> ? </p>
         <span class="tooltiptext">Pamiętaj, aby po wybraniu funduszu wcisnąć przycisk Wyślij</span>
     </div>
@@ -53,19 +55,4 @@
     </form>
 </div>
 </body>
-
-
-</body>
-
-<form action="analizator" method="POST" enctype="multipart/form-data">
-    <select name="choseFund" required>
-        <c:forEach items="${filesHashMap}" var="entry">
-            <option value="${entry.value}">${entry.key}</option>
-        </c:forEach>
-    </select>
-    <input type="submit" value="Wyslij">
-</form>
-</body>
-
-
 </html>
