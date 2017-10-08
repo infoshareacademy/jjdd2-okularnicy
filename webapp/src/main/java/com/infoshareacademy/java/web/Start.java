@@ -1,5 +1,6 @@
 package com.infoshareacademy.java.web;
 
+import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.UnZip;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/start")
 @MultipartConfig
@@ -73,7 +76,18 @@ public class Start extends HttpServlet{
             UnZip unZip = new UnZip();
             unZip.unZip(ZIPDir,unZippedDir);
 
-            resp.sendRedirect("analizator");
+            String[] LSTDirArray = new String[] {LSTDir};
+            Map<String, String> filesHashMap = new HashMap<String, String>();
+            StartingParameters startingParameters = new StartingParameters();
+            filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
+
+            req.setAttribute("filesHashMap", filesHashMap);
+
+            //resp.sendRedirect("analizator");
+
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
+            dispatcher.forward(req, resp);
         } catch (IOException e) {
 
             logger.log(Level.ERROR, "Wyjątek: IOException");

@@ -23,18 +23,18 @@ public class Analizator extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServerException, IOException, ServletException {
-        String LSTDir = getServletContext().getAttribute("LSTDir").toString();
+        /*String LSTDir = getServletContext().getAttribute("LSTDir").toString();
         String[] LSTDirArray = new String[] {LSTDir};
 
         Map<String, String> filesHashMap = new HashMap<String, String>();
         StartingParameters startingParameters = new StartingParameters();
         filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
 
-        req.setAttribute("filesHashMap", filesHashMap);
+        req.setAttribute("filesHashMap", filesHashMap);*/
 
-        RequestDispatcher dispatcher = getServletContext()
+        /*RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
-        dispatcher.forward(req, resp);
+        dispatcher.forward(req, resp);*/
     }
 
     @Override
