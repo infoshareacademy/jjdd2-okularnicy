@@ -12,16 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
+import java.time.LocalDateTime;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @WebServlet("/start")
 @MultipartConfig
 public class Start extends HttpServlet{
 
-
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.log(Level.INFO, "uruchomiono aplikacje");
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
@@ -67,11 +71,9 @@ public class Start extends HttpServlet{
 
             resp.sendRedirect("start2");
         } catch (IOException e) {
-
             logger.log(Level.ERROR, "Wyjątek: IOException");
         } catch (ServletException e) {
             logger.log(Level.ERROR, "Wyjątek: ServletException");
-
         }
     }
 }

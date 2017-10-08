@@ -1,5 +1,6 @@
 package com.infoshareacademy.java.web;
 
+import com.infoshareacademy.baseapp.FundBase;
 import com.infoshareacademy.baseapp.StartingParameters;
 
 import javax.servlet.RequestDispatcher;
