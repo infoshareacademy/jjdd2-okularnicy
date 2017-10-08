@@ -68,10 +68,5 @@ public class extremaLokalne extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/extremaLokalneDoGet.jsp");
         dispatcher.forward(req, resp);
-
-
-
-
-
     }
 }
