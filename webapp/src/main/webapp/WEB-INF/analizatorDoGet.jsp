@@ -56,16 +56,4 @@
 
 
 </body>
-
-<form action="analizator" method="POST" enctype="multipart/form-data">
-    <select name="choseFund" required>
-        <c:forEach items="${filesHashMap}" var="entry">
-            <option value="${entry.value}">${entry.key}</option>
-        </c:forEach>
-    </select>
-    <input type="submit" value="Wyslij">
-</form>
-</body>
-
-
 </html>

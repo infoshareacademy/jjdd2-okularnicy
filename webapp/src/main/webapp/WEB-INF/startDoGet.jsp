@@ -53,12 +53,4 @@
 </article>
 
 </body>
-=======
-<form action="start" method="post" enctype="multipart/form-data">
-    <p>Tutaj wskaż plik LST: <input type="file" name="fileLST"/></p>
-    <p>Tutaj wskaż archiwum ZIP: <input type="file" name="fileZIP"/></p>
-    <button type="submit">Wyslij</button>
-</form>
-</body>
-
 </html>
