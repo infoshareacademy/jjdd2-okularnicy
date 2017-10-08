@@ -1,5 +1,6 @@
 package com.infoshareacademy.java.web;
 
+import com.infoshareacademy.baseapp.UnZip;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -62,7 +63,17 @@ public class Start extends HttpServlet{
                 outputStreamZIP.write(bytesZIP, 0, readZIP);
             }
 
-            resp.sendRedirect("start2");
+            String unZippedDir = targetDir + "/unzipped";//to properties
+            getServletContext().setAttribute("unZippedDir", unZippedDir);
+            File unZippedDirFolder = new File(unZippedDir);
+            if(!unZippedDirFolder.exists()){
+                unZippedDirFolder.mkdir();
+            }
+
+            UnZip unZip = new UnZip();
+            unZip.unZip(ZIPDir,unZippedDir);
+
+            resp.sendRedirect("analizator");
         } catch (IOException e) {
 
             logger.log(Level.ERROR, "Wyjątek: IOException");
