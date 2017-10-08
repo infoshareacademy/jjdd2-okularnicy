@@ -56,17 +56,4 @@
 
 
 </body>
-=======
-<table>
-    <tr>
-        <th>========================</th>
-        <th>========================</th>
-    </tr>
-    <tr>
-        <td><a href="extremaGlobalne">extremaGlobalne</a></td>
-        <td><a href="extremaLokalne">extremaLokalne</a></td>
-    </tr>
-</table>
-</body>
-
 </html>
