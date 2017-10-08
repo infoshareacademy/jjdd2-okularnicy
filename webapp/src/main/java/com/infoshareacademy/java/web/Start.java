@@ -115,7 +115,7 @@ public class Start extends HttpServlet{
 
             if (getServletContext().getAttribute("lstCorrectness").toString().equals("-1")) {
                 RequestDispatcher dispatcher = getServletContext()
-                        .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
+                        .getRequestDispatcher ("/WEB-INF/ErrorZIP.jsp");
                 dispatcher.forward(req, resp);
             } else {
                 RequestDispatcher dispatcher = getServletContext()
