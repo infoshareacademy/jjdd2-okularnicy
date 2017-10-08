@@ -40,7 +40,6 @@ public class UnZip {
             logger.log(Level.ERROR, "Wyjątek: FileNotFoundException");
         } catch (IOException f) {
             logger.log(Level.ERROR, "Wyjątek: IOException");
-
         }
     }
 }

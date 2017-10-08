@@ -6,7 +6,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -20,6 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map;
 import java.util.Set;
+import java.time.LocalDateTime;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @WebServlet("/start")
 @MultipartConfig
@@ -29,6 +32,7 @@ public class Start extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.log(Level.INFO, "uruchomiono aplikacje");
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
@@ -123,11 +127,9 @@ public class Start extends HttpServlet{
                 dispatcher.forward(req, resp);
             }
         } catch (IOException e) {
-
             logger.log(Level.ERROR, "Wyjątek: IOException");
         } catch (ServletException e) {
             logger.log(Level.ERROR, "Wyjątek: ServletException");
-
         }
     }
 }
