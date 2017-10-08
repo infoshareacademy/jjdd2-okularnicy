@@ -38,7 +38,7 @@
 </header>
 <div class="og" id="boxy">
     <H1>WYBIERZ ODPOWIEDNI FUNDUSZ</H1>
-    <c:if test="${lstCorrectness == 0}" ><H1>uwaga!!!</H1></c:if>
+    <c:if test="${lstCorrectness == 0}" ><span class="warning">Uwaga! Archiwum zip nie zawiera wszystkich plików zapisanych na liście LST. Nadal możesz korzystać z aplikacji, ale lista wyboru została ograniczona do plików które znajdują się w archiwum</span></c:if>
 
     <div class="tooltip"> <p id="x"> ? </p>
         <span class="tooltiptext">Pamiętaj, aby po wybraniu funduszu wcisnąć przycisk Wyślij</span>
