@@ -44,8 +44,4 @@
 </div>
 
 </body>
-=======
-<p>Wartość minimalna: ${fundMinDate} => ${fundMinClose}</p>
-<p>Wartość minimalna: ${fundMaxDate} => ${fundMaxClose}</p>
-</body>
 </html>
