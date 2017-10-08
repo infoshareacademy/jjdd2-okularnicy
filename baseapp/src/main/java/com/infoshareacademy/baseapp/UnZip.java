@@ -37,7 +37,7 @@ public class UnZip {
             zipInputStream.closeEntry();
             zipInputStream.closeEntry();
 
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e){
             logger.log(Level.ERROR, "Wyjątek: FileNotFoundException");
         } catch (IOException f) {
             logger.log(Level.ERROR, "Wyjątek: IOException");

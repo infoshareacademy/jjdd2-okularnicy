@@ -5,6 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+
     <meta http-equiv="x-ua-compatibile" content="ie-edge, chrome-1">
     <meta name="keywords" content="">
     <meta name="description" content="">
@@ -15,6 +16,7 @@
 
     <link href="${pageContext.request.contextPath}/resources/style.css" rel="stylesheet" type="text/css">
 
+
     <%--no cache--%>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
@@ -22,6 +24,7 @@
 </head>
 
 <body>
+
 <header>
     <nav class=nav>
         <ul>
@@ -53,4 +56,16 @@
 
 
 </body>
+
+<form action="analizator" method="POST" enctype="multipart/form-data">
+    <select name="choseFund" required>
+        <c:forEach items="${filesHashMap}" var="entry">
+            <option value="${entry.value}">${entry.key}</option>
+        </c:forEach>
+    </select>
+    <input type="submit" value="Wyslij">
+</form>
+</body>
+
+
 </html>
