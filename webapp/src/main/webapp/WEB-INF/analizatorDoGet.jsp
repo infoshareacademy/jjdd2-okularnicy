@@ -38,9 +38,8 @@
 </header>
 <div class="og" id="boxy">
     <H1>WYBIERZ ODPOWIEDNI FUNDUSZ</H1>
-    <H1>${mapsEntry}</H1>
-    <H1>${fundsFound}</H1>
-    <H1>${lstCorrectness}</H1>
+    <c:if test="${lstCorrectness == 0}" ><H1>uwaga!!!</H1></c:if>
+
     <div class="tooltip"> <p id="x"> ? </p>
         <span class="tooltiptext">Pamiętaj, aby po wybraniu funduszu wcisnąć przycisk Wyślij</span>
     </div>
