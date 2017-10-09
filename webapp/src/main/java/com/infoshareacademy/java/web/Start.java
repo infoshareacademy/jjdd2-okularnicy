@@ -104,11 +104,9 @@ public class Start extends HttpServlet{
                 File f = new File(pathToFund);
                 if(f.exists() && !f.isDirectory()) {
                     fundsFound++;
-                    filesHashMapToSent.put(entry.getKey(),entry.getValue());
+                    filesHashMapToSent.put(entry.getKey(), entry.getValue());
                 }
             }
-
-
 
             if ((mapsEntry == fundsFound) && (fundsFound > 0)){
                 getServletContext().setAttribute("lstCorrectness", 1);
