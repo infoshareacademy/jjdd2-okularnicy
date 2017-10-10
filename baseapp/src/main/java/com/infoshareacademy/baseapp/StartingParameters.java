@@ -14,13 +14,6 @@ import java.util.Set;
 public class StartingParameters {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
-    public void printMap(Map<String, String> map){
-        Set<Map.Entry<String, String>> entries = map.entrySet();
-        for(Map.Entry<String, String> entry : entries){
-            System.out.println("Key:[" + entry.getKey() + "] Value:[" + entry.getValue() + "]");
-        }
-    }
-
     public Map<String, String> startingParametersIntoMap(String[] args){
 
         Map<String, String> resultMap = new HashMap<String, String>();
