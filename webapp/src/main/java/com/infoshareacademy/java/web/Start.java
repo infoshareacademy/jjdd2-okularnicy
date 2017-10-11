@@ -45,9 +45,12 @@ public class Start extends HttpServlet{
             Part fileZIP = req.getPart("fileZIP");
             InputStream inputStreamLST = fileLST.getInputStream();
             InputStream inputStreamZIP = fileZIP.getInputStream();
+            logger.info("Rozpoczęto wczytywanie plików");
 
             String tmpDir = System.getProperty("java.io.tmpdir");
+            logger.info("Ustawionościeżkę tymczasową na:" + tmpDir);
             String targetDir = tmpDir + "/okularnicyFiles";//to properties
+
             FileUtils.deleteDirectory(new File(targetDir));
 
             getServletContext().setAttribute("targetDir", targetDir);
@@ -55,12 +58,15 @@ public class Start extends HttpServlet{
             if(!targetDirFolder.exists()){
                 targetDirFolder.mkdir();
             }
+            logger.info("Ustawiono ścieżkę docelową na:" + targetDir);
 
             String LSTDir = targetDir + "/file.lst";
             getServletContext().setAttribute("LSTDir", LSTDir);
+            logger.info("Ustawiono ścieżkę do pliku LST: " + LSTDir);
 
             String ZIPDir = targetDir + "/file.zip";
             getServletContext().setAttribute("ZIPDir", ZIPDir);
+            logger.info("Ustawiono ścieżkę do pliku ZIP: " + ZIPDir);
 
             OutputStream outputStreamLST = new FileOutputStream(new File(LSTDir));
             OutputStream outputStreamZIP = new FileOutputStream(new File(ZIPDir));
@@ -74,6 +80,7 @@ public class Start extends HttpServlet{
             while ((readZIP = inputStreamZIP.read(bytesZIP)) != -1) {
                 outputStreamZIP.write(bytesZIP, 0, readZIP);
             }
+            logger.info("Zakończono zapisywanie plików na dysku");
 
             String unZippedDir = targetDir + "/unzipped";//to properties
             getServletContext().setAttribute("unZippedDir", unZippedDir);
@@ -81,15 +88,18 @@ public class Start extends HttpServlet{
             if(!unZippedDirFolder.exists()){
                 unZippedDirFolder.mkdir();
             }
+            logger.info("Ustawiono folder docelowy do dekompresji plików: " + unZippedDir);
 
             UnZip unZip = new UnZip();
             unZip.unZip(ZIPDir,unZippedDir);
+            logger.info("Zakończono rozpakowywanie plików z archiwum");
+
 
             String[] LSTDirArray = new String[] {LSTDir};
             Map<String, String> filesHashMap = new HashMap<String, String>();
             StartingParameters startingParameters = new StartingParameters();
             filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
-
+            logger.info("Wczytanie danych z pliku LST do mapy");
             Map<String, String> filesHashMapToSent = new HashMap<String, String>();
 
             int mapsEntry=0;
@@ -107,13 +117,17 @@ public class Start extends HttpServlet{
                     filesHashMapToSent.put(entry.getKey(), entry.getValue());
                 }
             }
+            logger.info("Zakończono zestawienie danych plik LST - plik ZIP");
 
             if ((mapsEntry == fundsFound) && (fundsFound > 0)){
                 getServletContext().setAttribute("lstCorrectness", 1);
+                logger.info("Zestawienie LST-ZIP zakończono pomyślnie");
             } else if (fundsFound > 0) {
                 getServletContext().setAttribute("lstCorrectness", 0);
+                logger.warn("Zestawienie LST-ZIP - brakuje co najmniej jednego pliku");
             } else {
                 getServletContext().setAttribute("lstCorrectness", -1);
+                logger.error("Zestawienie LST-ZIP - brak pliku");
             }
 
             getServletContext().setAttribute("mapsEntry", mapsEntry);
@@ -124,10 +138,12 @@ public class Start extends HttpServlet{
                 RequestDispatcher dispatcher = getServletContext()
                         .getRequestDispatcher ("/WEB-INF/ErrorZIP.jsp");
                 dispatcher.forward(req, resp);
+                logger.info("Przekierowanie na stronę błędu");
             } else {
                 RequestDispatcher dispatcher = getServletContext()
                         .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
                 dispatcher.forward(req, resp);
+                logger.info("Przekierowanie na kolejną stronę");
             }
         } catch (IOException e) {
             logger.log(Level.ERROR, "Wyjątek: IOException");

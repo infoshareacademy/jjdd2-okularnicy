@@ -2,6 +2,8 @@ package com.infoshareacademy.java.web;
 
 import com.infoshareacademy.baseapp.FundBase;
 import com.infoshareacademy.baseapp.StartingParameters;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +23,7 @@ import java.util.Scanner;
 @WebServlet("/analizator")
 @MultipartConfig
 public class Analizator extends HttpServlet {
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,7 +32,8 @@ public class Analizator extends HttpServlet {
         Scanner scanner = new Scanner(choseFund.getInputStream());
         String choseFundString = scanner.nextLine();
         getServletContext().setAttribute("choseFundString", choseFundString);
-
+        logger.info("Użytkownik wybrał fundusz" + choseFundString);
         resp.sendRedirect("menu");
+        logger.info("Przekierowanie na stronę menu");
     }
 }
