@@ -16,18 +16,30 @@ import java.util.ArrayList;
 public class extremaLokalne extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        Program program = new Program();
+        String startDate = req.getParameter("startDate");
+        String endDate = req.getParameter("endDate");
+        LocalDate startLocalDate = LocalDate.parse(startDate);
+        LocalDate endLocalDate = LocalDate.parse(endDate);
+        program.setStartDate(startLocalDate);
+        program.setEndDate(endLocalDate);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         FundBase fundBase = new FundBase();
         Program program = new Program();
-        String startLocalDateString = getServletContext().getAttribute("startLocalDate").toString();
-        LocalDate startLocalDate = LocalDate.parse(startLocalDateString);
-        program.setStartDate(startLocalDate);
-        String endLocalDateString = getServletContext().getAttribute("endLocalDate").toString();
-        LocalDate endLocalDate = LocalDate.parse(endLocalDateString);
-        program.setEndDate(endLocalDate);
 
-        if (endLocalDate.isBefore(startLocalDate)) {
+//        String startLocalDateString = getServletContext().getAttribute("startLocalDate").toString();
+//        LocalDate startLocalDate = LocalDate.parse(startLocalDateString);
+//        program.setStartDate(startLocalDate);
+//        String endLocalDateString = getServletContext().getAttribute("endLocalDate").toString();
+//        LocalDate endLocalDate = LocalDate.parse(endLocalDateString);
+//        program.setEndDate(endLocalDate);
+
+        if (program.getEndDate().isBefore(program.getStartDate())) {
             resp.sendRedirect("DataRange");
         } else {
 

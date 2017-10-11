@@ -34,22 +34,24 @@ public class DataRange extends HttpServlet {
         req.setAttribute("fundsList", fundsList);
 
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/dataRangeDoGet.jsp");
+                .getRequestDispatcher("/WEB-INF/dataRangeDoGet.jsp");
         dispatcher.forward(req, resp);
-}
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-            Part startDate = req.getPart("startDate");
-            Part endDate = req.getPart("endDate");
-            Scanner scannerStartDate = new Scanner(startDate.getInputStream());
-            Scanner scannerEndDate = new Scanner(endDate.getInputStream());
-            String startLocalDate = scannerStartDate.nextLine();
-            String endLocalDate = scannerEndDate.nextLine();
-            getServletContext().setAttribute("startLocalDate", startLocalDate);
-            getServletContext().setAttribute("endLocalDate", endLocalDate);
-
-        resp.sendRedirect("extremaLokalne");
     }
+
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//
+//
+//
+//            Part startDate = req.getPart("startDate");
+//            Part endDate = req.getPart("endDate");
+//            Scanner scannerStartDate = new Scanner(startDate.getInputStream());
+//            Scanner scannerEndDate = new Scanner(endDate.getInputStream());
+//            String startLocalDate = scannerStartDate.nextLine();
+//            String endLocalDate = scannerEndDate.nextLine();
+//            getServletContext().setAttribute("startLocalDate", startLocalDate);
+//            getServletContext().setAttribute("endLocalDate", endLocalDate);
+//
+//        resp.sendRedirect("extremaLokalne");
+//    }
 }
