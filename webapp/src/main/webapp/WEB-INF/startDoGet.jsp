@@ -28,7 +28,7 @@
     <nav class=nav>
         <ul>
             <li><a href="start">STRONA GŁÓWNA</a></li>
-            <li><a href="">FUNDUSZ</a></li>
+            <li><a href="">FUNDUSZ/<br>WALUTA</a></li>
             <li><a href="">EKSTREMA GLOBALNE</a></li>
             <li><a href="">EKSTREMA LOKALNE</a></li>
             <li><a href="https://www.google.pl">WYJŚCIE</a></li>
