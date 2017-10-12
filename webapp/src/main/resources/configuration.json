@@ -1,0 +1,9 @@
+{
+  "Configuration": {
+    "unzippeDir": "unZippedDir",
+    "fileLst": "fileLST",
+    "fileZip": "fileZIP",
+    "workFiles": "okularnicyFiles",
+    "targetDir": "targetDir"
+  }
+}
