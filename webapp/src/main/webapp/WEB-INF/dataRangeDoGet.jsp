@@ -55,7 +55,7 @@
 <div class="og" id="data">
     <H1>PODAJ ZAKRES DAT</H1>
 
-    <form action="DataRange" method="POST" enctype="multipart/form-data">
+    <form action="extremaLokalne" method="POST">
 
         <h2> Data początkowa </h2>
 
