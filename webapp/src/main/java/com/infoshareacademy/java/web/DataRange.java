@@ -52,8 +52,8 @@ public class DataRange extends HttpServlet {
             String endLocalDate = scannerEndDate.nextLine();
             getServletContext().setAttribute("startLocalDate", startLocalDate);
             getServletContext().setAttribute("endLocalDate", endLocalDate);
-            logger.info("Data pocztątkowa została ustawiona" + startLocalDate);
-            logger.info("Data końcowa została ustawiona" + endLocalDate);
+            logger.info("Data pocztątkowa została ustawiona " + startLocalDate);
+            logger.info("Data końcowa została ustawiona " + endLocalDate);
 
 
         resp.sendRedirect("extremaLokalne");

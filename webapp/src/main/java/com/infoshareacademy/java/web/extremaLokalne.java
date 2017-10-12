@@ -52,10 +52,10 @@ public class extremaLokalne extends HttpServlet {
 
             req.setAttribute("fundMinDate", fundMinDate);
             req.setAttribute("fundMinClose", fundMinClose);
-            logger.info("Wartośc minimum w ekstremum lokalnym" + fundMinClose);
+            logger.info("Wartośc minimum w ekstremum lokalnym " + fundMinClose);
             req.setAttribute("fundMaxDate", fundMaxDate);
             req.setAttribute("fundMaxClose", fundMaxClose);
-            logger.info("Wartośc maksimum w ekstremum lokalnym" + fundMinClose);
+            logger.info("Wartośc maksimum w ekstremum lokalnym " + fundMinClose);
         }
 
         RequestDispatcher dispatcher = getServletContext()

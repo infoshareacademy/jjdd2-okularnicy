@@ -34,9 +34,9 @@ public class extremaGlobalne extends HttpServlet {
         logger.info("Wczytanie danych funduszu/waluty z wybranego pliku");
         Extremum extremum = new Extremum();
         Fund fundMin = extremum.findMin(fundsList);
-        logger.info("Ustalono ekstremum min globalne na" + fundMin);
+        logger.info("Ustalono ekstremum min globalne na " + fundMin);
         Fund fundMax = extremum.findMax(fundsList);
-        logger.info("Ustalono ekstremum max globalne na" + fundMax);
+        logger.info("Ustalono ekstremum max globalne na " + fundMax);
         String fundMinDate = fundMin.getDate().toString();
         String fundMinClose = fundMin.getClose().toString();
         String fundMaxDate = fundMax.getDate().toString();

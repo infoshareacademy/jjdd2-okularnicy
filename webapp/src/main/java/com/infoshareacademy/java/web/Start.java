@@ -48,7 +48,7 @@ public class Start extends HttpServlet{
             logger.info("Rozpoczęto wczytywanie plików");
 
             String tmpDir = System.getProperty("java.io.tmpdir");
-            logger.info("Ustawionościeżkę tymczasową na:" + tmpDir);
+            logger.info("Ustawionościeżkę tymczasową na: " + tmpDir);
             String targetDir = tmpDir + "/okularnicyFiles";//to properties
 
             FileUtils.deleteDirectory(new File(targetDir));
@@ -58,7 +58,7 @@ public class Start extends HttpServlet{
             if(!targetDirFolder.exists()){
                 targetDirFolder.mkdir();
             }
-            logger.info("Ustawiono ścieżkę docelową na:" + targetDir);
+            logger.info("Ustawiono ścieżkę docelową na: " + targetDir);
 
             String LSTDir = targetDir + "/file.lst";
             getServletContext().setAttribute("LSTDir", LSTDir);
