@@ -1,6 +1,8 @@
 package com.infoshareacademy.java.web;
 
 import com.infoshareacademy.baseapp.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +21,7 @@ import java.util.Scanner;
 @WebServlet("/DataRange")
 @MultipartConfig
 public class DataRange extends HttpServlet {
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,6 +52,9 @@ public class DataRange extends HttpServlet {
             String endLocalDate = scannerEndDate.nextLine();
             getServletContext().setAttribute("startLocalDate", startLocalDate);
             getServletContext().setAttribute("endLocalDate", endLocalDate);
+            logger.info("Data pocztątkowa została ustawiona " + startLocalDate);
+            logger.info("Data końcowa została ustawiona " + endLocalDate);
+
 
         resp.sendRedirect("extremaLokalne");
     }
