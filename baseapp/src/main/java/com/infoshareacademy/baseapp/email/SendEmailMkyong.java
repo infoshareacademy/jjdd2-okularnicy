@@ -7,6 +7,8 @@ import java.util.Properties;
 
 public class SendEmailMkyong {
 
+
+
     public static void main(String[] args) {
         Properties props = new Properties();
         //props.put("mail.smtp.host", "smtp.gmail.com");
