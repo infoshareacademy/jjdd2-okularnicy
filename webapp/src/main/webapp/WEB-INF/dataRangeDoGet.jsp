@@ -17,12 +17,15 @@
     <script>
         $(function() {
             $( ".datepicker" ).datepicker({
-                dateFormat: "dd-mm-yy",
+                dateFormat: "yy-mm-dd",
                 showButtonPanel: true,
                 changeMonth: true,
                 changeYear: true,
                 showOtherMonths: true,
-                selectOtherMonths: true
+                selectOtherMonths: true,
+                yearRange: "1970:+nn",
+                minDate: "${startDateOnList}",
+                maxDate: "${endDateOnList}"
             });
         });
     </script>
@@ -52,7 +55,7 @@
 <div class="og" id="data">
     <H1>PODAJ ZAKRES DAT</H1>
 
-    <form action="extremaLokalne" method="POST" enctype="multipart/form-data">
+    <form action="DataRange" method="POST" enctype="multipart/form-data">
 
         <h2> Data początkowa </h2>
 
