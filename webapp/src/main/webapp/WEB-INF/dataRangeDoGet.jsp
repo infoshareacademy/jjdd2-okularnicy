@@ -4,14 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatibile" content="ie-edge, chrome-1">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="Okularnicy">
-    <link href="resources/fotolia-80738841.png" rel="shortcut icon"  type="image/x-icon">
-    <meta name="description" content="">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <jsp:include page="/shared/head.jsp"/>
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script>
@@ -41,16 +34,7 @@
 
 <body>
 <header>
-    <nav class=nav>
-        <ul>
-            <li><a href="start">STRONA GŁÓWNA</a></li>
-            <li><a href="analizator">FUNDUSZ/<br>WALUTA</a></li>
-            <li><a href="extremaGlobalne">EKSTREMA GLOBALNE</a></li>
-            <li><a href="DataRange">EKSTREMA LOKALNE</a></li>
-            <li><a href="https://www.google.pl">WYJŚCIE</a></li>
-        </ul>
-    </nav>
-
+    <jsp:include page="/shared/header.jsp"/>
 </header>
 <div class="og" id="data">
     <H1>PODAJ ZAKRES DAT</H1>
