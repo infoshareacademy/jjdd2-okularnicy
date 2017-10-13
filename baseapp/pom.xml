@@ -11,4 +11,11 @@
     <artifactId>base-app</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <artifactId>javaee-api</artifactId>
+            <groupId>javax</groupId>
+            <version>RELEASE</version>
+        </dependency>
+    </dependencies>
 </project>
