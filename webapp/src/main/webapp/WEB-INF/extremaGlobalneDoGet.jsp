@@ -24,16 +24,7 @@
 <body>
 
 <header>
-    <nav class=nav>
-        <ul>
-            <li><a href="start">STRONA GŁÓWNA</a></li>
-            <li><a href="analizator">FUNDUSZ/<br>WALUTA</a></li>
-            <li><a href="extremaGlobalne">EKSTREMA GLOBALNE</a></li>
-            <li><a href="DataRange">EKSTREMA LOKALNE</a></li>
-            <li><a href="https://www.google.pl">WYJŚCIE</a></li>
-        </ul>
-    </nav>
-
+    <jsp:include page="shared/header.jsp"/>
 </header>
 <div class="og" id="glob">
     <h1> EKSTREMA GLOBALNE </h1>

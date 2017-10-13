@@ -25,16 +25,7 @@
 <body>
 
 <header id=header1>
-    <nav class=nav>
-        <ul>
-            <li><a href="start">STRONA GŁÓWNA</a></li>
-            <li><a href="">FUNDUSZ/<br>WALUTA</a></li>
-            <li><a href="">EKSTREMA GLOBALNE</a></li>
-            <li><a href="">EKSTREMA LOKALNE</a></li>
-            <li><a href="https://www.google.pl">WYJŚCIE</a></li>
-        </ul>
-    </nav>
-
+    <jsp:include page="shared/header.jsp"/>
 </header>
 <article id="tytul">
     <h1> ANALIZATOR FINANSOWY</h1>
