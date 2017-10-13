@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map;
@@ -30,9 +31,13 @@ public class Start extends HttpServlet{
 
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
     Configuration configuration = new Configuration();
+    JsonReader jsonReader = new JsonReader();
+    URL url = this.getClass().getResource("/WEB-INF/configuration.json");
+    String absolutePath = url.getPath();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        jsonReader.readJsonFile(absolutePath);
         logger.log(Level.INFO, "uruchomiono aplikacje");
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
