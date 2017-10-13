@@ -2,28 +2,23 @@ package com.infoshareacademy.java.web;
 
 public class Configuration {
     private String unzippeDir;
-    private String lstDir;
-    private String zipDir;
+    private String fileLst;
+    private String fileZip;
     private String workFiles;
-    private String targetDir;
 
     public String getUnzippeDir() {
         return unzippeDir;
     }
 
-    public String getLstDir() {
-        return lstDir;
+    public String getFileLst() {
+        return fileLst;
     }
 
-    public String getZipDir() {
-        return zipDir;
+    public String getFileZip() {
+        return fileZip;
     }
 
     public String getWorkFiles() {
         return workFiles;
-    }
-
-    public String getTargetDir() {
-        return targetDir;
     }
 }

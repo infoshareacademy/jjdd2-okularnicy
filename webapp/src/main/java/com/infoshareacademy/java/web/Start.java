@@ -29,6 +29,7 @@ import org.apache.logging.log4j.Logger;
 public class Start extends HttpServlet{
 
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    Configuration configuration = new Configuration();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,7 +50,7 @@ public class Start extends HttpServlet{
 
             String tmpDir = System.getProperty("java.io.tmpdir");
             logger.info("Ustawionościeżkę tymczasową na: " + tmpDir);
-            String targetDir = tmpDir + "/okularnicyFiles";//to properties
+            String targetDir = tmpDir + "/" + configuration.getWorkFiles();//to properties
 
             FileUtils.deleteDirectory(new File(targetDir));
 
@@ -60,11 +61,11 @@ public class Start extends HttpServlet{
             }
             logger.info("Ustawiono ścieżkę docelową na: " + targetDir);
 
-            String LSTDir = targetDir + "/file.lst";
+            String LSTDir = targetDir + "/" + configuration.getFileLst();
             getServletContext().setAttribute("LSTDir", LSTDir);
             logger.info("Ustawiono ścieżkę do pliku LST: " + LSTDir);
 
-            String ZIPDir = targetDir + "/file.zip";
+            String ZIPDir = targetDir + "/" + configuration.getFileZip();
             getServletContext().setAttribute("ZIPDir", ZIPDir);
             logger.info("Ustawiono ścieżkę do pliku ZIP: " + ZIPDir);
 
@@ -82,7 +83,7 @@ public class Start extends HttpServlet{
             }
             logger.info("Zakończono zapisywanie plików na dysku");
 
-            String unZippedDir = targetDir + "/unzipped";//to properties
+            String unZippedDir = targetDir + "/" + configuration.getUnzippeDir();//to properties
             getServletContext().setAttribute("unZippedDir", unZippedDir);
             File unZippedDirFolder = new File(unZippedDir);
             if(!unZippedDirFolder.exists()){
