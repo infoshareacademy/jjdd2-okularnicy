@@ -20,18 +20,17 @@ public class extremaLokalne extends HttpServlet {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         FundBase fundBase = new FundBase();
         Program program = new Program();
-        String startLocalDateString = getServletContext().getAttribute("startLocalDate").toString();
-        LocalDate startLocalDate = LocalDate.parse(startLocalDateString);
-        program.setStartDate(startLocalDate);
-        String endLocalDateString = getServletContext().getAttribute("endLocalDate").toString();
-        LocalDate endLocalDate = LocalDate.parse(endLocalDateString);
-        program.setEndDate(endLocalDate);
 
-        if (endLocalDate.isBefore(startLocalDate)) {
+        String startDateString = req.getParameter("startDate");
+        program.setStartDate(LocalDate.parse(startDateString));
+        String endDateString = req.getParameter("endDate");
+        program.setEndDate(LocalDate.parse(endDateString));
+
+        if (program.getEndDate().isBefore(program.getStartDate())) {
             resp.sendRedirect("DataRange");
         } else {
 
@@ -62,4 +61,3 @@ public class extremaLokalne extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 }
-

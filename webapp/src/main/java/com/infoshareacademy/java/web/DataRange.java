@@ -33,29 +33,15 @@ public class DataRange extends HttpServlet {
         stringToFund += getServletContext().getAttribute("choseFundString").toString();
 
         ArrayList<Fund> fundsList = fundBase.readFoundIntoList(stringToFund);
+        LocalDate startDateOnList = fundsList.get(0).getDate();
+        LocalDate endDateOnList = fundsList.get(fundsList.size() - 1).getDate();
 
         req.setAttribute("fundsList", fundsList);
+        req.setAttribute("startDateOnList", startDateOnList);
+        req.setAttribute("endDateOnList", endDateOnList);
 
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/dataRangeDoGet.jsp");
+                .getRequestDispatcher("/WEB-INF/dataRangeDoGet.jsp");
         dispatcher.forward(req, resp);
-}
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-            Part startDate = req.getPart("startDate");
-            Part endDate = req.getPart("endDate");
-            Scanner scannerStartDate = new Scanner(startDate.getInputStream());
-            Scanner scannerEndDate = new Scanner(endDate.getInputStream());
-            String startLocalDate = scannerStartDate.nextLine();
-            String endLocalDate = scannerEndDate.nextLine();
-            getServletContext().setAttribute("startLocalDate", startLocalDate);
-            getServletContext().setAttribute("endLocalDate", endLocalDate);
-            logger.info("Data pocztątkowa została ustawiona " + startLocalDate);
-            logger.info("Data końcowa została ustawiona " + endLocalDate);
-
-
-        resp.sendRedirect("extremaLokalne");
     }
 }
