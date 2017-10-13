@@ -26,6 +26,14 @@ public class Analizator extends HttpServlet {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
+        dispatcher.forward(req, resp);
+
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Part choseFund = null;
         choseFund = req.getPart("choseFund");
