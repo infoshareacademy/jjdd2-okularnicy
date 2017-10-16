@@ -1,5 +1,6 @@
 package com.infoshareacademy.java.web;
 
+import com.auth0.SessionUtils;
 import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.UnZip;
 import org.apache.commons.io.FileUtils;
@@ -24,7 +25,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@WebServlet("/start")
+@WebServlet("analizator/start")
 @MultipartConfig
 public class Start extends HttpServlet{
 
@@ -33,6 +34,13 @@ public class Start extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.log(Level.INFO, "uruchomiono aplikacje");
+        final String accessToken = (String) SessionUtils.get(req, "accessToken");
+        final String idToken = (String) SessionUtils.get(req, "idToken");
+        if (accessToken != null) {
+            req.setAttribute("userId", accessToken);
+        } else if (idToken != null) {
+            req.setAttribute("userId", idToken);
+        }
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
