@@ -1,8 +1,10 @@
 package com.infoshareacademy.baseapp.email;
 
 import javax.mail.*;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.rmi.UnexpectedException;
 import java.util.Properties;
 
 public class Email {
@@ -35,18 +37,13 @@ public class Email {
                 });
     }
 
-    public void send(String recipient, String subject, String content){
-
+    public void send(String recipient, String subject, String content) throws MessagingException {
         Message message = new MimeMessage(session);
-        try {
-            message.setFrom(new InternetAddress(eMailAdress));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(recipient));
-            message.setSubject(subject);
-            message.setText(content);
-            Transport.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
+        message.setFrom(new InternetAddress(eMailAdress));
+        message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse(recipient));
+        message.setSubject(subject);
+        message.setText(content);
+        Transport.send(message);
     }
 }
