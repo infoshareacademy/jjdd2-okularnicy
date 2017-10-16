@@ -94,12 +94,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <artifactId>javaee-api</artifactId>
-            <groupId>javax</groupId>
-            <version>RELEASE</version>
-        </dependency>
-    </dependencies>
 </project>
