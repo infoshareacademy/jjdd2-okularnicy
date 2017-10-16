@@ -35,18 +35,13 @@ public class Email {
                 });
     }
 
-    public void send(String recipient, String subject, String content){
-
+    public void send(String recipient, String subject, String content) throws MessagingException {
         Message message = new MimeMessage(session);
-        try {
-            message.setFrom(new InternetAddress(eMailAdress));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(recipient));
-            message.setSubject(subject);
-            message.setText(content);
-            Transport.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
+        message.setFrom(new InternetAddress(eMailAdress));
+        message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse(recipient));
+        message.setSubject(subject);
+        message.setText(content);
+        Transport.send(message);
     }
 }
