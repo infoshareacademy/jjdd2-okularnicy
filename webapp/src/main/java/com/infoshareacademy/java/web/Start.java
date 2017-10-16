@@ -6,6 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -18,29 +19,32 @@ import java.io.*;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map;
 import java.util.Set;
-import java.time.LocalDateTime;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @WebServlet("/start")
 @MultipartConfig
-public class Start extends HttpServlet{
+public class Start extends HttpServlet {
 
+    private static final String CONFIGURATION_PATH = "configuration.json";
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
-    URL url = this.getClass().getResource("/WEB-INF/configuration.json");
-    String absolutePath = url.getPath();
+    //String absolutePath = url.getPath();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        jsonReader.readJsonFile(absolutePath);
+
+        System.out.println("Working Directory = " +
+                System.getProperty("user.dir"));
+
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resourcePath = classLoader.getResource(CONFIGURATION_PATH);
+        configuration = jsonReader.readJsonFile(CONFIGURATION_PATH);
+        jsonReader.
+        //jsonReader.readJsonFile(absolutePath);
         logger.log(Level.INFO, "uruchomiono aplikacje");
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
+                .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -61,7 +65,7 @@ public class Start extends HttpServlet{
 
             getServletContext().setAttribute("targetDir", targetDir);
             File targetDirFolder = new File(targetDir);
-            if(!targetDirFolder.exists()){
+            if (!targetDirFolder.exists()) {
                 targetDirFolder.mkdir();
             }
             logger.info("Ustawiono ścieżkę docelową na: " + targetDir);
@@ -91,41 +95,41 @@ public class Start extends HttpServlet{
             String unZippedDir = targetDir + "/" + configuration.getUnzippeDir();//to properties
             getServletContext().setAttribute("unZippedDir", unZippedDir);
             File unZippedDirFolder = new File(unZippedDir);
-            if(!unZippedDirFolder.exists()){
+            if (!unZippedDirFolder.exists()) {
                 unZippedDirFolder.mkdir();
             }
             logger.info("Ustawiono folder docelowy do dekompresji plików: " + unZippedDir);
 
             UnZip unZip = new UnZip();
-            unZip.unZip(ZIPDir,unZippedDir);
+            unZip.unZip(ZIPDir, unZippedDir);
             logger.info("Zakończono rozpakowywanie plików z archiwum");
 
 
-            String[] LSTDirArray = new String[] {LSTDir};
+            String[] LSTDirArray = new String[]{LSTDir};
             Map<String, String> filesHashMap = new HashMap<String, String>();
             StartingParameters startingParameters = new StartingParameters();
             filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
             logger.info("Wczytanie danych z pliku LST do mapy");
             Map<String, String> filesHashMapToSent = new HashMap<String, String>();
 
-            int mapsEntry=0;
-            int fundsFound=0;
+            int mapsEntry = 0;
+            int fundsFound = 0;
 
             Set<Map.Entry<String, String>> entries = filesHashMap.entrySet();
-            for(Map.Entry<String, String> entry : entries){
+            for (Map.Entry<String, String> entry : entries) {
                 mapsEntry++;
                 String pathToFund = getServletContext().getAttribute("unZippedDir").toString();
                 pathToFund += "/";
                 pathToFund += entry.getValue();
                 File f = new File(pathToFund);
-                if(f.exists() && !f.isDirectory()) {
+                if (f.exists() && !f.isDirectory()) {
                     fundsFound++;
                     filesHashMapToSent.put(entry.getKey(), entry.getValue());
                 }
             }
             logger.info("Zakończono zestawienie danych plik LST - plik ZIP");
 
-            if ((mapsEntry == fundsFound) && (fundsFound > 0)){
+            if ((mapsEntry == fundsFound) && (fundsFound > 0)) {
                 getServletContext().setAttribute("lstCorrectness", 1);
                 logger.info("Zestawienie LST-ZIP zakończono pomyślnie");
             } else if (fundsFound > 0) {
@@ -142,12 +146,12 @@ public class Start extends HttpServlet{
 
             if (getServletContext().getAttribute("lstCorrectness").toString().equals("-1")) {
                 RequestDispatcher dispatcher = getServletContext()
-                        .getRequestDispatcher ("/WEB-INF/ErrorZIP.jsp");
+                        .getRequestDispatcher("/WEB-INF/ErrorZIP.jsp");
                 dispatcher.forward(req, resp);
                 logger.info("Przekierowanie na stronę błędu");
             } else {
                 RequestDispatcher dispatcher = getServletContext()
-                        .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
+                        .getRequestDispatcher("/WEB-INF/analizatorDoGet.jsp");
                 dispatcher.forward(req, resp);
                 logger.info("Przekierowanie na kolejną stronę");
             }
