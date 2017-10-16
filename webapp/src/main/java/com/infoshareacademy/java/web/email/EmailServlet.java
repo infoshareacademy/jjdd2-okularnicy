@@ -1,6 +1,8 @@
 package com.infoshareacademy.java.web.email;
 
 import com.infoshareacademy.baseapp.email.Email;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
@@ -14,6 +16,8 @@ import java.io.IOException;
 @WebServlet("/email")
 public class EmailServlet extends HttpServlet {
 
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = getServletContext()
@@ -23,13 +27,17 @@ public class EmailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Email email = new Email("infoshareokularnicy@wp.pl", "okularnicY_", "smtp.wp.pl", 465);
+        Email email = new Email("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
+        logger.info("Utworzono obiekt klasy Email.");
         try {
             email.send("infoshareokularnicy@wp.pl", "subject2", "hello world");
         } catch (MessagingException e) {
             //e.printStackTrace();
+            logger.error("Pojawił się błąd podczas wysyłania e-maila: " + e.getMessage());
             resp.sendRedirect("emailError");
+            return;
         }
+        logger.info("Wysłano e-mail.");
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/emailDoPost.jsp");
         dispatcher.forward(req, resp);
