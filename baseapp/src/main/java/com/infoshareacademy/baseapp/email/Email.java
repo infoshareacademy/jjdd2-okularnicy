@@ -27,7 +27,7 @@ public class Email {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.port", port);
 
-        session = Session.getDefaultInstance(properties,
+        session = Session.getInstance(properties,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(eMailAdress,pass);
