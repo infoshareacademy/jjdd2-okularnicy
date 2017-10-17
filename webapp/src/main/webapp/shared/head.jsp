@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Okularnicy">
     <link href="${pageContext.request.contextPath}/resources/fotolia-80738841.png" rel="shortcut icon"  type="image/x-icon">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
     <meta name="description" content="">
     <title>ANALIZATOR FINANSOWY</title>
 
