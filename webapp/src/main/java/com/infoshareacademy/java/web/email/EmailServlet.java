@@ -1,6 +1,6 @@
 package com.infoshareacademy.java.web.email;
 
-import com.infoshareacademy.baseapp.email.Email;
+import com.infoshareacademy.baseapp.email.EmailService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,8 +27,8 @@ public class EmailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Email email = new Email("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
-        logger.info("Utworzono obiekt klasy Email.");
+        EmailService email = new EmailService("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
+        logger.info("Utworzono obiekt klasy EmailService.");
         try {
             email.send("infoshareokularnicy@wp.pl", "subject2", "hello world");
         } catch (MessagingException e) {
