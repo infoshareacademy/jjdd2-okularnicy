@@ -5,7 +5,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class Email {
+public class EmailService {
 
     private String eMailAdress;
     private String pass;
@@ -14,7 +14,7 @@ public class Email {
     private Session session;
 
 
-    public Email(String eMailAdress, String pass, String smtpAdress, Integer port) {
+    public EmailService(String eMailAdress, String pass, String smtpAdress, Integer port) {
         this.eMailAdress = eMailAdress;
         this.pass = pass;
         this.smtpAdress = smtpAdress;
