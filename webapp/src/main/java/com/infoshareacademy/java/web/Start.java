@@ -16,16 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
-import java.util.HashMap;
+import java.util.*;
 import java.util.Map;
-import java.util.Map;
-import java.util.Set;
 import java.time.LocalDateTime;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@WebServlet("finanse/start")
+@WebServlet("/finanse/start")
 @MultipartConfig
 public class Start extends HttpServlet{
 
@@ -56,8 +54,9 @@ public class Start extends HttpServlet{
             logger.info("Rozpoczęto wczytywanie plików");
 
             String tmpDir = System.getProperty("java.io.tmpdir");
-            logger.info("Ustawionościeżkę tymczasową na: " + tmpDir);
-            String targetDir = tmpDir + "/okularnicyFiles";//to properties
+            UUID uuid = UUID.randomUUID();
+            String targetDir = tmpDir + "/okularnicy-" + uuid.toString();//to properties
+            logger.info("Ustawiono ścieżkę tymczasową na: " + targetDir);
 
             FileUtils.deleteDirectory(new File(targetDir));
 

@@ -29,7 +29,7 @@
     </p>
     <h3>WYSZUKAJ PLIKI</h3>
     <br/>
-    <form  action="start" method="post" enctype="multipart/form-data">
+    <form action="start" method="post" enctype="multipart/form-data">
         <p>Wskaż plik LST: <input class=pliki type="file" name="fileLST" required accept=".lst"/></p>
         <p>Wskaż archiwum ZIP: <input class=pliki type="file" name="fileZIP" required accept=".zip"/></p>
         <br/>

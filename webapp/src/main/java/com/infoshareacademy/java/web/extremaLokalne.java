@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-@WebServlet("/extremaLokalne")
+@WebServlet("/finanse/extremaLokalne")
 public class extremaLokalne extends HttpServlet {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
