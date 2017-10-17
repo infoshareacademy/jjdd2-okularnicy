@@ -1,4 +1,4 @@
-package com.infoshareacademy.java.web;
+package com.infoshareacademy.java.web.login;
 
 import com.auth0.SessionUtils;
 

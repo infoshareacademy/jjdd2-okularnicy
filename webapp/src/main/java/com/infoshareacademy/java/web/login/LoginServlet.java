@@ -1,6 +1,7 @@
-package com.infoshareacademy.java.web;
+package com.infoshareacademy.java.web.login;
 
 import com.auth0.AuthenticationController;
+import com.infoshareacademy.java.web.login.AuthenticationControllerProvider;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
