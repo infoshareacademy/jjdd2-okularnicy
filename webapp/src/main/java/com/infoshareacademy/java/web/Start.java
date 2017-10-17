@@ -25,23 +25,15 @@ import java.util.Set;
 @MultipartConfig
 public class Start extends HttpServlet {
 
-    private static final String CONFIGURATION_PATH = "configuration.json";
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
-    //String absolutePath = url.getPath();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("Working Directory = " +
-                System.getProperty("user.dir"));
-
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resourcePath = classLoader.getResource(CONFIGURATION_PATH);
-        configuration = jsonReader.readJsonFile(CONFIGURATION_PATH);
-        jsonReader.
-        //jsonReader.readJsonFile(absolutePath);
+        configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
         logger.log(Level.INFO, "uruchomiono aplikacje");
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
