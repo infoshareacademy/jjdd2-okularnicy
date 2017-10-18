@@ -42,10 +42,12 @@ public class Analizator extends HttpServlet {
         Part choseFund = null;
         choseFund = req.getPart("choseFund");
         Scanner scanner = new Scanner(choseFund.getInputStream());
-        String choseFundString = scanner.nextLine();
+        String nextLine = scanner.nextLine();
+        String choseFundString = nextLine.split(",")[0];
+        String choseFundStringFullName = nextLine.split(",")[1];
         getServletContext().setAttribute("choseFundString", choseFundString);
-        logger.info("Użytkownik wybrał fundusz" + choseFundString);
-        Record record = new Record(choseFundString, LocalDateTime.now());
+        logger.info("Użytkownik wybrał fundusz: " + choseFundString + " " + choseFundStringFullName);
+        Record record = new Record(choseFundStringFullName, LocalDateTime.now());
         statistics.add(record);
         logger.info("Do statystyk zapisano record: " + record.toString());
         resp.sendRedirect("menu");
