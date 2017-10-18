@@ -10,5 +10,9 @@
 <body>
 <div class="og" id="glob">
     ANALIZATOR FINANSOWY
+    Aby przejsc dalej musisz sie zalogowac
+    <form action="finanse/start" method="GET">
+    <button type="submit">Zaloguj</button>
+    </form>
 </div>
 </body>
