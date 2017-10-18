@@ -38,7 +38,22 @@ public class StatisticsTest {
     }
 
     @Test
-    public void checkTotalNumberOfVisitGivenName() throws Exception {
+    public void checkTotalNumberOfEveryVisits() throws Exception {
+        // given
+        Statistics statistics = new Statistics();
+        Record record1 = new Record("name1", LocalDateTime.of(2015,10,18,15,00));
+        Record record2 = new Record("name2", LocalDateTime.of(2016,10,18,15,00));
+        Record record3 = new Record("name3", LocalDateTime.of(2017,10,18,15,00));
+        // when
+        statistics.add(record1);
+        statistics.add(record2);
+        statistics.add(record3);
+        // then
+        assertThat(statistics.getNumberOfVisits()).isEqualTo(3);
+    }
+
+    @Test
+    public void checkTotalNumberOfVisitsGivenName() throws Exception {
         // given
         Statistics statistics = new Statistics();
         String name1 = "name1";
@@ -57,7 +72,32 @@ public class StatisticsTest {
     }
 
     @Test
-    public void checkTotalNumberOfVisitGivenNameInGivenDateRange() throws Exception {
+    public void checkTotalNumberOfVisitsInGivenDateRange() throws Exception {
+        // given
+        Statistics statistics = new Statistics();
+        String name = "name1";
+        LocalDateTime dateBefore =      LocalDateTime.of(2017,10,17,13,59);
+        LocalDateTime dateFrom =        LocalDateTime.of(2017,10,17,14,00);
+        LocalDateTime dateInTheMiddle = LocalDateTime.of(2017,10,18,10,00);
+        LocalDateTime dateTo =          LocalDateTime.of(2017,10,18,15,00);
+        LocalDateTime dateAfter =       LocalDateTime.of(2017,10,18,15,01);
+        Record properRecord1 = new Record(name, dateFrom);
+        Record properRecord2 = new Record(name, dateInTheMiddle);
+        Record properRecord3 = new Record(name, dateTo);
+        Record improperRecord1 = new Record(name, dateBefore);
+        Record improperRecord2 = new Record(name, dateAfter);
+        // when
+        statistics.add(properRecord1);
+        statistics.add(properRecord2);
+        statistics.add(properRecord3);
+        statistics.add(improperRecord1);
+        statistics.add(improperRecord2);
+        // then
+        assertThat(statistics.getNumberOfVisits(dateFrom, dateTo)).isEqualTo(3);
+    }
+
+    @Test
+    public void checkTotalNumberOfVisitsGivenNameInGivenDateRange() throws Exception {
         // given
         Statistics statistics = new Statistics();
         String properName = "name1";
@@ -90,47 +130,5 @@ public class StatisticsTest {
         statistics.add(improperRecord7);
         // then
         assertThat(statistics.getNumberOfVisits(properName, dateFrom, dateTo)).isEqualTo(3);
-
-    }
-
-    @Test
-    public void checkTotalNumberOfEveryVisits() throws Exception {
-        // given
-        Statistics statistics = new Statistics();
-        Record record1 = new Record("name1", LocalDateTime.of(2015,10,18,15,00));
-        Record record2 = new Record("name2", LocalDateTime.of(2016,10,18,15,00));
-        Record record3 = new Record("name3", LocalDateTime.of(2017,10,18,15,00));
-        // when
-        statistics.add(record1);
-        statistics.add(record2);
-        statistics.add(record3);
-        // then
-        assertThat(statistics.getNumberOfVisits()).isEqualTo(3);
-    }
-
-    @Test
-    public void checkTotalNumberOfVisitsInGivenDateRange() throws Exception {
-        // given
-        Statistics statistics = new Statistics();
-        String name = "name1";
-        LocalDateTime dateBefore =      LocalDateTime.of(2017,10,17,13,59);
-        LocalDateTime dateFrom =        LocalDateTime.of(2017,10,17,14,00);
-        LocalDateTime dateInTheMiddle = LocalDateTime.of(2017,10,18,10,00);
-        LocalDateTime dateTo =          LocalDateTime.of(2017,10,18,15,00);
-        LocalDateTime dateAfter =       LocalDateTime.of(2017,10,18,15,01);
-        Record properRecord1 = new Record(name, dateFrom);
-        Record properRecord2 = new Record(name, dateInTheMiddle);
-        Record properRecord3 = new Record(name, dateTo);
-        Record improperRecord1 = new Record(name, dateBefore);
-        Record improperRecord2 = new Record(name, dateAfter);
-        // when
-        statistics.add(properRecord1);
-        statistics.add(properRecord2);
-        statistics.add(properRecord3);
-        statistics.add(improperRecord1);
-        statistics.add(improperRecord2);
-        // then
-        assertThat(statistics.getNumberOfVisits(dateFrom, dateTo)).isEqualTo(3);
-
     }
 }
