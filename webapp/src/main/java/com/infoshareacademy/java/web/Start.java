@@ -1,5 +1,6 @@
 package com.infoshareacademy.java.web;
 
+import com.auth0.SessionUtils;
 import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.UnZip;
 import org.apache.commons.io.FileUtils;
@@ -15,16 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
-import java.util.HashMap;
+import java.util.*;
 import java.util.Map;
-import java.util.Map;
-import java.util.Set;
 import java.time.LocalDateTime;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@WebServlet("/start")
+@WebServlet("/finanse/start")
 @MultipartConfig
 public class Start extends HttpServlet{
 
@@ -33,6 +32,13 @@ public class Start extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.log(Level.INFO, "uruchomiono aplikacje");
+        final String accessToken = (String) SessionUtils.get(req, "accessToken");
+        final String idToken = (String) SessionUtils.get(req, "idToken");
+        if (accessToken != null) {
+            req.setAttribute("userId", accessToken);
+        } else if (idToken != null) {
+            req.setAttribute("userId", idToken);
+        }
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
@@ -48,8 +54,9 @@ public class Start extends HttpServlet{
             logger.info("Rozpoczęto wczytywanie plików");
 
             String tmpDir = System.getProperty("java.io.tmpdir");
-            logger.info("Ustawionościeżkę tymczasową na: " + tmpDir);
-            String targetDir = tmpDir + "/okularnicyFiles";//to properties
+            UUID uuid = UUID.randomUUID();
+            String targetDir = tmpDir + "/okularnicy-" + uuid.toString();//to properties
+            logger.info("Ustawiono ścieżkę tymczasową na: " + targetDir);
 
             FileUtils.deleteDirectory(new File(targetDir));
 

@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-@WebServlet("/DataRange")
+@WebServlet("/finanse/DataRange")
 @MultipartConfig
 public class DataRange extends HttpServlet {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
