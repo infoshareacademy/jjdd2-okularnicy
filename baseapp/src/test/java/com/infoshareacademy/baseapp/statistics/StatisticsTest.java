@@ -53,7 +53,7 @@ public class StatisticsTest {
         statistics.add(record3);
         statistics.add(record4);//other name
         // then
-        assertThat(statistics.getTotalNumberOfVisitsGivenName(name1)).isEqualTo(3);
+        assertThat(statistics.getNumberOfVisits(name1)).isEqualTo(3);
     }
 
     @Test
@@ -89,7 +89,7 @@ public class StatisticsTest {
         statistics.add(improperRecord6);
         statistics.add(improperRecord7);
         // then
-        assertThat(statistics.getTotalNumberOfVisitsGivenNameInGivenDateRange(properName, dateFrom, dateTo)).isEqualTo(3);
+        assertThat(statistics.getNumberOfVisits(properName, dateFrom, dateTo)).isEqualTo(3);
 
     }
 
@@ -105,7 +105,7 @@ public class StatisticsTest {
         statistics.add(record2);
         statistics.add(record3);
         // then
-        assertThat(statistics.getTotalNumberOfVisits()).isEqualTo(3);
+        assertThat(statistics.getNumberOfVisits()).isEqualTo(3);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class StatisticsTest {
         statistics.add(improperRecord1);
         statistics.add(improperRecord2);
         // then
-        assertThat(statistics.getTotalNumberOfVisitsInGivenDateRange(dateFrom, dateTo)).isEqualTo(3);
+        assertThat(statistics.getNumberOfVisits(dateFrom, dateTo)).isEqualTo(3);
 
     }
 }

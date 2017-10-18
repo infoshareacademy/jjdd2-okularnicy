@@ -28,7 +28,7 @@ public class Statistics {
         return recordsList;
     }
 
-    public Integer getTotalNumberOfVisitsGivenName(String name) {
+    public Integer getNumberOfVisits(String name) {
         Integer counter = 0;
         for(Record record : recordsList){
             if (record.getName().equals(name)){
@@ -38,11 +38,11 @@ public class Statistics {
         return counter;
     }
 
-    public Integer getTotalNumberOfVisits() {
+    public Integer getNumberOfVisits() {
         return recordsList.size();
     }
 
-    public Integer getTotalNumberOfVisitsGivenNameInGivenDateRange(String name, LocalDateTime dateFrom, LocalDateTime dateTo) {
+    public Integer getNumberOfVisits(String name, LocalDateTime dateFrom, LocalDateTime dateTo) {
         Integer counter = 0;
         for(Record record : recordsList){
             if (record.getName().equals(name) && (record.getDateTime().isAfter(dateFrom) || record.getDateTime().isEqual(dateFrom)) && (record.getDateTime().isBefore(dateTo) || record.getDateTime().isEqual(dateTo))){
@@ -52,7 +52,7 @@ public class Statistics {
         return counter;
     }
 
-    public Integer getTotalNumberOfVisitsInGivenDateRange(LocalDateTime dateFrom, LocalDateTime dateTo) {
+    public Integer getNumberOfVisits(LocalDateTime dateFrom, LocalDateTime dateTo) {
         Integer counter = 0;
         for(Record record : recordsList){
             if ((record.getDateTime().isAfter(dateFrom) || record.getDateTime().isEqual(dateFrom)) && (record.getDateTime().isBefore(dateTo) || record.getDateTime().isEqual(dateTo))){
