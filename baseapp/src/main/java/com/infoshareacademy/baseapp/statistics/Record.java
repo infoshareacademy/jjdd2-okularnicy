@@ -26,4 +26,12 @@ public class Record {
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "name='" + name + '\'' +
+                ", dateTime=" + dateTime +
+                '}';
+    }
 }
