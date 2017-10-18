@@ -7,6 +7,8 @@ import com.infoshareacademy.baseapp.statistics.Statistics;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -28,7 +30,9 @@ import java.util.Scanner;
 public class Analizator extends HttpServlet {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
-    private Statistics statistics = new Statistics();
+    @Inject
+    @Singleton
+    private Statistics statistics = Statistics.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

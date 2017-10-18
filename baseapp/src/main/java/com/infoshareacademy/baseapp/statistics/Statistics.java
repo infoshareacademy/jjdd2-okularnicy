@@ -6,6 +6,15 @@ import java.util.List;
 
 public class Statistics {
 
+    private static Statistics statistics = new Statistics();
+
+    private Statistics(){
+    }
+
+    public static Statistics getInstance(){
+        return statistics;
+    }
+
     private List<Record> recordsList = new ArrayList<>();
 
     public void add(Record record) {
