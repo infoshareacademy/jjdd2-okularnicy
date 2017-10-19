@@ -32,71 +32,55 @@ public class StatisticsServlet extends HttpServlet{
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime tenSecondsAgo = now.minusSeconds(10);
         LocalDateTime twentySecondsAgo = now.minusSeconds(20);
-        resp.getWriter().println("now(): "+ now);
-        resp.getWriter().println("10 seconds ago: " + tenSecondsAgo);
-        resp.getWriter().println("20 seconds ago: " + twentySecondsAgo);
-        resp.getWriter().println("");
-        resp.getWriter().println("");
 
-        resp.getWriter().println("total>>" + statistics.getNumberOfVisits() + "<<");
-        resp.getWriter().println("w ciagu ostatnich 10 sekund>>" + statistics.getNumberOfVisits(tenSecondsAgo, now) + "<<");
-        resp.getWriter().println("w ciagu ostatnich 20 sekund>>" + statistics.getNumberOfVisits(twentySecondsAgo, now) + "<<");
-        resp.getWriter().println("");
-        resp.getWriter().println("");
-
+        resp.getWriter().println("Calkowita liczba wyborow: " + statistics.getNumberOfVisits());
         List<Record> recordsList = statistics.getAll();
         Map<String, Integer> numberOfVisitsEachName = new HashMap<>();
         for(Record record: recordsList){
-            resp.getWriter().println(record.getName() + ">>" + record.getDateTime());
             if ( numberOfVisitsEachName.containsKey(record.getName()) ){
                 numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName())+1);
             } else {
                 numberOfVisitsEachName.put(record.getName(),1);
             }
         }
-        resp.getWriter().println("");
-        resp.getWriter().println("");
-
         resp.getWriter().println(numberOfVisitsEachName.toString());
         resp.getWriter().println("");
         resp.getWriter().println("");
 
-
+        resp.getWriter().println("w ciagu ostatnich 10 sekund: " + statistics.getNumberOfVisits(tenSecondsAgo, now));
         recordsList = statistics.getAll(tenSecondsAgo, now);
         numberOfVisitsEachName = new HashMap<>();
         for(Record record: recordsList){
-            resp.getWriter().println(record.getName() + ">>" + record.getDateTime());
             if ( numberOfVisitsEachName.containsKey(record.getName()) ){
                 numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName())+1);
             } else {
                 numberOfVisitsEachName.put(record.getName(),1);
             }
         }
-        resp.getWriter().println("");
-        resp.getWriter().println("");
-
         resp.getWriter().println(numberOfVisitsEachName.toString());
         resp.getWriter().println("");
         resp.getWriter().println("");
 
-
-
+        resp.getWriter().println("w ciagu ostatnich 20 sekund: " + statistics.getNumberOfVisits(twentySecondsAgo, now));
         recordsList = statistics.getAll(twentySecondsAgo, now);
         numberOfVisitsEachName = new HashMap<>();
         for(Record record: recordsList){
-            resp.getWriter().println(record.getName() + ">>" + record.getDateTime());
             if ( numberOfVisitsEachName.containsKey(record.getName()) ){
                 numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName())+1);
             } else {
                 numberOfVisitsEachName.put(record.getName(),1);
             }
         }
-        resp.getWriter().println("");
-        resp.getWriter().println("");
-
         resp.getWriter().println(numberOfVisitsEachName.toString());
         resp.getWriter().println("");
         resp.getWriter().println("");
 
+        resp.getWriter().println("Historia");
+        recordsList = statistics.getAll();
+        for(Record record: recordsList){
+            resp.getWriter().println(record.getName() + ">>" + record.getDateTime());
+        }
+        resp.getWriter().println("");
+        resp.getWriter().println("");
     }
 }
