@@ -6,14 +6,14 @@
          metadata-complete="false">
     <context-param>
         <param-name>com.auth0.domain</param-name>
-        <param-value>analizator.eu.auth0.com</param-value>
+        <param-value>okularnicy.eu.auth0.com</param-value>
     </context-param>
     <context-param>
         <param-name>com.auth0.clientId</param-name>
-        <param-value>rXnYAlv7RfACHkCOS3krc4SyfIDTzuHD</param-value>
+        <param-value>tQ1NKpwAZ8fpqxj0u45iPQNdbb74sxqR</param-value>
     </context-param>
     <context-param>
         <param-name>com.auth0.clientSecret</param-name>
-        <param-value>BFUzFXZly8qKTq3yXBuoqgw3enMulb8TyJUSG61yK0gfRV6NUpi_yaxj8FvUy3mH</param-value>
+        <param-value>W7anciWSoPTpLgz6dLhGkhmS-eE7ZMqLsLMO70aOAkLM92cqZisdbipO0Ax0T0Qm</param-value>
     </context-param>
 </web-app>

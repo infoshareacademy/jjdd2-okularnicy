@@ -44,7 +44,7 @@ public class Start extends HttpServlet {
             req.setAttribute("userId", idToken);
         }
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
+                .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -59,7 +59,7 @@ public class Start extends HttpServlet {
 
             String tmpDir = System.getProperty("java.io.tmpdir");
             UUID uuid = UUID.randomUUID();
-            String targetDir = tmpDir + configuration.getWorkFiles() + uuid.toString();//to properties
+            String targetDir = tmpDir + "/" + configuration.getWorkFiles() + uuid.toString();//to properties
             logger.info("Ustawiono ścieżkę tymczasową na: " + targetDir);
 
             FileUtils.deleteDirectory(new File(targetDir));
