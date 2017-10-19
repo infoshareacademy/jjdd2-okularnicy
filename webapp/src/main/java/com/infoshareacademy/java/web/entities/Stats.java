@@ -2,14 +2,14 @@ package com.infoshareacademy.java.web.entities;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.List;
+
 
 @NamedQueries({
         @NamedQuery(query = "SELECT s FROM Stats s", name = "com.infoshareacademy.java.web.entities.Stats.findAll"),
-        @NamedQuery(query = "SELECT s FROM Stats s WHERE s.meetingTime >= :afterDate", name = "com.infoshareacademy.java.web.entities.Stats.findAllAfterDate")
+        @NamedQuery(query = "SELECT s FROM Stats s WHERE s.statsTime >= :afterDate", name = "com.infoshareacademy.java.web.entities.Stats.findAllAfterDate")
 })
 @Entity
-@Table(name = "T_STATS")
+@Table(name = "STATS")
 public class Stats {
 
     @Id
@@ -20,10 +20,7 @@ public class Stats {
     private String statsName;
 
     @Column(name = "stats_datetime")
-    private Date meetingTime;
-
-    @OneToMany(mappedBy = "stats")
-    private List<Stats> attendees;
+    private Date statsTime;
 
     public Integer getId() {
         return id;
@@ -33,20 +30,20 @@ public class Stats {
         this.id = id;
     }
 
-    public String getStatsNameName() {
+    public String getStatsName() {
         return statsName;
     }
 
-    public void setStatsNameName(String meetingName) {
+    public void setStatsName(String meetingName) {
         this.statsName = meetingName;
     }
 
     public Date getStatsTime() {
-        return meetingTime;
+        return statsTime;
     }
 
-    public void setMeetingTime(Date meetingTime) {
-        this.meetingTime = meetingTime;
+    public void setStatsTime(Date statsTime) {
+        this.statsTime = statsTime;
     }
 
 }
