@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("/finanse/statistics")
 public class StatisticsServlet extends HttpServlet{
@@ -43,9 +45,18 @@ public class StatisticsServlet extends HttpServlet{
         resp.getWriter().println("");
 
         List<Record> recordsList = statistics.getAll();
+        Map<String, Integer> numberOfVisitsEachName = new HashMap<>();
         for(Record record: recordsList){
             resp.getWriter().println(record.getName() + ">>" + record.getDateTime());
+            if ( numberOfVisitsEachName.containsKey(record.getName()) ){
+                numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName())+1);
+            } else {
+                numberOfVisitsEachName.put(record.getName(),1);
+            }
         }
+        resp.getWriter().println("");
+        resp.getWriter().println("");
 
+        resp.getWriter().println(numberOfVisitsEachName.toString());
     }
 }
