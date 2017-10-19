@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/finanse/statistics")
+@WebServlet("/q")
 public class StatisticsServlet extends HttpServlet{
     @Inject
-    @Singleton
-    private Statistics statistics = Statistics.getInstance();
+    private Statistics statistics = new Statistics();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

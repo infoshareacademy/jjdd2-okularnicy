@@ -31,8 +31,7 @@ public class Analizator extends HttpServlet {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     @Inject
-    @Singleton
-    private Statistics statistics = Statistics.getInstance();
+    private Statistics statistics = new Statistics();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

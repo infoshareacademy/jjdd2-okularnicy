@@ -1,19 +1,12 @@
 package com.infoshareacademy.baseapp.statistics;
 
+import javax.inject.Singleton;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Singleton
 public class Statistics {
-
-    private static Statistics statistics = new Statistics();
-
-    private Statistics(){
-    }
-
-    public static Statistics getInstance(){
-        return statistics;
-    }
 
     private List<Record> recordsList = new ArrayList<>();
 

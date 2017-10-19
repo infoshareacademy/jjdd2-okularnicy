@@ -11,7 +11,7 @@ public class StatisticsTest {
     @Test
     public void checkRecordInsertion() throws Exception {
         // given
-        Statistics statistics = Statistics.getInstance();
+        Statistics statistics = new Statistics();
         Record record = new Record("sampleName", LocalDateTime.of(2017,10,18,15,00));
         // when
         assertThat(statistics.contain(record)).isEqualTo(false);
@@ -23,7 +23,7 @@ public class StatisticsTest {
     @Test
     public void checkClearStatistics() throws Exception {
         // given
-        Statistics statistics = Statistics.getInstance();
+        Statistics statistics = new Statistics();
         Record record = new Record("sampleName", LocalDateTime.of(2017,10,18,15,00));
         statistics.add(record);
         assertThat(statistics.isEmpty()).isEqualTo(false);
@@ -38,7 +38,7 @@ public class StatisticsTest {
     @Test
     public void checkTotalNumberOfEveryVisits() throws Exception {
         // given
-        Statistics statistics = Statistics.getInstance();
+        Statistics statistics = new Statistics();
         statistics.clear();
         Record record1 = new Record("name1", LocalDateTime.of(2015,10,18,15,00));
         Record record2 = new Record("name2", LocalDateTime.of(2016,10,18,15,00));
@@ -55,7 +55,7 @@ public class StatisticsTest {
     @Test
     public void checkTotalNumberOfVisitsGivenName() throws Exception {
         // given
-        Statistics statistics = Statistics.getInstance();
+        Statistics statistics = new Statistics();
         statistics.clear();
         String name1 = "name1";
         String name2 = "name2";
@@ -75,7 +75,7 @@ public class StatisticsTest {
     @Test
     public void checkTotalNumberOfVisitsInGivenDateRange() throws Exception {
         // given
-        Statistics statistics = Statistics.getInstance();
+        Statistics statistics = new Statistics();
         statistics.clear();
         String name = "name1";
         LocalDateTime dateBefore =      LocalDateTime.of(2017,10,17,13,59);
@@ -101,7 +101,7 @@ public class StatisticsTest {
     @Test
     public void checkTotalNumberOfVisitsGivenNameInGivenDateRange() throws Exception {
         // given
-        Statistics statistics = Statistics.getInstance();
+        Statistics statistics = new Statistics();
         statistics.clear();
         String properName = "name1";
         String improperName = "name2";
