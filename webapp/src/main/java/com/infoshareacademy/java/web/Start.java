@@ -40,7 +40,7 @@ public class Start extends HttpServlet{
             req.setAttribute("userId", idToken);
         }
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
+                .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
     }
 
