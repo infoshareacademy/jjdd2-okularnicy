@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/extremaGlobalne")
+@WebServlet("/finanse/extremaGlobalne")
 @MultipartConfig
 public class extremaGlobalne extends HttpServlet {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");

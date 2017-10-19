@@ -12,6 +12,7 @@
         </Console>
         <Async name="Async">
             <AppenderRef ref="MyFile"/>
+            <AppenderRef ref="Console"/>
         </Async>
     </Appenders>
     <Loggers>

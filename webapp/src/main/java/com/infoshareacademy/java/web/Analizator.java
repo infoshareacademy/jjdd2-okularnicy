@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-@WebServlet("/analizator")
+@WebServlet("/finanse/analizator")
 @MultipartConfig
 public class Analizator extends HttpServlet {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");

@@ -1,11 +1,13 @@
 package com.infoshareacademy.java.web;
 
+import com.auth0.SessionUtils;
 import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.UnZip;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -17,24 +19,32 @@ import javax.servlet.http.Part;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map;
 import java.util.Set;
-import java.time.LocalDateTime;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.UUID;
 
-@WebServlet("/start")
+@WebServlet("/finanse/start")
 @MultipartConfig
-public class Start extends HttpServlet{
+public class Start extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    Configuration configuration = new Configuration();
+    JsonReader jsonReader = new JsonReader();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
         logger.log(Level.INFO, "uruchomiono aplikacje");
+        final String accessToken = (String) SessionUtils.get(req, "accessToken");
+        final String idToken = (String) SessionUtils.get(req, "idToken");
+        if (accessToken != null) {
+            req.setAttribute("userId", accessToken);
+        } else if (idToken != null) {
+            req.setAttribute("userId", idToken);
+        }
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/startDoGet.jsp");
+                .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -48,23 +58,24 @@ public class Start extends HttpServlet{
             logger.info("Rozpoczęto wczytywanie plików");
 
             String tmpDir = System.getProperty("java.io.tmpdir");
-            logger.info("Ustawionościeżkę tymczasową na: " + tmpDir);
-            String targetDir = tmpDir + "/okularnicyFiles";//to properties
+            UUID uuid = UUID.randomUUID();
+            String targetDir = tmpDir + configuration.getWorkFiles() + uuid.toString();//to properties
+            logger.info("Ustawiono ścieżkę tymczasową na: " + targetDir);
 
             FileUtils.deleteDirectory(new File(targetDir));
 
             getServletContext().setAttribute("targetDir", targetDir);
             File targetDirFolder = new File(targetDir);
-            if(!targetDirFolder.exists()){
+            if (!targetDirFolder.exists()) {
                 targetDirFolder.mkdir();
             }
             logger.info("Ustawiono ścieżkę docelową na: " + targetDir);
 
-            String LSTDir = targetDir + "/file.lst";
+            String LSTDir = targetDir + "/" + configuration.getFileLst();
             getServletContext().setAttribute("LSTDir", LSTDir);
             logger.info("Ustawiono ścieżkę do pliku LST: " + LSTDir);
 
-            String ZIPDir = targetDir + "/file.zip";
+            String ZIPDir = targetDir + "/" + configuration.getFileZip();
             getServletContext().setAttribute("ZIPDir", ZIPDir);
             logger.info("Ustawiono ścieżkę do pliku ZIP: " + ZIPDir);
 
@@ -82,16 +93,16 @@ public class Start extends HttpServlet{
             }
             logger.info("Zakończono zapisywanie plików na dysku");
 
-            String unZippedDir = targetDir + "/unzipped";//to properties
+            String unZippedDir = targetDir + "/" + configuration.getUnzippeDir();//to properties
             getServletContext().setAttribute("unZippedDir", unZippedDir);
             File unZippedDirFolder = new File(unZippedDir);
-            if(!unZippedDirFolder.exists()){
+            if (!unZippedDirFolder.exists()) {
                 unZippedDirFolder.mkdir();
             }
             logger.info("Ustawiono folder docelowy do dekompresji plików: " + unZippedDir);
 
             UnZip unZip = new UnZip();
-            unZip.unZip(ZIPDir,unZippedDir);
+            unZip.unZip(ZIPDir, unZippedDir);
             logger.info("Zakończono rozpakowywanie plików z archiwum");
 
 
@@ -102,24 +113,24 @@ public class Start extends HttpServlet{
             logger.info("Wczytanie danych z pliku LST do mapy");
             Map<String, String> filesHashMapToSent = new HashMap<String, String>();
 
-            int mapsEntry=0;
-            int fundsFound=0;
+            int mapsEntry = 0;
+            int fundsFound = 0;
 
             Set<Map.Entry<String, String>> entries = filesHashMap.entrySet();
-            for(Map.Entry<String, String> entry : entries){
+            for (Map.Entry<String, String> entry : entries) {
                 mapsEntry++;
                 String pathToFund = getServletContext().getAttribute("unZippedDir").toString();
                 pathToFund += "/";
                 pathToFund += entry.getValue();
                 File f = new File(pathToFund);
-                if(f.exists() && !f.isDirectory()) {
+                if (f.exists() && !f.isDirectory()) {
                     fundsFound++;
                     filesHashMapToSent.put(entry.getKey(), entry.getValue());
                 }
             }
             logger.info("Zakończono zestawienie danych plik LST - plik ZIP");
 
-            if ((mapsEntry == fundsFound) && (fundsFound > 0)){
+            if ((mapsEntry == fundsFound) && (fundsFound > 0)) {
                 getServletContext().setAttribute("lstCorrectness", 1);
                 logger.info("Zestawienie LST-ZIP zakończono pomyślnie");
             } else if (fundsFound > 0) {
