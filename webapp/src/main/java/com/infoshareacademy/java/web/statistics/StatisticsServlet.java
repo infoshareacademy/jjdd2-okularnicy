@@ -25,15 +25,17 @@ public class StatisticsServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().println("jestes w statystykach");
-        resp.getWriter().println("");
-        resp.getWriter().println("");
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("jestes w statystykach" + "\n");
+        sb.append("" + "\n");
+        sb.append("" + "\n");
 
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime tenSecondsAgo = now.minusSeconds(10);
         LocalDateTime twentySecondsAgo = now.minusSeconds(20);
 
-        resp.getWriter().println("Calkowita liczba wyborow: " + statistics.getNumberOfVisits());
+        sb.append("Calkowita liczba wyborow: " + statistics.getNumberOfVisits() + "\n");
         List<Record> recordsList = statistics.getAll();
         Map<String, Integer> numberOfVisitsEachName = new HashMap<>();
         for(Record record: recordsList){
@@ -43,11 +45,11 @@ public class StatisticsServlet extends HttpServlet{
                 numberOfVisitsEachName.put(record.getName(),1);
             }
         }
-        resp.getWriter().println(numberOfVisitsEachName.toString());
-        resp.getWriter().println("");
-        resp.getWriter().println("");
+        sb.append(numberOfVisitsEachName.toString() + "\n");
+        sb.append("" + "\n");
+        sb.append("" + "\n");
 
-        resp.getWriter().println("w ciagu ostatnich 10 sekund: " + statistics.getNumberOfVisits(tenSecondsAgo, now));
+        sb.append("w ciagu ostatnich 10 sekund: " + statistics.getNumberOfVisits(tenSecondsAgo, now) + "\n");
         recordsList = statistics.getAll(tenSecondsAgo, now);
         numberOfVisitsEachName = new HashMap<>();
         for(Record record: recordsList){
@@ -57,11 +59,11 @@ public class StatisticsServlet extends HttpServlet{
                 numberOfVisitsEachName.put(record.getName(),1);
             }
         }
-        resp.getWriter().println(numberOfVisitsEachName.toString());
-        resp.getWriter().println("");
-        resp.getWriter().println("");
+        sb.append(numberOfVisitsEachName.toString() + "\n");
+        sb.append("" + "\n");
+        sb.append("" + "\n");
 
-        resp.getWriter().println("w ciagu ostatnich 20 sekund: " + statistics.getNumberOfVisits(twentySecondsAgo, now));
+        sb.append("w ciagu ostatnich 20 sekund: " + statistics.getNumberOfVisits(twentySecondsAgo, now) + "\n");
         recordsList = statistics.getAll(twentySecondsAgo, now);
         numberOfVisitsEachName = new HashMap<>();
         for(Record record: recordsList){
@@ -71,16 +73,17 @@ public class StatisticsServlet extends HttpServlet{
                 numberOfVisitsEachName.put(record.getName(),1);
             }
         }
-        resp.getWriter().println(numberOfVisitsEachName.toString());
-        resp.getWriter().println("");
-        resp.getWriter().println("");
+        sb.append(numberOfVisitsEachName.toString() + "\n");
+        sb.append("" + "\n");
+        sb.append("" + "\n");
 
-        resp.getWriter().println("Historia");
+        sb.append("Historia" + "\n");
         recordsList = statistics.getAll();
         for(Record record: recordsList){
-            resp.getWriter().println(record.getName() + ">>" + record.getDateTime());
+            sb.append(record.getName() + ">>" + record.getDateTime() + "\n");
         }
-        resp.getWriter().println("");
-        resp.getWriter().println("");
+        sb.append("" + "\n");
+        sb.append("" + "\n");
+        resp.getWriter().println(sb.toString());
     }
 }
