@@ -58,5 +58,45 @@ public class StatisticsServlet extends HttpServlet{
         resp.getWriter().println("");
 
         resp.getWriter().println(numberOfVisitsEachName.toString());
+        resp.getWriter().println("");
+        resp.getWriter().println("");
+
+
+        recordsList = statistics.getAll(tenSecondsAgo, now);
+        numberOfVisitsEachName = new HashMap<>();
+        for(Record record: recordsList){
+            resp.getWriter().println(record.getName() + ">>" + record.getDateTime());
+            if ( numberOfVisitsEachName.containsKey(record.getName()) ){
+                numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName())+1);
+            } else {
+                numberOfVisitsEachName.put(record.getName(),1);
+            }
+        }
+        resp.getWriter().println("");
+        resp.getWriter().println("");
+
+        resp.getWriter().println(numberOfVisitsEachName.toString());
+        resp.getWriter().println("");
+        resp.getWriter().println("");
+
+
+
+        recordsList = statistics.getAll(twentySecondsAgo, now);
+        numberOfVisitsEachName = new HashMap<>();
+        for(Record record: recordsList){
+            resp.getWriter().println(record.getName() + ">>" + record.getDateTime());
+            if ( numberOfVisitsEachName.containsKey(record.getName()) ){
+                numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName())+1);
+            } else {
+                numberOfVisitsEachName.put(record.getName(),1);
+            }
+        }
+        resp.getWriter().println("");
+        resp.getWriter().println("");
+
+        resp.getWriter().println(numberOfVisitsEachName.toString());
+        resp.getWriter().println("");
+        resp.getWriter().println("");
+
     }
 }

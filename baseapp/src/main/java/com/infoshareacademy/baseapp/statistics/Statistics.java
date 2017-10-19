@@ -25,6 +25,16 @@ public class Statistics {
         return recordsList;
     }
 
+    public List<Record> getAll(LocalDateTime dateFrom, LocalDateTime dateTo) {
+        List<Record> result = new ArrayList<>();
+        for(Record record : recordsList){
+            if ((record.getDateTime().isAfter(dateFrom) || record.getDateTime().isEqual(dateFrom)) && (record.getDateTime().isBefore(dateTo) || record.getDateTime().isEqual(dateTo))){
+                result.add(record);
+            }
+        }
+        return result;
+    }
+
     public boolean contain(Record record) {
         return recordsList.contains(record);
     }
