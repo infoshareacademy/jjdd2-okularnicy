@@ -25,8 +25,6 @@ public class StatisticsTest {
         // given
         Statistics statistics = Statistics.getInstance();
         Record record = new Record("sampleName", LocalDateTime.of(2017,10,18,15,00));
-        assertThat(statistics.isEmpty()).isEqualTo(true);
-        assertThat(statistics.getAll()).isEmpty();
         statistics.add(record);
         assertThat(statistics.isEmpty()).isEqualTo(false);
         assertThat(statistics.getAll()).isNotEmpty();
@@ -37,10 +35,11 @@ public class StatisticsTest {
         assertThat(statistics.getAll()).isEmpty();
     }
 
-    /*@Test
+    @Test
     public void checkTotalNumberOfEveryVisits() throws Exception {
         // given
         Statistics statistics = Statistics.getInstance();
+        statistics.clear();
         Record record1 = new Record("name1", LocalDateTime.of(2015,10,18,15,00));
         Record record2 = new Record("name2", LocalDateTime.of(2016,10,18,15,00));
         Record record3 = new Record("name3", LocalDateTime.of(2017,10,18,15,00));
@@ -52,10 +51,12 @@ public class StatisticsTest {
         assertThat(statistics.getNumberOfVisits()).isEqualTo(3);
     }
 
+
     @Test
     public void checkTotalNumberOfVisitsGivenName() throws Exception {
         // given
         Statistics statistics = Statistics.getInstance();
+        statistics.clear();
         String name1 = "name1";
         String name2 = "name2";
         Record record1 = new Record(name1, LocalDateTime.of(2015,10,18,15,00));
@@ -75,6 +76,7 @@ public class StatisticsTest {
     public void checkTotalNumberOfVisitsInGivenDateRange() throws Exception {
         // given
         Statistics statistics = Statistics.getInstance();
+        statistics.clear();
         String name = "name1";
         LocalDateTime dateBefore =      LocalDateTime.of(2017,10,17,13,59);
         LocalDateTime dateFrom =        LocalDateTime.of(2017,10,17,14,00);
@@ -100,6 +102,7 @@ public class StatisticsTest {
     public void checkTotalNumberOfVisitsGivenNameInGivenDateRange() throws Exception {
         // given
         Statistics statistics = Statistics.getInstance();
+        statistics.clear();
         String properName = "name1";
         String improperName = "name2";
         LocalDateTime dateBefore =      LocalDateTime.of(2017,10,17,13,59);
@@ -130,5 +133,5 @@ public class StatisticsTest {
         statistics.add(improperRecord7);
         // then
         assertThat(statistics.getNumberOfVisits(properName, dateFrom, dateTo)).isEqualTo(3);
-    }*/
+    }
 }
