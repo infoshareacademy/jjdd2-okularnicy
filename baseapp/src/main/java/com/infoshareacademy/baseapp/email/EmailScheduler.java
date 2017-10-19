@@ -10,7 +10,6 @@ import static org.quartz.JobBuilder.*;
 import static org.quartz.TriggerBuilder.*;
 import static org.quartz.SimpleScheduleBuilder.*;
 
-
 public class EmailScheduler {
     public static void main(String[] args) {
         Scheduler scheduler=null;
@@ -20,13 +19,9 @@ public class EmailScheduler {
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
-
-        // define the job and tie it to our MyJob class
-        JobDetail job = newJob(MyJob.class)
+        JobDetail job = newJob(EmailJob.class)
                 .withIdentity("job1", "group1")
                 .build();
-
-        // Trigger the job to run now, and then repeat every 40 seconds
         Trigger trigger = newTrigger()
                 .withIdentity("trigger1", "group1")
                 .startNow()
@@ -34,14 +29,10 @@ public class EmailScheduler {
                         .withIntervalInSeconds(10)
                         .repeatForever())
                 .build();
-
-        // Tell quartz to schedule the job using our trigger
         try {
             scheduler.scheduleJob(job, trigger);
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
-
-
     }
 }
