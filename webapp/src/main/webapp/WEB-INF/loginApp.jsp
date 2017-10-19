@@ -8,11 +8,16 @@
 </head>
 
 <body>
+
 <div class="og" id="glob">
-    ANALIZATOR FINANSOWY
+    <br>
+    <h1>ANALIZATOR FINANSOWY</h1>
+    <br>
+    <br>
     Aby przejsc dalej musisz sie zalogowac
     <form action="finanse/start" method="GET">
-    <button type="submit">Zaloguj</button>
+        <button type="submit">Zaloguj</button>
     </form>
 </div>
 </body>
+</html>
