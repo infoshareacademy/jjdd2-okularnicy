@@ -1,5 +1,6 @@
 package com.infoshareacademy.java.web.statistics;
 
+import com.infoshareacademy.baseapp.statistics.Record;
 import com.infoshareacademy.baseapp.statistics.Statistics;
 
 import javax.inject.Inject;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/finanse/statistics")
 public class StatisticsServlet extends HttpServlet{
@@ -20,6 +24,28 @@ public class StatisticsServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().println("jestes w statystykach");
+        resp.getWriter().println("");
+        resp.getWriter().println("");
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime tenSecondsAgo = now.minusSeconds(10);
+        LocalDateTime twentySecondsAgo = now.minusSeconds(20);
+        resp.getWriter().println("now(): "+ now);
+        resp.getWriter().println("10 seconds ago: " + tenSecondsAgo);
+        resp.getWriter().println("20 seconds ago: " + twentySecondsAgo);
+        resp.getWriter().println("");
+        resp.getWriter().println("");
+
         resp.getWriter().println("total>>" + statistics.getNumberOfVisits() + "<<");
+        resp.getWriter().println("w ciagu ostatnich 10 sekund>>" + statistics.getNumberOfVisits(tenSecondsAgo, now) + "<<");
+        resp.getWriter().println("w ciagu ostatnich 20 sekund>>" + statistics.getNumberOfVisits(twentySecondsAgo, now) + "<<");
+        resp.getWriter().println("");
+        resp.getWriter().println("");
+
+        List<Record> recordsList = statistics.getAll();
+        for(Record record: recordsList){
+            resp.getWriter().println(record.getName() + ">>" + record.getDateTime());
+        }
+
     }
 }
