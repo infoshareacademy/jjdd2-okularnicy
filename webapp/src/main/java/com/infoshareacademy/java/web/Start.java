@@ -68,6 +68,7 @@ public class Start extends HttpServlet {
             File targetDirFolder = new File(targetDir);
             if (!targetDirFolder.exists()) {
                 targetDirFolder.mkdir();
+            }
 
             logger.info("Ustawiono ścieżkę docelową na: " + targetDir);
 
