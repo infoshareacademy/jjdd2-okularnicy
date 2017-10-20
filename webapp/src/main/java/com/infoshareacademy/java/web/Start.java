@@ -59,7 +59,7 @@ public class Start extends HttpServlet {
 
             String tmpDir = System.getProperty("java.io.tmpdir");
             UUID uuid = UUID.randomUUID();
-            String targetDir = tmpDir + configuration.getWorkFiles() + uuid.toString();//to properties
+            String targetDir = tmpDir + "/" + configuration.getWorkFiles() + uuid.toString();//to properties
             logger.info("Ustawiono ścieżkę tymczasową na: " + targetDir);
 
             FileUtils.deleteDirectory(new File(targetDir));
@@ -68,7 +68,7 @@ public class Start extends HttpServlet {
             File targetDirFolder = new File(targetDir);
             if (!targetDirFolder.exists()) {
                 targetDirFolder.mkdir();
-            }
+
             logger.info("Ustawiono ścieżkę docelową na: " + targetDir);
 
             String LSTDir = targetDir + "/" + configuration.getFileLst();
