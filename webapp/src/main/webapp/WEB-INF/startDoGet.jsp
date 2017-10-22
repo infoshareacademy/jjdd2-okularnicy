@@ -9,7 +9,7 @@
 
 <body>
 
-<header id=header1>
+<header>
     <nav class=nav>
         <ul>
             <li><a href="start">STRONA GŁÓWNA</a></li>
