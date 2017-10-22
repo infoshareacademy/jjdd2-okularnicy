@@ -26,8 +26,6 @@ public class StatisticsServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String result = report.generateReport();
-
-        resp.getWriter().println(result);
+        resp.getWriter().println(report.generateReport());
     }
 }
