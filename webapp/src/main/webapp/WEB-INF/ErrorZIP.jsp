@@ -14,7 +14,8 @@
 </header>
 <article id="tytul">
     <h1>Archiwum ZIP nie zawiera żadnego pliku wymienionego na liście LST</h1>
-    <br/>
+    <jsp:include page="startDoGet.jsp"/>
+
 </article>
 
 </body>
