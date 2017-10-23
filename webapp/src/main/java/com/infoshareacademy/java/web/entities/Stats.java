@@ -2,6 +2,7 @@ package com.infoshareacademy.java.web.entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 
 @NamedQueries({
@@ -20,7 +21,7 @@ public class Stats {
     private String statsName;
 
     @Column(name = "stats_datetime")
-    private Date statsTime;
+    private LocalDateTime statsTime;
 
     public Integer getId() {
         return id;
@@ -38,11 +39,11 @@ public class Stats {
         this.statsName = meetingName;
     }
 
-    public Date getStatsTime() {
+    public LocalDateTime getStatsTime() {
         return statsTime;
     }
 
-    public void setStatsTime(Date statsTime) {
+    public void setStatsTime(LocalDateTime statsTime) {
         this.statsTime = statsTime;
     }
 

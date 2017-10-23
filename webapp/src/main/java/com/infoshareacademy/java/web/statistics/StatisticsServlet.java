@@ -20,7 +20,7 @@ import java.util.Map;
 
 @WebServlet("/finanse/statistics")
 public class StatisticsServlet extends HttpServlet{
-    
+
     private Report report = Report.getInstance();
 
     @Override

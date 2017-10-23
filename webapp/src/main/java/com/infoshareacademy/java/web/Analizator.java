@@ -4,6 +4,8 @@ import com.infoshareacademy.baseapp.FundBase;
 import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.statistics.Record;
 import com.infoshareacademy.baseapp.statistics.Statistics;
+import com.infoshareacademy.java.web.beans.StatsDAOBeanLocal;
+import com.infoshareacademy.java.web.entities.Stats;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,6 +34,9 @@ public class Analizator extends HttpServlet {
 
     private Statistics statistics = Statistics.getInstance();
 
+    @Inject
+    StatsDAOBeanLocal statsDAOBeanLocal;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = getServletContext()
@@ -51,6 +56,10 @@ public class Analizator extends HttpServlet {
         logger.info("Użytkownik wybrał fundusz: " + choseFundString + " " + choseFundStringFullName);
         Record record = new Record(choseFundStringFullName, LocalDateTime.now());
         statistics.add(record);
+        Stats stats = new Stats();
+        stats.setStatsName("Daniel");
+        stats.setStatsTime(LocalDateTime.of(2000,01,01,12,30));
+        statsDAOBeanLocal.addStats(stats);
         logger.info("Do statystyk zapisano record: " + record.toString());
         resp.sendRedirect("menu");
         logger.info("Przekierowanie na stronę menu");
