@@ -1,6 +1,5 @@
 package com.infoshareacademy.java.web.email;
 
-import com.infoshareacademy.baseapp.email.EmailService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

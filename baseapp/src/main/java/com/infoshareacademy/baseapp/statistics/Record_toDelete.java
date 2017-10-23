@@ -2,11 +2,11 @@ package com.infoshareacademy.baseapp.statistics;
 
 import java.time.LocalDateTime;
 
-public class Record {
+public class Record_toDelete {
     private String name;
     private LocalDateTime dateTime;
 
-    public Record(String name, LocalDateTime dateTime) {
+    public Record_toDelete(String name, LocalDateTime dateTime) {
         this.name = name;
         this.dateTime = dateTime;
     }

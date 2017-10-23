@@ -1,16 +1,12 @@
 package com.infoshareacademy.java.web;
 
-import com.infoshareacademy.baseapp.FundBase;
-import com.infoshareacademy.baseapp.StartingParameters;
-import com.infoshareacademy.baseapp.statistics.Record;
-import com.infoshareacademy.baseapp.statistics.Statistics;
+import com.infoshareacademy.java.web.statistics.Statistics;
 import com.infoshareacademy.java.web.beans.StatsDAOBeanLocal;
 import com.infoshareacademy.java.web.entities.Stats;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -20,11 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.rmi.ServerException;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 @WebServlet("/finanse/analizator")
@@ -54,13 +46,11 @@ public class Analizator extends HttpServlet {
         String choseFundStringFullName = nextLine.split(",")[1];
         getServletContext().setAttribute("choseFundString", choseFundString);
         logger.info("Użytkownik wybrał fundusz: " + choseFundString + " " + choseFundStringFullName);
-        Record record = new Record(choseFundStringFullName, LocalDateTime.now());
-        statistics.add(record);
-        Stats stats = new Stats();
-        stats.setStatsName("Daniel");
-        stats.setStatsTime(LocalDateTime.of(2000,01,01,12,30));
+        //Record record = new Record(choseFundStringFullName, LocalDateTime.now());
+        Stats stats = new Stats(choseFundStringFullName, LocalDateTime.now());
+        statistics.add(stats);
         statsDAOBeanLocal.addStats(stats);
-        logger.info("Do statystyk zapisano record: " + record.toString());
+        logger.info("Do statystyk zapisano record: " + stats.toString());
         resp.sendRedirect("menu");
         logger.info("Przekierowanie na stronę menu");
     }

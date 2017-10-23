@@ -1,6 +1,6 @@
-package com.infoshareacademy.baseapp.email;
+package com.infoshareacademy.java.web.report;
 
-import com.infoshareacademy.baseapp.report.Report;
+import com.infoshareacademy.java.web.email.EmailService;
 
 import javax.mail.MessagingException;
 

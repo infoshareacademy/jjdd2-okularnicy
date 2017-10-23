@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class RecordTest {
 
-    @Test
+    /*@Test
     public void checkRecordCreation() throws Exception {
         // given
         String name = "Fundusz inwestycyjny";
@@ -19,5 +19,5 @@ public class RecordTest {
         // then
         assertThat(sut.getName()).isEqualTo(name);
         assertThat(sut.getDateTime()).isEqualTo(dateTime);
-    }
+    }*/
 }

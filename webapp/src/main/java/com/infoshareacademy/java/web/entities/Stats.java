@@ -23,6 +23,11 @@ public class Stats {
     @Column(name = "stats_datetime")
     private LocalDateTime statsTime;
 
+    public Stats(String statsName, LocalDateTime statsTime) {
+        this.statsName = statsName;
+        this.statsTime = statsTime;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -47,5 +52,12 @@ public class Stats {
         this.statsTime = statsTime;
     }
 
+    @Override
+    public String toString() {
+        return "Stats{" +
+                "Name='" + statsName + '\'' +
+                ", DateTime=" + statsTime +
+                '}';
+    }
 }
 

@@ -1,4 +1,4 @@
-package com.infoshareacademy.baseapp.email;
+package com.infoshareacademy.java.web.email;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
