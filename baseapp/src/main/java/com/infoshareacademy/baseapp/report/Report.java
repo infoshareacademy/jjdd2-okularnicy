@@ -24,7 +24,9 @@ public class Report {
         Statistics statistics = Statistics.getInstance();
         StringBuilder sb = new StringBuilder();
 
-        sb.append("jestes w statystykach" + "\n");
+        sb.append("=======================" + "\n");
+        sb.append("== DANE STATYSTYCZNE ==" + "\n");
+        sb.append("=======================" + "\n");
         sb.append("" + "\n");
         sb.append("" + "\n");
 
