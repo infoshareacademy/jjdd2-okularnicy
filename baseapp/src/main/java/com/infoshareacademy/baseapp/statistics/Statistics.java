@@ -2,7 +2,9 @@ package com.infoshareacademy.baseapp.statistics;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Statistics {
 
@@ -79,5 +81,31 @@ public class Statistics {
             }
         }
         return counter;
+    }
+
+    public Map<String,Integer> getOccurrenceMap() {
+
+        Map<String, Integer> numberOfVisitsEachName = new HashMap<>();
+        for(Record record: recordsList){
+            if ( numberOfVisitsEachName.containsKey(record.getName()) ){
+                numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName())+1);
+            } else {
+                numberOfVisitsEachName.put(record.getName(),1);
+            }
+        }
+        return numberOfVisitsEachName;
+    }
+
+    public Map<String,Integer> getOccurrenceMap(LocalDateTime dateFrom, LocalDateTime dateTo) {
+        List<Record> recordsListFilteredByDateRange = getAll(dateFrom,dateTo);
+        Map<String, Integer> numberOfVisitsEachName = new HashMap<>();
+        for(Record record: recordsListFilteredByDateRange){
+            if ( numberOfVisitsEachName.containsKey(record.getName()) ){
+                numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName())+1);
+            } else {
+                numberOfVisitsEachName.put(record.getName(),1);
+            }
+        }
+        return numberOfVisitsEachName;
     }
 }
