@@ -19,8 +19,7 @@ import java.util.Map;
 
 @WebServlet("/finanse/statistics")
 public class StatisticsServlet extends HttpServlet{
-    @Inject
-    @Singleton
+    
     private Statistics statistics = Statistics.getInstance();
 
     @Override
