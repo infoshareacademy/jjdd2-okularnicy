@@ -30,6 +30,13 @@ public class StatisticsServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime last1 = now.minusSeconds(10);
+        LocalDateTime last2 = now.minusSeconds(20);
+        getServletContext().setAttribute("NumberOfVisitsLast1", statistics.getNumberOfVisits(last1,now));
+        getServletContext().setAttribute("OccurrenceMapLast1", statistics.getOccurrenceMap(last1,now));
+        getServletContext().setAttribute("NumberOfVisitsLast2", statistics.getNumberOfVisits(last2,now));
+        getServletContext().setAttribute("OccurrenceMapLast2", statistics.getOccurrenceMap(last2,now));
         getServletContext().setAttribute("NumberOfVisitsTotal", statistics.getNumberOfVisits());
         getServletContext().setAttribute("OccurrenceMapTotal", statistics.getOccurrenceMap());
         getServletContext().setAttribute("RecordsListTotal", statistics.getAll());
@@ -46,7 +53,7 @@ public class StatisticsServlet extends HttpServlet{
         sb.append("" + "\n");
         sb.append("" + "\n");
 
-        LocalDateTime now = LocalDateTime.now();
+        //LocalDateTime now = LocalDateTime.now();
         LocalDateTime tenSecondsAgo = now.minusSeconds(10);
         LocalDateTime twentySecondsAgo = now.minusSeconds(20);
 

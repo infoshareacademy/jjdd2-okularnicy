@@ -15,14 +15,27 @@
     <H1>STATYSTYKI</H1>
 
 
-    <H4>Liczba wszystkich wyborów użytkownika: ${NumberOfVisitsTotal}</H4>
-    <c:forEach items="${OccurrenceMapTotal}" var="entry">
-        <p>${entry.key}>>${entry.value}</p>
+    <H4>Liczba wyborów użytkownika w pierwszym przedziale czasu: ${NumberOfVisitsLast1}</H4>
+    <c:forEach items="${OccurrenceMapLast1}" var="entry">
+        <h6>${entry.key}>>${entry.value}</h6>
     </c:forEach>
 
-    <H4>Historia:</H4>
+    <H4>Liczba wyborów użytkownika w drugim przedziale czasu: ${NumberOfVisitsLast2}</H4>
+    <c:forEach items="${OccurrenceMapLast2}" var="entry">
+        <h6>${entry.key}>>${entry.value}</h6>
+    </c:forEach>
+
+
+
+
+    <H4>Liczba wszystkich wyborów użytkownika: ${NumberOfVisitsTotal}</H4>
+    <c:forEach items="${OccurrenceMapTotal}" var="entry">
+        <h4>${entry.key}>>${entry.value}</h4>
+    </c:forEach>
+
+    <h4>Historia:</h4>
     <c:forEach items="${RecordsListTotal}" var="entry">
-        <p>${entry.name}>>${entry.dateTime}</p>
+        <h6>${entry.name}>>${entry.dateTime}</h6>
     </c:forEach>
 
 </div>
