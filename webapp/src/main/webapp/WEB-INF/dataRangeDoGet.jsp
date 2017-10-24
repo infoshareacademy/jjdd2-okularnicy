@@ -18,7 +18,7 @@
                 selectOtherMonths: true,
                 yearRange: "1970:+nn",
                 minDate: "${startDateOnList}",
-                maxDate: "${endDateOnList}",
+                maxDate: "${endDateOnList}"
             });
         });
     </script>
