@@ -42,9 +42,9 @@
     <form action="extremaLokalne" method="POST">
 
 
-        <input type="text" name="startDate" value="Data początkowa" class="datepicker"/> &nbsp
+        <input type="text" name="startDate" placeholder="Data początkowa" class="datepicker" required/> &nbsp
 
-        <input type="text" name="endDate" value="Data końcowa"  class="datepicker"/>
+        <input type="text" name="endDate" placeholder="Data końcowa"  class="datepicker" required/>
         <br>
         <input type="submit" value="Wyślij" class="datepicker">
     </form>
