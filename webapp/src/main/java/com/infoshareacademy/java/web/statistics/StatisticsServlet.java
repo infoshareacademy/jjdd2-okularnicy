@@ -5,6 +5,7 @@ import com.infoshareacademy.baseapp.statistics.Statistics;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +23,16 @@ public class StatisticsServlet extends HttpServlet{
     
     private Statistics statistics = Statistics.getInstance();
 
+
+
+
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher ("/WEB-INF/statisticsDoGet.jsp");
+        dispatcher.forward(req, resp);
         StringBuilder sb = new StringBuilder();
         
         sb.append("jestes w statystykach" + "\n");
