@@ -16,4 +16,5 @@
         <param-name>com.auth0.clientSecret</param-name>
         <param-value>W7anciWSoPTpLgz6dLhGkhmS-eE7ZMqLsLMO70aOAkLM92cqZisdbipO0Ax0T0Qm</param-value>
     </context-param>
+
 </web-app>
