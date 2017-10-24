@@ -30,6 +30,13 @@ public class StatisticsServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        getServletContext().setAttribute("NumberOfVisitsTotal", statistics.getNumberOfVisits());
+        getServletContext().setAttribute("OccurrenceMapTotal", statistics.getOccurrenceMap());
+        getServletContext().setAttribute("RecordsListTotal", statistics.getAll());
+
+
+
+
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher ("/WEB-INF/statisticsDoGet.jsp");
         dispatcher.forward(req, resp);
