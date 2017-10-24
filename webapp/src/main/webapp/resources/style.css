@@ -403,3 +403,16 @@ margin-bottom: 2rem;
   font-size: 30px;
 }
 
+.datepicker {
+
+  text-align: center;
+  background-color: #8d8d8d !important;
+  padding: 1vh;
+}
+
+.datepicker:hover {
+
+  background-color: #474747 !important;
+}
+
+
