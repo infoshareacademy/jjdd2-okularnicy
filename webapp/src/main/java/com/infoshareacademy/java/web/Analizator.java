@@ -29,9 +29,7 @@ import java.util.Scanner;
 @MultipartConfig
 public class Analizator extends HttpServlet {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
-
-    @Inject
-    @Singleton
+    
     private Statistics statistics = Statistics.getInstance();
 
     @Override
