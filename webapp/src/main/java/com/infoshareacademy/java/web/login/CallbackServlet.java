@@ -5,6 +5,8 @@ import com.auth0.IdentityVerificationException;
 import com.auth0.SessionUtils;
 import com.auth0.Tokens;
 import com.infoshareacademy.java.web.login.AuthenticationControllerProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -17,6 +19,8 @@ import java.io.UnsupportedEncodingException;
 
 @WebServlet(urlPatterns = {"/callback"})
 public class CallbackServlet extends HttpServlet {
+
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     private String redirectOnSuccess;
     private String redirectOnFail;
@@ -50,6 +54,7 @@ public class CallbackServlet extends HttpServlet {
             Tokens tokens = authenticationController.handle(req);
             SessionUtils.set(req, "accessToken", tokens.getAccessToken());
             SessionUtils.set(req, "idToken", tokens.getIdToken());
+            logger.info("authenticated as id={} accesToken={}",tokens.getIdToken(), tokens.getAccessToken());
             res.sendRedirect(redirectOnSuccess);
         } catch (IdentityVerificationException e) {
             e.printStackTrace();

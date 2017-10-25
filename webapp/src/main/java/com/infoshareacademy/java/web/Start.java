@@ -30,7 +30,6 @@ public class Start extends HttpServlet {
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -43,6 +42,7 @@ public class Start extends HttpServlet {
         } else if (idToken != null) {
             req.setAttribute("userId", idToken);
         }
+
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
