@@ -15,6 +15,8 @@
 <div class="og" id="glob">
     <h1> EKSTREMA GLOBALNE </h1>
 
+    <h2>${choseFundStringFullName}</h2>
+
     <p>Wartość minimalna: ${fundMinDate} => ${fundMinClose}</p>
     <br>
     <p>Wartość maksymalna: ${fundMaxDate} => ${fundMaxClose}</p>

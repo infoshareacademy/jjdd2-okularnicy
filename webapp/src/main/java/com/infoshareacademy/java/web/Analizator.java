@@ -48,6 +48,7 @@ public class Analizator extends HttpServlet {
         String choseFundString = nextLine.split(",")[0];
         String choseFundStringFullName = nextLine.split(",")[1];
         getServletContext().setAttribute("choseFundString", choseFundString);
+        getServletContext().setAttribute("choseFundStringFullName", choseFundStringFullName);
         logger.info("Użytkownik wybrał fundusz: " + choseFundString + " " + choseFundStringFullName);
         Record record = new Record(choseFundStringFullName, LocalDateTime.now());
         statistics.add(record);
