@@ -7,6 +7,9 @@ import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +19,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +41,15 @@ public class Start extends HttpServlet {
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
 
+    // przeniesc
+    public interface AuthClient {
+        @GET
+        @Path("userinfo")
+        @Produces("text/plain")
+        String getUserInfo(@HeaderParam("Authorization") String authorization);
+    }
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -42,6 +62,14 @@ public class Start extends HttpServlet {
         } else if (idToken != null) {
             req.setAttribute("userId", idToken);
         }
+
+        String url = "okularnicy.eu.auth0.com/userinfo";
+
+        ResteasyClient client = new ResteasyClientBuilder().build();
+        ResteasyWebTarget target = client.target("https://okularnicy.eu.auth0.com");
+
+        AuthClient authClient = target.proxy(AuthClient.class);
+        logger.info(authClient.getUserInfo("Bearer " + accessToken));
 
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
@@ -163,4 +191,5 @@ public class Start extends HttpServlet {
             logger.log(Level.ERROR, "Wyjątek: ServletException");
         }
     }
+
 }
