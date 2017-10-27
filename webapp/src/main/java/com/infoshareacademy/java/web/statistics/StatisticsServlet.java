@@ -2,6 +2,7 @@ package com.infoshareacademy.java.web.statistics;
 
 import com.infoshareacademy.baseapp.statistics.Statistics;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +15,8 @@ import java.time.LocalDateTime;
 @WebServlet("/finanse/statistics")
 public class StatisticsServlet extends HttpServlet {
 
-    private Statistics statistics = Statistics.getInstance();
+    @Inject
+    private Statistics statistics;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
