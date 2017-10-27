@@ -12,10 +12,12 @@ public class AdminServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if (request.getSession() != null) {
+
+//        request.getSession().getAttribute()
+//        if (request.getSession() != null) {
 
 
 
         }
     }
-}
+
