@@ -7,14 +7,10 @@ import com.infoshareacademy.java.web.beans.UserDAOBeanLocal;
 import com.infoshareacademy.java.web.beans.UsersLoginsDAOBeanLocal;
 import com.infoshareacademy.java.web.entities.User;
 import com.infoshareacademy.java.web.entities.UsersLogins;
-import com.infoshareacademy.java.web.login.AuthClient;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -25,10 +21,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -45,6 +37,9 @@ public class Start extends HttpServlet {
 
     @Inject
     UsersLoginsDAOBeanLocal usersLoginsDAOBean;
+
+    @Inject
+    UserFactory userFactory;
 
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
     Configuration configuration = new Configuration();
@@ -63,20 +58,8 @@ public class Start extends HttpServlet {
             req.setAttribute("userId", idToken);
         }
 
-        String url = "jjdd2okularnicy.eu.auth0.com/userinfo";
-
-        ResteasyClient client = new ResteasyClientBuilder().build();
-        ResteasyWebTarget target = client.target(url);
-
-        AuthClient authClient = target.proxy(AuthClient.class);
-        String userId = authClient.getUserInfo("Bearer " + accessToken);
-        logger.info(userId);
-
-        User user = userDAOBean.findUserById(userId);
-        if (user == null) {
-            user = new User(userId, false, email);
-        }
-
+        String userId = userFactory.getUserId(accessToken);
+        User user = userFactory.createUser(userId, accessToken);
         userDAOBean.addUser(user);
         UsersLogins userlogin = new UsersLogins(userId, LocalDate.now());
         usersLoginsDAOBean.addUserLogin(userlogin);

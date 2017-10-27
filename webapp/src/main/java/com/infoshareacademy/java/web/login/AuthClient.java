@@ -10,4 +10,10 @@ public interface AuthClient {
     @Path("userinfo")
     @Produces("text/plain")
     String getUserInfo(@HeaderParam("Authorization") String authorization);
+
+    @GET
+//    @Path("")
+    @Produces("text/plain")
+    String getUserEmail(@HeaderParam("Authorization") String authorization);
+
 }
