@@ -49,7 +49,6 @@ public class Start extends HttpServlet {
         String getUserInfo(@HeaderParam("Authorization") String authorization);
     }
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -63,14 +62,18 @@ public class Start extends HttpServlet {
             req.setAttribute("userId", idToken);
         }
 
-        String url = "okularnicy.eu.auth0.com/userinfo";
+        String url = "jjdd2okularnicy.eu.auth0.com/userinfo";
 
         ResteasyClient client = new ResteasyClientBuilder().build();
-        ResteasyWebTarget target = client.target("https://okularnicy.eu.auth0.com");
+        ResteasyWebTarget target = client.target(url);
 
         AuthClient authClient = target.proxy(AuthClient.class);
-        logger.info(authClient.getUserInfo("Bearer " + accessToken));
+        String userId = authClient.getUserInfo("Bearer " + accessToken);
+        logger.info(userId);
 
+        if (userId == "aaa") {
+            resp.sendRedirect("admin");
+        }
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);

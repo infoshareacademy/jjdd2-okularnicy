@@ -1,10 +1,21 @@
-@javax.servlet.annotation.WebServlet(name = "AdminServlet")
-public class AdminServlet extends javax.servlet.http.HttpServlet {
-    protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, java.io.IOException {
+package com.infoshareacademy.java.web;
 
-    }
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-    protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, java.io.IOException {
+@WebServlet(name = "/finanse/admin")
+public class AdminServlet extends HttpServlet {
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        if (request.getSession() != null) {
+
+            request.getUserPrincipal();
+
+        }
     }
 }
