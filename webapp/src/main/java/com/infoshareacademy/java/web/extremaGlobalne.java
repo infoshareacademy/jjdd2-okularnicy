@@ -48,7 +48,7 @@ public class extremaGlobalne extends HttpServlet {
         req.setAttribute("fundMaxClose", fundMaxClose);
 
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/extremaGlobalneDoGet.jsp");
+                .getRequestDispatcher("/WEB-INF/extremaGlobalneDoGet.jsp");
         dispatcher.forward(req, resp);
         logger.info("Przejście na stronę ekstremum globalnego");
     }

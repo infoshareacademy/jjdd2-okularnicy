@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
