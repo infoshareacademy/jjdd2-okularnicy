@@ -10,10 +10,10 @@ public class Statistics {
 
     private static Statistics statistics = new Statistics();
 
-    private Statistics(){
+    private Statistics() {
     }
 
-    public static Statistics getInstance(){
+    public static Statistics getInstance() {
         return statistics;
     }
 
@@ -29,8 +29,8 @@ public class Statistics {
 
     public List<Record> getAll(LocalDateTime dateFrom, LocalDateTime dateTo) {
         List<Record> result = new ArrayList<>();
-        for(Record record : recordsList){
-            if ((record.getDateTime().isAfter(dateFrom) || record.getDateTime().isEqual(dateFrom)) && (record.getDateTime().isBefore(dateTo) || record.getDateTime().isEqual(dateTo))){
+        for (Record record : recordsList) {
+            if ((record.getDateTime().isAfter(dateFrom) || record.getDateTime().isEqual(dateFrom)) && (record.getDateTime().isBefore(dateTo) || record.getDateTime().isEqual(dateTo))) {
                 result.add(record);
             }
         }
@@ -55,8 +55,8 @@ public class Statistics {
 
     public Integer getNumberOfVisits(String name) {
         Integer counter = 0;
-        for(Record record : recordsList){
-            if (record.getName().equals(name)){
+        for (Record record : recordsList) {
+            if (record.getName().equals(name)) {
                 counter++;
             }
         }
@@ -65,8 +65,8 @@ public class Statistics {
 
     public Integer getNumberOfVisits(LocalDateTime dateFrom, LocalDateTime dateTo) {
         Integer counter = 0;
-        for(Record record : recordsList){
-            if ((record.getDateTime().isAfter(dateFrom) || record.getDateTime().isEqual(dateFrom)) && (record.getDateTime().isBefore(dateTo) || record.getDateTime().isEqual(dateTo))){
+        for (Record record : recordsList) {
+            if ((record.getDateTime().isAfter(dateFrom) || record.getDateTime().isEqual(dateFrom)) && (record.getDateTime().isBefore(dateTo) || record.getDateTime().isEqual(dateTo))) {
                 counter++;
             }
         }
@@ -75,35 +75,35 @@ public class Statistics {
 
     public Integer getNumberOfVisits(String name, LocalDateTime dateFrom, LocalDateTime dateTo) {
         Integer counter = 0;
-        for(Record record : recordsList){
-            if (record.getName().equals(name) && (record.getDateTime().isAfter(dateFrom) || record.getDateTime().isEqual(dateFrom)) && (record.getDateTime().isBefore(dateTo) || record.getDateTime().isEqual(dateTo))){
-            counter++;
+        for (Record record : recordsList) {
+            if (record.getName().equals(name) && (record.getDateTime().isAfter(dateFrom) || record.getDateTime().isEqual(dateFrom)) && (record.getDateTime().isBefore(dateTo) || record.getDateTime().isEqual(dateTo))) {
+                counter++;
             }
         }
         return counter;
     }
 
-    public Map<String,Integer> getOccurrenceMap() {
+    public Map<String, Integer> getOccurrenceMap() {
 
         Map<String, Integer> numberOfVisitsEachName = new HashMap<>();
-        for(Record record: recordsList){
-            if ( numberOfVisitsEachName.containsKey(record.getName()) ){
-                numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName())+1);
+        for (Record record : recordsList) {
+            if (numberOfVisitsEachName.containsKey(record.getName())) {
+                numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName()) + 1);
             } else {
-                numberOfVisitsEachName.put(record.getName(),1);
+                numberOfVisitsEachName.put(record.getName(), 1);
             }
         }
         return numberOfVisitsEachName;
     }
 
-    public Map<String,Integer> getOccurrenceMap(LocalDateTime dateFrom, LocalDateTime dateTo) {
-        List<Record> recordsListFilteredByDateRange = getAll(dateFrom,dateTo);
+    public Map<String, Integer> getOccurrenceMap(LocalDateTime dateFrom, LocalDateTime dateTo) {
+        List<Record> recordsListFilteredByDateRange = getAll(dateFrom, dateTo);
         Map<String, Integer> numberOfVisitsEachName = new HashMap<>();
-        for(Record record: recordsListFilteredByDateRange){
-            if ( numberOfVisitsEachName.containsKey(record.getName()) ){
-                numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName())+1);
+        for (Record record : recordsListFilteredByDateRange) {
+            if (numberOfVisitsEachName.containsKey(record.getName())) {
+                numberOfVisitsEachName.put(record.getName(), numberOfVisitsEachName.get(record.getName()) + 1);
             } else {
-                numberOfVisitsEachName.put(record.getName(),1);
+                numberOfVisitsEachName.put(record.getName(), 1);
             }
         }
         return numberOfVisitsEachName;

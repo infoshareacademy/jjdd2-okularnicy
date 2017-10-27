@@ -56,7 +56,7 @@
 </div>
 
 <script type="text/javascript">
-    $("#logout").click(function(e) {
+    $("#logout").click(function (e) {
         e.preventDefault();
         $("#home").removeClass("active");
         $("#password-login").removeClass("active");

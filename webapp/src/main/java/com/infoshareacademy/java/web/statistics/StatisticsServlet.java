@@ -1,10 +1,7 @@
 package com.infoshareacademy.java.web.statistics;
 
-import com.infoshareacademy.baseapp.statistics.Record;
 import com.infoshareacademy.baseapp.statistics.Statistics;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,14 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @WebServlet("/finanse/statistics")
-public class StatisticsServlet extends HttpServlet{
-    
+public class StatisticsServlet extends HttpServlet {
+
     private Statistics statistics = Statistics.getInstance();
 
     @Override
@@ -28,15 +21,15 @@ public class StatisticsServlet extends HttpServlet{
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime last1 = now.minusSeconds(10);
         LocalDateTime last2 = now.minusSeconds(20);
-        getServletContext().setAttribute("NumberOfVisitsLast1", statistics.getNumberOfVisits(last1,now));
-        getServletContext().setAttribute("OccurrenceMapLast1", statistics.getOccurrenceMap(last1,now));
-        getServletContext().setAttribute("NumberOfVisitsLast2", statistics.getNumberOfVisits(last2,now));
-        getServletContext().setAttribute("OccurrenceMapLast2", statistics.getOccurrenceMap(last2,now));
+        getServletContext().setAttribute("NumberOfVisitsLast1", statistics.getNumberOfVisits(last1, now));
+        getServletContext().setAttribute("OccurrenceMapLast1", statistics.getOccurrenceMap(last1, now));
+        getServletContext().setAttribute("NumberOfVisitsLast2", statistics.getNumberOfVisits(last2, now));
+        getServletContext().setAttribute("OccurrenceMapLast2", statistics.getOccurrenceMap(last2, now));
         getServletContext().setAttribute("NumberOfVisitsTotal", statistics.getNumberOfVisits());
         getServletContext().setAttribute("OccurrenceMapTotal", statistics.getOccurrenceMap());
         getServletContext().setAttribute("RecordsListTotal", statistics.getAll());
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher ("/WEB-INF/statisticsDoGet.jsp");
+                .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
         dispatcher.forward(req, resp);
     }
 }
