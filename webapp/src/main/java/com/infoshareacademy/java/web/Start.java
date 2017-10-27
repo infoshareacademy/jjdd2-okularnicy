@@ -3,6 +3,7 @@ package com.infoshareacademy.java.web;
 import com.auth0.SessionUtils;
 import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.UnZip;
+import com.infoshareacademy.java.web.login.AuthClient;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -23,10 +24,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,14 +37,6 @@ public class Start extends HttpServlet {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
-
-    // przeniesc
-    public interface AuthClient {
-        @GET
-        @Path("userinfo")
-        @Produces("text/plain")
-        String getUserInfo(@HeaderParam("Authorization") String authorization);
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

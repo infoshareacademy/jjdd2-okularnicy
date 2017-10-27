@@ -14,7 +14,7 @@ public class AdminServlet extends HttpServlet {
 
         if (request.getSession() != null) {
 
-            request.getUserPrincipal();
+
 
         }
     }
