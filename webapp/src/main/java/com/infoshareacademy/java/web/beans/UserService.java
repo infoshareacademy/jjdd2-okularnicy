@@ -1,12 +1,13 @@
-package com.infoshareacademy.java.web;
+package com.infoshareacademy.java.web.beans;
 
-import com.infoshareacademy.java.web.beans.UsersLoginsDAOBeanLocal;
 import com.infoshareacademy.java.web.entities.User;
 import com.infoshareacademy.java.web.entities.UsersLogins;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.time.LocalDate;
 
+@Stateless
 public class UserService {
 
     @Inject

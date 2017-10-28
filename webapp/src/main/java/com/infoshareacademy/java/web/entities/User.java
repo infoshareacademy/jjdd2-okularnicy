@@ -58,4 +58,20 @@ public class User {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<UsersLogins> getLogins() {
+        return logins;
+    }
+
+    public void setLogins(List<UsersLogins> logins) {
+        this.logins = logins;
+    }
 }

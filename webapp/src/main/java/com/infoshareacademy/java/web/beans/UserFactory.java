@@ -1,4 +1,4 @@
-package com.infoshareacademy.java.web;
+package com.infoshareacademy.java.web.beans;
 
 import com.infoshareacademy.java.web.beans.UserDAOBeanLocal;
 import com.infoshareacademy.java.web.entities.User;
