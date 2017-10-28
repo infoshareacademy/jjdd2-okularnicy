@@ -9,12 +9,15 @@
             This is persistence unit for JTA workshops example.
         </description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:/MySqlDS</jta-data-source>
         <properties>
+            <property name="connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:4055/okularnicy"/>
+            <property name="hibernate.connection.user" value="root"/>
+            <property name="hibernate.connection.password" value="pass"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="" />
         </properties>
     </persistence-unit>
 </persistence>

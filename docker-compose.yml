@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  db:
+    container_name: "okularnicy-baza"
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_DATABASE=okularnicy
+      - MYSQL_USER=okularnicy
+      - MYSQL_PASSWORD=okularnicy
+    ports:
+      - 4055:3306
+  okularnicy-app:
+    container_name: "okularnicy-wildfly"
+    image: okularnicy-app
+    build: .
+    ports:
+      - 4050:8080
+      - 4051:9990
+    depends_on:
+      - db
