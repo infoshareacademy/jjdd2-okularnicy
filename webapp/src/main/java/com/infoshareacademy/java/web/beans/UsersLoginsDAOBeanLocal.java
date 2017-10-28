@@ -9,8 +9,6 @@ public interface UsersLoginsDAOBeanLocal {
 
     void addUserLogin(UsersLogins usersLogins);
 
-    void updateUserLogin(UsersLogins usersLogins);
-
     List<User> findAllUsersLogins();
 }
 

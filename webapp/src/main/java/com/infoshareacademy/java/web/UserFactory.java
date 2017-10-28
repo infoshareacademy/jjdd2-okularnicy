@@ -25,6 +25,7 @@ public class UserFactory {
         User user = userDAOBean.findUserById(userId);
         if (user == null) {
             user = new User(userId, false, getUserEmail(userId, accessToken));
+            userDAOBean.addUser(user);
         }
         return user;
     }

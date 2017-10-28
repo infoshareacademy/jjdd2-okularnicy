@@ -1,5 +1,6 @@
 package com.infoshareacademy.java.web;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +13,15 @@ public class AdminServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        boolean isUserAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
 
-//        request.getSession().getAttribute()
-//        if (request.getSession() != null) {
+        if (isUserAdmin) {
+            response.sendRedirect("/finanse/statistics");
+        }
 
-
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher("/WEB-INF/permissionDenied.jsp");
+        dispatcher.forward(request, response);
 
         }
     }

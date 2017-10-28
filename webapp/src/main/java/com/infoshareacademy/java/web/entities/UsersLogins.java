@@ -16,14 +16,15 @@ public class UsersLogins {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private String UserId;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     @Column(name = "login_time")
     private LocalDate loginTime;
 
-    public UsersLogins(String userId, LocalDate loginTime) {
-        UserId = userId;
+    public UsersLogins(User user, LocalDate loginTime) {
+        this.user = user;
         this.loginTime = loginTime;
     }
 
@@ -35,12 +36,12 @@ public class UsersLogins {
         this.id = id;
     }
 
-    public String getUserId() {
-        return UserId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        UserId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDate getLoginTime() {

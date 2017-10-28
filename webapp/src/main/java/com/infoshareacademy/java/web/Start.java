@@ -5,8 +5,6 @@ import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.UnZip;
 import com.infoshareacademy.java.web.beans.UserDAOBeanLocal;
 import com.infoshareacademy.java.web.beans.UsersLoginsDAOBeanLocal;
-import com.infoshareacademy.java.web.entities.User;
-import com.infoshareacademy.java.web.entities.UsersLogins;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -22,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -33,13 +30,7 @@ import java.util.UUID;
 public class Start extends HttpServlet {
 
     @Inject
-    UserDAOBeanLocal userDAOBean;
-
-    @Inject
-    UsersLoginsDAOBeanLocal usersLoginsDAOBean;
-
-    @Inject
-    UserFactory userFactory;
+    UserService userService;
 
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
     Configuration configuration = new Configuration();
@@ -56,16 +47,16 @@ public class Start extends HttpServlet {
             req.setAttribute("userId", accessToken);
         } else if (idToken != null) {
             req.setAttribute("userId", idToken);
+        } else {
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/error.jsp");
+            dispatcher.forward(req, resp);
         }
 
-        String userId = userFactory.getUserId(accessToken);
-        User user = userFactory.createUser(userId, accessToken);
-        userDAOBean.addUser(user);
-        UsersLogins userlogin = new UsersLogins(userId, LocalDate.now());
-        usersLoginsDAOBean.addUserLogin(userlogin);
+        boolean isAdmin = userService.initUserSession(accessToken);
 
-        if (user.isAdmin()) {
-            resp.sendRedirect("admin");
+        if (isAdmin) {
+            resp.sendRedirect("/finanse/admin");
         }
 
         RequestDispatcher dispatcher = getServletContext()

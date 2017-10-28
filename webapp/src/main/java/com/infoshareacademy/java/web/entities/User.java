@@ -1,7 +1,7 @@
 package com.infoshareacademy.java.web.entities;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.List;
 
 @NamedQueries({
         @NamedQuery(query = "SELECT u FROM User u", name = "com.infoshareacademy.java.web.entities.Stats.findAll"),
@@ -12,7 +12,9 @@ import java.sql.Date;
 public class User {
 
     @Id
-    private String UserId;
+    private Long id;
+
+    private String userId;
 
     @Column(name = "isAdmin")
     private boolean isAdmin;
@@ -20,18 +22,21 @@ public class User {
     @Column(name = "email_address")
     private String emailAddress;
 
+    @OneToMany(mappedBy = "user")
+    private List<UsersLogins> logins;
+
     public User(String userId, boolean isAdmin, String emailAddress) {
-        UserId = userId;
+        this.userId = userId;
         this.isAdmin = isAdmin;
         this.emailAddress = emailAddress;
     }
 
     public String getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(String userId) {
-        UserId = userId;
+        this.userId = userId;
     }
 
     public boolean isAdmin() {

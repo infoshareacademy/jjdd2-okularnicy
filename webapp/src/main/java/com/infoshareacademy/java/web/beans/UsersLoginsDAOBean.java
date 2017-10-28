@@ -19,11 +19,6 @@ public class UsersLoginsDAOBean implements UsersLoginsDAOBeanLocal {
     }
 
     @Override
-    public void updateUserLogin(UsersLogins usersLogins) {
-        em.merge(usersLogins);
-    }
-
-    @Override
     public List<User> findAllUsersLogins() {
         Query q = em.createNamedQuery("com.infoshareacademy.java.web.entities.UsersLogins.findAll");
         return q.getResultList();
