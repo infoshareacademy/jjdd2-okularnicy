@@ -1,11 +1,8 @@
 package com.infoshareacademy.baseapp;
 
-import com.infoshareacademy.baseapp.Fund;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,8 +15,9 @@ public class FundBase {
 
     /**
      * Reads from specified file and adds it to the List
+     *
      * @param pathToFile    path to file which contain the historical data about fund
-     * @return              List<com.infoshareacademy.baseapp.Fund> where every com.infoshareacademy.baseapp.Fund item is another line from file
+     * @return List<com.infoshareacademy.baseapp.Fund> where every com.infoshareacademy.baseapp.Fund item is another line from file
      */
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
@@ -72,7 +70,7 @@ public class FundBase {
                     br.close();
                 if (fr != null)
                     fr.close();
-            } catch (IOException ex){
+            } catch (IOException ex) {
                 ex.printStackTrace();
                 logger.log(Level.WARN, "Wyjątek: IOException");
             }

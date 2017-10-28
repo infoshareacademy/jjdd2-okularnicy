@@ -1,7 +1,6 @@
 package com.infoshareacademy.java.web.login;
 
 import com.auth0.AuthenticationController;
-import com.infoshareacademy.java.web.login.AuthenticationControllerProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

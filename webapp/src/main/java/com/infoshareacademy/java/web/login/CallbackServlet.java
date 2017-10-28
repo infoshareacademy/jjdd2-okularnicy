@@ -29,7 +29,7 @@ public class CallbackServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        redirectOnSuccess = getServletContext(). getContextPath() + "/finanse/start";
+        redirectOnSuccess = getServletContext().getContextPath() + "/finanse/start";
         redirectOnFail = getServletContext().getContextPath() + "/login";
 
         try {

@@ -33,7 +33,7 @@ public class UserDAOBean implements UserDAOBeanLocal {
 
     @Override
     public List<User> findAllUsers() {
-        Query q = em.createNamedQuery("com.infoshareacademy.java.web.entities.User.findAll");
+        Query q = em.createNamedQuery("com.infoshareacademy.java.web.entities.User.findAllUsers");
         return q.getResultList();
     }
 

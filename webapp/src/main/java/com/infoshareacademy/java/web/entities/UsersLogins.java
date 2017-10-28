@@ -1,11 +1,10 @@
 package com.infoshareacademy.java.web.entities;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
 
 @NamedQueries({
-        @NamedQuery(query = "SELECT l FROM UsersLogins l", name = "com.infoshareacademy.java.web.entities.UsersLogins.findAll"),
+        @NamedQuery(query = "SELECT l FROM UsersLogins l", name = "com.infoshareacademy.java.web.entities.UsersLogins.findAllLogins"),
 })
 
 @Entity
@@ -22,6 +21,9 @@ public class UsersLogins {
 
     @Column(name = "login_time")
     private LocalDate loginTime;
+
+    public UsersLogins() {
+    }
 
     public UsersLogins(User user, LocalDate loginTime) {
         this.user = user;

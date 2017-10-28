@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @NamedQueries({
-        @NamedQuery(query = "SELECT u FROM User u", name = "com.infoshareacademy.java.web.entities.Stats.findAll"),
+        @NamedQuery(query = "SELECT u FROM User u", name = "com.infoshareacademy.java.web.entities.User.findAllUsers"),
 })
 
 @Entity
@@ -12,6 +12,7 @@ import java.util.List;
 public class User {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String userId;
@@ -24,6 +25,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<UsersLogins> logins;
+
+    public User() {
+    }
 
     public User(String userId, boolean isAdmin, String emailAddress) {
         this.userId = userId;
