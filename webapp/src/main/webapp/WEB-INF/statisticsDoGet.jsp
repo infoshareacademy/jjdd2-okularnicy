@@ -15,7 +15,7 @@
     <table>
         <thead>
         <tr>
-            <th><H1>STATYSTYKI</H1></th>
+            <th colspan="2"><H1>STATYSTYKI</H1></th>
         </tr>
         </thead>
 

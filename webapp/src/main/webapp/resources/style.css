@@ -15,6 +15,10 @@ header {
 
 }
 
+table, th, td {
+    border: 1px solid black;
+}
+
 #header1 {
     height: 120vh;
     width: 100vw;
