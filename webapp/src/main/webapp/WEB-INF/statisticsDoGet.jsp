@@ -21,31 +21,55 @@
 
         <tbody>
         <tr>
-            <td>Liczba wyborów użytkownika w pierwszym przedziale czasu:</td>
-            <td>${NumberOfVisitsLast1}</td>
+            <td><H3>Liczba wyborów użytkownika w pierwszym przedziale czasu</H3></td>
+            <td><H3>${NumberOfVisitsLast1}</H3></td>
         </tr>
         <tr>
-            <td><c:forEach items="${OccurrenceMapLast1}" var="entry">
-                <h6>${entry.key}>>${entry.value}</h6>
-            </c:forEach></td>
+            <td>
+                <table>
+                    <tbody>
+                    <c:forEach items="${OccurrenceMapLast1}" var="entry">
+                    <tr>
+                        <td>${entry.key}</td>
+                        <td>${entry.value}</td>
+                    </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
         </tr>
         <tr>
-            <td>Liczba wyborów użytkownika w drugim przedziale czasu:</td>
-            <td>${NumberOfVisitsLast2}</td>
+            <td><H3>Liczba wyborów użytkownika w drugim przedziale czasu</H3></td>
+            <td><H3>${NumberOfVisitsLast2}</H3></td>
         </tr>
         <tr>
-            <td><c:forEach items="${OccurrenceMapLast2}" var="entry">
-                <h6>${entry.key}>>${entry.value}</h6>
-            </c:forEach></td>
+            <td>
+                <table>
+                    <tbody>
+                    <c:forEach items="${OccurrenceMapLast2}" var="entry">
+                        <tr>
+                            <td>${entry.key}</td>
+                            <td>${entry.value}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
         </tr>
         <tr>
-            <td>Liczba wszystkich wyborów użytkownika:</td>
-            <td>${NumberOfVisitsTotal}</td>
+            <td><H3>Liczba wszystkich wyborów użytkownika</H3></td>
+            <td><H3>${NumberOfVisitsTotal}</H3></td>
         </tr>
         <tr>
-            <td><c:forEach items="${OccurrenceMapTotal}" var="entry">
-                <h4>${entry.key}>>${entry.value}</h4>
-            </c:forEach></td>
+            <td>
+                <table>
+                    <tbody>
+                    <c:forEach items="${OccurrenceMapTotal}" var="entry">
+                        <tr>
+                            <td>${entry.key}</td>
+                            <td>${entry.value}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
         </tr>
         </tbody>
     </table>
@@ -53,13 +77,14 @@
     <table>
         <thead>
         <tr>
-            <th><H1>Historia:</H1></th>
+            <th colspan="2"><H1>HISTORIA</H1></th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${RecordsListTotal}" var="entry">
             <tr>
-                <td><h6>${entry.name}>>${entry.dateTime}</h6></td>
+                <td>${entry.name}</td>
+                <td>${entry.dateTime}</td>
             </tr>
         </c:forEach>
         </tbody>
