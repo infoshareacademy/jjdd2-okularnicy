@@ -14,7 +14,7 @@ public class Fund {
         this.close = close;
     }
 
-    public Fund(){
+    public Fund() {
     }
 
     public void setName(String name) {
@@ -58,6 +58,6 @@ public class Fund {
                 "name='" + name + '\'' +
                 ", date=" + date +
                 ", close=" + close +
-                '}'+ "\n";
+                '}' + "\n";
     }
 }

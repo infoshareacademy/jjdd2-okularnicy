@@ -1,7 +1,8 @@
 package com.infoshareacademy.java.web.login;
 
 import com.auth0.AuthenticationController;
-import com.infoshareacademy.java.web.login.AuthenticationControllerProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -14,6 +15,8 @@ import java.io.UnsupportedEncodingException;
 
 @WebServlet(urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
+
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
     private AuthenticationController authenticationController;
     private String domain;
@@ -31,7 +34,14 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse res) throws ServletException, IOException {
-        String redirectUri = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath() + "/callback";
+        String redirectUri = "";
+
+        if (req.getServerPort() == 80) {
+            redirectUri = req.getScheme() + "://" + req.getServerName() + req.getContextPath() + "/callback";
+        } else {
+            redirectUri = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath() + "/callback";
+        }
+        logger.info("Redirect URI: " + redirectUri);
 
         String authorizeUrl = authenticationController.buildAuthorizeUrl(req, redirectUri)
                 .withAudience(String.format("https://%s/userinfo", domain))

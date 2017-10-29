@@ -9,12 +9,13 @@
 
 <body>
 
-<div class="og" id="glob">
+<div id="log">
     <br>
     <h1>ANALIZATOR FINANSOWY</h1>
     <br>
     <br>
-    Aby przejsc dalej musisz sie zalogowac
+    Aby przejść dalej musisz się zalogować
+    <br>
     <form action="finanse/start" method="GET">
         <button type="submit">Zaloguj</button>
     </form>
