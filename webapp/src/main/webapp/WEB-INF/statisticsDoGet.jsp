@@ -11,29 +11,59 @@
 <header>
     <jsp:include page="/shared/header.jsp"/>
 </header>
-<div class="og" id="boxy">
-    <H1>STATYSTYKI</H1>
+<div class="statistics" id="stat">
+    <table>
+        <thead>
+        <tr>
+            <th><H1>STATYSTYKI</H1></th>
+        </tr>
+        </thead>
 
-    <H4>Liczba wyborów użytkownika w pierwszym przedziale czasu: ${NumberOfVisitsLast1}</H4>
-    <c:forEach items="${OccurrenceMapLast1}" var="entry">
-        <h6>${entry.key}>>${entry.value}</h6>
-    </c:forEach>
+        <tbody>
+        <tr>
+            <td>Liczba wyborów użytkownika w pierwszym przedziale czasu:</td>
+            <td>${NumberOfVisitsLast1}</td>
+        </tr>
+        <tr>
+            <td><c:forEach items="${OccurrenceMapLast1}" var="entry">
+                <h6>${entry.key}>>${entry.value}</h6>
+            </c:forEach></td>
+        </tr>
+        <tr>
+            <td>Liczba wyborów użytkownika w drugim przedziale czasu:</td>
+            <td>${NumberOfVisitsLast2}</td>
+        </tr>
+        <tr>
+            <td><c:forEach items="${OccurrenceMapLast2}" var="entry">
+                <h6>${entry.key}>>${entry.value}</h6>
+            </c:forEach></td>
+        </tr>
+        <tr>
+            <td>Liczba wszystkich wyborów użytkownika:</td>
+            <td>${NumberOfVisitsTotal}</td>
+        </tr>
+        <tr>
+            <td><c:forEach items="${OccurrenceMapTotal}" var="entry">
+                <h4>${entry.key}>>${entry.value}</h4>
+            </c:forEach></td>
+        </tr>
+        </tbody>
+    </table>
 
-    <H4>Liczba wyborów użytkownika w drugim przedziale czasu: ${NumberOfVisitsLast2}</H4>
-    <c:forEach items="${OccurrenceMapLast2}" var="entry">
-        <h6>${entry.key}>>${entry.value}</h6>
-    </c:forEach>
-
-    <H4>Liczba wszystkich wyborów użytkownika: ${NumberOfVisitsTotal}</H4>
-    <c:forEach items="${OccurrenceMapTotal}" var="entry">
-        <h4>${entry.key}>>${entry.value}</h4>
-    </c:forEach>
-
-    <h4>Historia:</h4>
-    <c:forEach items="${RecordsListTotal}" var="entry">
-        <h6>${entry.name}>>${entry.dateTime}</h6>
-    </c:forEach>
-
+    <table>
+        <thead>
+        <tr>
+            <th><H1>Historia:</H1></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${RecordsListTotal}" var="entry">
+            <tr>
+                <td><h6>${entry.name}>>${entry.dateTime}</h6></td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
