@@ -3,18 +3,18 @@ package com.infoshareacademy.baseapp;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class StartingParameters {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
-    public Map<String, String> startingParametersIntoMap(String[] args){
+    public Map<String, String> startingParametersIntoMap(String[] args) {
 
         Map<String, String> resultMap = new HashMap<String, String>();
 
@@ -30,21 +30,21 @@ public class StartingParameters {
                 sCurrentLine = br.readLine();
                 sCurrentLine = br.readLine();
 
-                while ((sCurrentLine = br.readLine()) != null){
+                while ((sCurrentLine = br.readLine()) != null) {
                     String separatorName1 = "(.txt)( )+";
-                    String name=sCurrentLine.split(separatorName1)[1].trim();
+                    String name = sCurrentLine.split(separatorName1)[1].trim();
 
                     String separatorFile1 = "(kB)( )+";
                     String separatorFile2 = " ";
                     String file = sCurrentLine.split(separatorFile1)[1].split(separatorFile2)[0];
 
-                    resultMap.put(name,file);
+                    resultMap.put(name, file);
                 }
 
-            } catch(FileNotFoundException ex) {
+            } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
                 logger.log(Level.ERROR, "Wyjątek: FileNotFoundException");
-            } catch(IOException ex2){
+            } catch (IOException ex2) {
                 ex2.printStackTrace();
                 logger.log(Level.ERROR, "Wyjątek: FileNotFoundException");
             }
