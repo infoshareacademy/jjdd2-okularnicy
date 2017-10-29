@@ -12,7 +12,7 @@
     <jsp:include page="/shared/header.jsp"/>
 </header>
 <div class="statistics" id="stat">
-    <table>
+    <table class="center">
         <thead>
         <tr>
             <th colspan="2"><H1>STATYSTYKI</H1></th>
@@ -74,7 +74,7 @@
         </tbody>
     </table>
 
-    <table>
+    <table class="center">
         <thead>
         <tr>
             <th colspan="2"><H1>HISTORIA</H1></th>
