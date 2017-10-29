@@ -11,7 +11,7 @@
 <header>
     <jsp:include page="/shared/header.jsp"/>
 </header>
-<div class="statistics" id="stat">
+<div class="og" id="stat">
     <table class="center">
         <thead>
         <tr>
