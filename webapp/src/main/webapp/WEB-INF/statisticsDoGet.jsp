@@ -26,7 +26,7 @@
         </tr>
         <tr>
             <td>
-                <table class="center full">
+                <table class="center adjusted">
                     <tbody>
                     <c:forEach items="${OccurrenceMapLast1}" var="entry">
                     <tr>
@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <td>
-                <table class="center full">
+                <table class="center adjusted">
                     <tbody>
                     <c:forEach items="${OccurrenceMapLast2}" var="entry">
                         <tr>
@@ -60,7 +60,7 @@
         </tr>
         <tr>
             <td>
-                <table class="center full">
+                <table class="center adjusted">
                     <tbody>
                     <c:forEach items="${OccurrenceMapTotal}" var="entry">
                         <tr>
