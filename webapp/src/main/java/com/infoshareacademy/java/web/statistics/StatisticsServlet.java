@@ -1,5 +1,6 @@
 package com.infoshareacademy.java.web.statistics;
 
+import com.infoshareacademy.baseapp.statistics.DurationTransformationService;
 import com.infoshareacademy.baseapp.statistics.Statistics;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 @WebServlet("/finanse/statistics")
@@ -19,8 +21,14 @@ public class StatisticsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime last1 = now.minusSeconds(10);
-        LocalDateTime last2 = now.minusSeconds(20);
+        Duration duration1 = Duration.ofSeconds(10);
+        Duration duration2 = Duration.ofSeconds(20);
+        LocalDateTime last1 = now.minus(duration1);
+        LocalDateTime last2 = now.minus(duration2);
+
+        setDurationAttributes(duration1,1);
+        setDurationAttributes(duration2,2);
+
         getServletContext().setAttribute("NumberOfVisitsLast1", statistics.getNumberOfVisits(last1, now));
         getServletContext().setAttribute("OccurrenceMapLast1", statistics.getOccurrenceMap(last1, now));
         getServletContext().setAttribute("NumberOfVisitsLast2", statistics.getNumberOfVisits(last2, now));
@@ -31,5 +39,17 @@ public class StatisticsServlet extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
         dispatcher.forward(req, resp);
+    }
+
+    public void setDurationAttributes(Duration duration, Integer index){
+        DurationTransformationService durationTransformation = new DurationTransformationService();
+        Long daysDuration = durationTransformation.getDays(duration);
+        Long hoursDuration = durationTransformation.getHours(duration);
+        Long minutesDuration = durationTransformation.getMinutes(duration);
+        Long secondsDuration = durationTransformation.getSeconds(duration);
+        getServletContext().setAttribute("daysDuration"+index.toString(), daysDuration);
+        getServletContext().setAttribute("hoursDuration"+index.toString(), hoursDuration);
+        getServletContext().setAttribute("minutesDuration"+index.toString(), minutesDuration);
+        getServletContext().setAttribute("secondsDuration"+index.toString(), secondsDuration);
     }
 }
