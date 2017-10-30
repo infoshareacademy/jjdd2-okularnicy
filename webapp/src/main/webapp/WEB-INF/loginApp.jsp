@@ -13,20 +13,20 @@
 <body>
 
 <div id="log">
+    <form id="language">
+        <select class="select" name="language" onchange="submit()">
+            <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polski</option>
+            <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
+        </select>
+    </form>
     <br>
     <h1><fmt:message key="title"/></h1>
     <br>
     <br>
     <fmt:message key="mustLog"/>
     <br>
-    <form>
-        <select id="language" name="language" onchange="submit()">
-            <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polski</option>
-            <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
-        </select>
-    </form>
-    <form action="finanse/start" method="GET">
-        <button type="submit">Zaloguj</button>
+        <form action="finanse/start" method="GET">
+        <button type="submit"><fmt:message key="login"/></button>
     </form>
 </div>
 </body>

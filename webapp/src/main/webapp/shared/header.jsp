@@ -4,7 +4,7 @@
     <title>Menu</title>
     <nav class=nav>
         <ul>
-            <li><a href="start">STRONA GŁÓWNA</a></li>
+            <li><a href="start"><fmt:message key="homePage"/></a></li>
             <li><a href="analizator">FUNDUSZ/<br>WALUTA</a></li>
             <li><a href="extremaGlobalne">EKSTREMA GLOBALNE</a></li>
             <li><a href="DataRange">EKSTREMA LOKALNE</a></li>
@@ -13,6 +13,5 @@
     </nav>
 </head>
 <body>
-
 </body>
 </html>
