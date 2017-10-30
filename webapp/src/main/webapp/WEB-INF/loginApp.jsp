@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" />
-<fmt:setBundle basename="napisy"/>
+<fmt:setBundle basename="i18n.napisy"/>
 <!DOCTYPE html>
 <html lang="${language}">
 <head>
@@ -14,11 +14,10 @@
 
 <div id="log">
     <br>
-    <fmt:message key="napisy.title" var="title" />
-    <h1>${title}</h1>
+    <h1><fmt:message key="title"/></h1>
     <br>
     <br>
-    Aby przejść dalej musisz się zalogować
+    <fmt:message key="mustLog"/>
     <br>
     <form>
         <select id="language" name="language" onchange="submit()">
