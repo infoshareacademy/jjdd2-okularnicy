@@ -1,7 +1,7 @@
 package com.infoshareacademy.java.web.statistics;
 
 import com.infoshareacademy.baseapp.statistics.DaysHoursMinutesSeconds;
-import com.infoshareacademy.baseapp.statistics.DurationTransformation;
+import com.infoshareacademy.baseapp.statistics.DurationTransformationService;
 import com.infoshareacademy.baseapp.statistics.Statistics;
 
 import javax.servlet.RequestDispatcher;
@@ -43,7 +43,7 @@ public class StatisticsServlet extends HttpServlet {
     }
 
     public void setDurationAttributes(Duration duration, Integer index){
-        DurationTransformation durationTransformation = new DurationTransformation();
+        DurationTransformationService durationTransformation = new DurationTransformationService();
         DaysHoursMinutesSeconds daysHoursMinutesSeconds = durationTransformation.getDaysHoursMinutesSeconds(duration);
         Long daysDuration = daysHoursMinutesSeconds.getDays();
         Long hoursDuration = daysHoursMinutesSeconds.getHours();
