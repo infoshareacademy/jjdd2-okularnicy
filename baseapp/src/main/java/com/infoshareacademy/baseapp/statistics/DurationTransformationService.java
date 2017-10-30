@@ -4,15 +4,13 @@ import java.time.Duration;
 
 public class DurationTransformationService {
     public Long getDays(Duration duration) {
-        Long days = duration.toDays();
-        return days;
+        return duration.toDays();
     }
 
     public Long getHours(Duration duration) {
         Long days = duration.toDays();
         duration = duration.minusDays(days);
-        Long hours = duration.toHours();
-        return hours;
+        return duration.toHours();
     }
 
     public Long getMinutes(Duration duration) {
@@ -20,8 +18,7 @@ public class DurationTransformationService {
         duration = duration.minusDays(days);
         Long hours = duration.toHours();
         duration = duration.minusHours(hours);
-        Long minutes = duration.toMinutes();
-        return minutes;
+        return duration.toMinutes();
     }
 
     public Long getSeconds(Duration duration) {
@@ -31,7 +28,6 @@ public class DurationTransformationService {
         duration = duration.minusHours(hours);
         Long minutes = duration.toMinutes();
         duration = duration.minusMinutes(minutes);
-        Long seconds = duration.getSeconds();
-        return seconds;
+        return duration.getSeconds();
     }
 }
