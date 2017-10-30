@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
+<fmt:setLocale value="${sessionScope.language}" />
 <fmt:setBundle basename="i18n.napisy"/>
 <!DOCTYPE html>
-<html lang="${language}">
+<html lang="${sessionScope.language}">
 <head>
     <jsp:include page="/shared/head.jsp"/>
 </head>
