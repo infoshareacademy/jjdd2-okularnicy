@@ -21,7 +21,8 @@
 
         <tbody>
         <tr>
-            <td><H3>Liczba wyborów użytkownika w pierwszym przedziale czasu</H3></td>
+            <td><H3>Liczba wyborów użytkownika w pierwszym przedziale czasu</H3>
+                <p>(dni:${daysDuration1}, godziny:${hoursDuration1}, minuty:${minutesDuration1}, sekundy:${secondsDuration1})</p></td>
             <td><H3>${NumberOfVisitsLast1}</H3></td>
         </tr>
         <tr>
@@ -38,7 +39,8 @@
                 </table>
         </tr>
         <tr>
-            <td><H3>Liczba wyborów użytkownika w drugim przedziale czasu</H3></td>
+            <td><H3>Liczba wyborów użytkownika w drugim przedziale czasu</H3>
+                <p>(dni:${daysDuration2}, godziny:${hoursDuration2}, minuty:${minutesDuration2}, sekundy:${secondsDuration2})</p></td>
             <td><H3>${NumberOfVisitsLast2}</H3></td>
         </tr>
         <tr>
