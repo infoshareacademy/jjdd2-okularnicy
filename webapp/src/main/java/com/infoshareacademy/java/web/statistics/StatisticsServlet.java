@@ -4,6 +4,7 @@ import com.infoshareacademy.baseapp.statistics.DurationTransformationService;
 import com.infoshareacademy.baseapp.statistics.Statistics;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,9 +21,22 @@ public class StatisticsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ServletContext servletContext = getServletContext();
+
+        Duration duration1 = (Duration) getServletContext().getAttribute("duration1");
+        if (duration1 == null) {
+            duration1 = Duration.ofDays(9).plusHours(8).plusMinutes(7).plusSeconds(6);
+            servletContext.setAttribute("duration1", duration1);
+        }
+
+        Duration duration2 = (Duration) getServletContext().getAttribute("duration2");
+        if (duration2 == null) {
+            duration2 = Duration.ofDays(5).plusHours(4).plusMinutes(3).plusSeconds(2);
+            servletContext.setAttribute("duration2", duration2);
+        }
+
         LocalDateTime now = LocalDateTime.now();
-        Duration duration1 = Duration.ofDays(9).plusHours(8).plusMinutes(7).plusSeconds(6);
-        Duration duration2 = Duration.ofDays(5).plusHours(4).plusMinutes(3).plusSeconds(2);
+
         LocalDateTime last1 = now.minus(duration1);
         LocalDateTime last2 = now.minus(duration2);
 
