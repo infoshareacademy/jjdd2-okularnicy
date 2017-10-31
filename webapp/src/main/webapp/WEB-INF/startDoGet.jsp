@@ -8,9 +8,7 @@
 <head>
     <jsp:include page="/shared/head.jsp"/>
 </head>
-
 <body>
-
 <header>
     <nav class=nav>
         <ul>
@@ -21,7 +19,6 @@
             <li><a href="logout"><fmt:message key="logout"/></a></li>
         </ul>
     </nav>
-
 </header>
 <article id="tytul">
     <h1><fmt:message key="title"/></h1>
@@ -38,6 +35,5 @@
         <button type="submit"><fmt:message key="send"/></button>
     </form>
 </article>
-
 </body>
 </html>
