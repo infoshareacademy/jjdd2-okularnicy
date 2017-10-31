@@ -35,6 +35,15 @@ public class StatisticsServlet extends HttpServlet {
             servletContext.setAttribute("duration2", duration2);
         }
 
+        setStatisticsAttributes(duration1, duration2);
+        
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    private void setStatisticsAttributes(Duration duration1, Duration duration2) {
+        ServletContext servletContext = getServletContext();
         DurationTransformationService durationTransformation = new DurationTransformationService();
 
         Long daysDuration1 = durationTransformation.getDays(duration1);
@@ -66,16 +75,6 @@ public class StatisticsServlet extends HttpServlet {
         servletContext.setAttribute("NumberOfVisitsTotal", statistics.getNumberOfVisits());
         servletContext.setAttribute("OccurrenceMapTotal", statistics.getOccurrenceMap());
         servletContext.setAttribute("RecordsListTotal", statistics.getAll());
-
-
-
-
-
-        
-
-        RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
-        dispatcher.forward(req, resp);
     }
 
     @Override
