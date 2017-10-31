@@ -32,7 +32,7 @@ public class UserFactory {
 
     public String getUserId(String accessToken) {
 
-        String url = "jjdd2okularnicy.eu.auth0.com/userinfo";
+        String url = "https://jjdd2okularnicy.eu.auth0.com/userinfo";
         ResteasyClient client = new ResteasyClientBuilder().build();
         ResteasyWebTarget target = client.target(url);
         AuthClient authClient = target.proxy(AuthClient.class);

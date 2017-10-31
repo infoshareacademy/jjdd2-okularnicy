@@ -6,8 +6,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 public interface AuthClient {
+
     @GET
-    @Path("userinfo")
+//    @Path("userinfo")
     @Produces("text/plain")
     String getUserInfo(@HeaderParam("Authorization") String authorization);
 

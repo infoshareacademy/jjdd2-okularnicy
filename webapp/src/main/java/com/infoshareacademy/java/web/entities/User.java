@@ -5,6 +5,7 @@ import java.util.List;
 
 @NamedQueries({
         @NamedQuery(query = "SELECT u FROM User u", name = "com.infoshareacademy.java.web.entities.User.findAllUsers"),
+        @NamedQuery(query = "SELECT u FROM User u WHERE u.userId=:userId", name = "com.infoshareacademy.java.web.entities.User.findByUserId"),
 })
 
 @Entity

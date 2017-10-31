@@ -4,6 +4,7 @@ import com.infoshareacademy.java.web.entities.Stats;
 import com.infoshareacademy.java.web.entities.User;
 
 import javax.ejb.Stateless;
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -28,7 +29,8 @@ public class UserDAOBean implements UserDAOBeanLocal {
 
     @Override
     public User findUserById(String userId) {
-        return em.find(User.class, userId);
+        Query q = em.createNamedQuery("com.infoshareacademy.java.web.entities.User.findByUserId", User.class);
+        return (User) q.getSingleResult();
     }
 
     @Override
