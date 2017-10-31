@@ -8,6 +8,7 @@
             <li><a href="analizator">FUNDUSZ/<br>WALUTA</a></li>
             <li><a href="extremaGlobalne">EKSTREMA GLOBALNE</a></li>
             <li><a href="DataRange">EKSTREMA LOKALNE</a></li>
+            <li><a href="statistics">RAPORT POPULARNOŚCI</a></li>
             <li><a href="logout">WYLOGUJ</a></li>
         </ul>
     </nav>
