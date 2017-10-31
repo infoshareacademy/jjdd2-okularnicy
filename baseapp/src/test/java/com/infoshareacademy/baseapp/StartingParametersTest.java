@@ -3,7 +3,6 @@ package com.infoshareacademy.baseapp;
 import org.junit.Test;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Map;
 
 import static junit.framework.TestCase.assertTrue;
