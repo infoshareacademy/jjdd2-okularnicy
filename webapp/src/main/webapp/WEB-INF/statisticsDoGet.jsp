@@ -24,14 +24,6 @@
             <td><H3>Liczba wyborów użytkownika w pierwszym przedziale czasu</H3>
                 <p>(dni:${daysDuration1}, godziny:${hoursDuration1}, minuty:${minutesDuration1}, sekundy:${secondsDuration1})</p></td>
             <td><H3>${NumberOfVisitsLast1}</H3></td>
-            <td><form action="statistics" method="post">
-                <input type="text" name="days1" maxlength="2" value="${daysDuration1}" size="2">
-                <input type="text" name="hours1" maxlength="2" value="${hoursDuration1}" size="2">
-                <input type="text" name="minutes1" maxlength="2" value="${minutesDuration1}" size="2">
-                <input type="text" name="seconds1" maxlength="2" value="${secondsDuration1}" size="2">
-                <br>
-                <button type="submit">WYŚLIJ</button>
-            </form></td>
         </tr>
         <tr>
             <td>
@@ -83,6 +75,20 @@
         </tr>
         </tbody>
     </table>
+
+    <form action="statistics" method="post">
+        <input type="text" name="days1" maxlength="2" value="${daysDuration1}" size="2">
+        <input type="text" name="hours1" maxlength="2" value="${hoursDuration1}" size="2">
+        <input type="text" name="minutes1" maxlength="2" value="${minutesDuration1}" size="2">
+        <input type="text" name="seconds1" maxlength="2" value="${secondsDuration1}" size="2">
+        <br>
+        <input type="text" name="days2" maxlength="2" value="${daysDuration2}" size="2">
+        <input type="text" name="hours2" maxlength="2" value="${hoursDuration2}" size="2">
+        <input type="text" name="minutes2" maxlength="2" value="${minutesDuration2}" size="2">
+        <input type="text" name="seconds2" maxlength="2" value="${secondsDuration2}" size="2">
+        <br>
+        <button type="submit">WYŚLIJ</button>
+    </form>
 
     <table class="center">
         <thead>
