@@ -21,14 +21,22 @@ public class StatisticsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LocalDateTime now = LocalDateTime.now();
-        Duration duration1 = Duration.ofDays(1).plusHours(2).plusMinutes(3).plusSeconds(4);
-        Duration duration2 = Duration.ofDays(5).plusHours(6).plusMinutes(7).plusSeconds(8);
+        Duration duration1 = Duration.ofDays(9).plusHours(8).plusMinutes(7).plusSeconds(6);
+        Duration duration2 = Duration.ofDays(5).plusHours(4).plusMinutes(3).plusSeconds(2);
         LocalDateTime last1 = now.minus(duration1);
         LocalDateTime last2 = now.minus(duration2);
 
         setDurationAttributes(duration1,1);
         setDurationAttributes(duration2,2);
 
+        setStatisticsAttributes(now, last1, last2);
+
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    public void setStatisticsAttributes(LocalDateTime now, LocalDateTime last1, LocalDateTime last2){
         getServletContext().setAttribute("NumberOfVisitsLast1", statistics.getNumberOfVisits(last1, now));
         getServletContext().setAttribute("OccurrenceMapLast1", statistics.getOccurrenceMap(last1, now));
         getServletContext().setAttribute("NumberOfVisitsLast2", statistics.getNumberOfVisits(last2, now));
@@ -36,9 +44,6 @@ public class StatisticsServlet extends HttpServlet {
         getServletContext().setAttribute("NumberOfVisitsTotal", statistics.getNumberOfVisits());
         getServletContext().setAttribute("OccurrenceMapTotal", statistics.getOccurrenceMap());
         getServletContext().setAttribute("RecordsListTotal", statistics.getAll());
-        RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
-        dispatcher.forward(req, resp);
     }
 
     @Override
