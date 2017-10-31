@@ -41,6 +41,23 @@ public class StatisticsServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String days1 = req.getParameter("days1");
+        getServletContext().setAttribute("days1", days1);
+        String hours1 = req.getParameter("hours1");
+        getServletContext().setAttribute("hours1", hours1);
+        String minutes1 = req.getParameter("minutes1");
+        getServletContext().setAttribute("minutes1", minutes1);
+        String seconds1 = req.getParameter("seconds1");
+        getServletContext().setAttribute("seconds1", seconds1);
+
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
+        dispatcher.forward(req, resp);
+
+    }
+
     public void setDurationAttributes(Duration duration, Integer index){
         DurationTransformationService durationTransformation = new DurationTransformationService();
         Long daysDuration = durationTransformation.getDays(duration);
