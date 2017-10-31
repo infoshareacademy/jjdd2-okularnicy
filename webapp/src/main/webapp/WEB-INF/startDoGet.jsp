@@ -18,6 +18,7 @@
             <li><a href=""><fmt:message key="fund"/><br/><fmt:message key="currency"/></a></li>
             <li><a href=""><fmt:message key="global"/></a></li>
             <li><a href=""><fmt:message key="local"/></a></li>
+            <li><a href=""><fmt:message key="raport"/></a></li>
             <li><a href="logout"><fmt:message key="logout"/></a></li>
         </ul>
     </nav>
