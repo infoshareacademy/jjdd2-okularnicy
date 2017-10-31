@@ -66,9 +66,6 @@ public class StatisticsServlet extends HttpServlet {
         LocalDateTime last1 = now.minus(duration1);
         LocalDateTime last2 = now.minus(duration2);
 
-        setDurationAttributes(duration1,1);
-        setDurationAttributes(duration2,2);
-
         setStatisticsAttributes(now, last1, last2);
 
         RequestDispatcher dispatcher = getServletContext()
@@ -101,17 +98,5 @@ public class StatisticsServlet extends HttpServlet {
                 .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
         dispatcher.forward(req, resp);
 
-    }
-
-    public void setDurationAttributes(Duration duration, Integer index){
-        DurationTransformationService durationTransformation = new DurationTransformationService();
-        Long daysDuration = durationTransformation.getDays(duration);
-        Long hoursDuration = durationTransformation.getHours(duration);
-        Long minutesDuration = durationTransformation.getMinutes(duration);
-        Long secondsDuration = durationTransformation.getSeconds(duration);
-        getServletContext().setAttribute("daysDuration"+index.toString(), daysDuration);
-        getServletContext().setAttribute("hoursDuration"+index.toString(), hoursDuration);
-        getServletContext().setAttribute("minutesDuration"+index.toString(), minutesDuration);
-        getServletContext().setAttribute("secondsDuration"+index.toString(), secondsDuration);
     }
 }
