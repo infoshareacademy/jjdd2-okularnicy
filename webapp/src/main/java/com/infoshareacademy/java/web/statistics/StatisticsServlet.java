@@ -23,17 +23,43 @@ public class StatisticsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
 
-        Duration duration1 = (Duration) getServletContext().getAttribute("duration1");
+        Duration duration1 = (Duration) servletContext.getAttribute("duration1");
         if (duration1 == null) {
             duration1 = Duration.ofDays(9).plusHours(8).plusMinutes(7).plusSeconds(6);
             servletContext.setAttribute("duration1", duration1);
         }
 
-        Duration duration2 = (Duration) getServletContext().getAttribute("duration2");
+        Duration duration2 = (Duration) servletContext.getAttribute("duration2");
         if (duration2 == null) {
             duration2 = Duration.ofDays(5).plusHours(4).plusMinutes(3).plusSeconds(2);
             servletContext.setAttribute("duration2", duration2);
         }
+
+        DurationTransformationService durationTransformation = new DurationTransformationService();
+
+        Long daysDuration1 = durationTransformation.getDays(duration1);
+        Long hoursDuration1 = durationTransformation.getHours(duration1);
+        Long minutesDuration1 = durationTransformation.getMinutes(duration1);
+        Long secondsDuration1 = durationTransformation.getSeconds(duration1);
+        servletContext.setAttribute("daysDuration1", daysDuration1);
+        servletContext.setAttribute("hoursDuration1", hoursDuration1);
+        servletContext.setAttribute("minutesDuration1", minutesDuration1);
+        servletContext.setAttribute("secondsDuration1", secondsDuration1);
+
+        Long daysDuration2 = durationTransformation.getDays(duration1);
+        Long hoursDuration2 = durationTransformation.getHours(duration1);
+        Long minutesDuration2 = durationTransformation.getMinutes(duration1);
+        Long secondsDuration2 = durationTransformation.getSeconds(duration1);
+        servletContext.setAttribute("daysDuration2", daysDuration2);
+        servletContext.setAttribute("hoursDuration2", hoursDuration2);
+        servletContext.setAttribute("minutesDuration2", minutesDuration2);
+        servletContext.setAttribute("secondsDuration2", secondsDuration2);
+
+
+
+
+
+
 
         LocalDateTime now = LocalDateTime.now();
 
