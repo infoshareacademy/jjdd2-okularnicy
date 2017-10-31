@@ -60,7 +60,7 @@ public class StatisticsServlet extends HttpServlet {
         }
 
         setStatisticsAttributes(duration1, duration2);
-        
+
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
         dispatcher.forward(req, resp);

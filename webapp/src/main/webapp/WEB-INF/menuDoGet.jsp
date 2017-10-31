@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-     <jsp:include page="/shared/head.jsp"/>
+    <jsp:include page="/shared/head.jsp"/>
 </head>
 
 <body>
@@ -15,7 +15,8 @@
 <article class="og" id="pokoje">
 
     <p class=" room">
-        <a class="inroom" href="extremaGlobalne"><img src="${pageContext.request.contextPath}/resources/world.png"  title="" media-simple="true" style="height: 30vh;">
+        <a class="inroom" href="extremaGlobalne"><img src="${pageContext.request.contextPath}/resources/world.png"
+                                                      title="" media-simple="true" style="height: 30vh;">
             <br>
             EKSTREMA GLOBALNE
         </a>
@@ -23,7 +24,8 @@
 
     <p class="room">
 
-        <a class="inroom" href="DataRange"><img src="${pageContext.request.contextPath}/resources/home.png"  title="" media-simple="true" style="height: 30vh;">
+        <a class="inroom" href="DataRange"><img src="${pageContext.request.contextPath}/resources/home.png" title=""
+                                                media-simple="true" style="height: 30vh;">
             <br>
             EKSTREMA LOKALNE
         </a>

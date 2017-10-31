@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <jsp:include page="/shared/head.jsp"/>
+    <jsp:include page="/shared/head.jsp"/>
 </head>
 
 <body>

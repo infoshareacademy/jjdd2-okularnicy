@@ -1,6 +1,7 @@
 package com.infoshareacademy.java.web;
 
-import com.infoshareacademy.baseapp.*;
+import com.infoshareacademy.baseapp.Fund;
+import com.infoshareacademy.baseapp.FundBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,12 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 @WebServlet("/finanse/DataRange")
 @MultipartConfig

@@ -107,7 +107,7 @@ public class Start extends HttpServlet {
             logger.info("Zakończono rozpakowywanie plików z archiwum");
 
 
-            String[] LSTDirArray = new String[] {LSTDir};
+            String[] LSTDirArray = new String[]{LSTDir};
             Map<String, String> filesHashMap = new HashMap<String, String>();
             StartingParameters startingParameters = new StartingParameters();
             filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
@@ -148,12 +148,12 @@ public class Start extends HttpServlet {
 
             if (getServletContext().getAttribute("lstCorrectness").toString().equals("-1")) {
                 RequestDispatcher dispatcher = getServletContext()
-                        .getRequestDispatcher ("/WEB-INF/ErrorZIP.jsp");
+                        .getRequestDispatcher("/WEB-INF/ErrorZIP.jsp");
                 dispatcher.forward(req, resp);
                 logger.info("Przekierowanie na stronę błędu");
             } else {
                 RequestDispatcher dispatcher = getServletContext()
-                        .getRequestDispatcher ("/WEB-INF/analizatorDoGet.jsp");
+                        .getRequestDispatcher("/WEB-INF/analizatorDoGet.jsp");
                 dispatcher.forward(req, resp);
                 logger.info("Przekierowanie na kolejną stronę");
             }

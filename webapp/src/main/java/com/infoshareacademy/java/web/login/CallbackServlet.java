@@ -4,7 +4,6 @@ import com.auth0.AuthenticationController;
 import com.auth0.IdentityVerificationException;
 import com.auth0.SessionUtils;
 import com.auth0.Tokens;
-import com.infoshareacademy.java.web.login.AuthenticationControllerProvider;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -25,7 +24,7 @@ public class CallbackServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        redirectOnSuccess = getServletContext(). getContextPath() + "/finanse/start";
+        redirectOnSuccess = getServletContext().getContextPath() + "/finanse/start";
         redirectOnFail = getServletContext().getContextPath() + "/login";
 
         try {

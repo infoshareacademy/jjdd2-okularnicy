@@ -1,6 +1,5 @@
 package com.infoshareacademy.java.web.login;
 
-import com.auth0.SessionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/loginApp")
+@WebServlet("")
 @MultipartConfig
 public class LoginAppServlet extends HttpServlet {
 
