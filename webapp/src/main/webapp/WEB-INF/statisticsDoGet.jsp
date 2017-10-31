@@ -77,15 +77,17 @@
     </table>
 
     <form action="statistics" method="post">
-        <input type="text" name="days1" maxlength="2" value="${daysDuration1}" size="2">
-        <input type="text" name="hours1" maxlength="2" value="${hoursDuration1}" size="2">
-        <input type="text" name="minutes1" maxlength="2" value="${minutesDuration1}" size="2">
-        <input type="text" name="seconds1" maxlength="2" value="${secondsDuration1}" size="2">
+        Pierwszy przedział czasu.
+        Dni:<input type="text" name="days1" maxlength="2" value="${daysDuration1}" size="2">
+        Godziny:<input type="text" name="hours1" maxlength="2" value="${hoursDuration1}" size="2">
+        Minuty:<input type="text" name="minutes1" maxlength="2" value="${minutesDuration1}" size="2">
+        Sekundy:<input type="text" name="seconds1" maxlength="2" value="${secondsDuration1}" size="2">
         <br>
-        <input type="text" name="days2" maxlength="2" value="${daysDuration2}" size="2">
-        <input type="text" name="hours2" maxlength="2" value="${hoursDuration2}" size="2">
-        <input type="text" name="minutes2" maxlength="2" value="${minutesDuration2}" size="2">
-        <input type="text" name="seconds2" maxlength="2" value="${secondsDuration2}" size="2">
+        Drugi przedział czasu.
+        Dni:<input type="text" name="days2" maxlength="2" value="${daysDuration2}" size="2">
+        Godziny:<input type="text" name="hours2" maxlength="2" value="${hoursDuration2}" size="2">
+        Minuty:<input type="text" name="minutes2" maxlength="2" value="${minutesDuration2}" size="2">
+        Sekundy:<input type="text" name="seconds2" maxlength="2" value="${secondsDuration2}" size="2">
         <br>
         <button type="submit">WYŚLIJ</button>
     </form>
@@ -105,8 +107,6 @@
         </c:forEach>
         </tbody>
     </table>
-    <h1>${days1} ${hours1}:${minutes1}:${seconds1}</h1>
-    <h1>${days2} ${hours2}:${minutes2}:${seconds2}</h1>
 </div>
 </body>
 </html>
