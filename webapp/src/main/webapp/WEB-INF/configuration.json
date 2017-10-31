@@ -2,5 +2,13 @@
   "unzippeDir": "unZippedDir",
   "fileLst": "file.lst",
   "fileZip": "file.zip",
-  "workFiles": "okularnicy-"
+  "workFiles": "okularnicy-",
+  "initialDaysDuration1": 7,
+  "initialHoursDuration1": 0,
+  "initialMinutesDuration1": 0,
+  "initialSecondsDuration1": 0,
+  "initialDaysDuration2": 30,
+  "initialHoursDuration2": 0,
+  "initialMinutesDuration2": 0,
+  "initialSecondsDuration2": 0
 }

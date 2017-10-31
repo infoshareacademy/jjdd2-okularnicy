@@ -2,6 +2,8 @@ package com.infoshareacademy.java.web.statistics;
 
 import com.infoshareacademy.baseapp.statistics.DurationTransformationService;
 import com.infoshareacademy.baseapp.statistics.Statistics;
+import com.infoshareacademy.java.web.Configuration;
+import com.infoshareacademy.java.web.JsonReader;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -18,20 +20,30 @@ import java.time.LocalDateTime;
 public class StatisticsServlet extends HttpServlet {
 
     private Statistics statistics = Statistics.getInstance();
+    Configuration configuration = new Configuration();
+    JsonReader jsonReader = new JsonReader();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
+
         ServletContext servletContext = getServletContext();
 
         Duration duration1 = (Duration) servletContext.getAttribute("duration1");
         if (duration1 == null) {
-            duration1 = Duration.ofDays(9).plusHours(8).plusMinutes(7).plusSeconds(6);
+            duration1 = Duration.ofDays(configuration.getInitialDaysDuration1())
+                    .plusHours(configuration.getInitialHoursDuration1())
+                    .plusMinutes(configuration.getInitialMinutesDuration1())
+                    .plusSeconds(configuration.getInitialSecondsDuration1());
             servletContext.setAttribute("duration1", duration1);
         }
 
         Duration duration2 = (Duration) servletContext.getAttribute("duration2");
         if (duration2 == null) {
-            duration2 = Duration.ofDays(5).plusHours(4).plusMinutes(3).plusSeconds(2);
+            duration2 = Duration.ofDays(configuration.getInitialDaysDuration2())
+                    .plusHours(configuration.getInitialHoursDuration2())
+                    .plusMinutes(configuration.getInitialMinutesDuration2())
+                    .plusSeconds(configuration.getInitialSecondsDuration2());
             servletContext.setAttribute("duration2", duration2);
         }
 
