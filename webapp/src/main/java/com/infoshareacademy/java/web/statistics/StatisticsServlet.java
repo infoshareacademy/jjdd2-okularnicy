@@ -46,10 +46,10 @@ public class StatisticsServlet extends HttpServlet {
         servletContext.setAttribute("minutesDuration1", minutesDuration1);
         servletContext.setAttribute("secondsDuration1", secondsDuration1);
 
-        Long daysDuration2 = durationTransformation.getDays(duration1);
-        Long hoursDuration2 = durationTransformation.getHours(duration1);
-        Long minutesDuration2 = durationTransformation.getMinutes(duration1);
-        Long secondsDuration2 = durationTransformation.getSeconds(duration1);
+        Long daysDuration2 = durationTransformation.getDays(duration2);
+        Long hoursDuration2 = durationTransformation.getHours(duration2);
+        Long minutesDuration2 = durationTransformation.getMinutes(duration2);
+        Long secondsDuration2 = durationTransformation.getSeconds(duration2);
         servletContext.setAttribute("daysDuration2", daysDuration2);
         servletContext.setAttribute("hoursDuration2", hoursDuration2);
         servletContext.setAttribute("minutesDuration2", minutesDuration2);
