@@ -29,10 +29,19 @@ public class Start extends HttpServlet {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
+    HttpDownloadUtilit downloader = new HttpDownloadUtilit();
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String fileURL = "http://bossa.pl/pub/ciagle/omega/omegacgl.lst";
+        String saveDir = "/home/michalbrudnicki/IdeaProjects/jjdd2-okularnicy/testdata";
+        try {
+            downloader.downloadFile(fileURL, saveDir);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
         configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
         logger.log(Level.INFO, "uruchomiono aplikacje");
