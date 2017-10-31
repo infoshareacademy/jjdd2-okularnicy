@@ -38,7 +38,8 @@ public class UserFactory {
         ResteasyClient client = new ResteasyClientBuilder().build();
         ResteasyWebTarget target = client.target(url);
         AuthClient authClient = target.proxy(AuthClient.class);
-        String userId = authClient.getUserInfo("Bearer " + accessToken);
+        String userIdJSON = authClient.getUserInfo("Bearer " + accessToken);
+        String userId = userIdJSON.replaceAll("[{}]", " ");
         logger.info(userId);
         return userId;
     }

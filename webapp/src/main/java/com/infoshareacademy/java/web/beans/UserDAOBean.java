@@ -35,7 +35,6 @@ public class UserDAOBean implements UserDAOBeanLocal {
             User foundUser = (User) q.getSingleResult();
             return Optional.of(foundUser);
         } catch (NoResultException e) {
-            e.printStackTrace();
             return Optional.empty();
         }
     }
