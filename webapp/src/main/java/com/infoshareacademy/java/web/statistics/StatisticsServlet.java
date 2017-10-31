@@ -63,13 +63,20 @@ public class StatisticsServlet extends HttpServlet {
         Integer hours1 = Integer.parseInt(req.getParameter("hours1"));
         Integer minutes1 = Integer.parseInt(req.getParameter("minutes1"));
         Integer seconds1 = Integer.parseInt(req.getParameter("seconds1"));
+        Integer days2 = Integer.parseInt(req.getParameter("days2"));
+        Integer hours2 = Integer.parseInt(req.getParameter("hours2"));
+        Integer minutes2 = Integer.parseInt(req.getParameter("minutes2"));
+        Integer seconds2 = Integer.parseInt(req.getParameter("seconds2"));
 
         duration1 = Duration.ofDays(days1)
                 .plusHours(hours1)
                 .plusMinutes(minutes1)
                 .plusSeconds(seconds1);
 
-        ServletContext servletContext = getServletContext();
+        duration2 = Duration.ofDays(days2)
+                .plusHours(hours2)
+                .plusMinutes(minutes2)
+                .plusSeconds(seconds2);
 
         setStatisticsAttributes(duration1, duration2);
 
@@ -79,6 +86,10 @@ public class StatisticsServlet extends HttpServlet {
         getServletContext().setAttribute("hours1", hours1);
         getServletContext().setAttribute("minutes1", minutes1);
         getServletContext().setAttribute("seconds1", seconds1);
+        getServletContext().setAttribute("days2", days2);
+        getServletContext().setAttribute("hours2", hours2);
+        getServletContext().setAttribute("minutes2", minutes2);
+        getServletContext().setAttribute("seconds2", seconds2);
 
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");

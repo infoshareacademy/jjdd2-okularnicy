@@ -106,6 +106,7 @@
         </tbody>
     </table>
     <h1>${days1} ${hours1}:${minutes1}:${seconds1}</h1>
+    <h1>${days2} ${hours2}:${minutes2}:${seconds2}</h1>
 </div>
 </body>
 </html>
