@@ -55,16 +55,22 @@ public class StatisticsServlet extends HttpServlet {
         servletContext.setAttribute("minutesDuration2", minutesDuration2);
         servletContext.setAttribute("secondsDuration2", secondsDuration2);
 
-
-
-
-
-
-
         LocalDateTime now = LocalDateTime.now();
-
         LocalDateTime last1 = now.minus(duration1);
         LocalDateTime last2 = now.minus(duration2);
+
+        servletContext.setAttribute("NumberOfVisitsLast1", statistics.getNumberOfVisits(last1, now));
+        servletContext.setAttribute("OccurrenceMapLast1", statistics.getOccurrenceMap(last1, now));
+        servletContext.setAttribute("NumberOfVisitsLast2", statistics.getNumberOfVisits(last2, now));
+        servletContext.setAttribute("OccurrenceMapLast2", statistics.getOccurrenceMap(last2, now));
+        servletContext.setAttribute("NumberOfVisitsTotal", statistics.getNumberOfVisits());
+        servletContext.setAttribute("OccurrenceMapTotal", statistics.getOccurrenceMap());
+        servletContext.setAttribute("RecordsListTotal", statistics.getAll());
+
+
+
+
+
 
         setStatisticsAttributes(now, last1, last2);
 
