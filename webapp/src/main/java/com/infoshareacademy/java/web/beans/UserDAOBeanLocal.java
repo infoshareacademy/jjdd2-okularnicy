@@ -3,8 +3,10 @@ package com.infoshareacademy.java.web.beans;
 import com.infoshareacademy.java.web.entities.User;
 
 import javax.ejb.Local;
+import javax.swing.text.html.Option;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Local
 public interface UserDAOBeanLocal {
@@ -13,7 +15,7 @@ public interface UserDAOBeanLocal {
 
     void updateUser(User user);
 
-    User findUserById (String userId);
+    Optional<User> findUserById (String userId);
 
     List<User> findAllUsers();
 

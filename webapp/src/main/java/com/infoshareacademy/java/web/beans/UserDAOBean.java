@@ -5,11 +5,11 @@ import com.infoshareacademy.java.web.entities.User;
 
 import javax.ejb.Stateless;
 import javax.jws.soap.SOAPBinding;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Stateless
 public class UserDAOBean implements UserDAOBeanLocal {
@@ -28,9 +28,16 @@ public class UserDAOBean implements UserDAOBeanLocal {
     }
 
     @Override
-    public User findUserById(String userId) {
+    public Optional<User> findUserById(String userId) {
         Query q = em.createNamedQuery("com.infoshareacademy.java.web.entities.User.findByUserId", User.class);
-        return (User) q.getSingleResult();
+        q.setParameter("userId", userId);
+        try {
+            User foundUser = (User) q.getSingleResult();
+            return Optional.of(foundUser);
+        } catch (NoResultException e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 
     @Override

@@ -21,8 +21,8 @@ public class User {
     @Column(name = "isAdmin")
     private boolean isAdmin;
 
-    @Column(name = "email_address")
-    private String emailAddress;
+//    @Column(name = "email_address")
+//    private String emailAddress;
 
     @OneToMany(mappedBy = "user")
     private List<UsersLogins> logins;
@@ -30,10 +30,10 @@ public class User {
     public User() {
     }
 
-    public User(String userId, boolean isAdmin, String emailAddress) {
+    public User(String userId, boolean isAdmin) {
         this.userId = userId;
         this.isAdmin = isAdmin;
-        this.emailAddress = emailAddress;
+//        this.emailAddress = emailAddress;
     }
 
     public String getUserId() {
@@ -52,13 +52,13 @@ public class User {
         isAdmin = admin;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
+//    public String getEmailAddress() {
+//        return emailAddress;
+//    }
+//
+//    public void setEmailAddress(String emailAddress) {
+//        this.emailAddress = emailAddress;
+//    }
 
     public Long getId() {
         return id;

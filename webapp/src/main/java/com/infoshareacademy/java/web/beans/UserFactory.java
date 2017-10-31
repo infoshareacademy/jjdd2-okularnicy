@@ -11,6 +11,7 @@ import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Optional;
 
 @Stateless
 public class UserFactory {
@@ -22,12 +23,13 @@ public class UserFactory {
 
     public User createUser(String userId, String accessToken) {
 
-        User user = userDAOBean.findUserById(userId);
-        if (user == null) {
-            user = new User(userId, false, getUserEmail(userId, accessToken));
-            userDAOBean.addUser(user);
+        Optional<User> user = userDAOBean.findUserById(userId);
+        if (user.isPresent()) {
+            return user.get();
         }
-        return user;
+        User newUser = new User(userId, false);
+        userDAOBean.addUser(newUser);
+        return newUser;
     }
 
     public String getUserId(String accessToken) {
@@ -41,14 +43,14 @@ public class UserFactory {
         return userId;
     }
 
-    public String getUserEmail(String userId, String accessToken){
-        String url = "https://okularnicy.eu.auth0.com/api/v2/users/" + userId;
-        ResteasyClient client = new ResteasyClientBuilder().build();
-        ResteasyWebTarget target = client.target(url);
-        AuthClient authClient = target.proxy(AuthClient.class);
-        String userEmail = authClient.getUserEmail("Bearer " + accessToken);
-        logger.info(userEmail);
-        return userEmail;
-    }
+//    public String getUserEmail(String userId, String accessToken){
+//        String url = "https://okularnicy.eu.auth0.com/api/v2/users/" + userId;
+//        ResteasyClient client = new ResteasyClientBuilder().build();
+//        ResteasyWebTarget target = client.target(url);
+//        AuthClient authClient = target.proxy(AuthClient.class);
+//        String userEmail = authClient.getUserEmail("Bearer " + accessToken);
+//        logger.info(userEmail);
+//        return userEmail;
+//    }
 
 }

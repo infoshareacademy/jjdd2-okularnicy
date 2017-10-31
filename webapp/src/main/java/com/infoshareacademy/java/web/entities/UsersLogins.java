@@ -2,6 +2,7 @@ package com.infoshareacademy.java.web.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @NamedQueries({
         @NamedQuery(query = "SELECT l FROM UsersLogins l", name = "com.infoshareacademy.java.web.entities.UsersLogins.findAllLogins"),
@@ -20,12 +21,12 @@ public class UsersLogins {
     private User user;
 
     @Column(name = "login_time")
-    private LocalDate loginTime;
+    private LocalDateTime loginTime;
 
     public UsersLogins() {
     }
 
-    public UsersLogins(User user, LocalDate loginTime) {
+    public UsersLogins(User user, LocalDateTime loginTime) {
         this.user = user;
         this.loginTime = loginTime;
     }
@@ -46,11 +47,11 @@ public class UsersLogins {
         this.user = user;
     }
 
-    public LocalDate getLoginTime() {
+    public LocalDateTime getLoginTime() {
         return loginTime;
     }
 
-    public void setLoginTime(LocalDate loginTime) {
+    public void setLoginTime(LocalDateTime loginTime) {
         this.loginTime = loginTime;
     }
 
