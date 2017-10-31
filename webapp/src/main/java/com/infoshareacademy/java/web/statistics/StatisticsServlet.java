@@ -23,13 +23,16 @@ public class StatisticsServlet extends HttpServlet {
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
 
+    private Duration duration1;
+    private Duration duration2;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
 
         ServletContext servletContext = getServletContext();
 
-        Duration duration1 = (Duration) servletContext.getAttribute("duration1");
+        duration1 = (Duration) servletContext.getAttribute("duration1");
         if (duration1 == null) {
             duration1 = Duration.ofDays(configuration.getInitialDaysDuration1())
                     .plusHours(configuration.getInitialHoursDuration1())
@@ -38,7 +41,7 @@ public class StatisticsServlet extends HttpServlet {
             servletContext.setAttribute("duration1", duration1);
         }
 
-        Duration duration2 = (Duration) servletContext.getAttribute("duration2");
+        duration2 = (Duration) servletContext.getAttribute("duration2");
         if (duration2 == null) {
             duration2 = Duration.ofDays(configuration.getInitialDaysDuration2())
                     .plusHours(configuration.getInitialHoursDuration2())
@@ -52,6 +55,35 @@ public class StatisticsServlet extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
         dispatcher.forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Integer days1 = Integer.parseInt(req.getParameter("days1"));
+        Integer hours1 = Integer.parseInt(req.getParameter("hours1"));
+        Integer minutes1 = Integer.parseInt(req.getParameter("minutes1"));
+        Integer seconds1 = Integer.parseInt(req.getParameter("seconds1"));
+
+        duration1 = Duration.ofDays(days1)
+                .plusHours(hours1)
+                .plusMinutes(minutes1)
+                .plusSeconds(seconds1);
+
+        ServletContext servletContext = getServletContext();
+
+        setStatisticsAttributes(duration1, duration2);
+
+        
+        //to remove
+        getServletContext().setAttribute("days1", days1);
+        getServletContext().setAttribute("hours1", hours1);
+        getServletContext().setAttribute("minutes1", minutes1);
+        getServletContext().setAttribute("seconds1", seconds1);
+
+        RequestDispatcher dispatcher = getServletContext()
+                .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
+        dispatcher.forward(req, resp);
+
     }
 
     private void setStatisticsAttributes(Duration duration1, Duration duration2) {
@@ -87,22 +119,5 @@ public class StatisticsServlet extends HttpServlet {
         servletContext.setAttribute("NumberOfVisitsTotal", statistics.getNumberOfVisits());
         servletContext.setAttribute("OccurrenceMapTotal", statistics.getOccurrenceMap());
         servletContext.setAttribute("RecordsListTotal", statistics.getAll());
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String days1 = req.getParameter("days1");
-        getServletContext().setAttribute("days1", days1);
-        String hours1 = req.getParameter("hours1");
-        getServletContext().setAttribute("hours1", hours1);
-        String minutes1 = req.getParameter("minutes1");
-        getServletContext().setAttribute("minutes1", minutes1);
-        String seconds1 = req.getParameter("seconds1");
-        getServletContext().setAttribute("seconds1", seconds1);
-
-        RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
-        dispatcher.forward(req, resp);
-
     }
 }
