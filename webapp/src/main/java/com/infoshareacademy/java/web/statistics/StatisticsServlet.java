@@ -21,8 +21,8 @@ public class StatisticsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LocalDateTime now = LocalDateTime.now();
-        Duration duration1 = Duration.ofSeconds(10);
-        Duration duration2 = Duration.ofSeconds(20);
+        Duration duration1 = Duration.ofDays(1).plusHours(2).plusMinutes(3).plusSeconds(4);
+        Duration duration2 = Duration.ofDays(5).plusHours(6).plusMinutes(7).plusSeconds(8);
         LocalDateTime last1 = now.minus(duration1);
         LocalDateTime last2 = now.minus(duration2);
 

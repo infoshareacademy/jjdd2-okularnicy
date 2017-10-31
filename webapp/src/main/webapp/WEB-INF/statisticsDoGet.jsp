@@ -25,10 +25,10 @@
                 <p>(dni:${daysDuration1}, godziny:${hoursDuration1}, minuty:${minutesDuration1}, sekundy:${secondsDuration1})</p></td>
             <td><H3>${NumberOfVisitsLast1}</H3></td>
             <td><form action="statistics" method="post">
-                <input type="text" name="days1" maxlength="2" placeholder="D" size="2">
-                <input type="text" name="hours1" maxlength="2" placeholder="H" size="2">
-                <input type="text" name="minutes1" maxlength="2" placeholder="m" size="2">
-                <input type="text" name="seconds1" maxlength="2" placeholder="s" size="2">
+                <input type="text" name="days1" maxlength="2" value="${daysDuration1}" size="2">
+                <input type="text" name="hours1" maxlength="2" value="${hoursDuration1}" size="2">
+                <input type="text" name="minutes1" maxlength="2" value="${minutesDuration1}" size="2">
+                <input type="text" name="seconds1" maxlength="2" value="${secondsDuration1}" size="2">
                 <br>
                 <button type="submit">WYŚLIJ</button>
             </form></td>
