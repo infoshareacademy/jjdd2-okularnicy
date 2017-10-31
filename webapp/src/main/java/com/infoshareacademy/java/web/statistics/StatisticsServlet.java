@@ -42,7 +42,7 @@ public class StatisticsServlet extends HttpServlet {
             logger.log(Level.INFO, "servletContext.getAttribute(\"duration1\")=" + duration1.toString());
         }
         if (duration1 == null) {
-            logger.log(Level.INFO, "servletContext.getAttribute(\\\"duration1\\\")=null");
+            logger.log(Level.INFO, "servletContext.getAttribute(\"duration1\")=null");
             duration1 = Duration.ofDays(configuration.getInitialDaysDuration1())
                     .plusHours(configuration.getInitialHoursDuration1())
                     .plusMinutes(configuration.getInitialMinutesDuration1())
@@ -51,7 +51,11 @@ public class StatisticsServlet extends HttpServlet {
         }
 
         duration2 = (Duration) servletContext.getAttribute("duration2");
+        if (duration2 != null) {
+            logger.log(Level.INFO, "servletContext.getAttribute(\"duration2\")=" + duration2.toString());
+        }
         if (duration2 == null) {
+            logger.log(Level.INFO, "servletContext.getAttribute(\"duration2\")=null");
             duration2 = Duration.ofDays(configuration.getInitialDaysDuration2())
                     .plusHours(configuration.getInitialHoursDuration2())
                     .plusMinutes(configuration.getInitialMinutesDuration2())
@@ -68,6 +72,7 @@ public class StatisticsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.log(Level.INFO, "start metody StatisticsServlet.doPost");
         Integer days1 = Integer.parseInt(req.getParameter("days1"));
         Integer hours1 = Integer.parseInt(req.getParameter("hours1"));
         Integer minutes1 = Integer.parseInt(req.getParameter("minutes1"));
