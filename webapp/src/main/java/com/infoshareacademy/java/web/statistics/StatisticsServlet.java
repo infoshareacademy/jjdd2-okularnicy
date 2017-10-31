@@ -4,6 +4,9 @@ import com.infoshareacademy.baseapp.statistics.DurationTransformationService;
 import com.infoshareacademy.baseapp.statistics.Statistics;
 import com.infoshareacademy.java.web.Configuration;
 import com.infoshareacademy.java.web.JsonReader;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -19,6 +22,7 @@ import java.time.LocalDateTime;
 @WebServlet("/finanse/statistics")
 public class StatisticsServlet extends HttpServlet {
 
+    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
     private Statistics statistics = Statistics.getInstance();
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
@@ -28,12 +32,17 @@ public class StatisticsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.log(Level.INFO, "start metody StatisticsServlet.doGet");
         configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
 
         ServletContext servletContext = getServletContext();
 
         duration1 = (Duration) servletContext.getAttribute("duration1");
+        if (duration1 != null) {
+            logger.log(Level.INFO, "servletContext.getAttribute(\"duration1\")=" + duration1.toString());
+        }
         if (duration1 == null) {
+            logger.log(Level.INFO, "servletContext.getAttribute(\\\"duration1\\\")=null");
             duration1 = Duration.ofDays(configuration.getInitialDaysDuration1())
                     .plusHours(configuration.getInitialHoursDuration1())
                     .plusMinutes(configuration.getInitialMinutesDuration1())
@@ -68,15 +77,19 @@ public class StatisticsServlet extends HttpServlet {
         Integer minutes2 = Integer.parseInt(req.getParameter("minutes2"));
         Integer seconds2 = Integer.parseInt(req.getParameter("seconds2"));
 
+        ServletContext servletContext = getServletContext();
+
         duration1 = Duration.ofDays(days1)
                 .plusHours(hours1)
                 .plusMinutes(minutes1)
                 .plusSeconds(seconds1);
+        servletContext.setAttribute("duration1", duration1);
 
         duration2 = Duration.ofDays(days2)
                 .plusHours(hours2)
                 .plusMinutes(minutes2)
                 .plusSeconds(seconds2);
+        servletContext.setAttribute("duration2", duration2);
 
         setStatisticsAttributes(duration1, duration2);
 
