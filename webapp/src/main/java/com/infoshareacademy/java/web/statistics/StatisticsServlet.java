@@ -71,22 +71,11 @@ public class StatisticsServlet extends HttpServlet {
 
 
 
-
-        setStatisticsAttributes(now, last1, last2);
+        
 
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/statisticsDoGet.jsp");
         dispatcher.forward(req, resp);
-    }
-
-    public void setStatisticsAttributes(LocalDateTime now, LocalDateTime last1, LocalDateTime last2){
-        getServletContext().setAttribute("NumberOfVisitsLast1", statistics.getNumberOfVisits(last1, now));
-        getServletContext().setAttribute("OccurrenceMapLast1", statistics.getOccurrenceMap(last1, now));
-        getServletContext().setAttribute("NumberOfVisitsLast2", statistics.getNumberOfVisits(last2, now));
-        getServletContext().setAttribute("OccurrenceMapLast2", statistics.getOccurrenceMap(last2, now));
-        getServletContext().setAttribute("NumberOfVisitsTotal", statistics.getNumberOfVisits());
-        getServletContext().setAttribute("OccurrenceMapTotal", statistics.getOccurrenceMap());
-        getServletContext().setAttribute("RecordsListTotal", statistics.getAll());
     }
 
     @Override
