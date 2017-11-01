@@ -38,9 +38,6 @@ public class StatisticsServlet extends HttpServlet {
         ServletContext servletContext = getServletContext();
 
         duration1 = (Duration) servletContext.getAttribute("duration1");
-        if (duration1 != null) {
-            logger.log(Level.INFO, "servletContext.getAttribute(\"duration1\")=" + duration1.toString());
-        }
         if (duration1 == null) {
             logger.log(Level.INFO, "servletContext.getAttribute(\"duration1\")=null");
             duration1 = Duration.ofDays(configuration.getInitialDaysDuration1())
@@ -48,12 +45,11 @@ public class StatisticsServlet extends HttpServlet {
                     .plusMinutes(configuration.getInitialMinutesDuration1())
                     .plusSeconds(configuration.getInitialSecondsDuration1());
             servletContext.setAttribute("duration1", duration1);
+        } else {
+            logger.log(Level.INFO, "servletContext.getAttribute(\"duration1\")=" + duration1.toString());
         }
 
         duration2 = (Duration) servletContext.getAttribute("duration2");
-        if (duration2 != null) {
-            logger.log(Level.INFO, "servletContext.getAttribute(\"duration2\")=" + duration2.toString());
-        }
         if (duration2 == null) {
             logger.log(Level.INFO, "servletContext.getAttribute(\"duration2\")=null");
             duration2 = Duration.ofDays(configuration.getInitialDaysDuration2())
@@ -61,6 +57,8 @@ public class StatisticsServlet extends HttpServlet {
                     .plusMinutes(configuration.getInitialMinutesDuration2())
                     .plusSeconds(configuration.getInitialSecondsDuration2());
             servletContext.setAttribute("duration2", duration2);
+        } else {
+            logger.log(Level.INFO, "servletContext.getAttribute(\"duration2\")=" + duration2.toString());
         }
 
         setStatisticsAttributes(duration1, duration2);
