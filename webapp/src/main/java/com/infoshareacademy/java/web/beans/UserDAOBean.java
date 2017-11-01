@@ -44,5 +44,4 @@ public class UserDAOBean implements UserDAOBeanLocal {
         Query q = em.createNamedQuery("com.infoshareacademy.java.web.entities.User.findAllUsers");
         return q.getResultList();
     }
-
 }

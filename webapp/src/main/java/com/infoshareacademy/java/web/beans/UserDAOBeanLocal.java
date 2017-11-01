@@ -18,7 +18,4 @@ public interface UserDAOBeanLocal {
     Optional<User> findUserById (String userId);
 
     List<User> findAllUsers();
-
-
-
 }

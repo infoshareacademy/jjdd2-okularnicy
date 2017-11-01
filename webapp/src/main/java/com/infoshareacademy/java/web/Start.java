@@ -174,5 +174,4 @@ public class Start extends HttpServlet {
             logger.log(Level.ERROR, "Wyjątek: ServletException");
         }
     }
-
 }
