@@ -54,10 +54,6 @@ public class Start extends HttpServlet {
 
         boolean isAdmin = userService.initUserSession(accessToken);
 
-        if (isAdmin) {
-            resp.sendRedirect("/finanse/admin");
-        }
-
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
