@@ -36,7 +36,7 @@ public class Start extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String fileURL = "http://bossa.pl/pub/ciagle/omega/omegacgl.lst";
-        String fileURL = "http://bossa.pl/pub/ciagle/omega/omegacgl.lst";
+        String fileURL = "http://bossa.pl/pub/fundinwest/omega/omegafun.zip";
         String saveDir = "logs/";
         try {
             InputStream stream = downloader.downloadStream(fileURL, saveDir);
@@ -79,10 +79,7 @@ public class Start extends HttpServlet {
             logger.info("Rozpoczęto wczytywanie plików");
             setParameters(inputStreamLST, inputStreamZIP);
 
-            String tmpDir = System.getProperty("java.io.tmpdir");
-            UUID uuid = UUID.randomUUID();
-            String targetDir = tmpDir + "/" + configuration.getWorkFiles() + uuid.toString();//to properties
-            logger.info("Ustawiono ścieżkę tymczasową na: " + targetDir);
+            String targetDir = setTemporaryDirector();
 
             FileUtils.deleteDirectory(new File(targetDir));
 
@@ -102,31 +99,9 @@ public class Start extends HttpServlet {
             getServletContext().setAttribute("ZIPDir", ZIPDir);
             logger.info("Ustawiono ścieżkę do pliku ZIP: " + ZIPDir);
 
-            OutputStream outputStreamLST = new FileOutputStream(new File(LSTDir));
-            OutputStream outputStreamZIP = new FileOutputStream(new File(ZIPDir));
-            int readLST = 0;
-            int readZIP = 0;
-            byte[] bytesLST = new byte[1024];
-            byte[] bytesZIP = new byte[1024];
-            while ((readLST = inputStreamLST.read(bytesLST)) != -1) {
-                outputStreamLST.write(bytesLST, 0, readLST);
-            }
-            while ((readZIP = inputStreamZIP.read(bytesZIP)) != -1) {
-                outputStreamZIP.write(bytesZIP, 0, readZIP);
-            }
-            logger.info("Zakończono zapisywanie plików na dysku");
+            saveFilesOnDisc(inputStreamLST, inputStreamZIP, LSTDir, ZIPDir);
 
-            String unZippedDir = targetDir + "/" + configuration.getUnzippeDir();//to properties
-            getServletContext().setAttribute("unZippedDir", unZippedDir);
-            File unZippedDirFolder = new File(unZippedDir);
-            if (!unZippedDirFolder.exists()) {
-                unZippedDirFolder.mkdir();
-            }
-            logger.info("Ustawiono folder docelowy do dekompresji plików: " + unZippedDir);
-
-            UnZip unZip = new UnZip();
-            unZip.unZip(ZIPDir, unZippedDir);
-            logger.info("Zakończono rozpakowywanie plików z archiwum");
+            unZippedFiles(targetDir, ZIPDir);
 
 
             String[] LSTDirArray = new String[]{LSTDir};
@@ -184,5 +159,43 @@ public class Start extends HttpServlet {
         } catch (ServletException e) {
             logger.log(Level.ERROR, "Wyjątek: ServletException");
         }
+    }
+
+    private void unZippedFiles(String targetDir, String ZIPDir) {
+        String unZippedDir = targetDir + "/" + configuration.getUnzippeDir();//to properties
+        getServletContext().setAttribute("unZippedDir", unZippedDir);
+        File unZippedDirFolder = new File(unZippedDir);
+        if (!unZippedDirFolder.exists()) {
+            unZippedDirFolder.mkdir();
+        }
+        logger.info("Ustawiono folder docelowy do dekompresji plików: " + unZippedDir);
+
+        UnZip unZip = new UnZip();
+        unZip.unZip(ZIPDir, unZippedDir);
+        logger.info("Zakończono rozpakowywanie plików z archiwum");
+    }
+
+    private void saveFilesOnDisc(InputStream inputStreamLST, InputStream inputStreamZIP, String LSTDir, String ZIPDir) throws IOException {
+        OutputStream outputStreamLST = new FileOutputStream(new File(LSTDir));
+        OutputStream outputStreamZIP = new FileOutputStream(new File(ZIPDir));
+        int readLST = 0;
+        int readZIP = 0;
+        byte[] bytesLST = new byte[1024];
+        byte[] bytesZIP = new byte[1024];
+        while ((readLST = inputStreamLST.read(bytesLST)) != -1) {
+            outputStreamLST.write(bytesLST, 0, readLST);    
+        }
+        while ((readZIP = inputStreamZIP.read(bytesZIP)) != -1) {
+            outputStreamZIP.write(bytesZIP, 0, readZIP);
+        }
+        logger.info("Zakończono zapisywanie plików na dysku");
+    }
+
+    private String setTemporaryDirector() {
+        String tmpDir = System.getProperty("java.io.tmpdir");
+        UUID uuid = UUID.randomUUID();
+        String targetDir = tmpDir + "/" + configuration.getWorkFiles() + uuid.toString();//to properties
+        logger.info("Ustawiono ścieżkę tymczasową na: " + targetDir);
+        return targetDir;
     }
 }
