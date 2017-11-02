@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StartingParameters {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
@@ -31,6 +33,11 @@ public class StartingParameters {
                 sCurrentLine = br.readLine();
 
                 while ((sCurrentLine = br.readLine()) != null) {
+                    Pattern pattern = Pattern.compile("--------");
+                    Matcher matcher = pattern.matcher(sCurrentLine);
+                    if (matcher.find()){
+                        break;
+                    }
                     String separatorName1 = "(.txt)( )+";
                     String name = sCurrentLine.split(separatorName1)[1].trim();
 
