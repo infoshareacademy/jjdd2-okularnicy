@@ -76,6 +76,22 @@
         </tbody>
     </table>
 
+    <form action="statistics" method="post">
+        Pierwszy przedział czasu.
+        Dni:<input type="text" name="days1" maxlength="2" value="${daysDuration1}" size="2">
+        Godziny:<input type="text" name="hours1" maxlength="2" value="${hoursDuration1}" size="2">
+        Minuty:<input type="text" name="minutes1" maxlength="2" value="${minutesDuration1}" size="2">
+        Sekundy:<input type="text" name="seconds1" maxlength="2" value="${secondsDuration1}" size="2">
+        <br>
+        Drugi przedział czasu.
+        Dni:<input type="text" name="days2" maxlength="2" value="${daysDuration2}" size="2">
+        Godziny:<input type="text" name="hours2" maxlength="2" value="${hoursDuration2}" size="2">
+        Minuty:<input type="text" name="minutes2" maxlength="2" value="${minutesDuration2}" size="2">
+        Sekundy:<input type="text" name="seconds2" maxlength="2" value="${secondsDuration2}" size="2">
+        <br>
+        <button type="submit">WYŚLIJ</button>
+    </form>
+
     <table class="center">
         <thead>
         <tr>

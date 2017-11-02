@@ -1,8 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${applicationScope.language}" />
+<fmt:setBundle basename="i18n.napisy"/>
 <!DOCTYPE html>
-<html>
+<html lang="${applicationScope.language}">
 <head>
     <jsp:include page="/shared/head.jsp"/>
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
@@ -37,16 +39,17 @@
     <jsp:include page="/shared/header.jsp"/>
 </header>
 <div class="og" id="data">
-    <H1>PODAJ ZAKRES DAT</H1>
+    <H1><fmt:message key="dataRange"/></H1>
 
     <form action="extremaLokalne" method="POST">
 
 
-        <input type="text" name="startDate" placeholder="Data początkowa" class="datepicker" required/> &nbsp
+        <input type="text" name="startDate" placeholder="<fmt:message key="start"/>" class="datepicker" required/> &nbsp
 
-        <input type="text" name="endDate" placeholder="Data końcowa" class="datepicker" required/>
+        <input type="text" name="endDate" placeholder="<fmt:message key="end"/>" class="datepicker" required/>
         <br>
-        <input type="submit" value="Wyślij" class="datepicker">
+        <fmt:message key="send" var="button"/>
+        <input type="submit" class="datepicker" value=${button} >
     </form>
 </div>
 </body>
