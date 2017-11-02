@@ -1,5 +1,6 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.baseapp.email.EmailScheduler;
 import com.infoshareacademy.baseapp.email.EmailService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -17,13 +18,7 @@ public class App extends Application {
 
     public App() throws ParseException {
 
-        EmailService email = new EmailService("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
-        try {
-            email.send("infoshareokularnicy@wp.pl",
-                    "na starcie aplikacji", "ten mail zostal wyslany po starcie serwera");
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
+        new EmailScheduler().startSendingEMails(60);
 
         logger.log(Level.INFO, "wyslano e-mail");
     }
