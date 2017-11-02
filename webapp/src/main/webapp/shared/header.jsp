@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="${sessionScope.language}" />
+<fmt:setLocale value="${applicationScope.language}" />
 <fmt:setBundle basename="i18n.napisy"/>
-<html lang="${sessionScope.language}">
+<html lang="${applicationScope.language}">
 <head>
     <title>Menu</title>
     <nav class=nav>

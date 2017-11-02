@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${sessionScope.language}" />
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="application" />
+<fmt:setLocale value="${applicationScope.language}" />
 <fmt:setBundle basename="i18n.napisy"/>
 <!DOCTYPE html>
-<html lang="${sessionScope.language}">
+<html lang="${applicationScope.language}">
 <head>
     <jsp:include page="/shared/head.jsp"/>
 </head>
