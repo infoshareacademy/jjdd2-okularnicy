@@ -39,7 +39,15 @@ public class StartingParameters {
                         break;
                     }
                     String separatorName1 = "(.txt)( )+";
-                    String name = sCurrentLine.split(separatorName1)[1].trim();
+                    
+                    String name = null;
+                    try {
+                        name = sCurrentLine.split(separatorName1)[1].trim();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        logger.log(Level.ERROR, "Wyjątek: FileNotFoundException");
+                        continue;
+                    }
 
                     String separatorFile1 = "(kB)( )+";
                     String separatorFile2 = " ";
