@@ -36,12 +36,20 @@ public class Start extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String fileURL = "http://bossa.pl/pub/ciagle/omega/omegacgl.lst";
-        String saveDir = "/home/michalbrudnicki/IdeaProjects/jjdd2-okularnicy/testdata";
+        String fileURL = "http://bossa.pl/pub/ciagle/omega/omegacgl.lst";
+        String saveDir = "logs/";
         try {
-            downloader.downloadFile(fileURL, saveDir);
+            InputStream stream = downloader.downloadStream(fileURL, saveDir);
+            InputStream stream = downloader.downloadStream(fileURL, saveDir);
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
+        setParameters(streamLst, streamZip);
+
+
+
 
         configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
         logger.log(Level.INFO, "uruchomiono aplikacje");
@@ -57,6 +65,10 @@ public class Start extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    private void setParameters(InputStream lst, InputStream zip) {
+
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -65,6 +77,7 @@ public class Start extends HttpServlet {
             InputStream inputStreamLST = fileLST.getInputStream();
             InputStream inputStreamZIP = fileZIP.getInputStream();
             logger.info("Rozpoczęto wczytywanie plików");
+            setParameters(inputStreamLST, inputStreamZIP);
 
             String tmpDir = System.getProperty("java.io.tmpdir");
             UUID uuid = UUID.randomUUID();
