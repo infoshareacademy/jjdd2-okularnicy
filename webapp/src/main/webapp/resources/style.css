@@ -417,6 +417,12 @@ button:hover {
     background-color: #474747 !important;
 }
 
+#language {
+    display: flex;
+    justify-content: flex-end;
+    margin: 4vh;
+}
+
 #stat {
     background: url('achievement-bar-business-chart-40140.png') center;
     background-size: cover;
