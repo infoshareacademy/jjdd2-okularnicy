@@ -39,13 +39,13 @@ public class StartingParameters {
                         break;
                     }
                     String separatorName1 = "(.txt)( )+";
-                    
+
                     String name = null;
                     try {
                         name = sCurrentLine.split(separatorName1)[1].trim();
                     } catch (Exception e) {
                         e.printStackTrace();
-                        logger.log(Level.ERROR, "Wyjątek: FileNotFoundException");
+                        logger.log(Level.ERROR, "Wyjątek: " + e.getMessage());
                         continue;
                     }
 
