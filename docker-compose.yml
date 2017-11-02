@@ -1,0 +1,28 @@
+version: '2'
+services:
+  jjdd2-okularnicy-db:
+    container_name: "jjdd2-okularnicy-db"
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=okularnicy-db
+      - MYSQL_USER=okularnicy
+      - MYSQL_PASSWORD=okularnicy
+      - MYSQL_ROOT_PASSWORD=pass
+    ports:
+      - 4055:3306
+  jjdd2-okularnicy-webapp:
+    container_name: "jjdd2-okularnicy-webapp"
+    build: .
+    environment:
+      - MYSQL_URI=jjdd2-okularnicy-db:3306
+      - MYSQL_DATABASE=okularnicy-db
+      - MYSQL_USER=okularnicy
+      - MYSQL_PASSWORD=okularnicy
+      - DATASOURCE_NAME=java:jboss/datasources/okularnicyDS
+    ports:
+      - 4050:8080
+      - 4051:9990
+    depends_on:
+      - jjdd2-okularnicy-db
+    links:
+      - jjdd2-okularnicy-db
