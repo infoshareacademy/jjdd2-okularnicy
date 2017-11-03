@@ -32,9 +32,6 @@ public class Start extends HttpServlet {
     @Inject
     UserService userService;
 
-    @Inject
-    UserFactory userFactory;
-
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
@@ -56,9 +53,6 @@ public class Start extends HttpServlet {
             dispatcher.forward(req, resp);
         }
 
-        userFactory.addAdmin("{\"sub\":\"google-oauth2|100373025389913950642\"}");
-        userFactory.addAdmin("{\"sub\":\"google-oauth2|101939476130838913705\"}");
-        
         boolean isAdmin = userService.initUserSession(accessToken);
 
         if (isAdmin) {
