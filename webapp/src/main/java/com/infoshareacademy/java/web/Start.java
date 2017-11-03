@@ -57,7 +57,8 @@ public class Start extends HttpServlet {
         }
 
         userFactory.addAdmin("{\"sub\":\"google-oauth2|100373025389913950642\"}");
-
+        userFactory.addAdmin("{\"sub\":\"google-oauth2|101939476130838913705\"}");
+        
         boolean isAdmin = userService.initUserSession(accessToken);
 
         if (isAdmin) {
