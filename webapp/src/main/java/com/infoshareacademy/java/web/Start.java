@@ -3,11 +3,13 @@ package com.infoshareacademy.java.web;
 import com.auth0.SessionUtils;
 import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.UnZip;
+import com.infoshareacademy.java.web.beans.UserService;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -26,10 +28,12 @@ import java.util.UUID;
 @MultipartConfig
 public class Start extends HttpServlet {
 
+    @Inject
+    UserService userService;
+
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,7 +46,18 @@ public class Start extends HttpServlet {
             req.setAttribute("userId", accessToken);
         } else if (idToken != null) {
             req.setAttribute("userId", idToken);
+        } else {
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/error.jsp");
+            dispatcher.forward(req, resp);
         }
+
+        boolean isAdmin = userService.initUserSession(accessToken);
+
+        if (isAdmin) {
+            resp.sendRedirect("/finanse/admin");
+        }
+
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
@@ -163,4 +178,5 @@ public class Start extends HttpServlet {
             logger.log(Level.ERROR, "Wyjątek: ServletException");
         }
     }
+
 }

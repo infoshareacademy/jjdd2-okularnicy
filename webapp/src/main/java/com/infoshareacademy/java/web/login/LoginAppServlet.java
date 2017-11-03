@@ -16,8 +16,6 @@ import java.io.IOException;
 @MultipartConfig
 public class LoginAppServlet extends HttpServlet {
 
-    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

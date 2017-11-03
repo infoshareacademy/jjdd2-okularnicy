@@ -3,9 +3,8 @@ package com.infoshareacademy.java.web.entities;
 import javax.persistence.*;
 import java.sql.Date;
 
-
 @NamedQueries({
-        @NamedQuery(query = "SELECT s FROM Stats s", name = "com.infoshareacademy.java.web.entities.Stats.findAll"),
+        @NamedQuery(query = "FROM Stats", name = "com.infoshareacademy.java.web.entities.Stats.findAll"),
         @NamedQuery(query = "SELECT s FROM Stats s WHERE s.statsTime >= :afterDate", name = "com.infoshareacademy.java.web.entities.Stats.findAllAfterDate")
 })
 @Entity
