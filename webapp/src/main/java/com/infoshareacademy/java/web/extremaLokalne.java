@@ -42,7 +42,7 @@ public class extremaLokalne extends HttpServlet {
 
             List<Fund> fundsList = fundBase.readFoundIntoList(stringToFund)
                     .stream()
-                    .filter(fund -> fund.getDate().isAfter(program.getStartDate()) && fund.getDate().isBefore(program.getEndDate()))
+                    .filter(fund -> fund.getDate().isAfter(program.getStartDate()) && fund.getDate().isBefore(program.getEndDate()) || fund.getDate().isEqual(program.getStartDate()) || fund.getDate().isEqual(program.getEndDate()))
                     .sorted(Comparator.comparing(Fund::getDate))
                     .collect(Collectors.toList());
 
