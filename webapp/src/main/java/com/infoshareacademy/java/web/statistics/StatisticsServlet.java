@@ -4,10 +4,13 @@ import com.infoshareacademy.baseapp.statistics.DurationTransformationService;
 import com.infoshareacademy.baseapp.statistics.Statistics;
 import com.infoshareacademy.java.web.Configuration;
 import com.infoshareacademy.java.web.JsonReader;
+import com.infoshareacademy.java.web.beans.UserDAOBeanLocal;
+import com.infoshareacademy.java.web.entities.User;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -32,6 +35,16 @@ public class StatisticsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String isAdminString = req.getSession().getAttribute("admin").toString();
+        Boolean isAdmin = Boolean.getBoolean("true");
+
+        if (!isAdmin) {
+            logger.info("Użytkownik nie jest adminem");
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
+            dispatcher.forward(req, resp);
+        }
         logger.log(Level.INFO, "start metody StatisticsServlet.doGet");
         configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
 
