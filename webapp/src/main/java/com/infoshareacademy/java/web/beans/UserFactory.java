@@ -38,10 +38,20 @@ public class UserFactory {
         ResteasyClient client = new ResteasyClientBuilder().build();
         ResteasyWebTarget target = client.target(url);
         AuthClient authClient = target.proxy(AuthClient.class);
-        String userIdJSON = authClient.getUserInfo("Bearer " + accessToken);
-        String userId = userIdJSON.replaceAll("[{}]", " ");
+        String userId = authClient.getUserInfo("Bearer " + accessToken);
+//        String userIdA = userIdJSON.replaceAll("[{}]", " ");
         logger.info(userId);
         return userId;
+    }
+
+    public User addAdmin (String userId) {
+        Optional<User> user = userDAOBean.findUserById(userId);
+        if (user.isPresent()) {
+            return user.get();
+        }
+        User newUser = new User (userId, true);
+        userDAOBean.addUser(newUser);
+        return newUser;
     }
 
 //    public String getUserEmail(String userId, String accessToken){

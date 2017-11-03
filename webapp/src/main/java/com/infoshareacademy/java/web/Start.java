@@ -3,6 +3,7 @@ package com.infoshareacademy.java.web;
 import com.auth0.SessionUtils;
 import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.UnZip;
+import com.infoshareacademy.java.web.beans.UserFactory;
 import com.infoshareacademy.java.web.beans.UserService;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
@@ -31,6 +32,9 @@ public class Start extends HttpServlet {
     @Inject
     UserService userService;
 
+    @Inject
+    UserFactory userFactory;
+
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
@@ -52,10 +56,15 @@ public class Start extends HttpServlet {
             dispatcher.forward(req, resp);
         }
 
+        userFactory.addAdmin("{\"sub\":\"google-oauth2|100373025389913950642\"}");
+
         boolean isAdmin = userService.initUserSession(accessToken);
 
         if (isAdmin) {
-            resp.sendRedirect("/finanse/admin");
+            req.getSession().setAttribute("admin", true);
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
+            dispatcher.forward(req, resp);
         }
 
         RequestDispatcher dispatcher = getServletContext()
