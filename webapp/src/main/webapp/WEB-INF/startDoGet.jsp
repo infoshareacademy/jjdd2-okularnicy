@@ -31,6 +31,12 @@
         <fmt:message key="instruct"/>
     </p>
     <h3><fmt:message key="search"/></h3>
+    <form action="start" method="post" id="dataType">
+        <select class="but" name="dataType" onchange="submit()">
+            <option value="fund" ${dataType == 'fun' ? 'selected' : ''}>Fundusz</option>
+            <option value="courency" ${dataType == 'cu' ? 'selected' : ''}>Waluta</option>
+        </select>
+    </form>
     <br/>
     <form action="start" method="post" enctype="multipart/form-data">
         <p><fmt:message key="lst"/><input class=pliki type="file" name="fileLST" required accept=".lst"/></p>

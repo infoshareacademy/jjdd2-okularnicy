@@ -30,26 +30,31 @@ public class Start extends HttpServlet {
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
     HttpDownloadUtilit downloader = new HttpDownloadUtilit();
+    private String lstFunURL = "http://bossa.pl/pub/fundinwest/omega/omegafun.lst";
+    private String zipFunURL = "http://bossa.pl/pub/fundinwest/omega/omegafun.zip";
+    private String lstCurURL = "http://bossa.pl/pub/waluty/omega/omeganbp.lst";
+    private String zipCurURL = "http://bossa.pl/pub/waluty/omega/omeganbp.zip";
+    private InputStream streamlstFun;
+    private InputStream streamzipFunURL;
+    private InputStream streamlstCurURL;
+    private InputStream streamzipCurURL;
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String fileURL = "http://bossa.pl/pub/ciagle/omega/omegacgl.lst";
-        String fileURL = "http://bossa.pl/pub/fundinwest/omega/omegafun.zip";
-        String saveDir = "logs/";
-        try {
-            InputStream stream = downloader.downloadStream(fileURL, saveDir);
-            InputStream stream = downloader.downloadStream(fileURL, saveDir);
 
+
+        try {
+            InputStream streamlstFun = downloader.downloadStream(lstFunURL);
+            InputStream streamzipFunURL = downloader.downloadStream(zipFunURL);
+            InputStream streamlstCurURL = downloader.downloadStream(lstCurURL);
+            InputStream streamzipCurURL = downloader.downloadStream(zipCurURL);
+
+           // setParameters(streamLst, streamZip);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
-        setParameters(streamLst, streamZip);
-
-
-
 
         configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
         logger.log(Level.INFO, "uruchomiono aplikacje");
@@ -65,13 +70,23 @@ public class Start extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-    private void setParameters(InputStream lst, InputStream zip) {
+/*    private void setParameters(InputStream lst, InputStream zip) {
 
-    }
+    }*/
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            if(req.getParameter("dataType") == "found") {
+                streamlstFun = fileLST.getInputStream();
+                streamzipFunURL = fileZIP.getInputStream();
+
+                InputStream inputStreamLST = streamlstFun.getInputStream();
+                InputStream inputStreamZIP = streamzipFunURL.getInputStream();
+
+            }
+
+            req.getParameter("found")
             Part fileLST = req.getPart("fileLST");
             Part fileZIP = req.getPart("fileZIP");
             InputStream inputStreamLST = fileLST.getInputStream();

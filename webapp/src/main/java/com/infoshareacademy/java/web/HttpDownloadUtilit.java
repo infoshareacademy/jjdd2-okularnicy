@@ -10,15 +10,7 @@ import java.net.URL;
 public class HttpDownloadUtilit {
     private static final int BUFFER_SIZE = 4096;
 
-    /**
-     * Downloads a file from a URL
-     *
-     * @param fileURL HTTP URL of the file to be downloaded
-     * @param saveDir path of the directory to save the file
-     * @throws IOException
-     */
-
-    public static InputStream downloadStream(String fileURL, String saveDir)
+    public static InputStream downloadStream(String fileURL)
             throws IOException {
 
 
