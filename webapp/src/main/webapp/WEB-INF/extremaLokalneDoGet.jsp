@@ -16,10 +16,13 @@
 
 <div class="og" id="loc">
     <h1> <fmt:message key="local"/> </h1>
+    <h2>${choseFundStringFullName}</h2>
 
     <p><fmt:message key="min"/> ${fundMinDate} => ${fundMinClose}</p>
-    <br>
     <p><fmt:message key="max"/> ${fundMaxDate} => ${fundMaxClose}</p>
+</div>
+<div class="chart">
+    <jsp:include page="charts.jsp" />
 </div>
 </body>
 </html>
