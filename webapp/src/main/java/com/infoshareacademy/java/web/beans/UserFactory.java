@@ -53,15 +53,4 @@ public class UserFactory {
         userDAOBean.addUser(newUser);
         return newUser;
     }
-
-//    public String getUserEmail(String userId, String accessToken){
-//        String url = "https://okularnicy.eu.auth0.com/api/v2/users/" + userId;
-//        ResteasyClient client = new ResteasyClientBuilder().build();
-//        ResteasyWebTarget target = client.target(url);
-//        AuthClient authClient = target.proxy(AuthClient.class);
-//        String userEmail = authClient.getUserEmail("Bearer " + accessToken);
-//        logger.info(userEmail);
-//        return userEmail;
-//    }
-
 }
