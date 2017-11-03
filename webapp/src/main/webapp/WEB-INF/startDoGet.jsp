@@ -18,7 +18,9 @@
             <li><a href=""><fmt:message key="fund"/><br/><fmt:message key="currency"/></a></li>
             <li><a href=""><fmt:message key="global"/></a></li>
             <li><a href=""><fmt:message key="local"/></a></li>
+            <c:if test = "${admin == true}">
             <li><a href=""><fmt:message key="raport"/></a></li>
+            </c:if>
             <li><a href="logout"><fmt:message key="logout"/></a></li>
         </ul>
     </nav>

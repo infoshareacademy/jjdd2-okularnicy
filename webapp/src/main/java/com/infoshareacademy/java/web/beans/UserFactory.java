@@ -38,20 +38,19 @@ public class UserFactory {
         ResteasyClient client = new ResteasyClientBuilder().build();
         ResteasyWebTarget target = client.target(url);
         AuthClient authClient = target.proxy(AuthClient.class);
-        String userIdJSON = authClient.getUserInfo("Bearer " + accessToken);
-        String userId = userIdJSON.replaceAll("[{}]", " ");
+        String userId = authClient.getUserInfo("Bearer " + accessToken);
+//        String userIdA = userIdJSON.replaceAll("[{}]", " ");
         logger.info(userId);
         return userId;
     }
 
-//    public String getUserEmail(String userId, String accessToken){
-//        String url = "https://okularnicy.eu.auth0.com/api/v2/users/" + userId;
-//        ResteasyClient client = new ResteasyClientBuilder().build();
-//        ResteasyWebTarget target = client.target(url);
-//        AuthClient authClient = target.proxy(AuthClient.class);
-//        String userEmail = authClient.getUserEmail("Bearer " + accessToken);
-//        logger.info(userEmail);
-//        return userEmail;
-//    }
-
+    public User addAdmin (String userId) {
+        Optional<User> user = userDAOBean.findUserById(userId);
+        if (user.isPresent()) {
+            return user.get();
+        }
+        User newUser = new User (userId, true);
+        userDAOBean.addUser(newUser);
+        return newUser;
+    }
 }
