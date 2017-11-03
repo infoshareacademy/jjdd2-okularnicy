@@ -20,9 +20,11 @@
 
     <p><fmt:message key="min"/> ${fundMinDate} => ${fundMinClose}</p>
     <p><fmt:message key="max"/> ${fundMaxDate} => ${fundMaxClose}</p>
+
+    <div class="chart">
+        <jsp:include page="charts.jsp" />
+    </div>
 </div>
-<div class="chart">
-    <jsp:include page="charts.jsp" />
-</div>
+
 </body>
 </html>
