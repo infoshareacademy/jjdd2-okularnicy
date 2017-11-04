@@ -111,9 +111,9 @@
         </tbody>
     </table>
 
-    <form action="email" method="post" enctype="multipart/form-data">
+    <form action="email" method="post">
         <fmt:message key="email"/>
-        <input type="email" name="email" value="<fmt:message key="exampleEmail"/>">
+        <input type="text" name="emailAddress" value="<fmt:message key="exampleEmail"/>">
         <button type="submit"><fmt:message key="send"/></button>
     </form>
 

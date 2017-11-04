@@ -15,7 +15,7 @@
 </header>
 
 <div class="og" id="stat">
-    <p>Wysłano wiadomosc na podany adres email.</p>
+    <p>Wysłano wiadomosc na adres email: ${emailAddress}</p>
 </div>
 
 

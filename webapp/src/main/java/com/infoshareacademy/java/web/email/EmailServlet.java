@@ -1,11 +1,13 @@
 package com.infoshareacademy.java.web.email;
 
 import com.infoshareacademy.baseapp.email.EmailService;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +29,15 @@ public class EmailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.log(Level.INFO, "start metody EmailServlet.doPost");
+        String emailAddress = req.getParameter("emailAddress");
+        logger.log(Level.INFO, "przyjeto parametr emailAddress=" + emailAddress);
+
+        ServletContext servletContext = getServletContext();
+        servletContext.setAttribute("emailAddress", emailAddress);
+        logger.log(Level.INFO, "ustawiono atrybut emailAddress=" + emailAddress);
+
+
         /*EmailService email = new EmailService("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
         logger.info("Utworzono obiekt klasy EmailService.");
         try {
@@ -41,5 +52,6 @@ public class EmailServlet extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/emailDoPost.jsp");
         dispatcher.forward(req, resp);
+        logger.log(Level.INFO, "przekierowanie na emailDoPost.jsp");
     }
 }
