@@ -38,17 +38,16 @@ public class EmailServlet extends HttpServlet {
         logger.log(Level.INFO, "ustawiono atrybut emailAddress=" + emailAddress);
 
 
-        /*EmailService email = new EmailService("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
+        EmailService email = new EmailService("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
         logger.info("Utworzono obiekt klasy EmailService.");
         try {
-            email.send("infoshareokularnicy@wp.pl", "subject2", "hello world");
+            email.send("infoshareokularnicy@wp.pl", "subject3", "hello world");
         } catch (MessagingException e) {
-            //e.printStackTrace();
             logger.error("Pojawił się błąd podczas wysyłania e-maila: " + e.getMessage());
             resp.sendRedirect("emailError");
             return;
         }
-        logger.info("Wysłano e-mail.");*/
+        logger.info("Wysłano e-mail.");
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/emailDoPost.jsp");
         dispatcher.forward(req, resp);
