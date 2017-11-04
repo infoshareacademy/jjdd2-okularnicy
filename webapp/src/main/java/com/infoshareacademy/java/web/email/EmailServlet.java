@@ -13,7 +13,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 @WebServlet("finanse/email")
 public class EmailServlet extends HttpServlet {
@@ -29,6 +32,25 @@ public class EmailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpServletResponseWrapper responseWrapper = new HttpServletResponseWrapper(resp) {
+            private final StringWriter sw = new StringWriter();
+
+            @Override
+            public PrintWriter getWriter() throws IOException {
+                return new PrintWriter(sw);
+            }
+
+            @Override
+            public String toString() {
+                return sw.toString();
+            }
+        };
+
+        req.getRequestDispatcher("/WEB-INF/emailDoPost.jsp").include(req, responseWrapper);
+        String report = responseWrapper.toString();
+
+
+
         logger.log(Level.INFO, "start metody EmailServlet.doPost");
         String emailAddress = req.getParameter("emailAddress");
         logger.log(Level.INFO, "przyjeto parametr emailAddress=" + emailAddress);
@@ -37,7 +59,7 @@ public class EmailServlet extends HttpServlet {
         servletContext.setAttribute("emailAddress", emailAddress);
         logger.log(Level.INFO, "ustawiono atrybut emailAddress=" + emailAddress);
 
-        String report = "report";
+
 
         EmailService email = new EmailService("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
         logger.info("Utworzono obiekt klasy EmailService.");
@@ -53,5 +75,7 @@ public class EmailServlet extends HttpServlet {
                 .getRequestDispatcher("/WEB-INF/emailDoPost.jsp");
         dispatcher.forward(req, resp);
         logger.log(Level.INFO, "przekierowanie na emailDoPost.jsp");
+
+
     }
 }
