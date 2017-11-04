@@ -15,31 +15,20 @@
     <jsp:include page="/shared/header.jsp"/>
 </header>
 <div class="og" id="stat">
-    <table class="center">
-        <thead>
-        <tr>
-            <th colspan="2"><H1><fmt:message key="stat"/></H1></th>
-        </tr>
-        </thead>
-
-        <tbody>
+    <H1><fmt:message key="stat"/></H1>
+    <tr class="center">
         <tr>
             <td><H3><fmt:message key="firstInt"/></H3>
                 <p>(<fmt:message key="days"/>:${daysDuration1}, <fmt:message key="hours"/>:${hoursDuration1}, <fmt:message key="minutes"/>:${minutesDuration1}, <fmt:message key="seconds"/>:${secondsDuration1})</p></td>
             <td><H3>${NumberOfVisitsLast1}</H3></td>
         </tr>
         <tr>
-            <td>
-                <table class="center adjusted">
-                    <tbody>
-                    <c:forEach items="${OccurrenceMapLast1}" var="entry">
-                    <tr>
+            <tr>
+                <c:forEach items="${OccurrenceMapLast1}" var="entry">
                         <td>${entry.key}</td>
                         <td>${entry.value}</td>
-                    </tr>
                     </c:forEach>
-                    </tbody>
-                </table>
+            </tr>
         </tr>
         <tr>
             <td><H3><fmt:message key="secondInt"/></H3>
@@ -47,36 +36,26 @@
             <td><H3>${NumberOfVisitsLast2}</H3></td>
         </tr>
         <tr>
-            <td>
-                <table class="center adjusted">
-                    <tbody>
+            <tr>
                     <c:forEach items="${OccurrenceMapLast2}" var="entry">
-                        <tr>
                             <td>${entry.key}</td>
                             <td>${entry.value}</td>
-                        </tr>
                     </c:forEach>
-                    </tbody>
-                </table>
+            </tr>
         </tr>
         <tr>
             <td><H3><fmt:message key="all"/></H3></td>
             <td><H3>${NumberOfVisitsTotal}</H3></td>
         </tr>
         <tr>
-            <td>
-                <table class="center adjusted">
-                    <tbody>
+            <tr>
                     <c:forEach items="${OccurrenceMapTotal}" var="entry">
-                        <tr>
                             <td>${entry.key}</td>
                             <td>${entry.value}</td>
-                        </tr>
                     </c:forEach>
-                    </tbody>
-                </table>
+            </tr>
+
         </tr>
-        </tbody>
     </table>
 
     <form action="statistics" method="post">
