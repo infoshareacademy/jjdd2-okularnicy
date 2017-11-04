@@ -20,7 +20,7 @@ import java.util.Scanner;
 @WebServlet("/finanse/analizator")
 @MultipartConfig
 public class Analizator extends HttpServlet {
-    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    private final Logger logger = LogManager.getLogger(getClass().getName());
 
     private Statistics statistics = Statistics.getInstance();
 

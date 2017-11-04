@@ -32,7 +32,7 @@ public class Start extends HttpServlet {
     @Inject
     UserService userService;
 
-    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    private final Logger logger = LogManager.getLogger(getClass().getName());
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
 

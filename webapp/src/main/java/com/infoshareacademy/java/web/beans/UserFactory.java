@@ -16,7 +16,7 @@ import java.util.Optional;
 @Stateless
 public class UserFactory {
 
-    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    private final Logger logger = LogManager.getLogger(getClass().getName());
     private final String url = "https://jjdd2okularnicy.eu.auth0.com/userinfo";
 
     @Inject
