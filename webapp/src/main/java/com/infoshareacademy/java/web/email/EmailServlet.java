@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/email")
+@WebServlet("finanse/email")
 public class EmailServlet extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
@@ -27,7 +27,7 @@ public class EmailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        EmailService email = new EmailService("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
+        /*EmailService email = new EmailService("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
         logger.info("Utworzono obiekt klasy EmailService.");
         try {
             email.send("infoshareokularnicy@wp.pl", "subject2", "hello world");
@@ -37,7 +37,7 @@ public class EmailServlet extends HttpServlet {
             resp.sendRedirect("emailError");
             return;
         }
-        logger.info("Wysłano e-mail.");
+        logger.info("Wysłano e-mail.");*/
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/emailDoPost.jsp");
         dispatcher.forward(req, resp);

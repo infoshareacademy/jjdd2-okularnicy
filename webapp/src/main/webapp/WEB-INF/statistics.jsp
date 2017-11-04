@@ -110,6 +110,13 @@
         </c:forEach>
         </tbody>
     </table>
+
+    <form action="email" method="post" enctype="multipart/form-data">
+        <fmt:message key="email"/>
+        <input type="email" name="email" value="example@gmail">
+        <button type="submit"><fmt:message key="send"/></button>
+    </form>
+
 </div>
 </body>
 </html>
