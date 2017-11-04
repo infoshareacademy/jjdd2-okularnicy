@@ -124,7 +124,17 @@ public class Start extends HttpServlet {
             String[] LSTDirArray = new String[]{LSTDir};
             Map<String, String> filesHashMap = new HashMap<String, String>();
             StartingParameters startingParameters = new StartingParameters();
-            filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
+
+            try {
+                filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
+            } catch (Exception e) {
+                logger.error("Niepoprawny plik lst.");
+                RequestDispatcher dispatcher = getServletContext()
+                        .getRequestDispatcher("/WEB-INF/ErrorZIP.jsp");
+                dispatcher.forward(req, resp);
+                logger.info("Przekierowanie na stronę błędu");
+            }
+
             logger.info("Wczytanie danych z pliku LST do mapy");
             Map<String, String> filesHashMapToSent = new HashMap<String, String>();
 

@@ -8,6 +8,7 @@ import java.util.Map;
 import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class StartingParametersTest {
 
@@ -21,7 +22,13 @@ public class StartingParametersTest {
         String[] tablica = {absolutePath};
 
         StartingParameters startingParameters = new StartingParameters();
-        Map<String, String> resultMap = startingParameters.startingParametersIntoMap(tablica);
+        Map<String, String> resultMap = null;
+        try {
+            resultMap = startingParameters.startingParametersIntoMap(tablica);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
 
         assertThat(resultMap.size(), is(4));
         assertTrue(resultMap.containsKey("NOVO Akcji"));

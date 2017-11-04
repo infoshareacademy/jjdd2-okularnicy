@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class StartingParameters {
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
 
-    public Map<String, String> startingParametersIntoMap(String[] args) {
+    public Map<String, String> startingParametersIntoMap(String[] args) throws Exception {
 
         Map<String, String> resultMap = new HashMap<String, String>();
 
