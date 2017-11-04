@@ -14,7 +14,9 @@
     <jsp:include page="/shared/header.jsp"/>
 </header>
 
-zrobione
+<div class="og" id="stat">
+    <p>Wysłano wiadomosc na podany adres email.</p>
+</div>
 
 
 </body>
