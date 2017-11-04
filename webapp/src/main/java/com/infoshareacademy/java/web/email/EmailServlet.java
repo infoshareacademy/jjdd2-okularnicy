@@ -41,7 +41,7 @@ public class EmailServlet extends HttpServlet {
         EmailService email = new EmailService("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
         logger.info("Utworzono obiekt klasy EmailService.");
         try {
-            email.send("infoshareokularnicy@wp.pl", "subject3", "hello world");
+            email.send(emailAddress, "subject3", "hello world");
         } catch (MessagingException e) {
             logger.error("Pojawił się błąd podczas wysyłania e-maila: " + e.getMessage());
             resp.sendRedirect("emailError");
