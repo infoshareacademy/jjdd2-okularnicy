@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @WebServlet("/finanse/extremaLokalne")
 public class extremaLokalne extends HttpServlet {
-    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    private final Logger logger = LogManager.getLogger(getClass().getName());
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

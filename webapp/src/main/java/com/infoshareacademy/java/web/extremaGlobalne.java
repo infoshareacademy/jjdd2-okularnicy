@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @WebServlet("/finanse/extremaGlobalne")
 @MultipartConfig
 public class extremaGlobalne extends HttpServlet {
-    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    private final Logger logger = LogManager.getLogger(getClass().getName());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

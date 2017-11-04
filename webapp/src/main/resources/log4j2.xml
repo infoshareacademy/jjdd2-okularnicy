@@ -16,7 +16,7 @@
         </Async>
     </Appenders>
     <Loggers>
-        <Root level="error">
+        <Root level="DEBUG">
             <AppenderRef ref="Async"/>
         </Root>
         <logger name="log4j-burst-filter" level="TRACE" additivity="false">

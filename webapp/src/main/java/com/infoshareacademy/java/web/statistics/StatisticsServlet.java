@@ -32,6 +32,16 @@ public class StatisticsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        boolean isAdmin = Boolean.valueOf(req.getSession().getAttribute("admin").toString());
+
+        if(!isAdmin) {
+            logger.info("Użytkownik nie jest adminem");
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
+            dispatcher.forward(req, resp);
+        }
+
         logger.log(Level.INFO, "start metody StatisticsServlet.doGet");
         configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
 

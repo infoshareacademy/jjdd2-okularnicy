@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="${applicationScope.language}" />
+<fmt:setLocale value="${applicationScope.language}"/>
 <fmt:setBundle basename="i18n.napisy"/>
 <!DOCTYPE html>
 <html lang="${applicationScope.language}">
@@ -18,7 +18,9 @@
             <li><a href=""><fmt:message key="fund"/><br/><fmt:message key="currency"/></a></li>
             <li><a href=""><fmt:message key="global"/></a></li>
             <li><a href=""><fmt:message key="local"/></a></li>
-            <li><a href=""><fmt:message key="raport"/></a></li>
+            <c:if test="${admin == true}">
+                <li><a href=""><fmt:message key="raport"/></a></li>
+            </c:if>
             <li><a href="logout"><fmt:message key="logout"/></a></li>
         </ul>
     </nav>
@@ -26,7 +28,7 @@
 </header>
 <article id="tytul">
     <h1><fmt:message key="title"/></h1>
-    <p class=text> <fmt:message key="hello"/>
+    <p class=text><fmt:message key="hello"/>
         <br/>
         <fmt:message key="instruct"/>
     </p>
