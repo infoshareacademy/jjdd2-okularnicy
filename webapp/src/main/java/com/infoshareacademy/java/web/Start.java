@@ -54,9 +54,9 @@ public class Start extends HttpServlet {
         }
 
         boolean isAdmin = userService.initUserSession(accessToken);
+        req.getSession().setAttribute("admin", isAdmin);
 
         if (isAdmin) {
-            req.getSession().setAttribute("admin", true);
             RequestDispatcher dispatcher = getServletContext()
                     .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
             dispatcher.forward(req, resp);

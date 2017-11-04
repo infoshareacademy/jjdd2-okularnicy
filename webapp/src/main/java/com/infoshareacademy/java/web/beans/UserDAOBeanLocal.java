@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-@Local
 public interface UserDAOBeanLocal {
 
     void addUser(User user);
