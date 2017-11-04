@@ -52,9 +52,11 @@ public class CallbackServlet extends HttpServlet {
     private void handle(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try {
             Tokens tokens = authenticationController.handle(req);
-            SessionUtils.set(req, "accessToken", tokens.getAccessToken());
-            SessionUtils.set(req, "idToken", tokens.getIdToken());
-            logger.info("authenticated as id={} accesToken={}",tokens.getIdToken(), tokens.getAccessToken());
+            String accessToken = tokens.getAccessToken();
+            String idToken = tokens.getIdToken();
+            SessionUtils.set(req, "accessToken", accessToken);
+            SessionUtils.set(req, "idToken", idToken);
+            logger.info("authenticated as id={} accesToken={}", idToken, accessToken);
             res.sendRedirect(redirectOnSuccess);
         } catch (IdentityVerificationException e) {
             e.printStackTrace();

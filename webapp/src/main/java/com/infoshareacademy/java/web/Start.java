@@ -48,6 +48,7 @@ public class Start extends HttpServlet {
         } else if (idToken != null) {
             req.setAttribute("userId", idToken);
         } else {
+            resp.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
             RequestDispatcher dispatcher = getServletContext()
                     .getRequestDispatcher("/WEB-INF/error.jsp");
             dispatcher.forward(req, resp);
@@ -55,12 +56,6 @@ public class Start extends HttpServlet {
 
         boolean isAdmin = userService.initUserSession(accessToken);
         req.getSession().setAttribute("admin", isAdmin);
-
-        if (isAdmin) {
-            RequestDispatcher dispatcher = getServletContext()
-                    .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
-            dispatcher.forward(req, resp);
-        }
 
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/startDoGet.jsp");

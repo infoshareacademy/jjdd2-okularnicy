@@ -17,6 +17,7 @@ import java.util.Optional;
 public class UserFactory {
 
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    private final String url = "https://jjdd2okularnicy.eu.auth0.com/userinfo";
 
     @Inject
     UserDAOBeanLocal userDAOBean;
@@ -34,12 +35,10 @@ public class UserFactory {
 
     public String getUserId(String accessToken) {
 
-        String url = "https://jjdd2okularnicy.eu.auth0.com/userinfo";
         ResteasyClient client = new ResteasyClientBuilder().build();
         ResteasyWebTarget target = client.target(url);
         AuthClient authClient = target.proxy(AuthClient.class);
         String userId = authClient.getUserInfo("Bearer " + accessToken);
-//        String userIdA = userIdJSON.replaceAll("[{}]", " ");
         logger.info(userId);
         return userId;
     }
