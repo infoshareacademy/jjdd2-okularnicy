@@ -18,39 +18,45 @@
     <H1><fmt:message key="stat"/></H1>
     <table class="center">
         <tr>
-            <td><H3><fmt:message key="firstInt"/></H3>
+            <td class="left"><H3><fmt:message key="firstInt"/></H3>
                 <p>(<fmt:message key="days"/>:${daysDuration1}, <fmt:message key="hours"/>:${hoursDuration1}, <fmt:message key="minutes"/>:${minutesDuration1}, <fmt:message key="seconds"/>:${secondsDuration1})</p></td>
             <td><H3>${NumberOfVisitsLast1}</H3></td>
         </tr>
         <tr>
             <tr>
                 <c:forEach items="${OccurrenceMapLast1}" var="entry">
-                        <td>${entry.key}</td>
+                        <td class="left">${entry.key}</td>
                         <td>${entry.value}</td>
                     </c:forEach>
             </tr>
         </tr>
+    </table>
+    <br/>
+    <table class="center">
         <tr>
-            <td><H3><fmt:message key="secondInt"/></H3>
+            <td class="left"><H3><fmt:message key="secondInt"/></H3>
                 <p>(<fmt:message key="days"/>:${daysDuration2}, <fmt:message key="hours"/>:${hoursDuration2}, <fmt:message key="minutes"/>:${minutesDuration2}, <fmt:message key="seconds"/>:${secondsDuration2})</p></td>
             <td><H3>${NumberOfVisitsLast2}</H3></td>
         </tr>
         <tr>
             <tr>
                     <c:forEach items="${OccurrenceMapLast2}" var="entry">
-                            <td>${entry.key}</td>
+                            <td class="left">${entry.key}</td>
                             <td>${entry.value}</td>
                     </c:forEach>
             </tr>
         </tr>
+    </table>
+    <br/>
+    <table class="center">
         <tr>
-            <td><H3><fmt:message key="all"/></H3></td>
+            <td class="left"><H3><fmt:message key="all"/></H3></td>
             <td><H3>${NumberOfVisitsTotal}</H3></td>
         </tr>
         <tr>
             <tr>
                     <c:forEach items="${OccurrenceMapTotal}" var="entry">
-                            <td>${entry.key}</td>
+                            <td class="left">${entry.key}</td>
                             <td>${entry.value}</td>
                     </c:forEach>
             </tr>

@@ -28,6 +28,11 @@ tr:hover {
 table.center {
     margin-left:auto;
     margin-right:auto;
+    width:70%;
+}
+
+td.left {
+    width:90%;
 }
 
 #header1 {
