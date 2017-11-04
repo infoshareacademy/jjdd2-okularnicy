@@ -16,7 +16,7 @@
 </header>
 <div class="og" id="stat">
     <H1><fmt:message key="stat"/></H1>
-    <tr class="center">
+    <table class="center">
         <tr>
             <td><H3><fmt:message key="firstInt"/></H3>
                 <p>(<fmt:message key="days"/>:${daysDuration1}, <fmt:message key="hours"/>:${hoursDuration1}, <fmt:message key="minutes"/>:${minutesDuration1}, <fmt:message key="seconds"/>:${secondsDuration1})</p></td>
@@ -74,20 +74,16 @@
         <button type="submit"><fmt:message key="send"/></button>
     </form>
 
+    <H1><fmt:message key="history"/></H1>
+
     <table class="center">
-        <thead>
-        <tr>
-            <th colspan="2"><H1><fmt:message key="history"/></H1></th>
-        </tr>
-        </thead>
-        <tbody>
         <c:forEach items="${RecordsListTotal}" var="entry">
             <tr>
                 <td>${entry.name}</td>
                 <td>${entry.dateTime}</td>
             </tr>
         </c:forEach>
-        </tbody>
+
     </table>
 </div>
 </body>
