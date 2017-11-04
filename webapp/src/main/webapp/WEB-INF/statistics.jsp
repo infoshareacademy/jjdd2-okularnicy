@@ -113,7 +113,7 @@
 
     <form action="email" method="post" enctype="multipart/form-data">
         <fmt:message key="email"/>
-        <input type="email" name="email" value="example@gmail">
+        <input type="email" name="email" value="<fmt:message key="exampleEmail"/>">
         <button type="submit"><fmt:message key="send"/></button>
     </form>
 
