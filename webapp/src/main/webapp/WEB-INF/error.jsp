@@ -1,20 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: aleksandramorawska
-  Date: 28.10.17
-  Time: 10:31
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${applicationScope.language}" />
+<fmt:setBundle basename="i18n.napisy"/>
+<html lang="${applicationScope.language}">
 <head>
     <jsp:include page="/shared/head.jsp"/>
 </head>
 <body>
-    <h1>Coś poszło nie tak !</h1>
-    <h2>Wróć do strony logowania</h2>
-    <form action="finanse/start" method="GET">
-        <button type="submit">Wróć</button>
-    </form>
+<h1><fmt:message key="error1"/></h1>
+<h2><fmt:message key="error2"/></h2>
+<form action="start" method="GET">
+    <button type="submit"><fmt:message key="back"/></button>
+</form>
 </body>
 </html>

@@ -27,10 +27,16 @@ public class extremaLokalne extends HttpServlet {
         FundBase fundBase = new FundBase();
         Program program = new Program();
 
-        String startDateString = req.getParameter("startDate");
-        program.setStartDate(LocalDate.parse(startDateString));
-        String endDateString = req.getParameter("endDate");
-        program.setEndDate(LocalDate.parse(endDateString));
+        try {
+            String startDateString = req.getParameter("startDate");
+            program.setStartDate(LocalDate.parse(startDateString));
+            String endDateString = req.getParameter("endDate");
+            program.setEndDate(LocalDate.parse(endDateString));
+        } catch (RuntimeException e) {
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/error.jsp");
+            dispatcher.forward(req, resp);
+        }
 
         if (program.getEndDate().isBefore(program.getStartDate())) {
             resp.sendRedirect("DataRange");
