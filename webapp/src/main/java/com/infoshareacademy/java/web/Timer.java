@@ -1,29 +1,35 @@
-package com.infoshareacademy.java.Timer;
+package com.infoshareacademy.java.web;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Schedule;
-import javax.ejb.Startup;
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
+import javax.inject.Inject;
 
 @Startup
 @Singleton
-public class TimerService {
+public class Timer {
 
-    private final Logger logger = LogManager.getLogger(getClass().getName());
+    private final Logger logger = LogManager.getLogger(getClass());
 
     @PostConstruct
-    public void init() {
-        logger.log(Level.INFO, "obiekt zainicjowany");
+    void initializeAdmin () {
+        logger.log(Level.INFO, "obiekt utworzony");
+
     }
 
-//    @Schedule(second="*/1", minute="*",hour="*", persistent=false)
+    @Schedule(second="*/1", minute="*",hour="*", persistent=false)
     public void doWork(){
         System.out.println("udalo sie!");
         logger.log(Level.INFO, "udalo sie!");
     }
 
+
 }
+
