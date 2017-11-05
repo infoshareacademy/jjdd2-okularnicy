@@ -44,19 +44,9 @@ public class Timer {
 
     @Schedule(second="*/1", minute="*",hour="*", persistent=false)
     public void doWork(){
-        String json = "";
-        InputStream is = getClass().getClassLoader().getResourceAsStream("TimerConfig.json");
-        logger.log(Level.INFO, "ABCDInputStream=" + is);
-        try {
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        logger.log(Level.INFO, "JSON=" + json);
+        ResourceReader resourceReader = new ResourceReader();
+        String json = resourceReader.getStringFromResource("TimerConfig.json");
+
         try {
             timerConfiguration = timerJsonReader.readJsonFile(json);
         } catch (IOException e) {
