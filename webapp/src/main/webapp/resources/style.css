@@ -173,7 +173,7 @@ text {
     font-weight: bold;
 }
 
-button, .pliki {
+button, .pliki, .but {
 
     border-radius: 100px;
     background-color: #7c7c7c;
@@ -295,7 +295,7 @@ button:hover {
     color: #fafafa;
 }
 
-.sel, input, select {
+.sel, input {
 
     background-color: #dadada;
     border: none;
@@ -427,6 +427,27 @@ button:hover {
     display: flex;
     justify-content: flex-end;
     margin: 4vh;
+}
+
+#dataType {
+    border-radius: 100px;
+    border-color: #879a9f;
+    color: #fafafa;
+    font-weight: 500;
+    border-width: 2px;
+    font-style: normal;
+    letter-spacing: 1px;
+    margin: .4rem .4rem;
+    white-space: normal;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 2rem;
 }
 
 #stat {

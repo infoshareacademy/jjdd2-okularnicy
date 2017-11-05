@@ -15,54 +15,7 @@
     <jsp:include page="/shared/header.jsp"/>
 </header>
 <div class="og" id="stat">
-    <H1><fmt:message key="stat"/></H1>
-    <table class="center">
-        <tr class="tr1st">
-            <td class="left"><H3><fmt:message key="firstInt"/></H3>
-                <p>(<fmt:message key="days"/>:${daysDuration1}, <fmt:message key="hours"/>:${hoursDuration1}, <fmt:message key="minutes"/>:${minutesDuration1}, <fmt:message key="seconds"/>:${secondsDuration1})</p></td>
-            <td><H3>${NumberOfVisitsLast1}</H3></td>
-        </tr>
-        <tr>
-            <tr>
-                <c:forEach items="${OccurrenceMapLast1}" var="entry">
-                        <td class="left">${entry.key}</td>
-                        <td>${entry.value}</td>
-                    </c:forEach>
-            </tr>
-        </tr>
-    </table>
-    <br/>
-    <table class="center">
-        <tr class="tr1st">
-            <td class="left"><H3><fmt:message key="secondInt"/></H3>
-                <p>(<fmt:message key="days"/>:${daysDuration2}, <fmt:message key="hours"/>:${hoursDuration2}, <fmt:message key="minutes"/>:${minutesDuration2}, <fmt:message key="seconds"/>:${secondsDuration2})</p></td>
-            <td><H3>${NumberOfVisitsLast2}</H3></td>
-        </tr>
-        <tr>
-            <tr>
-                    <c:forEach items="${OccurrenceMapLast2}" var="entry">
-                            <td class="left">${entry.key}</td>
-                            <td>${entry.value}</td>
-                    </c:forEach>
-            </tr>
-        </tr>
-    </table>
-    <br/>
-    <table class="center">
-        <tr class="tr1st">
-            <td class="left"><H3><fmt:message key="all"/></H3></td>
-            <td><H3>${NumberOfVisitsTotal}</H3></td>
-        </tr>
-        <tr>
-            <tr>
-                    <c:forEach items="${OccurrenceMapTotal}" var="entry">
-                            <td class="left">${entry.key}</td>
-                            <td>${entry.value}</td>
-                    </c:forEach>
-            </tr>
-
-        </tr>
-    </table>
+    <jsp:include page="/WEB-INF/statisticsIntel.jsp"/>
 
     <form action="statistics" method="post">
         <fmt:message key="firstPeriod"/>
@@ -80,17 +33,14 @@
         <button type="submit"><fmt:message key="send"/></button>
     </form>
 
-    <H1><fmt:message key="history"/></H1>
+    <jsp:include page="/WEB-INF/historyIntel.jsp"/>
 
-    <table class="center">
-        <c:forEach items="${RecordsListTotal}" var="entry">
-            <tr>
-                <td>${entry.name}</td>
-                <td>${entry.dateTime}</td>
-            </tr>
-        </c:forEach>
+    <form action="email" method="post">
+        <fmt:message key="email"/>
+        <input type="email" name="emailAddress" value="<fmt:message key="exampleEmail"/>">
+        <button type="submit"><fmt:message key="send"/></button>
+    </form>
 
-    </table>
 </div>
 </body>
 </html>

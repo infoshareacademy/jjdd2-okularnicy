@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/emailError")
+@WebServlet("/finanse/emailError")
 public class EmailError extends HttpServlet {
 
     @Override
