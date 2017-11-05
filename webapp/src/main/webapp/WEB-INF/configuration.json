@@ -10,5 +10,7 @@
   "initialDaysDuration2": 30,
   "initialHoursDuration2": 0,
   "initialMinutesDuration2": 0,
-  "initialSecondsDuration2": 0
+  "initialSecondsDuration2": 0,
+  "emailLogin": "infoshareokularnicy@wp.pl",
+  "emailPass": "okularnicY"
 }

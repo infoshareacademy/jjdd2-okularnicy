@@ -1,6 +1,8 @@
 package com.infoshareacademy.java.web.email;
 
 import com.infoshareacademy.baseapp.email.EmailService;
+import com.infoshareacademy.java.web.Configuration;
+import com.infoshareacademy.java.web.JsonReader;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +24,8 @@ import java.io.StringWriter;
 public class EmailServlet extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    Configuration configuration = new Configuration();
+    JsonReader jsonReader = new JsonReader();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,26 +37,12 @@ public class EmailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpServletResponseWrapper responseWrapper = new HttpServletResponseWrapper(resp) {
-            private final StringWriter sw = new StringWriter();
-
-            @Override
-            public PrintWriter getWriter() throws IOException {
-                return new PrintWriter(sw);
-            }
-
-            @Override
-            public String toString() {
-                return sw.toString();
-            }
-        };
+        configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
+        HttpServletResponseWrapper responseWrapper = getHttpServletResponseWrapper(resp);
 
         req.getRequestDispatcher("/WEB-INF/statisticsIntel.jsp").include(req, responseWrapper);
         req.getRequestDispatcher("/WEB-INF/historyIntel.jsp").include(req, responseWrapper);
         String report = responseWrapper.toString();
-        
-
-
 
         logger.log(Level.INFO, "start metody EmailServlet.doPost");
         String emailAddress = req.getParameter("emailAddress");
@@ -62,9 +52,7 @@ public class EmailServlet extends HttpServlet {
         servletContext.setAttribute("emailAddress", emailAddress);
         logger.log(Level.INFO, "ustawiono atrybut emailAddress=" + emailAddress);
 
-
-
-        EmailService email = new EmailService("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
+        EmailService email = new EmailService(configuration.getEmailLogin(), configuration.getEmailPass(), "smtp.wp.pl", 465);
         logger.info("Utworzono obiekt klasy EmailService.");
         try {
             email.send(emailAddress, "Report", report);
@@ -78,5 +66,21 @@ public class EmailServlet extends HttpServlet {
                 .getRequestDispatcher("/WEB-INF/emailDoPost.jsp");
         dispatcher.forward(req, resp);
         logger.log(Level.INFO, "przekierowanie na emailDoPost.jsp");
+    }
+
+    private HttpServletResponseWrapper getHttpServletResponseWrapper(HttpServletResponse resp) {
+        return new HttpServletResponseWrapper(resp) {
+                private final StringWriter sw = new StringWriter();
+
+                @Override
+                public PrintWriter getWriter() throws IOException {
+                    return new PrintWriter(sw);
+                }
+
+                @Override
+                public String toString() {
+                    return sw.toString();
+                }
+            };
     }
 }
