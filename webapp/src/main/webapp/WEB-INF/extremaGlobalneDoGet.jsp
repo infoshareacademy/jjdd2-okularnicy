@@ -17,9 +17,15 @@
 <div class="og" id="glob">
     <h1> <fmt:message key="global"/> </h1>
 
+    <h2>${choseFundStringFullName}</h2>
+
     <p><fmt:message key="min"/> ${fundMinDate} => ${fundMinClose}</p>
-    <br>
     <p><fmt:message key="max"/> ${fundMaxDate} => ${fundMaxClose}</p>
+
+    <div class="chart">
+        <jsp:include page="charts.jsp" />
+    </div>
+
 </div>
 
 </body>
