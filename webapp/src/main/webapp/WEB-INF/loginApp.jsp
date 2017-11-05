@@ -14,7 +14,7 @@
 
 <div id="log">
     <form id="language">
-        <select class="select" name="language" onchange="submit()">
+        <select class="sel" name="language" onchange="submit()">
             <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polski</option>
             <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
         </select>
