@@ -13,6 +13,10 @@ public class Configuration {
     private Integer initialHoursDuration2;
     private Integer initialMinutesDuration2;
     private Integer initialSecondsDuration2;
+    private String emailLogin;
+    private String emailPass;
+    private String emailSmtpAdress;
+    private Integer emailPort;
 
     public String getUnzippeDir() {
         return unzippeDir;
@@ -60,5 +64,21 @@ public class Configuration {
 
     public Integer getInitialSecondsDuration2() {
         return initialSecondsDuration2;
+    }
+
+    public String getEmailLogin() {
+        return emailLogin;
+    }
+
+    public String getEmailPass() {
+        return emailPass;
+    }
+
+    public String getEmailSmtpAdress() {
+        return emailSmtpAdress;
+    }
+
+    public Integer getEmailPort() {
+        return emailPort;
     }
 }
