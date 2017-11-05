@@ -29,6 +29,9 @@ table.center {
     margin-left:auto;
     margin-right:auto;
     width:70%;
+    border: 0.7vh solid #474747;
+    border-collapse: collapse;
+
 }
 
 td.left {
