@@ -3,7 +3,6 @@ package com.infoshareacademy.java.web;
 import com.auth0.SessionUtils;
 import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.UnZip;
-import com.infoshareacademy.java.web.beans.UserFactory;
 import com.infoshareacademy.java.web.beans.UserService;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;

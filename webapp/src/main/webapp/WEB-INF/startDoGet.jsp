@@ -28,21 +28,22 @@
 </header>
 <article id="tytul">
     <h1><fmt:message key="title"/></h1>
-    <p class=text><fmt:message key="hello"/>
+
         <br/>
-        <fmt:message key="instruct"/>
+
     </p>
-    <h3><fmt:message key="search"/></h3>
+    <h3><fmt:message key="programOptions"/></h3>
+    <p class=text><fmt:message key="programOptions1"/></p>
     <form action="start" method="post" id="dataType">
         <select class="but" name="dataType">
-            <option value="fund" ${dataType == 'fund' ? 'selected' : ''}>Fundusze</option>
-            <option value="currency" ${dataType == 'cur' ? 'selected' : ''}>Waluty</option>
+            <option value="fund" ${dataType == 'fund' ? 'selected' : ''}><fmt:message key="fundSelect"/></option>
+            <option value="currency" ${dataType == 'cur' ? 'selected' : ''}><fmt:message key="currencySelect"/></option>
         </select>
         <br/>
         <button type="submit"><fmt:message key="send"/></button>
-
     </form>
     <br/>
+    <p class=text><fmt:message key="programOptions2"/></p>
     <form action="start" method="post" enctype="multipart/form-data">
         <p><fmt:message key="lst"/><input class=pliki type="file" name="fileLST" required accept=".lst"/></p>
         <p><fmt:message key="zip"/><input class=pliki type="file" name="fileZIP" required accept=".zip"/></p>
