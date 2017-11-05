@@ -31,9 +31,9 @@ public class EmailServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.log(Level.INFO, "start metody EmailServlet.doGet");
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/WEB-INF/emailDoPost.jsp");
+                .getRequestDispatcher("/WEB-INF/email.jsp");
         dispatcher.forward(req, resp);
-        logger.log(Level.INFO, "przekierowanie na emailDoPost.jsp");
+        logger.log(Level.INFO, "przekierowanie na email.jsp");
     }
 
     @Override
@@ -68,9 +68,9 @@ public class EmailServlet extends HttpServlet {
         }
         logger.info("Wysłano e-mail.");
         RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/WEB-INF/emailDoPost.jsp");
+                .getRequestDispatcher("/WEB-INF/email.jsp");
         dispatcher.forward(req, resp);
-        logger.log(Level.INFO, "przekierowanie na emailDoPost.jsp");
+        logger.log(Level.INFO, "przekierowanie na email.jsp");
     }
 
     private HttpServletResponseWrapper getHttpServletResponseWrapper(HttpServletResponse resp) {
