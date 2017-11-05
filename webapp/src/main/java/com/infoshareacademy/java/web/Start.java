@@ -147,7 +147,7 @@ public class Start extends HttpServlet {
                     logger.info("Przekierowanie na kolejną stronę");
                 }
             }
-            if ("currency".equals(userParam)) {
+            else if ("currency".equals(userParam)) {
                 logger.log(Level.INFO, "Wybrano pliki walut");
 
                 unZippedFiles("/opt/jboss/tmp", "/opt/jboss/tmp/omeganbp.zip");
@@ -211,7 +211,7 @@ public class Start extends HttpServlet {
                     logger.info("Przekierowanie na kolejną stronę");
                 }
 
-            } if(userParam.equals(null)) {
+            } else {
 
 
                 Part fileLST = req.getPart("fileLST");
