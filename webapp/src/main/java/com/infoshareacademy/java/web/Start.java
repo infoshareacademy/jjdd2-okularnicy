@@ -3,11 +3,14 @@ package com.infoshareacademy.java.web;
 import com.auth0.SessionUtils;
 import com.infoshareacademy.baseapp.StartingParameters;
 import com.infoshareacademy.baseapp.UnZip;
+import com.infoshareacademy.java.web.beans.UserFactory;
+import com.infoshareacademy.java.web.beans.UserService;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -26,10 +29,12 @@ import java.util.UUID;
 @MultipartConfig
 public class Start extends HttpServlet {
 
-    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    @Inject
+    UserService userService;
+
+    private final Logger logger = LogManager.getLogger(getClass().getName());
     Configuration configuration = new Configuration();
     JsonReader jsonReader = new JsonReader();
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,7 +47,16 @@ public class Start extends HttpServlet {
             req.setAttribute("userId", accessToken);
         } else if (idToken != null) {
             req.setAttribute("userId", idToken);
+        } else {
+            resp.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/error.jsp");
+            dispatcher.forward(req, resp);
         }
+
+        boolean isAdmin = userService.initUserSession(accessToken);
+        req.getSession().setAttribute("admin", isAdmin);
+
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
         dispatcher.forward(req, resp);
@@ -110,7 +124,17 @@ public class Start extends HttpServlet {
             String[] LSTDirArray = new String[]{LSTDir};
             Map<String, String> filesHashMap = new HashMap<String, String>();
             StartingParameters startingParameters = new StartingParameters();
-            filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
+
+            try {
+                filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
+            } catch (Exception e) {
+                logger.error("Niepoprawny plik lst.");
+                RequestDispatcher dispatcher = getServletContext()
+                        .getRequestDispatcher("/WEB-INF/ErrorZIP.jsp");
+                dispatcher.forward(req, resp);
+                logger.info("Przekierowanie na stronę błędu");
+            }
+
             logger.info("Wczytanie danych z pliku LST do mapy");
             Map<String, String> filesHashMapToSent = new HashMap<String, String>();
 
@@ -163,4 +187,5 @@ public class Start extends HttpServlet {
             logger.log(Level.ERROR, "Wyjątek: ServletException");
         }
     }
+
 }

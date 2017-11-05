@@ -14,12 +14,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/finanse/extremaGlobalne")
 @MultipartConfig
 public class extremaGlobalne extends HttpServlet {
-    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    private final Logger logger = LogManager.getLogger(getClass().getName());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,6 +48,10 @@ public class extremaGlobalne extends HttpServlet {
         req.setAttribute("fundMinClose", fundMinClose);
         req.setAttribute("fundMaxDate", fundMaxDate);
         req.setAttribute("fundMaxClose", fundMaxClose);
+        req.setAttribute("fundList", fundsList
+                .stream()
+                .sorted(Comparator.comparing(Fund::getDate))
+                .collect(Collectors.toList()));
 
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/extremaGlobalneDoGet.jsp");

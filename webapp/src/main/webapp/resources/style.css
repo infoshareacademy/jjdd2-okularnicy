@@ -429,3 +429,21 @@ button:hover {
     background-attachment: fixed;
     font-size: 20px;
 }
+
+.chart {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+h2 {
+    display: block;
+    text-align: center;
+    font-size: 1.5 em;
+    -webkit-margin-before: 0.3em;
+    -webkit-margin-after: 0.3em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+    color: #9e813d;
+}

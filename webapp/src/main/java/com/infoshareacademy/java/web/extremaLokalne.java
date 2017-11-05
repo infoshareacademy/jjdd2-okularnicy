@@ -1,9 +1,6 @@
 package com.infoshareacademy.java.web;
 
-import com.infoshareacademy.baseapp.Fund;
-import com.infoshareacademy.baseapp.FundBase;
-import com.infoshareacademy.baseapp.ListInRange;
-import com.infoshareacademy.baseapp.Program;
+import com.infoshareacademy.baseapp.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,10 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/finanse/extremaLokalne")
 public class extremaLokalne extends HttpServlet {
-    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    private final Logger logger = LogManager.getLogger(getClass().getName());
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,8 +40,14 @@ public class extremaLokalne extends HttpServlet {
             stringToFund += "/";
             stringToFund += getServletContext().getAttribute("choseFundString").toString();
 
-            ArrayList<Fund> fundsList = fundBase.readFoundIntoList(stringToFund);
-            program.setFundsList(fundsList);
+            List<Fund> fundsList = fundBase.readFoundIntoList(stringToFund)
+                    .stream()
+                    .filter(fund -> fund.getDate().isAfter(program.getStartDate()) && fund.getDate().isBefore(program.getEndDate()) || fund.getDate().isEqual(program.getStartDate()) || fund.getDate().isEqual(program.getEndDate()))
+                    .sorted(Comparator.comparing(Fund::getDate))
+                    .collect(Collectors.toList());
+
+
+            program.setFundsList((ArrayList<Fund>) fundsList);
             ListInRange listInRange = new ListInRange(program);
             Fund fundMin = program.getExtremum().findMin(listInRange.setListInRange());
             Fund fundMax = program.getExtremum().findMax(listInRange.setListInRange());
@@ -49,6 +55,8 @@ public class extremaLokalne extends HttpServlet {
             String fundMinClose = fundMin.getClose().toString();
             String fundMaxDate = fundMax.getDate().toString();
             String fundMaxClose = fundMax.getClose().toString();
+
+            req.setAttribute("fundList", fundsList);
 
             req.setAttribute("fundMinDate", fundMinDate);
             req.setAttribute("fundMinClose", fundMinClose);

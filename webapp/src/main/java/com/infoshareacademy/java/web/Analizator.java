@@ -20,7 +20,7 @@ import java.util.Scanner;
 @WebServlet("/finanse/analizator")
 @MultipartConfig
 public class Analizator extends HttpServlet {
-    private final Logger logger = LogManager.getLogger("log4j-burst-filter");
+    private final Logger logger = LogManager.getLogger(getClass().getName());
 
     private Statistics statistics = Statistics.getInstance();
 
@@ -40,6 +40,7 @@ public class Analizator extends HttpServlet {
         String choseFundString = nextLine.split(",")[0];
         String choseFundStringFullName = nextLine.split(",")[1];
         getServletContext().setAttribute("choseFundString", choseFundString);
+        getServletContext().setAttribute("choseFundStringFullName", choseFundStringFullName);
         logger.info("Użytkownik wybrał fundusz: " + choseFundString + " " + choseFundStringFullName);
         Record record = new Record(choseFundStringFullName, LocalDateTime.now());
         statistics.add(record);
