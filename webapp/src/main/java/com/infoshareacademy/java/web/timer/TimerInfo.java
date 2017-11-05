@@ -48,7 +48,6 @@ public class TimerInfo {
             e.printStackTrace();
         }
         logger.log(Level.INFO, "getLengthOfTime=" + timerConfiguration.getLengthOfTime());
-        logger.log(Level.INFO, "getUnzippeDir=" + timerConfiguration.getUnzippeDir());
 
         lastRun = LocalDateTime.now();
         logger.log(Level.INFO, "lastRun=" + lastRun);
