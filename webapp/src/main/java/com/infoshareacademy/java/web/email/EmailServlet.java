@@ -47,7 +47,8 @@ public class EmailServlet extends HttpServlet {
             }
         };
 
-        req.getRequestDispatcher("/WEB-INF/statistics.jsp").include(req, responseWrapper);
+        req.getRequestDispatcher("/WEB-INF/statisticsIntel.jsp").include(req, responseWrapper);
+        req.getRequestDispatcher("/WEB-INF/historyIntel.jsp").include(req, responseWrapper);
         String report = responseWrapper.toString();
         
 
