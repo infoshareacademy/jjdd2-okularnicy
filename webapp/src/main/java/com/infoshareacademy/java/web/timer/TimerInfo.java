@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
+import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -18,13 +19,14 @@ public class TimerInfo {
     LocalDateTime lastRun;
     Duration setLengthOfTime;
 
+    TimerConfiguration timerConfiguration = new TimerConfiguration();
+    TimerJsonReader timerJsonReader = new TimerJsonReader();
+
+
     @PostConstruct
     void initializeTimerInfo () {
         logger.log(Level.INFO, "obiekt TimerInfo utworzony");
-        lastRun = LocalDateTime.now();
-        logger.log(Level.INFO, "lastRun=" + lastRun);
-        setLengthOfTime = Duration.ofSeconds(3);
-        logger.log(Level.INFO, "setLengthOfTime=" + setLengthOfTime);
+
 
         String json = "";
         InputStream is = getClass().getClassLoader().getResourceAsStream("TimerConfig.json");
@@ -40,9 +42,18 @@ public class TimerInfo {
         }
         logger.log(Level.INFO, "JSON=" + json);
 
+        try {
+            timerConfiguration = timerJsonReader.readJsonFile(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        logger.log(Level.INFO, "getEmailPort=" + timerConfiguration.getEmailPort());
+        logger.log(Level.INFO, "getUnzippeDir=" + timerConfiguration.getUnzippeDir());
 
-
-
+        lastRun = LocalDateTime.now();
+        logger.log(Level.INFO, "lastRun=" + lastRun);
+        setLengthOfTime = Duration.ofSeconds(timerConfiguration.getEmailPort());
+        logger.log(Level.INFO, "setLengthOfTime=" + setLengthOfTime);
 
 
     }
