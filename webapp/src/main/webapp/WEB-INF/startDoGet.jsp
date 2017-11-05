@@ -32,10 +32,13 @@
     </p>
     <h3><fmt:message key="search"/></h3>
     <form action="start" method="post" id="dataType">
-        <select class="but" name="dataType" onchange="submit()">
-            <option value="fund" ${dataType == 'fun' ? 'selected' : ''}>Fundusz</option>
-            <option value="courency" ${dataType == 'cu' ? 'selected' : ''}>Waluta</option>
+        <select class="but" name="dataType">
+            <option value="fund" ${dataType == 'fund' ? 'selected' : ''}>Fundusze</option>
+            <option value="currency" ${dataType == 'cur' ? 'selected' : ''}>Waluty</option>
         </select>
+        <br/>
+        <button type="submit"><fmt:message key="send"/></button>
+
     </form>
     <br/>
     <form action="start" method="post" enctype="multipart/form-data">

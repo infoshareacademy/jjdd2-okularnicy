@@ -34,26 +34,18 @@ public class Start extends HttpServlet {
     private String zipFunURL = "http://bossa.pl/pub/fundinwest/omega/omegafun.zip";
     private String lstCurURL = "http://bossa.pl/pub/waluty/omega/omeganbp.lst";
     private String zipCurURL = "http://bossa.pl/pub/waluty/omega/omeganbp.zip";
-    private InputStream streamlstFun;
-    private InputStream streamzipFunURL;
-    private InputStream streamlstCurURL;
-    private InputStream streamzipCurURL;
-
+    private String saveDir = "tmp";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-
         try {
-            InputStream streamlstFun = downloader.downloadStream(lstFunURL);
-            InputStream streamzipFunURL = downloader.downloadStream(zipFunURL);
-            InputStream streamlstCurURL = downloader.downloadStream(lstCurURL);
-            InputStream streamzipCurURL = downloader.downloadStream(zipCurURL);
-
-           // setParameters(streamLst, streamZip);
+            logger.log(Level.INFO, "Rozpoczynam pobieranie aktualnych plików funduszy i walut");
+            downloader.downloadFile(lstFunURL, saveDir);
+            downloader.downloadFile(zipFunURL, saveDir);
+            downloader.downloadFile(lstCurURL, saveDir);
+            downloader.downloadFile(zipCurURL, saveDir);
         } catch (IOException ex) {
-            ex.printStackTrace();
         }
 
         configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
@@ -70,29 +62,131 @@ public class Start extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-/*    private void setParameters(InputStream lst, InputStream zip) {
-
-    }*/
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            if(req.getParameter("dataType") == "found") {
-                streamlstFun = fileLST.getInputStream();
-                streamzipFunURL = fileZIP.getInputStream();
+            String userParam = req.getParameter("dataType");
 
-                InputStream inputStreamLST = streamlstFun.getInputStream();
-                InputStream inputStreamZIP = streamzipFunURL.getInputStream();
+            if ("fund".equals(userParam)) {
+                logger.log(Level.INFO, "Wybrano pliki funduszy");
+
+                unZippedFiles("/opt/jboss/tmp", "/opt/jboss/tmp/omegafun.zip");
+
+                String[] LSTDirArray = new String[]{"/opt/jboss/tmp/omegafun.lst"};
+                Map<String, String> filesHashMap = new HashMap<String, String>();
+                StartingParameters startingParameters = new StartingParameters();
+                filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
+                logger.info("Wczytanie danych z pliku LST do mapy");
+                Map<String, String> filesHashMapToSent = new HashMap<String, String>();
+
+                int mapsEntry = 0;
+                int fundsFound = 0;
+
+                Set<Map.Entry<String, String>> entries = filesHashMap.entrySet();
+                for (Map.Entry<String, String> entry : entries) {
+                    mapsEntry++;
+                    String pathToFund = getServletContext().getAttribute("unZippedDir").toString();
+                    pathToFund += "/";
+                    pathToFund += entry.getValue();
+                    File f = new File(pathToFund);
+                    if (f.exists() && !f.isDirectory()) {
+                        fundsFound++;
+                        filesHashMapToSent.put(entry.getKey(), entry.getValue());
+                    }
+                }
+                logger.info("Zakończono zestawienie danych plik LST - plik ZIP");
+
+                if ((mapsEntry == fundsFound) && (fundsFound > 0)) {
+                    getServletContext().setAttribute("lstCorrectness", 1);
+                    logger.info("Zestawienie LST-ZIP zakończono pomyślnie");
+                } else if (fundsFound > 0) {
+                    getServletContext().setAttribute("lstCorrectness", 0);
+                    logger.warn("Zestawienie LST-ZIP - brakuje co najmniej jednego pliku");
+                } else {
+                    getServletContext().setAttribute("lstCorrectness", -1);
+                    logger.error("Zestawienie LST-ZIP - brak pliku");
+                }
+
+                getServletContext().setAttribute("mapsEntry", mapsEntry);
+                getServletContext().setAttribute("fundsFound", fundsFound);
+                getServletContext().setAttribute("filesHashMap", filesHashMapToSent);
+
+                if (getServletContext().getAttribute("lstCorrectness").toString().equals("-1")) {
+                    RequestDispatcher dispatcher = getServletContext()
+                            .getRequestDispatcher("/WEB-INF/ErrorZIP.jsp");
+                    dispatcher.forward(req, resp);
+                    logger.info("Przekierowanie na stronę błędu");
+                } else {
+                    RequestDispatcher dispatcher = getServletContext()
+                            .getRequestDispatcher("/WEB-INF/analizatorDoGet.jsp");
+                    dispatcher.forward(req, resp);
+                    logger.info("Przekierowanie na kolejną stronę");
+                }
+            }
+            if ("currency".equals(userParam)) {
+                logger.log(Level.INFO, "Wybrano pliki walut");
+
+                unZippedFiles("/opt/jboss/tmp", "/opt/jboss/tmp/omeganbp.zip");
+
+                String[] LSTDirArray = new String[]{"/opt/jboss/tmp/omeganbp.lst"};
+                Map<String, String> filesHashMap = new HashMap<String, String>();
+                StartingParameters startingParameters = new StartingParameters();
+                filesHashMap.putAll(startingParameters.startingParametersIntoMap(LSTDirArray));
+                logger.info("Wczytanie danych z pliku LST do mapy");
+                Map<String, String> filesHashMapToSent = new HashMap<String, String>();
+
+                int mapsEntry = 0;
+                int fundsFound = 0;
+
+                Set<Map.Entry<String, String>> entries = filesHashMap.entrySet();
+                for (Map.Entry<String, String> entry : entries) {
+                    mapsEntry++;
+                    String pathToFund = getServletContext().getAttribute("unZippedDir").toString();
+                    pathToFund += "/";
+                    pathToFund += entry.getValue();
+                    File f = new File(pathToFund);
+                    if (f.exists() && !f.isDirectory()) {
+                        fundsFound++;
+                        filesHashMapToSent.put(entry.getKey(), entry.getValue());
+                    }
+                }
+                logger.info("Zakończono zestawienie danych plik LST - plik ZIP");
+
+                if ((mapsEntry == fundsFound) && (fundsFound > 0)) {
+                    getServletContext().setAttribute("lstCorrectness", 1);
+                    logger.info("Zestawienie LST-ZIP zakończono pomyślnie");
+                } else if (fundsFound > 0) {
+                    getServletContext().setAttribute("lstCorrectness", 0);
+                    logger.warn("Zestawienie LST-ZIP - brakuje co najmniej jednego pliku");
+                } else {
+                    getServletContext().setAttribute("lstCorrectness", -1);
+                    logger.error("Zestawienie LST-ZIP - brak pliku");
+                }
+
+                getServletContext().setAttribute("mapsEntry", mapsEntry);
+                getServletContext().setAttribute("fundsFound", fundsFound);
+                getServletContext().setAttribute("filesHashMap", filesHashMapToSent);
+
+                if (getServletContext().getAttribute("lstCorrectness").toString().equals("-1")) {
+                    RequestDispatcher dispatcher = getServletContext()
+                            .getRequestDispatcher("/WEB-INF/ErrorZIP.jsp");
+                    dispatcher.forward(req, resp);
+                    logger.info("Przekierowanie na stronę błędu");
+                } else {
+                    RequestDispatcher dispatcher = getServletContext()
+                            .getRequestDispatcher("/WEB-INF/analizatorDoGet.jsp");
+                    dispatcher.forward(req, resp);
+                    logger.info("Przekierowanie na kolejną stronę");
+                }
 
             }
 
-            req.getParameter("found")
             Part fileLST = req.getPart("fileLST");
             Part fileZIP = req.getPart("fileZIP");
             InputStream inputStreamLST = fileLST.getInputStream();
             InputStream inputStreamZIP = fileZIP.getInputStream();
             logger.info("Rozpoczęto wczytywanie plików");
-            setParameters(inputStreamLST, inputStreamZIP);
+
 
             String targetDir = setTemporaryDirector();
 
@@ -198,7 +292,7 @@ public class Start extends HttpServlet {
         byte[] bytesLST = new byte[1024];
         byte[] bytesZIP = new byte[1024];
         while ((readLST = inputStreamLST.read(bytesLST)) != -1) {
-            outputStreamLST.write(bytesLST, 0, readLST);    
+            outputStreamLST.write(bytesLST, 0, readLST);
         }
         while ((readZIP = inputStreamZIP.read(bytesZIP)) != -1) {
             outputStreamZIP.write(bytesZIP, 0, readZIP);
