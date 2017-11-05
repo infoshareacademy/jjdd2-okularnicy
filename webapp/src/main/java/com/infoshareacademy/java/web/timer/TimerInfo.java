@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -24,39 +23,30 @@ public class TimerInfo {
 
 
     @PostConstruct
-    void initializeTimerInfo () {
+    void initializeTimerInfo() {
         logger.log(Level.INFO, "obiekt TimerInfo utworzony");
-
 
         ResourceReader resourceReader = new ResourceReader();
         String json = resourceReader.getStringFromResource("TimerConfig.json");
-
         try {
             timerConfiguration = timerJsonReader.readJsonFile(json);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        logger.log(Level.INFO, "getLengthOfTime=" + timerConfiguration.getLengthOfTime());
-
         lastRun = LocalDateTime.now();
         logger.log(Level.INFO, "lastRun=" + lastRun);
         lengthOfTime = Duration.ofSeconds(timerConfiguration.getLengthOfTime());
         logger.log(Level.INFO, "lengthOfTime=" + lengthOfTime);
-
-
     }
 
-    public boolean getInfo(){
+    public boolean getInfo() {
         LocalDateTime now = LocalDateTime.now();
         if (lastRun.plus(lengthOfTime).isBefore(now)) {
-            logger.log(Level.INFO, "minelo");
+            logger.log(Level.INFO, "TimefInfo.getInfo=true - aktywowanie triggera");
             lastRun = LocalDateTime.now();
             return true;
         }
-        logger.log(Level.INFO, "jeszcze nie");
+        logger.log(Level.INFO, "TimefInfo.getInfo=false - trigger nieaktywowany");
         return false;
     }
-
-
-
 }
