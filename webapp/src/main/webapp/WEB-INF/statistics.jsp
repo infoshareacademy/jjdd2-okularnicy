@@ -15,7 +15,7 @@
     <jsp:include page="/shared/header.jsp"/>
 </header>
 <div class="og" id="stat">
-    <jsp:include page="/shared/statisticsIntel.jsp"/>
+    <jsp:include page="/WEB-INF/statisticsIntel.jsp"/>
 
     <form action="statistics" method="post">
         <fmt:message key="firstPeriod"/>
@@ -33,7 +33,7 @@
         <button type="submit"><fmt:message key="send"/></button>
     </form>
 
-    <jsp:include page="/shared/historyIntel.jsp"/>
+    <jsp:include page="/WEB-INF/historyIntel.jsp"/>
 
     <form action="email" method="post">
         <fmt:message key="email"/>
