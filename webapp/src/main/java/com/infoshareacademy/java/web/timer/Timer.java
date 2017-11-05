@@ -14,12 +14,16 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
+import java.io.IOException;
+import java.io.InputStream;
 
 @Startup
 @Singleton
 public class Timer {
 
     private final Logger logger = LogManager.getLogger(getClass());
+    TimerConfiguration timerConfiguration = new TimerConfiguration();
+    TimerJsonReader timerJsonReader = new TimerJsonReader();
 
     @Inject
     TimerInfo timerInfo;
@@ -32,7 +36,26 @@ public class Timer {
 
     @Schedule(second="*/1", minute="*",hour="*", persistent=false)
     public void doWork(){
-        EmailService email = new EmailService("infoshareokularnicy@wp.pl", "okularnicY", "smtp.wp.pl", 465);
+        String json = "";
+        InputStream is = getClass().getClassLoader().getResourceAsStream("TimerConfig.json");
+        logger.log(Level.INFO, "ABCDInputStream=" + is);
+        try {
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        logger.log(Level.INFO, "JSON=" + json);
+        try {
+            timerConfiguration = timerJsonReader.readJsonFile(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        EmailService email = new EmailService(timerConfiguration.getEmailLogin(), timerConfiguration.getEmailPass(), timerConfiguration.getEmailSmtpAdress(), timerConfiguration.getEmailPort());
         logger.log(Level.INFO, "udalo sie!");
         boolean response = timerInfo.getInfo();
         logger.log(Level.INFO, "response=" + response);

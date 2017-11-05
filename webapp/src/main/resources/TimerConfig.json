@@ -1,5 +1,9 @@
 {
   "lengthOfTime": 10,
-  "unzippeDir": "unZippedDir"
+  "unzippeDir": "unZippedDir",
+  "emailLogin": "infoshareokularnicy@wp.pl",
+  "emailPass": "okularnicY",
+  "emailSmtpAdress": "smtp.wp.pl",
+  "emailPort": 465
 
 }
