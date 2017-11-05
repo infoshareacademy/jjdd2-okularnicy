@@ -57,11 +57,10 @@ public class StartingParameters {
                 }
 
             } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
                 logger.log(Level.ERROR, "Wyjątek: FileNotFoundException");
             } catch (IOException ex2) {
-                ex2.printStackTrace();
                 logger.log(Level.ERROR, "Wyjątek: FileNotFoundException");
+
             }
         }
         return resultMap;
