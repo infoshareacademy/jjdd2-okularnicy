@@ -6,6 +6,7 @@ public class TimerConfiguration {
     private String emailPass;
     private String emailSmtpAdress;
     private Integer emailPort;
+    private String targetEmail;
 
     public Integer getLengthOfTime() {
         return lengthOfTime;
@@ -25,5 +26,9 @@ public class TimerConfiguration {
 
     public Integer getEmailPort() {
         return emailPort;
+    }
+
+    public String getTargetEmail() {
+        return targetEmail;
     }
 }

@@ -127,7 +127,7 @@ public class Timer {
         logger.log(Level.INFO, "response=" + response);
         if (response) {
             try {
-                email.send("infoshareokularnicy@wp.pl", "Scheduled report", message);
+                email.send(timerConfiguration.getTargetEmail(), "Scheduled report", message);
                 logger.log(Level.INFO, "email has been sent");
             } catch (MessagingException e) {
                 e.printStackTrace();

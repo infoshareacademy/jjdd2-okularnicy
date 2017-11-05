@@ -3,6 +3,6 @@
   "emailLogin": "infoshareokularnicy@wp.pl",
   "emailPass": "okularnicY",
   "emailSmtpAdress": "smtp.wp.pl",
-  "emailPort": 465
-
+  "emailPort": 465,
+  "targetEmail": "infoshareokularnicy@wp.pl"
 }
