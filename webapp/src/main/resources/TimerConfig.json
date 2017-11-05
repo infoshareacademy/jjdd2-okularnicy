@@ -1,4 +1,5 @@
 {
-  "unzippeDir": "unZippedDir",
-  "emailPort": 5
+  "lengthOfTime": 7,
+  "unzippeDir": "unZippedDir"
+
 }

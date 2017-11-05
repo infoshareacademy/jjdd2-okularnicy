@@ -17,7 +17,7 @@ public class TimerInfo {
     private final Logger logger = LogManager.getLogger(getClass());
 
     LocalDateTime lastRun;
-    Duration setLengthOfTime;
+    Duration lengthOfTime;
 
     TimerConfiguration timerConfiguration = new TimerConfiguration();
     TimerJsonReader timerJsonReader = new TimerJsonReader();
@@ -47,20 +47,20 @@ public class TimerInfo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        logger.log(Level.INFO, "getEmailPort=" + timerConfiguration.getEmailPort());
+        logger.log(Level.INFO, "getLengthOfTime=" + timerConfiguration.getLengthOfTime());
         logger.log(Level.INFO, "getUnzippeDir=" + timerConfiguration.getUnzippeDir());
 
         lastRun = LocalDateTime.now();
         logger.log(Level.INFO, "lastRun=" + lastRun);
-        setLengthOfTime = Duration.ofSeconds(timerConfiguration.getEmailPort());
-        logger.log(Level.INFO, "setLengthOfTime=" + setLengthOfTime);
+        lengthOfTime = Duration.ofSeconds(timerConfiguration.getLengthOfTime());
+        logger.log(Level.INFO, "lengthOfTime=" + lengthOfTime);
 
 
     }
 
     public boolean getInfo(){
         LocalDateTime now = LocalDateTime.now();
-        if (lastRun.plus(setLengthOfTime).isBefore(now)) {
+        if (lastRun.plus(lengthOfTime).isBefore(now)) {
             logger.log(Level.INFO, "minelo");
             lastRun = LocalDateTime.now();
             return true;
