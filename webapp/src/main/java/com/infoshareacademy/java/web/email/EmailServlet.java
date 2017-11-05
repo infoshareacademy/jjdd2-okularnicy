@@ -29,6 +29,7 @@ public class EmailServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.log(Level.INFO, "start metody EmailServlet.doGet");
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher("/WEB-INF/emailDoPost.jsp");
         dispatcher.forward(req, resp);
@@ -37,6 +38,7 @@ public class EmailServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.log(Level.INFO, "start metody EmailServlet.doPost");
         configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
         HttpServletResponseWrapper responseWrapper = getHttpServletResponseWrapper(resp);
 
@@ -52,7 +54,10 @@ public class EmailServlet extends HttpServlet {
         servletContext.setAttribute("emailAddress", emailAddress);
         logger.log(Level.INFO, "ustawiono atrybut emailAddress=" + emailAddress);
 
-        EmailService email = new EmailService(configuration.getEmailLogin(), configuration.getEmailPass(), "smtp.wp.pl", 465);
+        EmailService email = new EmailService(configuration.getEmailLogin(),
+                configuration.getEmailPass(),
+                configuration.getEmailSmtpAdress(),
+                configuration.getEmailPort());
         logger.info("Utworzono obiekt klasy EmailService.");
         try {
             email.send(emailAddress, "Report", report);

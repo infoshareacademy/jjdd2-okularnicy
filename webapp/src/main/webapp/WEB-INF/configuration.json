@@ -12,5 +12,7 @@
   "initialMinutesDuration2": 0,
   "initialSecondsDuration2": 0,
   "emailLogin": "infoshareokularnicy@wp.pl",
-  "emailPass": "okularnicY"
+  "emailPass": "okularnicY",
+  "emailSmtpAdress": "smtp.wp.pl",
+  "emailPort": 465
 }
