@@ -53,8 +53,18 @@ public class Start extends HttpServlet {
             downloader.downloadFile(zipFunURL, saveDir);
             downloader.downloadFile(lstCurURL, saveDir);
             downloader.downloadFile(zipCurURL, saveDir);
-        } catch (IOException ex) {
+        } catch (RuntimeException e) {
+            logger.error("Blad na stronie extrema globalne: " + e);
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/error.jsp");
+            dispatcher.forward(req, resp);
+        } catch (IOException e) {
+            logger.error("Blad na stronie extrema globalne: " + e);
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/error.jsp");
+            dispatcher.forward(req, resp);
         }
+
 
         final String accessToken = (String) SessionUtils.get(req, "accessToken");
         final String idToken = (String) SessionUtils.get(req, "idToken");
