@@ -143,6 +143,6 @@ public class StatisticsServlet extends HttpServlet {
         servletContext.setAttribute("OccurrenceMapLast2", statistics.getOccurrenceMap(last2, now));
         servletContext.setAttribute("NumberOfVisitsTotal", statistics.getNumberOfVisits());
         servletContext.setAttribute("OccurrenceMapTotal", statistics.getOccurrenceMap());
-        servletContext.setAttribute("RecordsListTotal", statistics.getAll());
+        servletContext.setAttribute("RecordsListTotal", statistics.getAllFormatted());
     }
 }
