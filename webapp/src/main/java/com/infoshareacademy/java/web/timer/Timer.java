@@ -22,7 +22,6 @@ public class Timer {
     private final Logger logger = LogManager.getLogger(getClass());
     TimerConfiguration timerConfiguration = new TimerConfiguration();
     TimerJsonReader timerJsonReader = new TimerJsonReader();
-    private Statistics statistics = Statistics.getInstance();
     String json;
 
     @Inject
@@ -40,7 +39,7 @@ public class Timer {
         }
     }
 
-    @Schedule(second = "*", minute = "*/1", hour = "*", persistent = false)
+    @Schedule(second = "0", minute = "*", hour = "*", persistent = false)
     public void doWork() {
         Report report = new Report();
         String message = report.getReport();

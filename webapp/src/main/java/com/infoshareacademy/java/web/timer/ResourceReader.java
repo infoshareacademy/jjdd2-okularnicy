@@ -9,8 +9,9 @@ import java.io.InputStream;
 public class ResourceReader {
     private final Logger logger = LogManager.getLogger(getClass());
 
+    String result;
+
     public String getStringFromResource(String file) {
-        String result = "";
         InputStream is = getClass().getClassLoader().getResourceAsStream(file);
         logger.log(Level.INFO, "getStringFromResource.InputStream=" + is);
         try {

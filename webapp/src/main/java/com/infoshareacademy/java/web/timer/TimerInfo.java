@@ -24,7 +24,7 @@ public class TimerInfo {
 
     @PostConstruct
     void initializeTimerInfo() {
-        logger.log(Level.INFO, "obiekt TimerInfo utworzony");
+        logger.log(Level.INFO, "obiekt TimerInfo zostal utworzony");
 
         ResourceReader resourceReader = new ResourceReader();
         String json = resourceReader.getStringFromResource("TimerConfig.json");
