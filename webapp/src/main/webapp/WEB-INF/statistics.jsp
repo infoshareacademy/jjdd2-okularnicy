@@ -37,7 +37,7 @@
 
     <form action="email" method="post">
         <fmt:message key="email"/>
-        <input type="email" name="emailAddress" value="<fmt:message key="exampleEmail"/>">
+        <input type="email" name="emailAddress" placeholder="<fmt:message key="exampleEmail"/>">
         <button type="submit"><fmt:message key="send"/></button>
     </form>
 
