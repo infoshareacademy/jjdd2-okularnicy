@@ -21,7 +21,7 @@ public class ResourceReader {
             is.close();
             result = new String(buffer, "UTF-8");
         } catch (Exception ex) {
-            logger.info(ex.getMessage());
+            logger.error(ex.getMessage());
         }
         return result;
     }

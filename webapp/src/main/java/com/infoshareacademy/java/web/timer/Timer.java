@@ -35,7 +35,7 @@ public class Timer {
         try {
             timerConfiguration = timerJsonReader.readJsonFile(json);
         } catch (IOException e) {
-            logger.info(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
@@ -56,7 +56,7 @@ public class Timer {
                 email.send(timerConfiguration.getTargetEmail(), "Scheduled report", message);
                 logger.log(Level.INFO, "email has been sent");
             } catch (MessagingException e) {
-                logger.info(e.getMessage());
+                logger.error(e.getMessage());
             }
         }
     }

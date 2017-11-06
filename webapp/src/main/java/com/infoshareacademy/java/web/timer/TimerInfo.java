@@ -31,7 +31,7 @@ public class TimerInfo {
         try {
             timerConfiguration = timerJsonReader.readJsonFile(json);
         } catch (IOException e) {
-            logger.info(e.getMessage());
+            logger.error(e.getMessage());
         }
         lastRun = LocalDateTime.now();
         logger.log(Level.INFO, "lastRun=" + lastRun);
