@@ -13,7 +13,7 @@ public class ResourceReader {
 
     public String getStringFromResource(String file) {
         InputStream is = getClass().getClassLoader().getResourceAsStream(file);
-        logger.log(Level.INFO, "getStringFromResource.InputStream=" + is);
+        logger.info("getStringFromResource.InputStream=" + is);
         try {
             int size = is.available();
             byte[] buffer = new byte[size];
@@ -21,7 +21,7 @@ public class ResourceReader {
             is.close();
             result = new String(buffer, "UTF-8");
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.info(ex.getMessage());
         }
         return result;
     }

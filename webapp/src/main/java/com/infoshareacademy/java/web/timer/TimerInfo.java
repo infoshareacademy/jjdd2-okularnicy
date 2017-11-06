@@ -27,11 +27,11 @@ public class TimerInfo {
         logger.log(Level.INFO, "obiekt TimerInfo zostal utworzony");
 
         ResourceReader resourceReader = new ResourceReader();
-        String json = resourceReader.getStringFromResource("TimerConfig.json");
+        String json = resourceReader.getStringFromResource("reportMailSenderConfig.json");
         try {
             timerConfiguration = timerJsonReader.readJsonFile(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         lastRun = LocalDateTime.now();
         logger.log(Level.INFO, "lastRun=" + lastRun);

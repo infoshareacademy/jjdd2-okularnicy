@@ -9,20 +9,14 @@ public class Report {
     private Statistics statistics = Statistics.getInstance();
 
     public String getReport(){
-        Duration duration1;
-        Duration duration2;
-        duration1 = Duration.ofDays(7)
-                .plusHours(0)
-                .plusMinutes(0)
-                .plusSeconds(0);
-        duration2 = Duration.ofDays(30)
-                .plusHours(0)
-                .plusMinutes(0)
-                .plusSeconds(0);
+        Duration durationOfFirstPeriodOfTime;
+        Duration durationOfSecondPeriodOfTime;
+        durationOfFirstPeriodOfTime = Duration.ofDays(7);
+        durationOfSecondPeriodOfTime = Duration.ofDays(30);
 
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime last1 = now.minus(duration1);
-        LocalDateTime last2 = now.minus(duration2);
+        LocalDateTime last1 = now.minus(durationOfFirstPeriodOfTime);
+        LocalDateTime last2 = now.minus(durationOfSecondPeriodOfTime);
 
         StringBuilder sb = new StringBuilder();
 

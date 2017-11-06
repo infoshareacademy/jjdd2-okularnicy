@@ -29,13 +29,13 @@ public class Timer {
 
     @PostConstruct
     void initializeTimer() {
-        logger.log(Level.INFO, "obiekt Timer zostal utworzony");
+        logger.info("obiekt Timer zostal utworzony");
         ResourceReader resourceReader = new ResourceReader();
-        json = resourceReader.getStringFromResource("TimerConfig.json");
+        json = resourceReader.getStringFromResource("reportMailSenderConfig.json");
         try {
             timerConfiguration = timerJsonReader.readJsonFile(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
     }
 
@@ -56,7 +56,7 @@ public class Timer {
                 email.send(timerConfiguration.getTargetEmail(), "Scheduled report", message);
                 logger.log(Level.INFO, "email has been sent");
             } catch (MessagingException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         }
     }
