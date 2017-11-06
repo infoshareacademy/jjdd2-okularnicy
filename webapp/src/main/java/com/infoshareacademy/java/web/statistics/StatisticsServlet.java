@@ -33,82 +33,106 @@ public class StatisticsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        boolean isAdmin = Boolean.valueOf(req.getSession().getAttribute("admin").toString());
+        try {
+            boolean isAdmin = Boolean.valueOf(req.getSession().getAttribute("admin").toString());
 
-        if(!isAdmin) {
-            logger.info("Użytkownik nie jest adminem");
+            if(!isAdmin) {
+                logger.info("Użytkownik nie jest adminem");
+                RequestDispatcher dispatcher = getServletContext()
+                        .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
+                dispatcher.forward(req, resp);
+            }
+
+            logger.log(Level.INFO, "start metody StatisticsServlet.doGet");
+            configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
+
+            ServletContext servletContext = getServletContext();
+
+            duration1 = (Duration) servletContext.getAttribute("duration1");
+            if (duration1 == null) {
+                logger.log(Level.INFO, "servletContext.getAttribute(\"duration1\")=null");
+                duration1 = Duration.ofDays(configuration.getInitialDaysDuration1())
+                        .plusHours(configuration.getInitialHoursDuration1())
+                        .plusMinutes(configuration.getInitialMinutesDuration1())
+                        .plusSeconds(configuration.getInitialSecondsDuration1());
+                servletContext.setAttribute("duration1", duration1);
+            } else {
+                logger.log(Level.INFO, "servletContext.getAttribute(\"duration1\")=" + duration1.toString());
+            }
+
+            duration2 = (Duration) servletContext.getAttribute("duration2");
+            if (duration2 == null) {
+                logger.log(Level.INFO, "servletContext.getAttribute(\"duration2\")=null");
+                duration2 = Duration.ofDays(configuration.getInitialDaysDuration2())
+                        .plusHours(configuration.getInitialHoursDuration2())
+                        .plusMinutes(configuration.getInitialMinutesDuration2())
+                        .plusSeconds(configuration.getInitialSecondsDuration2());
+                servletContext.setAttribute("duration2", duration2);
+            } else {
+                logger.log(Level.INFO, "servletContext.getAttribute(\"duration2\")=" + duration2.toString());
+            }
+
+            setStatisticsAttributes(duration1, duration2);
+
             RequestDispatcher dispatcher = getServletContext()
-                    .getRequestDispatcher("/WEB-INF/startDoGet.jsp");
+                    .getRequestDispatcher("/WEB-INF/statistics.jsp");
+            dispatcher.forward(req, resp);
+        } catch (RuntimeException e) {
+            logger.error("Blad na stronie extrema globalne: " + e);
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/error.jsp");
+            dispatcher.forward(req, resp);
+        } catch (IOException e) {
+            logger.error("Blad na stronie extrema globalne: " + e);
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/error.jsp");
             dispatcher.forward(req, resp);
         }
-
-        logger.log(Level.INFO, "start metody StatisticsServlet.doGet");
-        configuration = jsonReader.readJsonFile(getServletContext().getResource("/WEB-INF/configuration.json").getPath());
-
-        ServletContext servletContext = getServletContext();
-
-        duration1 = (Duration) servletContext.getAttribute("duration1");
-        if (duration1 == null) {
-            logger.log(Level.INFO, "servletContext.getAttribute(\"duration1\")=null");
-            duration1 = Duration.ofDays(configuration.getInitialDaysDuration1())
-                    .plusHours(configuration.getInitialHoursDuration1())
-                    .plusMinutes(configuration.getInitialMinutesDuration1())
-                    .plusSeconds(configuration.getInitialSecondsDuration1());
-            servletContext.setAttribute("duration1", duration1);
-        } else {
-            logger.log(Level.INFO, "servletContext.getAttribute(\"duration1\")=" + duration1.toString());
-        }
-
-        duration2 = (Duration) servletContext.getAttribute("duration2");
-        if (duration2 == null) {
-            logger.log(Level.INFO, "servletContext.getAttribute(\"duration2\")=null");
-            duration2 = Duration.ofDays(configuration.getInitialDaysDuration2())
-                    .plusHours(configuration.getInitialHoursDuration2())
-                    .plusMinutes(configuration.getInitialMinutesDuration2())
-                    .plusSeconds(configuration.getInitialSecondsDuration2());
-            servletContext.setAttribute("duration2", duration2);
-        } else {
-            logger.log(Level.INFO, "servletContext.getAttribute(\"duration2\")=" + duration2.toString());
-        }
-
-        setStatisticsAttributes(duration1, duration2);
-
-        RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/WEB-INF/statistics.jsp");
-        dispatcher.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.log(Level.INFO, "start metody StatisticsServlet.doPost");
-        Integer days1 = Integer.parseInt(req.getParameter("days1"));
-        Integer hours1 = Integer.parseInt(req.getParameter("hours1"));
-        Integer minutes1 = Integer.parseInt(req.getParameter("minutes1"));
-        Integer seconds1 = Integer.parseInt(req.getParameter("seconds1"));
-        Integer days2 = Integer.parseInt(req.getParameter("days2"));
-        Integer hours2 = Integer.parseInt(req.getParameter("hours2"));
-        Integer minutes2 = Integer.parseInt(req.getParameter("minutes2"));
-        Integer seconds2 = Integer.parseInt(req.getParameter("seconds2"));
+        try {
+            logger.log(Level.INFO, "start metody StatisticsServlet.doPost");
+            Integer days1 = Integer.parseInt(req.getParameter("days1"));
+            Integer hours1 = Integer.parseInt(req.getParameter("hours1"));
+            Integer minutes1 = Integer.parseInt(req.getParameter("minutes1"));
+            Integer seconds1 = Integer.parseInt(req.getParameter("seconds1"));
+            Integer days2 = Integer.parseInt(req.getParameter("days2"));
+            Integer hours2 = Integer.parseInt(req.getParameter("hours2"));
+            Integer minutes2 = Integer.parseInt(req.getParameter("minutes2"));
+            Integer seconds2 = Integer.parseInt(req.getParameter("seconds2"));
 
-        ServletContext servletContext = getServletContext();
+            ServletContext servletContext = getServletContext();
 
-        duration1 = Duration.ofDays(days1)
-                .plusHours(hours1)
-                .plusMinutes(minutes1)
-                .plusSeconds(seconds1);
-        servletContext.setAttribute("duration1", duration1);
+            duration1 = Duration.ofDays(days1)
+                    .plusHours(hours1)
+                    .plusMinutes(minutes1)
+                    .plusSeconds(seconds1);
+            servletContext.setAttribute("duration1", duration1);
 
-        duration2 = Duration.ofDays(days2)
-                .plusHours(hours2)
-                .plusMinutes(minutes2)
-                .plusSeconds(seconds2);
-        servletContext.setAttribute("duration2", duration2);
+            duration2 = Duration.ofDays(days2)
+                    .plusHours(hours2)
+                    .plusMinutes(minutes2)
+                    .plusSeconds(seconds2);
+            servletContext.setAttribute("duration2", duration2);
 
-        setStatisticsAttributes(duration1, duration2);
+            setStatisticsAttributes(duration1, duration2);
 
-        RequestDispatcher dispatcher = getServletContext()
-                .getRequestDispatcher("/WEB-INF/statistics.jsp");
-        dispatcher.forward(req, resp);
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/statistics.jsp");
+            dispatcher.forward(req, resp);
+        } catch (RuntimeException e) {
+            logger.error("Blad na stronie extrema globalne: " + e);
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/error.jsp");
+            dispatcher.forward(req, resp);
+        } catch (IOException e) {
+            logger.error("Blad na stronie extrema globalne: " + e);
+            RequestDispatcher dispatcher = getServletContext()
+                    .getRequestDispatcher("/WEB-INF/error.jsp");
+            dispatcher.forward(req, resp);
+        }
     }
 
     private void setStatisticsAttributes(Duration duration1, Duration duration2) {
