@@ -1,6 +1,7 @@
 package com.infoshareacademy.baseapp.statistics;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,17 @@ public class Statistics {
             if ((record.getDateTime().isAfter(dateFrom) || record.getDateTime().isEqual(dateFrom)) && (record.getDateTime().isBefore(dateTo) || record.getDateTime().isEqual(dateTo))) {
                 result.add(record);
             }
+        }
+        return result;
+    }
+
+    public List<RecordStringDate> getAllFormatted() {
+        List<Record> list = getAll();
+        List<RecordStringDate> result = new ArrayList<>();
+        for (Record record : list){
+            String date = record.getDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));
+            RecordStringDate recordStringDate = new RecordStringDate(record.getName(),date);
+            result.add(recordStringDate);
         }
         return result;
     }
